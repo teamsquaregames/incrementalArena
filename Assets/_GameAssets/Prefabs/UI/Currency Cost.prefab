@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3594606154756977411
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8677289593598802192}
+    m_Modifications:
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00004
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387145295789933260, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+--- !u!4 &2299975415323031314 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3317389535948375057, guid: d3c43330d3f0f2744aac704718eaa6a6, type: 3}
+  m_PrefabInstance: {fileID: 3594606154756977411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6351020854991514393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 1686950261633675176, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8d17097b0fafc514ab09effaa70a92f8, type: 3}
+      objectReference: {fileID: 21300000, guid: 6d9ccb63cb1ca524dbbcf5aa98b622d6, type: 3}
     - target: {fileID: 1686950261633675176, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -172,11 +234,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Currency Cost
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5430332116301045558, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3063494744559882414, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2326310661794796041, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2299975415323031314}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8542668731363481877, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
       insertIndex: -1
@@ -231,3 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &8677289593598802192 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2326310661794796041, guid: eba7f1b4c4d95ca408cc8893b58f913c, type: 3}
+  m_PrefabInstance: {fileID: 6351020854991514393}
+  m_PrefabAsset: {fileID: 0}

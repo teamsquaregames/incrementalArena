@@ -114,12 +114,12 @@
             eventMap = new Dictionary<TutorialEvent, (Action, Action)>
             {
                 [TutorialEvent.OnRunStart] = (
-                    () => GameHandler.Instance.OnRunStart += TriggerTutorialStep,
-                    () => GameHandler.Instance.OnRunStart -= TriggerTutorialStep
+                    () => GameManager.Instance.OnRunStart += TriggerTutorialStep,
+                    () => GameManager.Instance.OnRunStart -= TriggerTutorialStep
                 ),
                 [TutorialEvent.OnRunEnd] = (
-                    () => GameHandler.Instance.OnRunEnd += TriggerTutorialStep,
-                    () => GameHandler.Instance.OnRunEnd -= TriggerTutorialStep
+                    () => GameManager.Instance.OnRunEnd += TriggerTutorialStep,
+                    () => GameManager.Instance.OnRunEnd -= TriggerTutorialStep
                 )
             };
         }
@@ -129,12 +129,12 @@
             return new Dictionary<TutorialEvent, (Action, Action)>
             {
                 [TutorialEvent.OnRunStart] = (
-                    () => GameHandler.Instance.OnRunStart += ValidateStep,
-                    () => GameHandler.Instance.OnRunStart -= ValidateStep
+                    () => GameManager.Instance.OnRunStart += ValidateStep,
+                    () => GameManager.Instance.OnRunStart -= ValidateStep
                 ),
                 [TutorialEvent.OnRunEnd] = (
-                    () => GameHandler.Instance.OnRunEnd += ValidateStep,
-                    () => GameHandler.Instance.OnRunEnd -= ValidateStep
+                    () => GameManager.Instance.OnRunEnd += ValidateStep,
+                    () => GameManager.Instance.OnRunEnd -= ValidateStep
                 )
             };
         }

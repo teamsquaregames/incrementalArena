@@ -29,7 +29,7 @@ public class SkillTreeCanvas : CanvasHandler
     {
         FadeManager.Instance.FadeIn(() =>
         {
-            GameHandler.Instance.StartRun();
+            GameManager.Instance.StartRun();
         });
     }
 
