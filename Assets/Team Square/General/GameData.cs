@@ -21,9 +21,6 @@ public class GameData : ScriptableObject
 
 	private static GameData _instance;
 	public static GameData Instance => _instance ?? Load();
-	[TitleGroup("Global Currencies Stats")]
-	[SerializeField, ES3NonSerializable] private SerializableDictionary<CurrencyAsset, StatType> globalCurrenciesMutipliers = new SerializableDictionary<CurrencyAsset, StatType>();
-	[ES3NonSerializable] private StatHandler m_statHandler => StatHandler.Instance;
 
 	public void Init()
 	{
@@ -115,18 +112,17 @@ public class GameData : ScriptableObject
 		if (currencies == null)
 			currencies = new SerializableDictionary<Currency, double>();
 		
-		double ComputedAmount = amount * StatHandler.Instance.GetValue(globalCurrenciesMutipliers[_currencyAsset]);
 		if (currencies.ContainsKey(currency))
 		{
-			currencies[currency] += ComputedAmount;
+			currencies[currency] += amount;
 		}
 		else
 		{
-			currencies[currency] = ComputedAmount;
+			currencies[currency] = amount;
 		}
 
 		foreach (TrackedValueType trackedValueType in _currencyAsset.trackedValuesWithCurrencyGained)
-			IncrementTrackedValue(trackedValueType, ComputedAmount);
+			IncrementTrackedValue(trackedValueType, amount);
 		
 		onCurrencyChanged?.Invoke(_currencyAsset, currencies[currency]);
 		onCurrencyAdded?.Invoke(_currencyAsset, amount);

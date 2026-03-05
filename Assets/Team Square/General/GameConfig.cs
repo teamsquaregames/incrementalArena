@@ -33,12 +33,12 @@ public class GameConfig : ScriptableObject
     [System.Serializable]
     public class CheatSettings
     {
-        public StatModifier[] cheatStats = new StatModifier[0];
         public bool preventSave = false;
         public bool startResetData = false;
         public bool noFTUE = false;
         public bool noCurrencyRequired = false;
         public bool noMenu = false;
+        public bool disableBootStrapper = false;
     }
 
     [System.Serializable]

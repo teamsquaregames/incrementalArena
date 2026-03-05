@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currencyAssets:
   - {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
+  statData:
+  - {fileID: 11400000, guid: 5e3ca7c8bf72201478c1ef5d45d1ea19, type: 2}
+  - {fileID: 11400000, guid: 3b6f926c759ff3f49ab03b6cae0dbe79, type: 2}

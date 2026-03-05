@@ -6,6 +6,8 @@ public class Bootstraper : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Init()
     {
+        if (GameConfig.Instance.cheatSettings.disableBootStrapper) return;
+        
         Scene _currentScene = SceneManager.GetActiveScene();
     
         if (_currentScene.name != "InitScene")

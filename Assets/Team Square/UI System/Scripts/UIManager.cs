@@ -17,26 +17,6 @@ public class UIManager : Singleton<UIManager>
         SetupCanvases();
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            GetCanvas<MenuCanvas>().Open();
-        }
-        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
-        {
-            GetCanvas<MenuCanvas>().Close();
-        }
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            GetCanvas<MenuCanvas>().GetContainer<MenuTitleUIC>().Open();
-        }
-        if (Keyboard.current.wKey.wasPressedThisFrame)
-        {
-            GetCanvas<MenuCanvas>().GetContainer<MenuTitleUIC>().Close();
-        }
-    }
-
     private void SetupCanvases()
     {
         m_canvases = new SerializableDictionary<Type, CanvasHandler>();

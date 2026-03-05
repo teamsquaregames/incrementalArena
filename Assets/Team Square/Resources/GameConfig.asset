@@ -21,6 +21,7 @@ MonoBehaviour:
     noFTUE: 0
     noCurrencyRequired: 1
     noMenu: 0
+    disableBootStrapper: 1
   gameSettings:
     isDemo: 0
     resetedCurrency: []

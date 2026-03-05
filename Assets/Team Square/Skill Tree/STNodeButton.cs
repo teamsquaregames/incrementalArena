@@ -64,8 +64,6 @@ public class STNodeButton : CustomButton
     [TitleGroup("Settings")]
     [SerializeField] private Color m_hoverSheenColor = Color.red;
     
-    private UIManager m_uiManager;
-    private StatHandler m_statHandler;
     private RadialLayoutLink m_arrivingLink;
     private int m_level = 0;
     private Coroutine m_colorLerpCoroutine;
@@ -92,9 +90,6 @@ public class STNodeButton : CustomButton
 
     public override void Init()
     {
-        m_uiManager = UIManager.Instance;
-        m_statHandler = StatHandler.Instance;
-
         m_icon.sprite = m_asset.Icon;
 
         m_radialLayoutNode.onSetArrivingLink += onSetArrivingLink;
@@ -117,12 +112,13 @@ public class STNodeButton : CustomButton
 
             if (m_asset.BonusesApplicationMode == BonusesApplicationMode.OnLevelUp)
             {
-                foreach (StatModifier statModifier in m_asset.StatModifiers)
-                {
-                    StatModifier modifier = statModifier;
-                    modifier.level = m_level - 1;
-                    m_statHandler.ApplyModifier(modifier);
-                }
+                //Todo : apply stat modifiers
+                // foreach (StatModifier statModifier in m_asset.StatModifiers)
+                // {
+                //     StatModifier modifier = statModifier;
+                //     modifier.level = m_level - 1;
+                //     m_statHandler.ApplyModifier(modifier);
+                // }
 
                 foreach (Cost currency in m_asset.Currencies)
                     GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
@@ -335,13 +331,13 @@ public class STNodeButton : CustomButton
 
         if (m_asset.BonusesApplicationMode == BonusesApplicationMode.OnLevelUp)
         {
-            foreach (StatModifier statModifier in m_asset.StatModifiers)
-            {
-                // this.Log($"Level up node: Stat Modifier {statModifier.id} to Stat {statModifier.statType} with value {statModifier.value}.");
-                StatModifier modifier = statModifier;
-                modifier.level = m_level - 1;
-                m_statHandler.ApplyModifier(modifier);
-            }
+            //Todo : apply stat modifiers
+            // foreach (StatModifier statModifier in m_asset.StatModifiers)
+            // {
+            //     StatModifier modifier = statModifier;
+            //     modifier.level = m_level - 1;
+            //     m_statHandler.ApplyModifier(modifier);
+            // }
 
             foreach (Cost currency in m_asset.Currencies)
                 GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));

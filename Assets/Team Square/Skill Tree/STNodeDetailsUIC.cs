@@ -95,82 +95,6 @@ public class STNodeDetailsUIC : UIContainer
         // Determine if this is the max level
         bool isMaxLevel = _level >= _asset.MaxLevel;
 
-        // Add stat modifiers showing current -> next value
-        if (_asset.StatModifiers != null && _asset.StatModifiers.Length > 0)
-        {
-            foreach (StatModifier modifier in _asset.StatModifiers)
-            {
-                if (description.Length > 0)
-                {
-                    description.Append("\n");
-                }
-
-                if (isFirstUnlock)
-                {
-                    // Show only the first value for initial unlock in white
-                    double firstValue = modifier.values != null && modifier.values.Length > 0
-                        ? modifier.values[0]
-                        : 0;
-
-                    string formattedFirst = FormatModifierValue(modifier.modifierType, firstValue, "#FFFFFF");
-
-                    // Add percent symbol if specified (but not for Percentage type which already has %)
-                    if (modifier.addPercentSymbol && modifier.modifierType != OperationType.Percentage)
-                    {
-                        description.Append($"{formattedFirst}<color=#FFFFFF>%</color>");
-                    }
-                    else
-                    {
-                        description.Append($"{formattedFirst}");
-                    }
-                }
-                else if (isMaxLevel)
-                {
-                    // Show only the current value for max level
-                    double currentValue = modifier.values != null && modifier.values.Length > 0
-                        ? (_level - 1 < modifier.values.Length ? modifier.values[_level - 1] : modifier.values[modifier.values.Length - 1])
-                        : 0;
-
-                    string formattedCurrent = FormatModifierValue(modifier.modifierType, currentValue, "#FFFFFF");
-
-                    // Add percent symbol if specified (but not for Percentage type which already has %)
-                    if (modifier.addPercentSymbol && modifier.modifierType != OperationType.Percentage)
-                    {
-                        description.Append($"{formattedCurrent}<color=#FFFFFF>%</color>");
-                    }
-                    else
-                    {
-                        description.Append($"{formattedCurrent}");
-                    }
-                }
-                else
-                {
-                    // Show current -> next for upgrades
-                    double currentValue = modifier.values != null && modifier.values.Length > 0
-                        ? (_level - 1 < modifier.values.Length ? modifier.values[_level - 1] : modifier.values[modifier.values.Length - 1])
-                        : 0;
-
-                    double nextValue = modifier.values != null && modifier.values.Length > 0
-                        ? (_level < modifier.values.Length ? modifier.values[_level] : modifier.values[modifier.values.Length - 1])
-                        : 0;
-
-                    string formattedCurrent = FormatModifierValue(modifier.modifierType, currentValue, "#FFFFFF");
-                    string formattedNext = DescriptionBuilder.FormatModifier(modifier.modifierType, nextValue);
-
-                    // Add percent symbol if specified (but not for Percentage type which already has %)
-                    if (modifier.addPercentSymbol && modifier.modifierType != OperationType.Percentage)
-                    {
-                        string nextColor = nextValue >= 0 ? "#00FF00" : "#FF0000";
-                        description.Append($"{formattedCurrent}<color=#FFFFFF>%</color> <sprite=\"arrow\" name=\"arrow\"> {formattedNext}<color={nextColor}>%</color>");
-                    }
-                    else
-                    {
-                        description.Append($"{formattedCurrent} <sprite=\"arrow\" name=\"arrow\"> {formattedNext}");
-                    }
-                }
-            }
-        }
-
         // Add currencies showing current -> next value
         if (_asset.Currencies != null && _asset.Currencies.Length > 0)
         {
@@ -212,23 +136,5 @@ public class STNodeDetailsUIC : UIContainer
         }
 
         return description.ToString();
-    }
-
-    private string FormatModifierValue(OperationType operationType, double value, string color)
-    {
-        switch (operationType)
-        {
-            case OperationType.Additive:
-                string sign = value >= 0 ? "+" : "";
-                string formattedValue = value % 1 == 0 ? value.ToString("0") : value.ToString("0.##");
-                return $"<color={color}>{sign}{formattedValue}</color>";
-
-            case OperationType.Percentage:
-                string percentSign = value >= 0 ? "+" : "";
-                return $"<color={color}>{percentSign}{value:0.#}%</color>";
-
-            default:
-                return $"<color={color}>{value.ToString("0.##")}</color>";
-        }
     }
 }

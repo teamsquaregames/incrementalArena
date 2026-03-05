@@ -30,8 +30,6 @@ public class STNodeAsset : ScriptableObject
     [TitleGroup("Bonuses")]
     [SerializeField] private BonusesApplicationMode m_bonusesApplicationMode = BonusesApplicationMode.OnLevelUp;
     [Space]
-    [SerializeField] private StatModifier[] m_statModifiers;
-    [Space]
     [SerializeField] private bool m_freeBuildings;
     [Space]
     [SerializeField] protected Cost[] m_currencies;
@@ -44,7 +42,6 @@ public class STNodeAsset : ScriptableObject
     public string Description => m_description;
     public Cost[] Cost => m_cost;
     public bool FreeBuildings => m_freeBuildings;
-    public StatModifier[] StatModifiers => m_statModifiers;
     public Cost[] Currencies => m_currencies;
     public int MaxLevel => m_maxLevel;
     public BonusesApplicationMode BonusesApplicationMode => m_bonusesApplicationMode;
