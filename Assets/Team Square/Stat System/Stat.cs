@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Stats
 {
+    [Serializable]
     public class Stat
     {
         private float m_baseValue;
         private readonly List<StatModifier> m_modifiers = new();
         private bool m_isDirty = true;
-        private float m_cachedValue;
+        
+        [SerializeField] private float m_cachedValue;
 
         public float Value
         {
@@ -30,6 +33,13 @@ namespace Stats
         {
             m_baseValue = value;
             MarkDirty();
+        }
+        
+        public void SetBaseValueAndRecalculate(float value)
+        {
+            m_baseValue = value;
+            Recalculate();
+            OnValueChanged?.Invoke(m_cachedValue);
         }
 
         public void AddModifier(StatModifier mod)
@@ -53,7 +63,12 @@ namespace Stats
 
         public void RemoveModifier(StatModifier mod)
         {
-            m_modifiers.Remove(mod);
+            if (mod.id != null)
+                m_modifiers.RemoveAll(m => m.id == mod.id);
+            else
+                m_modifiers.RemoveAll(m => m.statType == mod.statType
+                                        && m.value == mod.value
+                                        && m.type == mod.type);
             MarkDirty();
         }
 
