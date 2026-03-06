@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87cdb4cc2b8584b4e9ea6246cab2e1a8, type: 3}
-  m_Name: New Stat Registry
-  m_EditorClassIdentifier: Assembly-CSharp::Stats.StatRegistry
-  definitions: []
+  m_Script: {fileID: 11500000, guid: 194d038a401a21a498957795bca395d6, type: 3}
+  m_Name: Player_StatDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatDefinition
+  entityType: 1
+  baseValues:
+    keys: 01000000
+    values:
+    - 10

@@ -11,17 +11,21 @@ namespace Stats
     [Serializable]
     public class StatModifier
     {
+        public string id;
+        public EntityType entityType;
         public StatType statType;
         public float value;
         public ModifierType type;
-        public object source;
 
-        public StatModifier(StatType _statType, float _value, ModifierType _type, object _source = null)
+        public StatModifier(EntityType _entityType, StatType _statType, float _value, ModifierType _type, string _id = null)
         {
-            statType = _statType;
-            value    = _value;
-            type     = _type;
-            source   = _source;
+            id         = _id;
+            entityType = _entityType;
+            statType   = _statType;
+            value      = _value;
+            type       = _type;
         }
+
+        public StatModifier Copy() => new StatModifier(entityType, statType, value, type, id);
     }
 }

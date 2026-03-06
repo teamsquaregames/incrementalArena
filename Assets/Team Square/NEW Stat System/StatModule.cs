@@ -1,30 +1,30 @@
-using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using Utils;
 
 namespace Stats
 {
     public class StatModule : MonoBehaviour
     {
-        [SerializeField] private SerializableDictionary<StatType, float> baseValues;
+        [SerializeField] private EntityType m_entityType;
+        [SerializeField, ReadOnly] private string m_instanceId;
 
-        private readonly Dictionary<StatType, Stat> stats = new Dictionary<StatType, Stat>();
+        public string InstanceId => m_instanceId;
 
-        private Stat Get(StatType type)
+        private void Awake()
         {
-            if (!stats.TryGetValue(type, out var stat))
-            {
-                var baseValue = baseValues.TryGetValue(type, out var v) ? v : 0f;
-                stat          = new Stat(baseValue);
-                stats[type]   = stat;
-            }
-            return stat;
+            m_instanceId = StatManager.Instance.RegisterInstance(m_entityType);
         }
 
-        public float GetValue(StatType type) => Get(type).Value;
+        private void OnDestroy()
+        {
+            if (StatManager.Instance != null)
+            {
+                StatManager.Instance.UnregisterInstance(m_instanceId);
+            }
+        }
 
-        public void AddModifier(StatModifier mod) => Get(mod.statType).AddModifier(mod);
-
-        public void RemoveModifier(StatModifier mod) => Get(mod.statType).RemoveModifier(mod);
+        public float GetValue(StatType type)         => StatManager.Instance.GetInstanceValue(m_instanceId, type);
+        public void AddModifier(StatModifier mod)    => StatManager.Instance.AddInstanceModifier(m_instanceId, mod);
+        public void RemoveModifier(StatModifier mod) => StatManager.Instance.RemoveInstanceModifier(m_instanceId, mod);
     }
 }
