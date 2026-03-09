@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Stats
@@ -6,6 +7,7 @@ namespace Stats
     [Serializable]
     public class LeveledStatModifier : AStatModifier
     {
+        [ListDrawerSettings(HideAddButton = true)]
         [SerializeField] private float[] m_values;
 
         public LeveledStatModifier(EntityType _entityType, StatType _statType, ModifierType _type, float[] _values, string _id = null)
@@ -29,6 +31,19 @@ namespace Stats
             }
 
             return new StatModifier(entityType, statType, m_values[level], type, id);
+        }
+        
+        public void ResizeValues(int newSize)
+        {
+            if (newSize < 0) newSize = 0;
+
+            var oldValues = m_values ?? Array.Empty<float>();
+            var resized   = new float[newSize];
+
+            for (int i = 0; i < Mathf.Min(oldValues.Length, newSize); i++)
+                resized[i] = oldValues[i];
+
+            m_values = resized;
         }
     }
 }

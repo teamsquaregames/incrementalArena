@@ -95,41 +95,6 @@ public class STNodeDetailsUIC : UIContainer
         // Determine if this is the max level
         bool isMaxLevel = _level >= _asset.MaxLevel;
 
-        // Add currencies showing current -> next value
-        if (_asset.Currencies != null && _asset.Currencies.Length > 0)
-        {
-            foreach (Cost currency in _asset.Currencies)
-            {
-                if (description.Length > 0)
-                {
-                    description.Append("\n");
-                }
-
-                string color = "#FFFF00";
-
-                if (isFirstUnlock)
-                {
-                    // Show only the first value for initial unlock in white
-                    ulong firstAmount = currency.GetAmount(0);
-                    description.Append($"<color=#FFFFFF>+{firstAmount}</color> {currency.currencyAsset.SpriteAssetString}");
-                }
-                else if (isMaxLevel)
-                {
-                    // Show only the current value for max level
-                    ulong currentAmount = currency.GetAmount(_level - 1);
-                    description.Append($"<color={color}>+{currentAmount}</color> {currency.currencyAsset.SpriteAssetString}");
-                }
-                else
-                {
-                    // Show current -> next for upgrades
-                    ulong currentAmount = currency.GetAmount(_level - 1);
-                    ulong nextAmount = currency.GetAmount(_level);
-
-                    description.Append($"<color=#FFFFFF>+{currentAmount}</color> {currency.currencyAsset.SpriteAssetString} <sprite=\"arrow\" name=\"arrow\"> <color={color}>+{nextAmount}</color> {currency.currencyAsset.SpriteAssetString}");
-                }
-            }
-        }
-
         if (description.Length == 0)
         {
             return "No effects";

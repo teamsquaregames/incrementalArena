@@ -31,8 +31,6 @@ public class STNodeButton : CustomButton
     [TitleGroup("Dependencies - Display")]
     [SerializeField] private SerializableDictionary<NodeRank, GameObject> m_ranksVisuals;
     [TitleGroup("Dependencies - Display")]
-    [SerializeField] private GameObject m_freeIcon;
-    [TitleGroup("Dependencies - Display")]
     [SerializeField] private GameObject m_levelsParent;
     [TitleGroup("Dependencies - Display")]
     [SerializeField] private GameObject m_affordableParent;
@@ -115,9 +113,6 @@ public class STNodeButton : CustomButton
             {
                 StatManager.Instance.AddDefinitionModifier(statModifier.entityType, statModifier.GetModifierAtLevel(m_level - 1));
             }
-
-            foreach (Cost currency in m_asset.Currencies)
-                GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
 
             foreach (RadialLayoutNode child in m_radialLayoutNode.GetChildNodes())
                 child.GetComponent<STNodeButton>().SetLock(false);
@@ -327,9 +322,6 @@ public class STNodeButton : CustomButton
         {
             StatManager.Instance.AddDefinitionModifier(statModifier.entityType, statModifier.GetModifierAtLevel(m_level - 1));
         }
-
-        foreach (Cost currency in m_asset.Currencies)
-            GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
         
         if (m_level == m_asset.MaxLevel)
             PlayMaxLevelFlashEffect();
@@ -474,8 +466,6 @@ public class STNodeButton : CustomButton
     [Button]
     private void OnAssetChanged()
     {
-        // Ton code ici
-        //Debug.Log($"Asset changé vers : {m_asset.name}");
         if (m_icon != null && m_asset != null)
         {
             m_icon.sprite = m_asset.Icon;
@@ -489,17 +479,6 @@ public class STNodeButton : CustomButton
             if (m_asset != null && m_ranksVisuals.ContainsKey(m_asset.Rank))
             {
                 m_ranksVisuals[m_asset.Rank].SetActive(true);
-            }
-        }
-        if (m_freeIcon != null)
-        {
-            if (m_asset != null && m_asset.FreeBuildings)
-            {
-                m_freeIcon.SetActive(true);
-            }
-            else
-            {
-                m_freeIcon.SetActive(false);
             }
         }
         m_previousAsset = m_asset;
