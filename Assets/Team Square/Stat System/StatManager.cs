@@ -9,7 +9,7 @@ namespace Stats
 {
     public class StatManager : Singleton<StatManager>
     {
-        [SerializeField, AssetList(Path = "Team Square/Stat System")] private List<EntityStatDefinition> m_entityStatDefinitions;
+        [SerializeField, AssetList(Path = "Team Square/Stat System", AutoPopulate = true)] private List<EntityStatDefinition> m_entityStatDefinitions;
         [SerializeField, ReadOnly] private SerializableDictionary<EntityType, Dictionary<StatType, Stat>> m_definitionStats;
         [SerializeField, ReadOnly] private SerializableDictionary<GameObject, Dictionary<StatType, Stat>> m_instanceStats;
 
@@ -128,6 +128,18 @@ namespace Stats
         public void AddModifier()
         {
             AddDefinitionModifier(m_debugEntityType, m_statModifier);
+        }
+
+        [Button]
+        public void RefreshAllStats()
+        {
+            foreach (var statDict in m_definitionStats.Values)
+                foreach (var stat in statDict.Values)
+                    stat.ForceRecalculate();
+
+            foreach (var statDict in m_instanceStats.Values)
+                foreach (var stat in statDict.Values)
+                    stat.ForceRecalculate();
         }
         #endregion
     }

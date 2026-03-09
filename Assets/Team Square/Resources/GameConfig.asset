@@ -15,13 +15,12 @@ MonoBehaviour:
   debuggingSettings:
     developmentBuild: 0
   cheatSettings:
-    cheatStats: []
     preventSave: 0
     startResetData: 1
     noFTUE: 0
     noCurrencyRequired: 1
     noMenu: 0
-    disableBootStrapper: 1
+    disableBootStrapper: 0
   gameSettings:
     isDemo: 0
     resetedCurrency: []

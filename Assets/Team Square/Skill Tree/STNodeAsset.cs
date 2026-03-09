@@ -1,14 +1,9 @@
 using Sirenix.OdinInspector;
 using System;
+using Stats;
 using UnityEngine;
 using Utils;
 using Unity.Mathematics;
-
-public enum BonusesApplicationMode
-{
-    OnLevelUp,
-    InChest
-}
 
 [CreateAssetMenu(fileName = "TTN_", menuName = "TT Node Asset")]
 [Serializable]
@@ -28,13 +23,12 @@ public class STNodeAsset : ScriptableObject
     [SerializeField] protected Cost[] m_cost;
 
     [TitleGroup("Bonuses")]
-    [SerializeField] private BonusesApplicationMode m_bonusesApplicationMode = BonusesApplicationMode.OnLevelUp;
-    [Space]
     [SerializeField] private bool m_freeBuildings;
-    [Space]
     [SerializeField] protected Cost[] m_currencies;
+    [SerializeField] protected LeveledStatModifier[] m_statModifiers;
 
     #region Gettters
+    public LeveledStatModifier[] StatModifiers => m_statModifiers;
     public string DisplayName => m_displayName;
     public string ID => m_id;
     public Sprite Icon => m_icon;
@@ -44,7 +38,6 @@ public class STNodeAsset : ScriptableObject
     public bool FreeBuildings => m_freeBuildings;
     public Cost[] Currencies => m_currencies;
     public int MaxLevel => m_maxLevel;
-    public BonusesApplicationMode BonusesApplicationMode => m_bonusesApplicationMode;
     #endregion
 
     #region Helper

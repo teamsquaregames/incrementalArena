@@ -19,23 +19,11 @@ MonoBehaviour:
   m_rank: 0
   m_description: TNN_PlaceHolder 3
   m_cost:
-  - currencyAsset: {fileID: 11400000, guid: 7cb0c72fb6d08024d9b4f71d0083c029, type: 2}
+  - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0f000000000000001e000000000000003c000000000000007800000000000000f000000000000000
-  m_bonusesApplicationMode: 0
-  m_statModifiers:
-  - id: TTFirstCoinCurrency
-    statType: 0
-    modifierType: 1
-    addPercentSymbol: 1
-    values:
-    - 2
-    - 4
-    - 6
-    - 8
-    - 10
-    level: 0
   m_freeBuildings: 0
   m_currencies: []
+  m_statModifiers: []
   m_length: 5
   m_offset: 0
   m_previewCurrency: {fileID: 0}
@@ -43,5 +31,5 @@ MonoBehaviour:
   m_pricesLinear: 0
   m_pricesExpo: 2
   m_testCosts:
-  - currencyAsset: {fileID: 11400000, guid: 7cb0c72fb6d08024d9b4f71d0083c029, type: 2}
+  - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0f000000000000001e000000000000003c000000000000007800000000000000f000000000000000

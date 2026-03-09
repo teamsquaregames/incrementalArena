@@ -9,12 +9,15 @@ using Utils;
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField, ReadOnly] private SerializableDictionary<Type, CanvasHandler> m_canvases;
+    [SerializeField] private CanvasHandler m_defaultCanvas;
 
     public bool IsOverUI => EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
 
     private void Awake()
     {
         SetupCanvases();
+        
+        m_defaultCanvas.Open();
     }
 
     private void SetupCanvases()

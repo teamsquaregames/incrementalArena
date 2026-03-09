@@ -27,6 +27,7 @@ namespace Stats
         public Stat(float baseValue = 0f)
         {
             m_baseValue = baseValue;
+            m_cachedValue = m_baseValue;
         }
 
         public void SetBaseValue(float value)
@@ -70,6 +71,11 @@ namespace Stats
                                         && m.value == mod.value
                                         && m.type == mod.type);
             MarkDirty();
+        }
+
+        public void ForceRecalculate()
+        {
+            Recalculate();
         }
 
         private void MarkDirty()

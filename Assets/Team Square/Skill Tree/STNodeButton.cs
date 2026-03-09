@@ -8,6 +8,7 @@ using MPUIKIT;
 using System.Collections;
 using DG.Tweening;
 using MyBox;
+using Stats;
 
 
 public class STNodeButton : CustomButton
@@ -109,20 +110,14 @@ public class STNodeButton : CustomButton
         if (m_level > 0)
         {
             m_demoLockObject.SetActive(m_demoLocked && GameConfig.Instance.gameSettings.isDemo);
-
-            if (m_asset.BonusesApplicationMode == BonusesApplicationMode.OnLevelUp)
+            
+            foreach (LeveledStatModifier statModifier in m_asset.StatModifiers)
             {
-                //Todo : apply stat modifiers
-                // foreach (StatModifier statModifier in m_asset.StatModifiers)
-                // {
-                //     StatModifier modifier = statModifier;
-                //     modifier.level = m_level - 1;
-                //     m_statHandler.ApplyModifier(modifier);
-                // }
-
-                foreach (Cost currency in m_asset.Currencies)
-                    GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
+                StatManager.Instance.AddDefinitionModifier(statModifier.entityType, statModifier.GetModifierAtLevel(m_level - 1));
             }
+
+            foreach (Cost currency in m_asset.Currencies)
+                GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
 
             foreach (RadialLayoutNode child in m_radialLayoutNode.GetChildNodes())
                 child.GetComponent<STNodeButton>().SetLock(false);
@@ -327,21 +322,14 @@ public class STNodeButton : CustomButton
     {
         ClickBounce();
         m_level = GameData.Instance.LevelUpNode(m_asset.ID);
-        // this.Log($"Level up node to level {level}.");
-
-        if (m_asset.BonusesApplicationMode == BonusesApplicationMode.OnLevelUp)
+        
+        foreach (LeveledStatModifier statModifier in m_asset.StatModifiers)
         {
-            //Todo : apply stat modifiers
-            // foreach (StatModifier statModifier in m_asset.StatModifiers)
-            // {
-            //     StatModifier modifier = statModifier;
-            //     modifier.level = m_level - 1;
-            //     m_statHandler.ApplyModifier(modifier);
-            // }
-
-            foreach (Cost currency in m_asset.Currencies)
-                GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
+            StatManager.Instance.AddDefinitionModifier(statModifier.entityType, statModifier.GetModifierAtLevel(m_level - 1));
         }
+
+        foreach (Cost currency in m_asset.Currencies)
+            GameData.Instance.AddCurrency(currency.currencyAsset, currency.GetAmount(m_level - 1));
         
         if (m_level == m_asset.MaxLevel)
             PlayMaxLevelFlashEffect();
