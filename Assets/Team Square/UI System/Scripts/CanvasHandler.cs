@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,6 +14,11 @@ public class CanvasHandler : MonoBehaviour
     private int m_remainingContainers;
     private bool m_isClosing;
     private bool m_isOpen;
+
+    private void Reset()
+    {
+        m_canvas = GetComponent<Canvas>();
+    }
 
     public virtual void Init()
     {

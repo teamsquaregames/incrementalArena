@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatDefinition
   entityType: 1
   baseValues:
-    keys: 0100000000000000
+    keys: 03000000
     values:
     - 10
-    - 100

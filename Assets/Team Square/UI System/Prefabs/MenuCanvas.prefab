@@ -860,7 +860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2411042569430108113, guid: e7bbf731359d92b4da3be979d7117d1c, type: 3}
       propertyPath: m_Name
-      value: MenuCanvas
+      value: ExempleCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3936351494354976019, guid: e7bbf731359d92b4da3be979d7117d1c, type: 3}
       propertyPath: m_Pivot.x
@@ -944,7 +944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8328404233473037872, guid: e7bbf731359d92b4da3be979d7117d1c, type: 3}
       propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7761617264374943961, guid: e7bbf731359d92b4da3be979d7117d1c, type: 3}
