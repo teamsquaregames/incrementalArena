@@ -90,6 +90,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -111,9 +113,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8283295568066605535
 MonoBehaviour:
@@ -135,7 +139,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +5 <sprite="wheat" name=wheat>
+  m_text: '100
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5d22f97e3744534e8effd3e64a2c8b2, type: 2}
   m_sharedMaterial: {fileID: 9222596237866965274, guid: a5d22f97e3744534e8effd3e64a2c8b2, type: 2}
@@ -173,6 +179,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -231,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8908241696775658325}
   - component: {fileID: 1351498553727770343}
+  - component: {fileID: 2592052214978518874}
   m_Layer: 7
   m_Name: WorldFloatingText
   m_TagString: Untagged
@@ -268,4 +276,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 8283295568066605535}
   m_parent: {fileID: 7028771675719999416}
-  m_linkedConfig: {fileID: 11400000, guid: 098f3a8ea27c9ff488d6fec2932db423, type: 2}
+  m_linkedConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
+--- !u!114 &2592052214978518874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116611355329181391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0893e5ed45c5193408cd7eeeb097f3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Billboard

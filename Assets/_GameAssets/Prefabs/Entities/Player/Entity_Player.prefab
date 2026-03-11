@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1619992697595801773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4935243160237015239}
+  m_Layer: 0
+  m_Name: HealthBarTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4935243160237015239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619992697595801773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2001262478841934903}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6359347277372963124
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +176,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8126794622186995254, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4935243160237015239}
     - targetCorrespondingSourceObject: {fileID: 3902489620234916321, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4194655104032397433}
@@ -161,7 +195,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7589379264942293275}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8403113568194058257}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5071099908346814444}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+--- !u!4 &2001262478841934903 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8126794622186995254, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+  m_PrefabInstance: {fileID: 7714038588239923713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4106009951781145495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
@@ -192,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023dea0cc5f17c948837f1e35bb9683d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatModule
-  m_entityType: 0
+  m_entityType: 1
 --- !u!54 &1242883771397363075
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -233,7 +278,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityMovementModule
   m_rigidbody: {fileID: 1242883771397363075}
-  m_entityStatModule: {fileID: 6280457273270024880}
+--- !u!114 &8403113568194058257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bde38c5ddca8e24c9c53f251bd72e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
+  m_deathFxPoolRef: {fileID: 11400000, guid: b9e8782cb08957740a12a957fc1aff69, type: 2}
+  punchScale: {x: 0.2, y: -0.15, z: 0}
+  punchDuration: 0.15
+  punchVibrato: 6
+  punchElasticity: 0.5
+--- !u!114 &5071099908346814444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8339412d66624eb42bd19d8c2c3e0fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityHealthUIModule
+  m_genericGaugePoolRef: {fileID: 11400000, guid: fc222585730598f4ba6269485b11a6b2, type: 2}
+  m_healthBarTarget: {fileID: 4935243160237015239}
+  m_floatingTextConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

@@ -8,8 +8,8 @@ using Lean.Pool;
 public class GenericGauge : MonoBehaviour, IPoolable
 {
     [Header("References")]
-    [SerializeField] private Slider slider;
-    [SerializeField] private RectTransform sliderFillArea;
+    [SerializeField] private Image fillImage;           // Filled image (Image Type: Filled)
+    [SerializeField] private RectTransform fillAreaRect; // Parent rect used to position chunks
     [SerializeField] private Image flashOverlay;
     [SerializeField] private CanvasGroup canvasGroup;
 
@@ -21,7 +21,7 @@ public class GenericGauge : MonoBehaviour, IPoolable
     [SerializeField] private bool hideWhenFull = false;
     [SerializeField] private float hideDelay = 1f;
     [SerializeField] private float hideFadeDuration = 0.3f;
-    
+
     [Header("Timings")]
     [SerializeField] private float chunkPopDuration = 0.15f;
     [SerializeField] private float chunkExitDelay = 0.25f;
@@ -59,11 +59,7 @@ public class GenericGauge : MonoBehaviour, IPoolable
 
     private void Awake()
     {
-        slider.minValue = 0f;
-        slider.maxValue = 1f;
-        slider.wholeNumbers = false;
-
-        currentNormalized = slider.value;
+        currentNormalized = fillImage != null ? fillImage.fillAmount : 0f;
         InitializeChunkPool();
 
         if (label != null)
@@ -81,11 +77,12 @@ public class GenericGauge : MonoBehaviour, IPoolable
         this.target = target;
         SetValue(currentValue, maxValue, instant: true, showChunks: false);
     }
-    
+
     public void SetValue(float currentValue, float maxValue)
     {
         SetValue(currentValue, maxValue, instant: false, showChunks: true);
     }
+
     public void SetValue(float currentValue, float maxValue, bool instant, bool showChunks)
     {
         maxValue = Mathf.Max(maxValue, 0.0001f);
@@ -101,11 +98,11 @@ public class GenericGauge : MonoBehaviour, IPoolable
 
         bool isDamage = targetNormalized < currentNormalized;
         float previousNormalized = currentNormalized;
-        
+
         if (hideWhenFull && isDamage)
             ShowGauge();
 
-        UpdateSlider(targetNormalized, instant);
+        UpdateFill(targetNormalized, instant);
         UpdateLabel(currentValue, maxValue);
 
         if (showChunks)
@@ -114,7 +111,7 @@ public class GenericGauge : MonoBehaviour, IPoolable
             Flash();
             ShakeBar();
         }
-        
+
         if (hideWhenFull && Mathf.Approximately(targetNormalized, 1f))
             HideGauge();
     }
@@ -146,10 +143,13 @@ public class GenericGauge : MonoBehaviour, IPoolable
 
     private void InitializeChunkPool()
     {
+        // Use fillAreaRect if assigned, otherwise fall back to fillImage's transform
+        Transform poolParent = fillAreaRect != null ? fillAreaRect : fillImage.rectTransform;
+
         chunkPool = new List<Image>(chunkPoolSize);
         for (int i = 0; i < chunkPoolSize; i++)
         {
-            Image chunk = Instantiate(damageChunkPrefab, slider.transform);
+            Image chunk = Instantiate(damageChunkPrefab, poolParent);
             chunk.gameObject.SetActive(false);
             chunk.raycastTarget = false;
             chunkPool.Add(chunk);
@@ -170,7 +170,8 @@ public class GenericGauge : MonoBehaviour, IPoolable
             return reused;
         }
 
-        Image extra = Instantiate(damageChunkPrefab, slider.transform);
+        Transform poolParent = fillAreaRect != null ? fillAreaRect : fillImage.rectTransform;
+        Image extra = Instantiate(damageChunkPrefab, poolParent);
         extra.raycastTarget = false;
         chunkPool.Add(extra);
         return extra;
@@ -196,6 +197,7 @@ public class GenericGauge : MonoBehaviour, IPoolable
     {
         RectTransform rt = chunk.rectTransform;
 
+        // Anchor the chunk across the fill area using normalized fill positions
         rt.anchorMin        = new Vector2(left,  0f);
         rt.anchorMax        = new Vector2(right, 1f);
         rt.offsetMin        = Vector2.zero;
@@ -232,8 +234,9 @@ public class GenericGauge : MonoBehaviour, IPoolable
     }
 
     #endregion
-    
+
     #region IPoolable
+
     public void OnSpawn()
     {
         fadeTween?.Kill();
@@ -242,25 +245,28 @@ public class GenericGauge : MonoBehaviour, IPoolable
     }
 
     public void OnDespawn() { }
+
     #endregion
 
-    
-    private void UpdateSlider(float target, bool instant)
+    // ------------------------------------------------------------------
+    // Core fill update — replaces all slider.value usage
+    // ------------------------------------------------------------------
+    private void UpdateFill(float targetFill, bool instant)
     {
         sliderTween?.Kill();
-        currentNormalized = target;
+        currentNormalized = targetFill;
 
         if (instant)
         {
-            slider.value = target;
+            fillImage.fillAmount = targetFill;
         }
         else
         {
-            float from = slider.value;
+            float from = fillImage.fillAmount;
             sliderTween = DOTween.To(
                     () => from,
-                    v => slider.value = v,
-                    target,
+                    v => fillImage.fillAmount = v,
+                    targetFill,
                     smoothFillDuration)
                 .SetEase(Ease.OutCubic);
         }
@@ -271,24 +277,23 @@ public class GenericGauge : MonoBehaviour, IPoolable
         if (!showText || label == null) return;
         label.text = current.ToString("N0");
     }
+
     private void ShowGauge()
     {
         hideDelayTween?.Kill();
         fadeTween?.Kill();
         fadeTween = canvasGroup.DOFade(1f, hideFadeDuration);
     }
-    
 
     public void HideGauge(bool _instant = false, TweenCallback onComplete = null)
     {
         hideDelayTween?.Kill();
         fadeTween?.Kill();
-        
+
         if (_instant)
         {
             canvasGroup.alpha = 0;
-            if (onComplete != null)
-                onComplete?.Invoke();
+            onComplete?.Invoke();
         }
         else
         {
@@ -296,13 +301,13 @@ public class GenericGauge : MonoBehaviour, IPoolable
             {
                 fadeTween?.Kill();
                 fadeTween = canvasGroup.DOFade(0f, hideFadeDuration);
-                
+
                 if (onComplete != null)
                     fadeTween.onComplete += onComplete;
             });
         }
     }
-    
+
     private void Flash()
     {
         flashColorTween?.Kill();
