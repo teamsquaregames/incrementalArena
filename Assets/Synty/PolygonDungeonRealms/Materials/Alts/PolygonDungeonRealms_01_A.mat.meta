@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2a12d3fc0532ba64e972160db18dfd99
+timeCreated: 1604461730
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Materials/Alts/PolygonDungeonRealms_01_A.mat
+  uploadId: 861060
