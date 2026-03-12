@@ -1,7 +1,7 @@
 using MyBox;
 using UnityEngine;
 
-public class CursorManager : Singleton<CursorManager>
+public class MouseCursorSetter : Singleton<MouseCursorSetter>
 {
     void Start()
     {

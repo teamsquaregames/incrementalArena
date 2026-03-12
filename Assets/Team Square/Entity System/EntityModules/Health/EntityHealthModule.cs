@@ -3,7 +3,9 @@ using MyBox;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using DG.Tweening;
+using Stats;
 using UnityEngine.InputSystem;
+using Utils;
 using Random = UnityEngine.Random;
 
 public class EntityHealthModule : EntityModule
@@ -26,12 +28,33 @@ public class EntityHealthModule : EntityModule
     private bool m_isDead;
     private Tween m_punchTween;
 
-    public float MaxHealth => 100; //Todo : replace by stat
+    public float MaxHealth
+    {
+        get
+        {
+            if (Owner.TryGetModule(out EntityStatModule statModule))
+            {
+                return statModule.GetValue(StatType.MaxHealth);
+            }
+            else
+            {
+                this.LogWarning("No StatModule attached. Couldn't get MaxHealth value. Returning 100 as default");
+                return 100;
+                
+            }
+        }
+    }
 
     protected override void OnInitialize()
     {
-        m_currentHealth = MaxHealth;
+        base.OnInitialize();
         m_isDead = false;
+    }
+
+    public override void OnAllModuleInitialized()
+    {
+        base.OnAllModuleInitialized();
+        m_currentHealth = MaxHealth;
     }
 
     private void Update()
