@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde38c5ddca8e24c9c53f251bd72e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
-  m_deathFxPoolRef: {fileID: 11400000, guid: b9e8782cb08957740a12a957fc1aff69, type: 2}
+  m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   punchScale: {x: 0.2, y: -0.15, z: 0}
   punchDuration: 0.15
   punchVibrato: 6
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8339412d66624eb42bd19d8c2c3e0fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthUIModule
-  m_genericGaugePoolRef: {fileID: 11400000, guid: fc222585730598f4ba6269485b11a6b2, type: 2}
+  m_genericGaugePrefab: {fileID: 3276611897021444203, guid: 8ba6804fea548b84ea546c434c84122b, type: 3}
   m_healthBarTarget: {fileID: 4935243160237015239}
   m_floatingTextConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
 --- !u!114 &54798341076026425

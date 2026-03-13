@@ -4,7 +4,7 @@ using Lean.Pool;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IPoolable
 {
     [Header("References")]
     [SerializeField] private Collider m_collider;
@@ -17,12 +17,6 @@ public class Entity : MonoBehaviour
     public void CacheReferences()
     {
         m_collider = GetComponent<Collider>();
-    }
-
-    private void Awake()
-    {
-        RegisterModules();
-        Register();
     }
 
     private void RegisterModules()
@@ -82,7 +76,7 @@ public class Entity : MonoBehaviour
             healthModule.OnDeath -= Despawn;
         }
         
-        Destroy(gameObject);
+        LeanPool.Despawn(gameObject);
     }
 
     private void Register()
@@ -100,7 +94,13 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void OnSpawn()
+    {
+        RegisterModules();
+        Register();
+    }
+
+    public void OnDespawn()
     {
         Unregister();
     }

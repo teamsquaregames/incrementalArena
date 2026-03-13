@@ -1,9 +1,9 @@
+using Lean.Pool;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EntityHealthUIModule : EntityModule
 {
-    [SerializeField] private GenericGaugePoolRef m_genericGaugePoolRef;
+    [SerializeField] private GenericGauge m_genericGaugePrefab;
     [SerializeField] private Transform m_healthBarTarget;
     [SerializeField] private FloatingTextConfig m_floatingTextConfig;
 
@@ -18,7 +18,8 @@ public class EntityHealthUIModule : EntityModule
         }
 
         healthModule.OnHealthChanged += HandleHealthChanged;
-        healthModule.OnDeathStart += HandleDeathStart;
+        healthModule.OnDeathStart += OnDeathStart;
+        healthModule.OnDeath += OnDeath;
 
         SpawnHealthBar(m_healthBarTarget, healthModule.MaxHealth);
     }
@@ -26,14 +27,15 @@ public class EntityHealthUIModule : EntityModule
     private void SpawnHealthBar(Transform target, float maxHealth)
     {
         Transform canvasTransform = UIManager.Instance.GetCanvas<GameCanvas>().transform;
-        m_genericGauge = m_genericGaugePoolRef.pool.Spawn(canvasTransform);
+        m_genericGauge = LeanPool.Spawn(m_genericGaugePrefab, canvasTransform);
         m_genericGauge.Setup(target, maxHealth, maxHealth);
     }
 
     private void DespawnHealthBar()
     {
         if (m_genericGauge == null) return;
-        m_genericGaugePoolRef.pool.Despawn(m_genericGauge);
+        
+        LeanPool.Despawn(m_genericGaugePrefab);
         m_genericGauge = null;
     }
 
@@ -45,15 +47,33 @@ public class EntityHealthUIModule : EntityModule
         FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, delta.ToString("N0"), m_floatingTextConfig);
     }
 
-    private void HandleDeathStart()
+    private void OnDeathStart()
     {
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
         {
             healthModule.OnHealthChanged -= HandleHealthChanged;
-            healthModule.OnDeathStart -= HandleDeathStart;
+            healthModule.OnDeathStart -= OnDeathStart;
+            healthModule.OnDeath -= OnDeath;
         }
 
         if (m_genericGauge != null)
-            m_genericGauge.HideGauge(true, DespawnHealthBar);
+        { 
+            LeanPool.Despawn(m_genericGauge);   
+        }
+    }
+    
+    private void OnDeath()
+    {
+        if (Owner.TryGetModule(out EntityHealthModule healthModule))
+        {
+            healthModule.OnHealthChanged -= HandleHealthChanged;
+            healthModule.OnDeathStart -= OnDeathStart;
+            healthModule.OnDeath -= OnDeath;
+        }
+
+        if (m_genericGauge != null)
+        { 
+            LeanPool.Despawn(m_genericGauge);   
+        }
     }
 }

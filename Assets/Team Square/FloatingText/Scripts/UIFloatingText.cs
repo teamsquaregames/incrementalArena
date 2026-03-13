@@ -13,7 +13,6 @@ public class UIFloatingText : MonoBehaviour
     
     [SerializeField] private FloatingTextConfig m_linkedConfig;
     private Vector3 m_initialPosition;
-    private LeanUIFloatingTextPool m_linkedPool;
     private Sequence _seq;
     
     [Button]
@@ -34,11 +33,10 @@ public class UIFloatingText : MonoBehaviour
         text = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void Init(string message, FloatingTextConfig config, LeanUIFloatingTextPool linkedPool)
+    public void Init(string message, FloatingTextConfig config)
     {
         text.text = message;
         m_linkedConfig = config;
-        m_linkedPool = linkedPool;
         text.color = m_linkedConfig.color;
         text.font = m_linkedConfig.font;
         text.fontSize = m_linkedConfig.fontSize;
@@ -83,8 +81,7 @@ public class UIFloatingText : MonoBehaviour
 
         _seq.OnComplete(() =>
         {
-            if (m_linkedPool != null)
-                m_linkedPool.Despawn(this);
+            LeanPool.Despawn(this);
         });
     }
 }

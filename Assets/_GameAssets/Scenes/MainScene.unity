@@ -246,87 +246,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: 3.6, z: 0}
---- !u!1 &1641963241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-  m_PrefabInstance: {fileID: 3942764911660706184}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1641963244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641963241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9eb2827dd31b494fac7f51789972ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pinpin.UIFlyingParticlePoolRefSetter
-  poolRef: {fileID: 0}
---- !u!114 &1641963245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641963241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce11804ab1755b545851fe3e6437a4af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lean.Pool.LeanUIFlyingParticlePool
-  recycle: 0
-  prefab: {fileID: 0}
-  notification: 3
-  strategy: 0
-  preload: 0
-  capacity: 0
-  persist: 0
-  stamp: 0
-  warnings: 1
-  spawnedClonesList: []
-  despawnedClones: []
-  delays: []
-  deactivatedChild: {fileID: 0}
---- !u!114 &1641963246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641963241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1188f369073a54080121b0c489337a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lean.Pool.LeanEntityPool
-  recycle: 0
-  prefab: {fileID: 0}
-  notification: 3
-  strategy: 0
-  preload: 0
-  capacity: 0
-  persist: 0
-  stamp: 0
-  warnings: 1
-  spawnedClonesList: []
-  despawnedClones: []
-  delays: []
-  deactivatedChild: {fileID: 0}
---- !u!114 &1641963247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641963241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08104be8970c6164990e5b0185182139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityPoolRefSetter
-  poolRef: {fileID: 0}
 --- !u!1 &1726769273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4574991568595680022, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
@@ -469,6 +388,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: PlayerPrefab
+      value: 
+      objectReference: {fileID: 8633641482994889394, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_playerPrefab
+      value: 
+      objectReference: {fileID: 8633641482994889394, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -519,18 +446,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1786756474}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1641963247}
-    - targetCorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1641963246}
-    - targetCorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1641963245}
-    - targetCorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1641963244}
     - targetCorrespondingSourceObject: {fileID: 4574991568595680022, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1726769275}

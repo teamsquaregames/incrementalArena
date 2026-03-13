@@ -59,3 +59,10 @@ MonoBehaviour:
     isAsset: 1
     _typeString: Stats.EntityStatDefinition, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  - _obj: {fileID: 239449297491272440, guid: 4ed3506375877c54ab946981bcfeeb2f, type: 3}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-1-4ed3506375877c54ab946981bcfeeb2f-239449297491272440-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

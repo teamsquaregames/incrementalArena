@@ -3,8 +3,10 @@ using MyBox;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using DG.Tweening;
+using Lean.Pool;
 using Stats;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -17,7 +19,7 @@ public class EntityHealthModule : EntityModule
     public Action OnDeath;
     
     [Header("References")]
-    [SerializeField] private ParticleSystemPoolRef m_deathFxPoolRef;
+    [SerializeField] private ParticleSystem m_deathFxPefab;
     
     [FoldoutGroup("Feedback settings")][SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
     [FoldoutGroup("Feedback settings")][SerializeField, Min(0f)] private float punchDuration = 0.35f;
@@ -108,7 +110,12 @@ public class EntityHealthModule : EntityModule
         OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta);
 
         if (m_currentHealth <= 0f)
-            StartDeathAnimation();
+        {
+            //Todo : remettre cette ligne quand les anims serotn branchées
+            //StartDeathAnimation();
+
+            Die();
+        }
     }
 
     private void StartDeathAnimation()
@@ -122,8 +129,8 @@ public class EntityHealthModule : EntityModule
     public void Die()
     {
         m_punchTween?.Kill(complete: true);
-
-        m_deathFxPoolRef.pool.Spawn(transform.position, Quaternion.identity, m_deathFxPoolRef.pool.transform);
+        
+        LeanPool.Spawn(m_deathFxPefab,transform.position, Quaternion.identity);
 
         OnDeath?.Invoke();
     }

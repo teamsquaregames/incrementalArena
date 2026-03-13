@@ -10,10 +10,9 @@ public class WorldFloatingText : MonoBehaviour
     [Header("References")]
     [SerializeField] private TextMeshPro text;
     [SerializeField] private Transform m_parent;
-    
     [SerializeField] private FloatingTextConfig m_linkedConfig;
     private Vector3 m_initialPosition;
-    private LeanWorldFloatingTextPool m_linkedPool;
+
     private Sequence _seq;
 
     public void Preview()
@@ -33,11 +32,10 @@ public class WorldFloatingText : MonoBehaviour
         text = GetComponentInChildren<TextMeshPro>();
     }
 
-    public void Init(string message, FloatingTextConfig config, LeanWorldFloatingTextPool linkedPool)
+    public void Init(string message, FloatingTextConfig config)
     {
         text.text = message;
         m_linkedConfig = config;
-        m_linkedPool = linkedPool;
         text.color = m_linkedConfig.color;
         text.font = m_linkedConfig.font;
         text.fontSize = m_linkedConfig.fontSize;
@@ -84,8 +82,7 @@ public class WorldFloatingText : MonoBehaviour
 
         _seq.OnComplete(() =>
         {
-            if (m_linkedPool != null)
-                m_linkedPool.Despawn(this);
+            LeanPool.Despawn(this);
         });
     }
 }
