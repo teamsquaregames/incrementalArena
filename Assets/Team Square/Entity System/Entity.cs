@@ -58,16 +58,6 @@ public class Entity : MonoBehaviour, IPoolable
         return false;
     }
 
-    public bool IsEnemy(Entity entity)
-    {
-        if (TryGetModule(out EntityTeamModule myTeamModule) && entity.TryGetModule(out EntityTeamModule otherTeamModule))
-        {
-            return otherTeamModule.EnemyTeam == myTeamModule.Team;
-        }
-        
-        return false;
-    }
-
     private void Despawn()
     {
         if (TryGetModule(out EntityHealthModule healthModule))

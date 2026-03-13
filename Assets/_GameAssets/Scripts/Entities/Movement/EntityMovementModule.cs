@@ -9,9 +9,11 @@ public class EntityMovementModule : EntityModule
 
     [Header("Movement")]
     [SerializeField] private float m_fallbackMoveSpeed = 10f;
+    [SerializeField] private bool m_faceVelocity = false;
+    [SerializeField, Min(0f)] private float m_rotationSpeed = 20f;
 
     public Vector3 MoveInput { get; private set; }
-    public Vector3 CurrentVelocity => m_rigidbody != null ? m_rigidbody.linearVelocity : Vector3.zero;
+    public float CurrentVelocity => m_rigidbody != null ? m_rigidbody.linearVelocity.magnitude : 0;
 
     private float m_moveSpeed;
 
@@ -23,6 +25,9 @@ public class EntityMovementModule : EntityModule
 
         RefreshMoveSpeed();
         ApplyMovement();
+
+        if (m_faceVelocity)
+            ApplyVelocityRotation();
     }
 
     public void SetMoveInput(Vector2 flatInput)
@@ -45,6 +50,15 @@ public class EntityMovementModule : EntityModule
         OnAfterMovementApplied();
     }
 
+    private void ApplyVelocityRotation()
+    {
+        Vector3 flatVelocity = new Vector3(m_rigidbody.linearVelocity.x, 0f, m_rigidbody.linearVelocity.z);
+        if (flatVelocity.sqrMagnitude < 0.01f) return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(flatVelocity);
+        Owner.transform.rotation = Quaternion.RotateTowards(Owner.transform.rotation, targetRotation, m_rotationSpeed * Time.fixedDeltaTime);
+    }
+
     private void RefreshMoveSpeed()
     {
         m_moveSpeed = m_fallbackMoveSpeed;
@@ -56,12 +70,5 @@ public class EntityMovementModule : EntityModule
     {
         base.CacheReferences();
         m_rigidbody = GetComponent<Rigidbody>();
-    }
-
-    protected override void OnInitialize()
-    {
-        if (m_rigidbody == null) return;
-        m_rigidbody.freezeRotation = true;
-        m_rigidbody.useGravity = true;
     }
 }

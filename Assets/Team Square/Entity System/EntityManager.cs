@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using MyBox;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
 public class EntityManager : Singleton<EntityManager>
 {
     public Action<Entity> onEntityRegistered;
     public Action<Entity> onEntityUnregistered;
     
-    [SerializeField, ReadOnly]private Entity m_player;
+    [SerializeField, ReadOnly] private Entity m_player;
     [SerializeField, ReadOnly] private List<Entity> m_enemies = new List<Entity>();
     [SerializeField, ReadOnly] private List<Entity> m_entities = new List<Entity>();
-    private Dictionary<Collider, Entity> m_entitiesByColliders = new Dictionary<Collider, Entity>();
+    [SerializeField, ReadOnly] SerializableDictionary<Collider, Entity> m_entitiesByColliders = new SerializableDictionary<Collider, Entity>();
     
     public List<Entity> AllEntities => m_entities;
-    public Dictionary<Collider, Entity> EntitiesByCollider => m_entitiesByColliders;
+    public SerializableDictionary<Collider, Entity> EntitiesByCollider => m_entitiesByColliders;
     public List<Entity> Enemies => m_enemies;
     public Entity Player => m_player;
     
@@ -67,26 +68,5 @@ public class EntityManager : Singleton<EntityManager>
         }
         
         onEntityUnregistered?.Invoke(entity);
-    }
-
-    public Entity FindClosestEnemy(Entity sourceEntity)
-    {
-        Entity closest = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (Entity entity in m_entities)
-        {
-            if (entity != sourceEntity && entity.IsEnemy(sourceEntity))
-            {
-                float distance = Vector3.Distance(sourceEntity.transform.position, entity.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closest = entity;
-                }
-            }
-        }
-
-        return closest;
     }
 }

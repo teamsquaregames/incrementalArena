@@ -9,8 +9,6 @@ public enum Team
 public class EntityTeamModule : EntityModule
 {
     [SerializeField] private Team team;
-    [SerializeField] private Team enemyTeam;
 
     public Team Team => team;
-    public Team EnemyTeam => enemyTeam;
 }

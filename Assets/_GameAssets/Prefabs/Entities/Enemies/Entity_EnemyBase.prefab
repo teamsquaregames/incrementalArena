@@ -122,10 +122,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2582337669702917554, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: team
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_collider
+      value: 
+      objectReference: {fileID: 5319705569266897079}
     - target: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Name
       value: Entity_EnemyBase
       objectReference: {fileID: 0}
+    - target: {fileID: 6276155754864417840, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_renderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276155754864417840, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'm_renderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6338936837335597637}
     - target: {fileID: 8126794622186995254, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -177,5 +193,10 @@ PrefabInstance:
 --- !u!4 &4920909466871179119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3902489620234916321, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+  m_PrefabInstance: {fileID: 8242423722862376590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &5319705569266897079 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
   m_PrefabInstance: {fileID: 8242423722862376590}
   m_PrefabAsset: {fileID: 0}
