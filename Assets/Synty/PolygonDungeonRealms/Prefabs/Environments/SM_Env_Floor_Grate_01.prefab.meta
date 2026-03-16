@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 46aa216c617192d44a370ea724baa577
+timeCreated: 1606439065
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Prefabs/Environments/SM_Env_Floor_Grate_01.prefab
+  uploadId: 861060

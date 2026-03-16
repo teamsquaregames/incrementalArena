@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1a39110a5b3360b45b663aa8a83d774d
+timeCreated: 1613092240
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 43003403284216168
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Models/Collision/Convex/SM_Env_Bone_Rib_05_Convex
+    1.asset
+  uploadId: 861060

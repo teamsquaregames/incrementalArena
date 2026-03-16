@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ba6811dfc39049c4db266fabc7d0c55b
+timeCreated: 1613081785
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 43590014619080550
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Models/Collision/Convex/SM_Prop_Camp_Wood_Floor_09_Convex.asset
+  uploadId: 861060
