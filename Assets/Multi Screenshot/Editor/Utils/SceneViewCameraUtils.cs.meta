@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: e37efb1b038e6be479a8a3756691a70a
+timeCreated: 1675343845
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249566
+  packageName: Multi Screenshot
+  packageVersion: 1.0
+  assetPath: Assets/Multi Screenshot/Editor/Utils/SceneViewCameraUtils.cs
+  uploadId: 585729
