@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: df7b4244dff5e264b8bd8e5b48a46d63
+timeCreated: 1613092084
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 43504205697317878
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Models/Collision/Convex/SM_Env_Skull_Huge_01_Convex
+    3.asset
+  uploadId: 861060
