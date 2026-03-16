@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 395fd137212c0cd4eaf1094ecd04c9e8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249566
+  packageName: Multi Screenshot
+  packageVersion: 1.0
+  assetPath: Assets/Multi Screenshot/Editor/Configurations/ExampleConfiguration.asset
+  uploadId: 585729

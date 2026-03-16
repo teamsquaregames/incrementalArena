@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0c86aebf71f453149a4aa76a57076303
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249566
+  packageName: Multi Screenshot
+  packageVersion: 1.0
+  assetPath: Assets/Multi Screenshot/EditorCoroutines/EditorCoroutineUtility.cs
+  uploadId: 585729
