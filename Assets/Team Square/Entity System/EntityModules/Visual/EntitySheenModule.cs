@@ -36,9 +36,9 @@ public class EntitySheenModule : EntityModule
         }
     }
 
-    [Button]
-    private void CacheRenderers()
+    public override void CacheReferences()
     {
+        base.CacheReferences();
         m_renderers = GetComponentsInChildren<Renderer>(includeInactive: true);
     }
 

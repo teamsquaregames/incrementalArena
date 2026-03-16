@@ -175,7 +175,7 @@ public class STNodeButton : CustomButton
             StopCoroutine(m_colorLerpCoroutine);
         m_colorLerpCoroutine = StartCoroutine(LerpColor(m_sheen, m_hoverSheenColor, m_lerpDuration));
         
-        CursorManager.Instance.SetCursorHighlight(true);
+        MouseCursorSetter.Instance.SetCursorHighlight(true);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
@@ -190,7 +190,7 @@ public class STNodeButton : CustomButton
             StopCoroutine(m_colorLerpCoroutine);
         m_colorLerpCoroutine = StartCoroutine(LerpColor(m_sheen, m_defaultSheenColor, m_lerpDuration));
         
-        CursorManager.Instance.SetCursorHighlight(false);
+        MouseCursorSetter.Instance.SetCursorHighlight(false);
     }
 
     public override void SetHighlighted(bool _highlighted)

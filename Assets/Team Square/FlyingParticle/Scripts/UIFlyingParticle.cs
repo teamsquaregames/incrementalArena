@@ -12,16 +12,13 @@ public class UIFlyingParticle : MonoBehaviour
     [SerializeField] private float burstInterval = .1f;
 
     private Vector3 m_controlPos;
-
-    private LeanUIFlyingParticlePool m_originPool;
+    
     private Action m_callback;
 
-    public async void Initialize(Transform target, Sprite sprite, LeanUIFlyingParticlePool originPool, float duration, Action callback = null, double burstCount = 1)
+    public async void Initialize(Transform target, Sprite sprite, float duration, Action callback = null, double burstCount = 1)
     {
         particleImage.Stop();
         particleImage.particles.Clear();
-
-        m_originPool = originPool;
 
         particleImage.attractorTarget = target;
         particleImage.lifetime = duration;
@@ -65,6 +62,6 @@ public class UIFlyingParticle : MonoBehaviour
     {
         //Debug.Log("Last particle arrived at target!");
         particleImage.Stop();
-        m_originPool.Despawn(this);
+        LeanPool.Despawn(this);
     }
 }

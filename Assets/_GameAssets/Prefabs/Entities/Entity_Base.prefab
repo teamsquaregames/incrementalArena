@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8126794622186995254}
   - component: {fileID: 4301391412074964537}
+  - component: {fileID: 5313009030820731738}
+  - component: {fileID: 2582337669702917554}
+  - component: {fileID: 6276155754864417840}
   m_Layer: 0
   m_Name: Entity_Base
   m_TagString: Untagged
@@ -56,6 +59,47 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &5313009030820731738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050233646966636950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
+  m_collider: {fileID: 0}
+--- !u!114 &2582337669702917554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050233646966636950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4f3328df6c4ea41866586648080158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityTeamModule
+  team: 0
+--- !u!114 &6276155754864417840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050233646966636950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecfefcfe3e031b4f8a017d2111637bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntitySheenModule
+  sheenHoldDuration: 0.05
+  sheenFadeDuration: 0.15
+  m_renderers: []
 --- !u!1 &7415479768467828457
 GameObject:
   m_ObjectHideFlags: 0
