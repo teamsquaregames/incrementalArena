@@ -43,11 +43,6 @@ public class CursorManager : Singleton<CursorManager>
             if (EntityManager.Instance.EntitiesByCollider.TryGetValue(collider, out Entity entity))
             {
                 m_entitiesInCursor.Add(entity);
-
-                if (entity.TryGetModule(out EntitySheenModule sheenModule))
-                {
-                    sheenModule.PlayWhiteSheen();
-                }
             }
         }
     }

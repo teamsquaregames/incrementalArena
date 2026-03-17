@@ -402,6 +402,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8157638865537338148}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8929558195775867111}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
 --- !u!4 &2001262478841934903 stripped
 Transform:
@@ -507,13 +510,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4106009951781145495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3d8b209899e8cf498bcb43ae7d6edf2, type: 3}
+  m_Script: {fileID: 11500000, guid: 84d1b1e1ebf390d4eb881e4c6f11a5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorFollowMovementModule
   m_rigidbody: {fileID: 1242883771397363075}
   m_fallbackMoveSpeed: 10
   m_faceVelocity: 1
-  m_rotationSpeed: 900
+  m_rotationSpeed: 800
 --- !u!114 &7868693385871721422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +545,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityModule
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_animator: {fileID: 2673431603351796059}
+--- !u!114 &8929558195775867111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06b82a27ecb3f544b39464738b9906f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityBrainModule
+  m_stopRadius: 0.2
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

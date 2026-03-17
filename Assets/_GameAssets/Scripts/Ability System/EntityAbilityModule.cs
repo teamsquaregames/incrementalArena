@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Lean.Pool;
+using MyBox;
 using UnityEngine;
 
 public class EntityAbilityModule : EntityModule
@@ -11,12 +13,19 @@ public class EntityAbilityModule : EntityModule
     private AbilityContext m_activeContext;
     private Dictionary<string, float> m_cooldowns = new();
 
+    public AbilitySO AutoAttack => m_autoAttack;
+
+    #region Module
+
     public override void CacheReferences()
     {
         base.CacheReferences();
         m_animator = GetComponentInChildren<Animator>();
     }
 
+    #endregion
+
+    
     public bool TryUseAbility(AbilitySO ability, Vector3 targetPos)
     {
         if (!CanUse(ability))
@@ -37,24 +46,22 @@ public class EntityAbilityModule : EntityModule
         m_animator.SetBool(ability.animatorBoolName, true);
         return true;
     }
-
-    public bool CanUse(AbilitySO ability)
+    
+    internal void HandleAnimationStart()
     {
-        //if (m_phase != AbilityPhase.None) return false;
-        if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
-        return true;
     }
-
-    public float GetCooldownRatio(AbilitySO ability)
+    
+    internal void HandleAnimationEnd()
     {
-        if (!m_cooldowns.TryGetValue(ability.abilityName, out float cd)) return 0f;
-        return Mathf.Clamp01(cd / ability.cooldown);
+        m_activeAbility = null;
+        m_activeContext = null;
     }
-
+    
     internal void HandleAnimationEvent()
     {
-        print("HandleAnimationEvent");
         if (m_activeAbility == null) return;
+        
+        LeanPool.Spawn(m_activeAbility.vfx, m_activeContext.TargetPosition, Quaternion.identity);
 
         foreach (var entry in m_activeAbility.effects)
         {
@@ -64,52 +71,26 @@ public class EntityAbilityModule : EntityModule
         }
     }
 
-    internal void HandleAnimationEnd()
+    public void CancelAbility()
     {
+        m_animator.SetBool("IsAttacking", false); 
         m_activeAbility = null;
         m_activeContext = null;
     }
     
-    internal void HandleAnimationStart()
+    
+    
+
+    private bool CanUse(AbilitySO ability)
     {
-        //todo : spawn vfx
+        if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
+        return true;
     }
+    
 
     private void Update()
     {
-        UpdateAutoAttack();
         UpdateCooldowns();
-    }
-
-    private void UpdateAutoAttack()
-    {
-        if (HasEnemyInRange())
-        {
-            TryUseAbility(m_autoAttack,
-                CursorManager.Instance.EntitiesInCursor[Random.Range(0, CursorManager.Instance.EntitiesInCursor.Count)]
-                    .transform.position);
-        }
-    }
-
-    private bool HasEnemyInRange()
-    {
-        bool isPlayer = Owner.TryGetModule(out EntityTeamModule teamModule) && teamModule.Team == Team.Player;
-
-        if (isPlayer)
-        {
-            foreach (var entity in CursorManager.Instance.EntitiesInCursor)
-            {
-                if (entity.TryGetModule(out EntityTeamModule tm) && tm.Team == Team.Enemy)
-                    return true;
-            }
-            return false;
-        }
-        else
-        {
-            var player = EntityManager.Instance.Player;
-            if (player == null) return false;
-            return Vector3.Distance(Owner.transform.position, player.transform.position) <= m_autoAttack.range;
-        }
     }
 
     private void UpdateCooldowns()

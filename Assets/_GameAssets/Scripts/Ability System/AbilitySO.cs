@@ -8,6 +8,7 @@ public class AbilitySO : ScriptableObject
     public string abilityName;
     public Sprite icon;
     [TextArea] public string description;
+    public ParticleSystem vfx;
 
     [Header("Animation")]
     public string animatorBoolName;
