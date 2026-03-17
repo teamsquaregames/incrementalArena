@@ -98,6 +98,7 @@ public class MouseFollowController : MonoBehaviour
         if (!TryGetMouseWorldPosition(out Vector3 rawTarget)) return;
 
         // ── Lissage de la cible ──────────────────────────────────
+        rawTarget.y = 0f;
         m_SmoothedTarget = targetSmoothing > 0f
             ? Vector3.Lerp(m_SmoothedTarget, rawTarget, 1f - targetSmoothing)
             : rawTarget;
@@ -125,15 +126,16 @@ public class MouseFollowController : MonoBehaviour
             : Vector3.MoveTowards(m_CurrentVelocity, desiredVelocity, accel * Time.deltaTime);
 
         // ── Déplacement ──────────────────────────────────────────
-        if (m_Rb != null && !m_Rb.isKinematic)
-        {
-            Vector3 vel = m_Rb.linearVelocity;
-            vel.x = m_CurrentVelocity.x;
-            if (lockedAxis != LockedAxis.Y) vel.y = m_CurrentVelocity.y;
-            vel.z = m_CurrentVelocity.z;
-            m_Rb.linearVelocity = vel;
-        }
-        else if (m_Cc != null)
+        // if (m_Rb != null && !m_Rb.isKinematic)
+        // {
+        //     Vector3 vel = m_Rb.linearVelocity;
+        //     vel.x = m_CurrentVelocity.x;
+        //     if (lockedAxis != LockedAxis.Y) vel.y = m_CurrentVelocity.y;
+        //     vel.z = m_CurrentVelocity.z;
+        //     m_Rb.linearVelocity = vel;
+        // }
+        // else
+         if (m_Cc != null)
         {
             m_Cc.Move(m_CurrentVelocity * Time.deltaTime);
         }
