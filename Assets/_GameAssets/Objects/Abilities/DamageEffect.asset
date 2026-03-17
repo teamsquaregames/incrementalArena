@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 194d038a401a21a498957795bca395d6, type: 3}
-  m_Name: Player_StatDefinition
-  m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatDefinition
-  entityType: 1
-  baseValues:
-    keys: 0300000000000000
-    values:
-    - 6
-    - 100
+  m_Script: {fileID: 11500000, guid: 1713da05ac407764db1555383edaf5ad, type: 3}
+  m_Name: DamageEffect
+  m_EditorClassIdentifier: Assembly-CSharp::DamageEffect
+  m_damage: 10
+  m_isAOE: 0
+  m_isCrit: 0

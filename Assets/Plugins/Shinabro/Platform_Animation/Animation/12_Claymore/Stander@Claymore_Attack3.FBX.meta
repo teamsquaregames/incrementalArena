@@ -58,10 +58,17 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
-        functionName: AttackStart
+      - time: 0.2916667
+        functionName: OnAbilityTrigger
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 20aa19dee368c2041b7bc3ae1bf01af4, type: 3}
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9992424
+        functionName: OnAbilityEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

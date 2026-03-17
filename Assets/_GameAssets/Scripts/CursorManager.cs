@@ -14,6 +14,7 @@ public class CursorManager : Singleton<CursorManager>
     [SerializeField,ReadOnly] private List<Entity> m_entitiesInCursor;
 
     public Vector3 MouseWorldPosition => m_mouseWorldPosition;
+    public List<Entity> EntitiesInCursor => m_entitiesInCursor;
 
     private void Awake()
     {
@@ -42,11 +43,6 @@ public class CursorManager : Singleton<CursorManager>
             if (EntityManager.Instance.EntitiesByCollider.TryGetValue(collider, out Entity entity))
             {
                 m_entitiesInCursor.Add(entity);
-
-                if (entity.TryGetModule(out EntitySheenModule sheenModule))
-                {
-                    sheenModule.PlayWhiteSheen();
-                }
             }
         }
     }
