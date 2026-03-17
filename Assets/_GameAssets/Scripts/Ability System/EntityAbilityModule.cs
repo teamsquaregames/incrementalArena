@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class EntityAbilityModule : EntityModule
 {
+    // The name of the placeholder clip that must exist in your base Animator Controller.
+    // In the Animator, create a state that plays a clip named exactly "AbilityClip"
+    // and is entered via an "IsAttacking" bool transition.
+    public const string ABILITY_CLIP_SLOT = "AbilityClip";
+    public const string ANIMATOR_BOOL     = "IsAttacking";
+
     [Header("Auto Attack")]
     [SerializeField] private AbilitySO m_autoAttack;
-    [SerializeField] private Animator m_animator;
+    [SerializeField] private Animator  m_animator;
 
-    private AbilitySO m_activeAbility;
+    private AnimatorOverrideController m_overrideController;
+
+    private AbilitySO    m_activeAbility;
     private AbilityContext m_activeContext;
     private Dictionary<string, float> m_cooldowns = new();
 
@@ -23,14 +31,42 @@ public class EntityAbilityModule : EntityModule
         m_animator = GetComponentInChildren<Animator>();
     }
 
+    protected override void OnInitialize()
+    {
+        base.OnInitialize();
+        InitOverrideController();
+    }
+
     #endregion
+
+    // Creates a per-instance AnimatorOverrideController layered on top of the
+    // base RuntimeAnimatorController assigned in the Inspector. This lets us
+    // hot-swap the "AbilityClip" slot without touching the shared base controller
+    // and without needing a bool parameter per ability.
+    private void InitOverrideController()
+    {
+        if (m_animator == null) return;
+
+        print("InitOverrideController");
+        m_overrideController = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
+        m_animator.runtimeAnimatorController = m_overrideController;
+    }
+
+    // Swaps the clip in the override controller's reserved slot so the next time
+    // the "IsAttacking" state plays it uses the ability's own animation.
+    private void SetAbilityClip(AnimationClip clip)
+    {
+        if (m_overrideController == null || clip == null) return;
+        print("SetAbilityClip");
+        m_overrideController[ABILITY_CLIP_SLOT] = clip;
+    }
 
     
     public bool TryUseAbility(AbilitySO ability, Vector3 targetPos)
     {
         if (!CanUse(ability))
         {
-            m_animator.SetBool(ability.animatorBoolName, false);
+            m_animator.SetBool(ANIMATOR_BOOL, false);
             return false;
         }
 
@@ -43,7 +79,11 @@ public class EntityAbilityModule : EntityModule
         };
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
-        m_animator.SetBool(ability.animatorBoolName, true);
+
+        // Swap the clip BEFORE setting the bool so the state machine picks it up
+        // immediately when it transitions on the same frame.
+        SetAbilityClip(ability.abilityClip);
+        m_animator.SetBool(ANIMATOR_BOOL, true);
         return true;
     }
     
@@ -53,6 +93,7 @@ public class EntityAbilityModule : EntityModule
     
     internal void HandleAnimationEnd()
     {
+        m_animator.SetBool(ANIMATOR_BOOL, false);
         m_activeAbility = null;
         m_activeContext = null;
     }
@@ -61,32 +102,59 @@ public class EntityAbilityModule : EntityModule
     {
         if (m_activeAbility == null) return;
         
-        LeanPool.Spawn(m_activeAbility.vfx, m_activeContext.TargetPosition, Quaternion.identity);
+        LeanPool.Spawn(
+            m_activeAbility.mainVfx,
+            m_activeAbility.mainVFXPosition == VFXPosition.Target
+                ? m_activeContext.TargetPosition
+                : transform.position.OffsetY(0.75f),
+            transform.rotation
+        );
 
-        foreach (var entry in m_activeAbility.effects)
+        List<Entity> targets = ResolveTargets(m_activeContext.TargetPosition, m_activeAbility.aoeRadius);
+        foreach (var target in targets)
         {
-            print(entry);
-            m_activeContext.Value = entry.value;
-            entry.effect?.Execute(m_activeContext);
+            LeanPool.Spawn(m_activeAbility.hitVfx, target.transform.position.OffsetY(0.5f), Quaternion.identity);
+            foreach (var entry in m_activeAbility.effects)
+            {
+                m_activeContext.Value = entry.value;
+                entry.effect?.Execute(m_activeContext, target);
+            }
         }
+    }
+
+    private List<Entity> ResolveTargets(Vector3 position, float radius)
+    {
+        var results         = new List<Entity>();
+        var hits            = Physics.OverlapSphere(position, radius);
+        var casterCollider  = m_activeContext.Caster.GetComponent<Collider>();
+
+        foreach (var hit in hits)
+        {
+            if (hit == casterCollider) continue;
+
+            if (EntityManager.Instance != null &&
+                EntityManager.Instance.EntitiesByCollider.TryGetValue(hit, out Entity entity))
+            {
+                results.Add(entity);
+            }
+        }
+
+        return results;
     }
 
     public void CancelAbility()
     {
-        m_animator.SetBool("IsAttacking", false); 
+        m_animator.SetBool(ANIMATOR_BOOL, false);
         m_activeAbility = null;
         m_activeContext = null;
     }
-    
-    
-    
+
 
     private bool CanUse(AbilitySO ability)
     {
         if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
         return true;
     }
-    
 
     private void Update()
     {

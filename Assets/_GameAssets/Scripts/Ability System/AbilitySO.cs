@@ -8,10 +8,14 @@ public class AbilitySO : ScriptableObject
     public string abilityName;
     public Sprite icon;
     [TextArea] public string description;
-    public ParticleSystem vfx;
+    
+    [Header("VFXs")]
+    public ParticleSystem mainVfx;
+    public VFXPosition mainVFXPosition;
+    public ParticleSystem hitVfx;
 
     [Header("Animation")]
-    public string animatorBoolName;
+    public AnimationClip abilityClip;
 
     [Header("Targeting")]
     public float range = 2f;
@@ -22,4 +26,10 @@ public class AbilitySO : ScriptableObject
 
     [Header("Effects")]
     public List<AbilityEffectEntry> effects = new();
+}
+
+public enum VFXPosition
+{
+    Caster,
+    Target
 }

@@ -15,10 +15,12 @@ MonoBehaviour:
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
-  vfx: {fileID: 3724192508554018544, guid: 498b54ff0b2200846836986d0c22bd85, type: 3}
-  animatorBoolName: IsAttacking
-  range: 1
-  aoeRadius: 2
+  mainVfx: {fileID: 3724192508554018544, guid: 212c4d7175e020a4a869477309a4dd5b, type: 3}
+  mainVFXPosition: 0
+  hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
+  abilityClip: {fileID: 1827226128182048838, guid: c44b1a1611e2ba24da88eb8950bace42, type: 3}
+  range: 1.5
+  aoeRadius: 1
   cooldown: 0
   effects:
   - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}

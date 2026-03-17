@@ -36,7 +36,6 @@ public class PlayerBrainModule : EntityBrainModule
         }
         else
         {
-            print("CancelAbility");
             abilityModule.CancelAbility();
             MoveToward(targetPosition);
         }
