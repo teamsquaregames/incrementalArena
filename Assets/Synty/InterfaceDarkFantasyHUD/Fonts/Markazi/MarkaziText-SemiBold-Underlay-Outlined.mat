@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PirataOne-Regular-Underlay
+  m_Name: MarkaziText-SemiBold-Underlay-Outlined
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_Parent: {fileID: -5152807015047547772, guid: 09edf4f5598fe944ba2698b97b75f188, type: 2}
+  m_Parent: {fileID: 3719805098747445847, guid: d817c4306817c8145b0a7269de4c343c, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - UNDERLAY_ON
@@ -26,15 +26,12 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _ScaleRatioC: 0.365625
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilReadMask: 1
-    - _StencilWriteMask: 0
-    - _UnderlayDilate: 0.2
-    - _UnderlayOffsetY: -0.8
-    - _UnderlaySoftness: 1
+    - _OutlineWidth: 0.1
+    - _ScaleRatioC: 0.6647727
+    - _UnderlayDilate: 0.4
+    - _UnderlayOffsetY: -0.5
+    - _UnderlaySoftness: 0.2
     m_Colors:
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.7647059}
+    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.627451}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
