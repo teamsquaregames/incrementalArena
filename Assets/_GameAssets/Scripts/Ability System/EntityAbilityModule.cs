@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class EntityAbilityModule : EntityModule
 {
-    // The name of the placeholder clip that must exist in your base Animator Controller.
-    // In the Animator, create a state that plays a clip named exactly "AbilityClip"
-    // and is entered via an "IsAttacking" bool transition.
     public const string ABILITY_CLIP_SLOT = "AbilityClip";
     public const string ANIMATOR_BOOL     = "IsAttacking";
 
@@ -38,26 +35,18 @@ public class EntityAbilityModule : EntityModule
     }
 
     #endregion
-
-    // Creates a per-instance AnimatorOverrideController layered on top of the
-    // base RuntimeAnimatorController assigned in the Inspector. This lets us
-    // hot-swap the "AbilityClip" slot without touching the shared base controller
-    // and without needing a bool parameter per ability.
+    
     private void InitOverrideController()
     {
         if (m_animator == null) return;
-
-        print("InitOverrideController");
+        
         m_overrideController = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
         m_animator.runtimeAnimatorController = m_overrideController;
     }
-
-    // Swaps the clip in the override controller's reserved slot so the next time
-    // the "IsAttacking" state plays it uses the ability's own animation.
+    
     private void SetAbilityClip(AnimationClip clip)
     {
         if (m_overrideController == null || clip == null) return;
-        print("SetAbilityClip");
         m_overrideController[ABILITY_CLIP_SLOT] = clip;
     }
 
