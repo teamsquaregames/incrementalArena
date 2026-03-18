@@ -27,7 +27,7 @@ public abstract class EntityBrainModule : EntityModule
     protected void StopMovement() => SetMoveInput(Vector2.zero);
 
     /// <summary>Try to fire an ability toward a world-space target position.</summary>
-    protected bool TryUseAbility(AbilitySO ability, Vector3 targetPosition)
+    protected bool TryUseAbility(AbilityConfig ability, Vector3 targetPosition)
     {
         if (ability == null) return false;
         if (Owner.TryGetModule(out EntityAbilityModule abilityModule))
@@ -39,7 +39,7 @@ public abstract class EntityBrainModule : EntityModule
     protected bool TryAutoAttack(Vector3 targetPosition)
     {
         if (Owner.TryGetModule(out EntityAbilityModule abilityModule))
-            return TryUseAbility(abilityModule.AutoAttack, targetPosition);
+            return abilityModule.TryUseAutoAttack(targetPosition);
         return false;
     }
 }

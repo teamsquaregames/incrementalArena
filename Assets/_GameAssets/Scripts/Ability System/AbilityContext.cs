@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AbilityContext
 {
-    public GameObject Caster;
+    public Entity Caster;
     public Vector3 TargetPosition;
-    public AbilitySO AbilityData;
+    public AbilityConfig AbilityConfig;
     public float Value;
 }
