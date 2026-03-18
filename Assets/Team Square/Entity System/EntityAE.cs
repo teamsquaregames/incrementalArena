@@ -18,7 +18,7 @@ public class EntityAE : MonoBehaviour
     
     public void OnAbilityStart()
     {
-        m_abilityModule?.HandleAnimationEvent();
+        m_abilityModule?.HandleAnimationStart();
     }
 
     public void OnAbilityEnd()
