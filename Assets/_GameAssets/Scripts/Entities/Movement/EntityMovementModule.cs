@@ -16,6 +16,7 @@ public class EntityMovementModule : EntityModule
     public float CurrentVelocity => m_rigidbody != null ? m_rigidbody.linearVelocity.magnitude : 0;
 
     private float m_moveSpeed;
+    public float MoveSpeed => m_moveSpeed;
 
     private void Reset() => CacheReferences();
 

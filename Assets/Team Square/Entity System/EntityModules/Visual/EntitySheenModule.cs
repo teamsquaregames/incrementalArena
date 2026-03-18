@@ -12,7 +12,8 @@ public class EntitySheenModule : EntityModule
     private Color[] m_originalColors;
     private Sequence m_sheenSequence;
 
-    private const string EMISSION_COLOR_PROPERTY = "_EmissionColor";
+    [SerializeField]private string EMISSION_COLOR_PROPERTY = "_EmissionColor";
+    [SerializeField]private string EMISSION_ENABLE_PROPERTY = "_Emission";
 
     protected override void OnInitialize()
     {
@@ -28,7 +29,7 @@ public class EntitySheenModule : EntityModule
             Material mat = m_renderers[i].material;
             m_materials[i] = mat;
 
-            mat.EnableKeyword("_EMISSION");
+            mat.EnableKeyword(EMISSION_ENABLE_PROPERTY);
 
             m_originalColors[i] = mat.HasProperty(EMISSION_COLOR_PROPERTY)
                 ? mat.GetColor(EMISSION_COLOR_PROPERTY)

@@ -10,12 +10,13 @@ public class LevelManager : Singleton<LevelManager>
 {
     public Entity m_playerPrefab;
     public Entity m_enemyPrefab;
+    public int m_enemyCount = 5;
 
     private void Start()
     {
         //spawn player
         LeanPool.Spawn(m_playerPrefab);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < m_enemyCount; i++)
         {
             LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
         }

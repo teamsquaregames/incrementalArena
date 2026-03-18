@@ -19,6 +19,7 @@ public class EntityHealthModule : EntityModule
     public Action OnDeath;
     
     [Header("References")]
+    [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_deathFxPefab;
     
     [FoldoutGroup("Feedback settings")][SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
@@ -51,6 +52,7 @@ public class EntityHealthModule : EntityModule
     {
         base.OnInitialize();
         m_isDead = false;
+        m_animator = GetComponentInChildren<Animator>();
     }
 
     public override void OnAllModuleInitialized()
@@ -74,6 +76,11 @@ public class EntityHealthModule : EntityModule
         if (Owner.TryGetModule(out EntitySheenModule sheenModule))
         {
             sheenModule.PlayWhiteSheen();
+        }
+
+        if (m_animator != null)
+        {
+            m_animator.SetTrigger("Damage");
         }
     }
 

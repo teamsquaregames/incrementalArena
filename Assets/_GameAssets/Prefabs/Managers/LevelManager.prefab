@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   m_playerPrefab: {fileID: 8633641482994889394, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+  m_enemyPrefab: {fileID: 7382554555577117163, guid: 18b5429fee0ef284ab23798825ba5bee, type: 3}
+  m_enemyCount: 10
 --- !u!1 &2951453023914597902
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +98,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2951453023914597902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -207,6 +209,10 @@ PrefabInstance:
     - target: {fileID: 3140242914147946654, guid: 976d5d4f4116a0049b3b014682bafd05, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906795113778190830, guid: 976d5d4f4116a0049b3b014682bafd05, type: 3}
+      propertyPath: m_defaultCursorSize
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6044912122281973912, guid: 976d5d4f4116a0049b3b014682bafd05, type: 3}
       propertyPath: m_Name

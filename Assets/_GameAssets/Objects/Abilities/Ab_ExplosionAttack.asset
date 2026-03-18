@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
-  m_Name: ExplosionAttack
+  m_Name: Ab_ExplosionAttack
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySO
   abilityName: Explosion
   icon: {fileID: 21300000, guid: 911a526ffb4252a4992c21d7c8fab782, type: 3}

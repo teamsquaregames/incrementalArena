@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
-  m_Name: SwordAttack
+  m_Name: Ab_SwordAttack
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySO
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
-  range: 1.5
-  aoeRadius: 1
+  range: 2
+  aoeRadius: 2
   cooldown: 0
   steps:
   - mainVfx: {fileID: 3724192508554018544, guid: 97ae52004b9aac842be9980d291e3dad, type: 3}

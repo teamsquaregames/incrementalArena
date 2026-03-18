@@ -171,18 +171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8408038303099081689, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.916
-      objectReference: {fileID: 0}
-    - target: {fileID: 8408038303099081689, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.144
-      objectReference: {fileID: 0}
-    - target: {fileID: 8408038303099081689, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.748
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1442,14 +1430,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_enemyPrefab
-      value: 
-      objectReference: {fileID: 4312584928852569556, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
-    - target: {fileID: 4424597275869690464, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_defaultCursorSize
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1488,10 +1468,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8064486658509444865, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
