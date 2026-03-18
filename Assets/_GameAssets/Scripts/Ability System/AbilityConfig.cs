@@ -16,7 +16,8 @@ public class AbilityConfig : ScriptableObject
     [Header("Cooldown")]
     public float cooldown = 1f;
 
-    [Header("Step ")] public List<AbilityStep> steps = new List<AbilityStep>();
+    [Header("Steps")]
+    public List<AbilityStep> steps = new List<AbilityStep>();
 }
 
 public enum VFXPosition

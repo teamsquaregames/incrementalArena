@@ -5,5 +5,5 @@ public enum EntityType
 {
     Player   = 1 << 0,
     Skeleton = 1 << 1,
-    Boss     = 1 << 2
+    Boss     = 1 << 2,
 }

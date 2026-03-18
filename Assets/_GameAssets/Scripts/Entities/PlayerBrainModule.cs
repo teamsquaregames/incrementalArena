@@ -1,10 +1,12 @@
 using MyBox;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Player brain:
-///   • Always moves toward the cursor world position.
-///   • If there are enemies inside the cursor area, moves toward the closest one instead.
+///   • Ability keys have highest priority and interrupt any ongoing auto-attack.
+///   • While a non-auto ability is playing, movement and auto-attacks are suppressed.
+///   • If there are enemies inside the cursor area, moves toward the closest one.
 ///   • Once within auto-attack range of the target, stops and fires the auto-attack.
 /// </summary>
 public class PlayerBrainModule : EntityBrainModule
@@ -17,6 +19,18 @@ public class PlayerBrainModule : EntityBrainModule
         if (CursorManager.Instance == null) return;
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
+        // ── 1. Ability input — highest priority, interrupts auto-attacks ──────
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            abilityModule.CancelAbility();
+            TryUseAbility(0, CursorManager.Instance.MouseWorldPosition.OffsetY(0.75f));
+            return;
+        }
+
+        // ── 2. While a non-auto ability is animating, block input ─────────────
+        if (abilityModule.IsUsingAbility) return;
+
+        // ── 3. Normal auto-attack + movement logic ────────────────────────────
         Entity targetEnemy = GetClosestEnemyInCursor();
         Vector3 targetPosition = targetEnemy != null
             ? targetEnemy.transform.position
@@ -36,7 +50,6 @@ public class PlayerBrainModule : EntityBrainModule
         }
         else
         {
-            abilityModule.CancelAbility();
             MoveToward(targetPosition);
         }
     }

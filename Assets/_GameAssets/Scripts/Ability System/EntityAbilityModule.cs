@@ -6,17 +6,21 @@ using UnityEngine;
 
 public class EntityAbilityModule : EntityModule
 {
-    public const string ABILITY_CLIP_SLOT   = "AbilityClip";
-    public const string ANIMATOR_BOOL       = "IsAttacking";
+    public const string AUTO_ATTACK_CLIP_SLOT = "AutoAttack";
+    public const string ABILITY_CLIP_SLOT     = "Ability";
+    public const string ANIMATOR_BOOL         = "IsAttacking";
+    public const string ANIMATOR_TRIGGER      = "Ability";
+
     [Header("Auto Attack")]
     [SerializeField] private AbilityConfig m_autoAttack;
 
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
+    [SerializeField] private bool m_stopMovementOnCast = true;
 
     [SerializeField] private Animator m_animator;
 
-    private AnimatorOverrideController m_overrideController;
+    private AnimatorOverrideController   m_overrideController;
 
     private AbilityConfig             m_activeAbility;
     private AbilityContext            m_activeContext;
@@ -26,6 +30,15 @@ public class EntityAbilityModule : EntityModule
 
     public AbilityConfig       AutoAttack => m_autoAttack;
     public List<AbilityConfig> Abilities  => m_abilities;
+
+    /// <summary>True only while a non-auto ability animation is running.</summary>
+    public bool IsUsingAbility => m_activeAbility != null && !m_isAutoAttack;
+
+    /// <summary>True while any ability (including auto-attack) animation is running.</summary>
+    public bool IsBusy => m_activeAbility != null;
+
+    /// <summary>The config of the ability currently being cast, or null if none.</summary>
+    public AbilityConfig ActiveAbility => m_activeAbility;
 
     #region Module
 
@@ -51,16 +64,14 @@ public class EntityAbilityModule : EntityModule
         m_animator.runtimeAnimatorController = m_overrideController;
     }
 
-    private void SetAbilityClip(AnimationClip clip, bool applyAttackSpeed)
+    private void SetAbilityClip(AnimationClip clip, bool isAutoAttack)
     {
         if (m_overrideController == null || clip == null) return;
 
-        m_overrideController[ABILITY_CLIP_SLOT] = clip;
-
-        if (applyAttackSpeed)
+        if (isAutoAttack)
         {
-            // attackSpeed = attacks per second; clip.length = seconds for one play at speed 1.
-            // animator.speed = attackSpeed * clip.length  ->  the clip completes exactly once per attack interval.
+            m_overrideController[AUTO_ATTACK_CLIP_SLOT] = clip;
+
             float animatorSpeed = 1f;
             if (Owner.TryGetModule(out EntityStatModule statModule))
             {
@@ -73,35 +84,31 @@ public class EntityAbilityModule : EntityModule
         }
         else
         {
-            // Regular abilities always play at normal speed.
+            m_overrideController[ABILITY_CLIP_SLOT] = clip;
             m_animator.speed = 1f;
         }
     }
 
     // -------------------------------------------------------------------------
-    // Auto Attack — no cooldown check
+    // Auto Attack — no cooldown, interruptible by abilities
     // -------------------------------------------------------------------------
     public bool TryUseAutoAttack(Vector3 targetPos)
     {
-        if (m_autoAttack == null)
-            return false;
+        if (m_autoAttack == null) return false;
 
-        // Wrap combo index around the number of available steps
+        // Don't re-trigger while already auto-attacking
+        if (IsBusy) return false;
+
         m_comboIndex = m_comboIndex % m_autoAttack.steps.Count;
-
         return StartAbility(m_autoAttack, targetPos, isAutoAttack: true);
     }
 
     // -------------------------------------------------------------------------
-    // Regular abilities — subject to cooldown
+    // Regular abilities — subject to cooldown, interrupt auto-attacks
     // -------------------------------------------------------------------------
     public bool TryUseAbility(AbilityConfig ability, Vector3 targetPos)
     {
-        if (!CanUse(ability))
-        {
-            m_animator.SetBool(ANIMATOR_BOOL, false);
-            return false;
-        }
+        if (!CanUse(ability)) return false;
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
         return StartAbility(ability, targetPos, isAutoAttack: false);
@@ -114,10 +121,10 @@ public class EntityAbilityModule : EntityModule
     {
         Vector3 direction = (targetPos - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
-        {
             Owner.transform.rotation = Quaternion.LookRotation(direction);
-        }
-        
+
+        int stepIndex = isAutoAttack ? m_comboIndex : 0;
+
         m_activeAbility = ability;
         m_isAutoAttack  = isAutoAttack;
         m_activeContext = new AbilityContext
@@ -127,12 +134,25 @@ public class EntityAbilityModule : EntityModule
             AbilityConfig  = ability
         };
 
-        int stepIndex = isAutoAttack ? m_comboIndex : 0;
-        SetAbilityClip(ability.steps[stepIndex].abilityClip, applyAttackSpeed: isAutoAttack);
-        m_animator.SetBool(ANIMATOR_BOOL, true);
+        SetAbilityClip(ability.steps[stepIndex].abilityClip, isAutoAttack);
+
+        if (!isAutoAttack && m_stopMovementOnCast)
+        {
+            if (Owner.TryGetModule(out EntityMovementModule movementModule))
+                movementModule.SetMoveInput(Vector2.zero);
+        }
+
+        if (isAutoAttack)
+            m_animator.SetBool(ANIMATOR_BOOL, true);
+        else
+            m_animator.SetTrigger(ANIMATOR_TRIGGER);
+
         return true;
     }
 
+    // -------------------------------------------------------------------------
+    // Animation callbacks (called by animation events on the clip)
+    // -------------------------------------------------------------------------
     internal void HandleAnimationStart()
     {
     }
@@ -154,6 +174,7 @@ public class EntityAbilityModule : EntityModule
     {
         if (m_activeAbility == null) return;
 
+        // Use the current combo index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
         int step = m_isAutoAttack ? m_comboIndex : 0;
         AbilityStep activeStep = m_activeAbility.steps[step];
 
@@ -200,10 +221,10 @@ public class EntityAbilityModule : EntityModule
     public void CancelAbility()
     {
         m_animator.SetBool(ANIMATOR_BOOL, false);
-        m_animator.speed = 1f;
-        m_activeAbility = null;
-        m_activeContext = null;
-        m_isAutoAttack  = false;
+        m_animator.speed   = 1f;
+        m_activeAbility    = null;
+        m_activeContext    = null;
+        m_isAutoAttack     = false;
         ResetCombo();
     }
 
