@@ -1,6 +1,8 @@
 using MyBox;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 
 /// <summary>
 /// Player brain:
@@ -13,6 +15,10 @@ public class PlayerBrainModule : EntityBrainModule
 {
     [Header("Movement")]
     [SerializeField, Min(0f)] private float m_stopRadius = 0.2f;
+    [SerializeField, Min(0f)] private float m_minMoveThreshold = 0.2f;
+
+    [ReadOnly]
+    [SerializeField] private bool m_isMoving;
 
     protected override void Think()
     {
@@ -84,8 +90,19 @@ public class PlayerBrainModule : EntityBrainModule
         Vector3 delta = worldTarget - Owner.transform.position;
         Vector2 flatDelta = new Vector2(delta.x, delta.z);
 
-        SetMoveInput(flatDelta.sqrMagnitude > m_stopRadius * m_stopRadius
-            ? flatDelta.normalized
-            : Vector2.zero);
+        if (m_isMoving || flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius > m_minMoveThreshold * m_minMoveThreshold)
+        {
+            m_isMoving = true;
+            SetMoveInput(flatDelta.sqrMagnitude > m_stopRadius * m_stopRadius
+                ? flatDelta.normalized
+                : Vector2.zero);
+        }
+
+        if (flatDelta.sqrMagnitude <= m_stopRadius * m_stopRadius)
+        {
+            m_isMoving = false;
+        }
+
+        this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius}");
     }
 }
