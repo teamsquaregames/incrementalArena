@@ -33,15 +33,8 @@ public class ActiveBrainModule : EntityBrainModule
         // ── 1. Ability input — highest priority, cancel any auto-attack ───────
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
-            abilityModule.CancelAbility();
+            abilityModule.CancelEverything();
             TryUseAbility(0, mouseWorld.OffsetY(0.75f));
-            return;
-        }
-
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            abilityModule.CancelAbility();
-            TryUseAbility(1, mouseWorld.OffsetY(0.75f));
             return;
         }
 
