@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fd5959b0c319a4f9147f2225745a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveBrainModule
-  m_movementMode: 0
+  m_movementMode: 1
   m_stopRadius: 2
   m_minMoveThreshold: 1
   m_isMoving: 0

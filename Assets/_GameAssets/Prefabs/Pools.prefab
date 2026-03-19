@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: LeanPool::Lean.Pool.LeanGameObjectPool
   recycle: 1
-  prefab: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+  prefab: {fileID: 8951252404499559207, guid: 18b5429fee0ef284ab23798825ba5bee, type: 3}
   notification: 3
   strategy: 0
   preload: 0
