@@ -19,6 +19,7 @@ public class PlayerBrainModule : EntityBrainModule
 
     [ReadOnly]
     [SerializeField] private bool m_isMoving;
+    [SerializeField] private bool m_isTargetingEnemy;
 
     protected override void Think()
     {
@@ -41,6 +42,7 @@ public class PlayerBrainModule : EntityBrainModule
         Vector3 targetPosition = targetEnemy != null
             ? targetEnemy.transform.position
             : CursorManager.Instance.MouseWorldPosition;
+        m_isTargetingEnemy = targetEnemy != null;
 
         float distanceToTarget = Vector3.Distance(
             new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
@@ -92,7 +94,7 @@ public class PlayerBrainModule : EntityBrainModule
         Vector3 delta = worldTarget - Owner.transform.position;
         Vector2 flatDelta = new Vector2(delta.x, delta.z);
 
-        if (m_isMoving || flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius > m_minMoveThreshold * m_minMoveThreshold)
+        if (m_isMoving || m_isTargetingEnemy || flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius > m_minMoveThreshold * m_minMoveThreshold)
         {
             m_isMoving = true;
             SetMoveInput(flatDelta.sqrMagnitude > m_stopRadius * m_stopRadius
