@@ -11,14 +11,15 @@ public class EntityAE : MonoBehaviour
         m_abilityModule = GetComponentInParent<EntityAbilityModule>();
     }
     
-    public void OnAbilityTrigger()
-    {
-        m_abilityModule?.HandleAnimationEvent();
-    }
     
     public void OnAbilityStart()
     {
         m_abilityModule?.HandleAnimationStart();
+    }
+    
+    public void OnAbilityActive()
+    {
+        m_abilityModule?.HandleAnimationEvent();
     }
 
     public void OnAbilityEnd()

@@ -533,9 +533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorFollowMovementModule
   m_rigidbody: {fileID: 1242883771397363075}
-  m_fallbackMoveSpeed: 10
+  m_fallbackMoveSpeed: 0
   m_faceVelocity: 1
-  m_rotationSpeed: 800
+  m_rotationSpeed: 1400
 --- !u!114 &7868693385871721422
 MonoBehaviour:
   m_ObjectHideFlags: 0

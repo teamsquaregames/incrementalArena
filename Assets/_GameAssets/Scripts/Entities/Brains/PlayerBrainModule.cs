@@ -28,7 +28,7 @@ public class PlayerBrainModule : EntityBrainModule
         // ── 1. Ability input — highest priority, interrupts auto-attacks ──────
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
-            abilityModule.CancelAbility();
+            abilityModule.CancelEverything();
             TryUseAbility(0, CursorManager.Instance.MouseWorldPosition.OffsetY(0.75f));
             return;
         }
@@ -51,11 +51,13 @@ public class PlayerBrainModule : EntityBrainModule
 
         if (inAttackRange)
         {
+            m_isMoving = false;
             StopMovement();
             TryAutoAttack(targetEnemy.transform.position.OffsetY(0.75f));
         }
         else
         {
+            abilityModule.CancelEverything();
             MoveToward(targetPosition);
         }
     }
@@ -103,6 +105,6 @@ public class PlayerBrainModule : EntityBrainModule
             m_isMoving = false;
         }
 
-        this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius}");
+        // this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius}");
     }
 }
