@@ -59,7 +59,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.23333333
-        functionName: OnAbilityTrigger
+        functionName: OnAbilityActive
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

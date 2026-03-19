@@ -3,13 +3,14 @@ using Lean.Pool;
 using MyBox;
 using Stats;
 using UnityEngine;
+using Utils;
 
 public class EntityAbilityModule : EntityModule
 {
     public const string AUTO_ATTACK_CLIP_SLOT = "AutoAttack";
-    public const string ABILITY_CLIP_SLOT     = "Ability";
-    public const string ANIMATOR_BOOL         = "IsAttacking";
-    public const string ANIMATOR_TRIGGER      = "Ability";
+    public const string ABILITY_CLIP_SLOT = "Ability";
+    public const string IS_ATTACKING = "IsAttacking";
+    public const string TRIGGER_ABILITY = "Ability";
 
     [Header("Auto Attack")]
     [SerializeField] private AbilityConfig m_autoAttack;
@@ -20,16 +21,16 @@ public class EntityAbilityModule : EntityModule
 
     [SerializeField] private Animator m_animator;
 
-    private AnimatorOverrideController   m_overrideController;
+    private AnimatorOverrideController m_overrideController;
 
-    private AbilityConfig             m_activeAbility;
-    private AbilityContext            m_activeContext;
-    private bool                      m_isAutoAttack;
-    private int                       m_comboIndex;
+    private AbilityConfig m_activeAbility;
+    private AbilityContext m_activeContext;
+    private bool m_isAutoAttack;
+    private int m_comboIndex;
     private Dictionary<string, float> m_cooldowns = new();
 
-    public AbilityConfig       AutoAttack => m_autoAttack;
-    public List<AbilityConfig> Abilities  => m_abilities;
+    public AbilityConfig AutoAttack => m_autoAttack;
+    public List<AbilityConfig> Abilities => m_abilities;
 
     /// <summary>True only while a non-auto ability animation is running.</summary>
     public bool IsUsingAbility => m_activeAbility != null && !m_isAutoAttack;
@@ -126,12 +127,12 @@ public class EntityAbilityModule : EntityModule
         int stepIndex = isAutoAttack ? m_comboIndex : 0;
 
         m_activeAbility = ability;
-        m_isAutoAttack  = isAutoAttack;
+        m_isAutoAttack = isAutoAttack;
         m_activeContext = new AbilityContext
         {
-            Caster         = Owner,
+            Caster = Owner,
             TargetPosition = targetPos,
-            AbilityConfig  = ability
+            AbilityConfig = ability
         };
 
         SetAbilityClip(ability.steps[stepIndex].abilityClip, isAutoAttack);
@@ -143,9 +144,9 @@ public class EntityAbilityModule : EntityModule
         }
 
         if (isAutoAttack)
-            m_animator.SetBool(ANIMATOR_BOOL, true);
+            m_animator.SetBool(IS_ATTACKING, true);
         else
-            m_animator.SetTrigger(ANIMATOR_TRIGGER);
+            m_animator.SetTrigger(TRIGGER_ABILITY);
 
         return true;
     }
@@ -159,7 +160,7 @@ public class EntityAbilityModule : EntityModule
 
     internal void HandleAnimationEnd()
     {
-        m_animator.SetBool(ANIMATOR_BOOL, false);
+        m_animator.SetBool(IS_ATTACKING, false);
         m_animator.speed = 1f;
 
         if (m_isAutoAttack)
@@ -167,7 +168,7 @@ public class EntityAbilityModule : EntityModule
 
         m_activeAbility = null;
         m_activeContext = null;
-        m_isAutoAttack  = false;
+        m_isAutoAttack = false;
     }
 
     internal void HandleAnimationEvent()
@@ -200,8 +201,8 @@ public class EntityAbilityModule : EntityModule
 
     private List<Entity> ResolveTargets(Vector3 position, float radius)
     {
-        var results        = new List<Entity>();
-        var hits           = Physics.OverlapSphere(position, radius);
+        var results = new List<Entity>();
+        var hits = Physics.OverlapSphere(position, radius);
         var casterCollider = m_activeContext.Caster.GetComponent<Collider>();
 
         foreach (var hit in hits)
@@ -218,13 +219,16 @@ public class EntityAbilityModule : EntityModule
         return results;
     }
 
-    public void CancelAbility()
+    public void CancelEverything()
     {
-        m_animator.SetBool(ANIMATOR_BOOL, false);
-        m_animator.speed   = 1f;
-        m_activeAbility    = null;
-        m_activeContext    = null;
-        m_isAutoAttack     = false;
+        this.Log("Cancelling everything");
+
+        m_activeAbility = null;
+        m_animator.speed = 1f;
+        m_isAutoAttack = false;
+        m_activeContext = null;
+
+        m_animator.SetBool(IS_ATTACKING, false);
         ResetCombo();
     }
 
