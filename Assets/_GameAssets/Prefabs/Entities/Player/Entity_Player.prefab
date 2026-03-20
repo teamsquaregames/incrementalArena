@@ -482,6 +482,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8929558195775867111}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+--- !u!4 &2359152899963624071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+  m_PrefabInstance: {fileID: 7714038588239923713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4106009951781145495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
@@ -571,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthUIModule
   m_genericGaugePrefab: {fileID: 3276611897021444203, guid: 8ba6804fea548b84ea546c434c84122b, type: 3}
-  m_healthBarTarget: {fileID: 0}
+  m_healthBarTarget: {fileID: 2359152899963624071}
   m_floatingTextConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
 --- !u!114 &54798341076026425
 MonoBehaviour:
