@@ -206,6 +206,18 @@ public class EntityAbilityModule : EntityModule
         m_isAutoAttack = false;
     }
 
+    internal void HandleAnimationInterrupt()
+    {
+        // this.Log("Handling animation interrupt event");
+        m_animator.SetBool(IS_ATTACKING, false);
+        m_animator.speed = 1f;
+
+        m_activeAbility = null;
+        m_activeContext = null;
+        m_isAutoAttack = false;
+    }
+
+
     private List<Entity> ResolveTargets(Vector3 position, float radius)
     {
         var results = new List<Entity>();

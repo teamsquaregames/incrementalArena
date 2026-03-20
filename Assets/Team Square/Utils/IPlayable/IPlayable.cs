@@ -4,16 +4,12 @@ namespace Utils.Playable
     public enum PlayFlags
     {
         None = 0,
-        OnEnable = 1 << 0,  // 1
-        OnStart = 1 << 1,   // 2
-        Manual = 1 << 2,    // 4
-        Click = 1 << 3,     // 8
-        Production = 1 << 4, // 16
-        Place = 1 << 5,      // 32
+        Manual = 1 << 0, // Le Playable ne se joue que lorsqu'on appelle explicitement la méthode Play()
+        OnFootStep = 1 << 1,
         
 
         // Combos utiles (optionnel)
-        All = OnEnable | OnStart | Manual | Click | Production | Place       // 63
+        All = Manual | OnFootStep
     }
 
     public interface IPlayable
