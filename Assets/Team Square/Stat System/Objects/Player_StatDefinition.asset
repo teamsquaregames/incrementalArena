@@ -16,7 +16,7 @@ MonoBehaviour:
   baseValues:
     keys: 0300000000000000020000000100000005000000
     values:
-    - 4
+    - 1
     - 100
     - 1
     - 10

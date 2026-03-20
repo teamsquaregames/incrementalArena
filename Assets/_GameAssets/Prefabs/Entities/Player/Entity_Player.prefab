@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8339412d66624eb42bd19d8c2c3e0fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthUIModule
-  m_genericGaugePrefab: {fileID: 3276611897021444203, guid: 8ba6804fea548b84ea546c434c84122b, type: 3}
+  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: affca4250dc7eb94082ae4a6f72809ea, type: 3}
   m_healthBarTarget: {fileID: 2359152899963624071}
   m_floatingTextConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
 --- !u!114 &54798341076026425
