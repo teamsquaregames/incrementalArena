@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb163e8d0d70d014cba763ecbb23880d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  m_playerPrefab: {fileID: 8633641482994889394, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+  m_playerPrefab: {fileID: 7623534507439280228, guid: 14a9fc8373715104daa682789bef1f4f, type: 3}
   m_enemyPrefab: {fileID: 7382554555577117163, guid: 18b5429fee0ef284ab23798825ba5bee, type: 3}
-  m_enemyCount: 10
+  m_useConstantEnemyCount: 1
 --- !u!1 &2951453023914597902
 GameObject:
   m_ObjectHideFlags: 0

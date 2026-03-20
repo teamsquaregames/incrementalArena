@@ -16,8 +16,6 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Start()
     {
-        //spawn player
-
         if (m_useConstantEnemyCount)
         {
             EntityManager.Instance.onEntityUnregistered += ConstantEnemyCount;
@@ -32,7 +30,6 @@ public class LevelManager : Singleton<LevelManager>
 
     private void ConstantEnemyCount(Entity entity)
     {
-        this.Log("Enemy died, spawning a new one to keep the count constant");
         LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
     }
 }
