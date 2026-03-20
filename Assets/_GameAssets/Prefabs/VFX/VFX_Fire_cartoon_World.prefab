@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 173430942298792923, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 173430942298792923, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: ShapeModule.type
       value: 5
       objectReference: {fileID: 0}
@@ -53,6 +57,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7304117288271856402, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304117288271856402, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: ShapeModule.type
       value: 5
       objectReference: {fileID: 0}
@@ -83,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 7304117288271856402, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304117288717630345, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
+      propertyPath: stopAction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7304117288717630345, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: ShapeModule.type
@@ -121,6 +133,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7304117290019983691, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304117290019983691, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: ShapeModule.type
       value: 5
       objectReference: {fileID: 0}
@@ -150,7 +166,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7304117290188498728, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: m_Name
-      value: Fire_cartoon_simple Variant
+      value: VFX_Fire_cartoon_World
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304117290188498730, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
+      propertyPath: stopAction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7304117290188498741, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -247,6 +267,10 @@ PrefabInstance:
     - target: {fileID: 7794735771037658634, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8641600695294234235, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
+      propertyPath: stopAction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8641600695294234235, guid: 1ed63b15ee3c8de498ff9a6829ed07f5, type: 3}
       propertyPath: ShapeModule.type
