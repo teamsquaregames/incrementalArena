@@ -16,6 +16,7 @@ using Utils;
 ///
 /// Notes
 /// ─────
+/// • The character always faces the mouse, independently of movement direction.
 /// • Abilities interrupt an ongoing auto-attack (same as the original PlayerBrainModule).
 /// • While a non-auto ability is animating, movement and attacks are suppressed.
 /// • The auto-attack target point is placed exactly at AutoAttack.range along
@@ -30,11 +31,21 @@ public class ActiveBrainModule : EntityBrainModule
 
         Vector3 mouseWorld = CursorManager.Instance.MouseWorldPosition;
 
+        // ── 0. Always face the mouse — independent of everything else ─────────
+        FacePosition(mouseWorld);
+
         // ── 1. Ability input — highest priority, cancel any auto-attack ───────
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             abilityModule.CancelEverything();
             TryUseAbility(0, mouseWorld.OffsetY(0.75f));
+            return;
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            abilityModule.CancelEverything();
+            TryUseAbility(1, mouseWorld.OffsetY(0.75f));
             return;
         }
 
