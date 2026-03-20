@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Lean.Pool;
 using MyBox;
+using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
 using Utils;
@@ -13,7 +14,7 @@ public class EntityAbilityModule : EntityModule
     public const string TRIGGER_ABILITY = "Ability";
 
     [Header("Auto Attack")]
-    [SerializeField] private AbilityConfig m_autoAttack;
+    [SerializeField, InlineEditor] private AbilityConfig m_autoAttack;
 
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
@@ -23,7 +24,7 @@ public class EntityAbilityModule : EntityModule
 
     private AnimatorOverrideController m_overrideController;
 
-    private AbilityConfig m_activeAbility;
+    [InlineProperty] private AbilityConfig m_activeAbility;
     private AbilityContext m_activeContext;
     private bool m_isAutoAttack;
     private int m_comboIndex;
