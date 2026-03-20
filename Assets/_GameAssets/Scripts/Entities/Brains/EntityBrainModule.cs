@@ -1,3 +1,4 @@
+using MyBox;
 using UnityEngine;
 
 /// <summary>
@@ -25,6 +26,17 @@ public abstract class EntityBrainModule : EntityModule
 
     /// <summary>Stop the owner in place.</summary>
     protected void StopMovement() => SetMoveInput(Vector2.zero);
+
+    /// <summary>
+    /// Instantly rotate the owner to face a world-space position (flat, Y-ignored).
+    /// Does nothing if the target is essentially on top of the owner.
+    /// </summary>
+    protected void FacePosition(Vector3 worldPosition)
+    {
+        Vector3 dir = (worldPosition - Owner.transform.position).SetY(0f);
+        if (dir.sqrMagnitude < 0.001f) return;
+        Owner.transform.rotation = Quaternion.LookRotation(dir);
+    }
 
     /// <summary>Try to fire an ability toward a world-space target position.</summary>
     protected bool TryUseAbility(int abilityIndex, Vector3 targetPosition)

@@ -9,12 +9,14 @@ using Utils;
 /// Passive brain — the "Vampire Survivors" feel. Almost everything fires
 /// automatically; the player only steers the character.
 ///
-///   Movement  : Configurable — either WASD/arrow keys OR mouse cursor
-///               (toggle via <see cref="m_movementMode"/> in the Inspector).
-///   Auto-attack : Fires automatically at the closest enemy that is within
-///                 <c>AutoAttack.range</c>.
-///   Abilities   : Each ability fires automatically at the closest enemy
-///                 inside its <c>range</c>, as soon as it is off cooldown.
+///   Movement    : Configurable — either WASD/arrow keys OR mouse cursor
+///                 (toggle via <see cref="m_movementMode"/> in the Inspector).
+///   Facing      : Looks at the closest enemy if any exists; falls back to
+///                 the mouse cursor position.
+///   Auto-attack : Fires automatically at the closest enemy within AutoAttack.range.
+///   Abilities   : Each ability checks its own range independently and fires
+///                 on the closest enemy within that range when off cooldown.
+///                 Ability list order = priority (index 0 fires first).
 ///
 /// No button presses are required for combat — just stay alive and steer.
 /// </summary>
@@ -47,10 +49,21 @@ public class PassiveBrainModule : EntityBrainModule
             case MovementMode.Mouse:    ThinkMouseMovement();    break;
         }
 
-        // ── 2. While a non-auto ability is animating, hold off on combat ─────
+        // ── 2. Facing — closest enemy in the world, or mouse as fallback ──────
+        Entity closestEnemy = GetClosestEnemy();
+        if (closestEnemy != null)
+        {
+            FacePosition(closestEnemy.transform.position);
+        }
+        else if (CursorManager.Instance != null)
+        {
+            FacePosition(CursorManager.Instance.MouseWorldPosition);
+        }
+
+        // ── 3. While a non-auto ability is animating, hold off on combat ─────
         if (abilityModule.IsUsingAbility) return;
 
-        // ── 3. Auto-cast abilities on the closest in-range enemy ──────────────
+        // ── 4. Auto-cast abilities — each checks its own range independently ──
         // Abilities take priority; try each in order (index 0 = highest priority).
         for (int i = 0; i < abilityModule.Abilities.Count; i++)
         {
@@ -62,7 +75,7 @@ public class PassiveBrainModule : EntityBrainModule
                 return; // ability fired — skip auto-attack this frame
         }
 
-        // ── 4. Auto-attack on the closest in-range enemy ──────────────────────
+        // ── 5. Auto-attack on the closest in-range enemy ──────────────────────
         if (abilityModule.AutoAttack != null)
         {
             Entity target = GetClosestEnemyInRange(abilityModule.AutoAttack.range);
@@ -101,16 +114,40 @@ public class PassiveBrainModule : EntityBrainModule
         }
 
         if (flatDelta.sqrMagnitude <= m_stopRadius * m_stopRadius)
-        {
             m_isMoving = false;
-        }
     }
 
     // ─── Target resolution ────────────────────────────────────────────────────
 
     /// <summary>
-    /// Returns the live enemy closest to the owner whose distance is ≤ <paramref name="range"/>,
-    /// or null if none qualifies.
+    /// Returns the closest live enemy regardless of range, or null if none exist.
+    /// Used for facing decisions.
+    /// </summary>
+    private Entity GetClosestEnemy()
+    {
+        if (EntityManager.Instance == null) return null;
+
+        List<Entity> enemies = EntityManager.Instance.Enemies;
+        Entity       closest = null;
+        float        bestSqr = float.MaxValue;
+
+        foreach (Entity enemy in enemies)
+        {
+            if (enemy == null) continue;
+            float sqrDist = (enemy.transform.position - Owner.transform.position).sqrMagnitude;
+            if (sqrDist < bestSqr)
+            {
+                bestSqr = sqrDist;
+                closest = enemy;
+            }
+        }
+
+        return closest;
+    }
+
+    /// <summary>
+    /// Returns the closest live enemy within <paramref name="range"/>,
+    /// or null if none qualifies. Used for ability and auto-attack targeting.
     /// </summary>
     private Entity GetClosestEnemyInRange(float range)
     {
@@ -124,7 +161,6 @@ public class PassiveBrainModule : EntityBrainModule
         foreach (Entity enemy in enemies)
         {
             if (enemy == null) continue;
-
             float sqrDist = (enemy.transform.position - Owner.transform.position).sqrMagnitude;
             if (sqrDist <= sqrRange && sqrDist < bestSqr)
             {
