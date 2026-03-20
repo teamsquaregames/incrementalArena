@@ -120,6 +120,7 @@ public class EntityAbilityModule : EntityModule
     // -------------------------------------------------------------------------
     private bool StartAbility(AbilityConfig ability, Vector3 targetPos, bool isAutoAttack)
     {
+        // this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_comboIndex}" : ability.abilityName)} toward {targetPos}");
         Vector3 direction = (targetPos - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
             Owner.transform.rotation = Quaternion.LookRotation(direction);
@@ -144,7 +145,10 @@ public class EntityAbilityModule : EntityModule
         }
 
         if (isAutoAttack)
+        {
             m_animator.SetBool(IS_ATTACKING, true);
+            m_animator.CrossFadeInFixedTime(AUTO_ATTACK_CLIP_SLOT, m_comboIndex == 0 ? 0.1f : 0f);
+        }
         else
             m_animator.SetTrigger(TRIGGER_ABILITY);
 
@@ -158,21 +162,10 @@ public class EntityAbilityModule : EntityModule
     {
     }
 
-    internal void HandleAnimationEnd()
+
+    internal void HandleAnimationActive()
     {
-        m_animator.SetBool(IS_ATTACKING, false);
-        m_animator.speed = 1f;
-
-        if (m_isAutoAttack)
-            m_comboIndex++;
-
-        m_activeAbility = null;
-        m_activeContext = null;
-        m_isAutoAttack = false;
-    }
-
-    internal void HandleAnimationEvent()
-    {
+        // this.Log("Handling animation active event");
         if (m_activeAbility == null) return;
 
         // Use the current combo index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
@@ -198,6 +191,20 @@ public class EntityAbilityModule : EntityModule
             }
         }
     }
+    
+    internal void HandleAnimationEnd()
+    {
+        // this.Log("Handling animation end event");
+        m_animator.SetBool(IS_ATTACKING, false);
+        m_animator.speed = 1f;
+
+        if (m_isAutoAttack)
+            m_comboIndex++;
+
+        m_activeAbility = null;
+        m_activeContext = null;
+        m_isAutoAttack = false;
+    }
 
     private List<Entity> ResolveTargets(Vector3 position, float radius)
     {
@@ -221,7 +228,7 @@ public class EntityAbilityModule : EntityModule
 
     public void CancelEverything()
     {
-        this.Log("Cancelling everything");
+        // this.Log("Cancelling everything");
 
         m_activeAbility = null;
         m_animator.speed = 1f;
@@ -234,6 +241,7 @@ public class EntityAbilityModule : EntityModule
 
     public void ResetCombo()
     {
+        // this.Log("Resetting combo");
         m_comboIndex = 0;
     }
 

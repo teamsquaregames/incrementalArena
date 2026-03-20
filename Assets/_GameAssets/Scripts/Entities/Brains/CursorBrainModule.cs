@@ -109,6 +109,6 @@ public class CursorBrainModule : EntityBrainModule
             m_isMoving = false;
         }
 
-        this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius}");
+        // this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius}");
     }
 }
