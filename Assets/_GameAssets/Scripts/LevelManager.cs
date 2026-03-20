@@ -9,8 +9,6 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private EntityManager m_entityManager = EntityManager.Instance;
-
     public Entity m_playerPrefab;
     public Entity m_enemyPrefab;
     public int m_enemyCount = 5;
