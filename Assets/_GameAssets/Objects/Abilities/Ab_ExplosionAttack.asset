@@ -17,7 +17,7 @@ MonoBehaviour:
   description: BOOM BOOM
   range: 1.5
   aoeRadius: 1
-  cooldown: 3
+  cooldown: 1000000
   steps:
   - mainVfx: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
     mainVFXPosition: 1

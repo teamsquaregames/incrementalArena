@@ -59,3 +59,17 @@ MonoBehaviour:
     isAsset: 1
     _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _obj: {fileID: 8951252404499559207, guid: 18b5429fee0ef284ab23798825ba5bee, type: 3}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-1-18b5429fee0ef284ab23798825ba5bee-8951252404499559207-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - _obj: {fileID: 11400000, guid: 74f944034adc43c48bd53b7a7b5c88af, type: 2}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-74f944034adc43c48bd53b7a7b5c88af-11400000-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: Stats.EntityStatDefinition, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

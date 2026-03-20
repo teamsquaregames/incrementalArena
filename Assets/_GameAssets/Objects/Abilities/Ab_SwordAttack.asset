@@ -15,21 +15,28 @@ MonoBehaviour:
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
-  range: 2
+  range: 4
   aoeRadius: 2
   cooldown: 0
   steps:
   - mainVfx: {fileID: 3724192508554018544, guid: 97ae52004b9aac842be9980d291e3dad, type: 3}
     mainVFXPosition: 0
     hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
+    abilityClip: {fileID: 1827226128182048838, guid: 2bc14a1041470cd4094c562113975d25, type: 3}
+    effects:
+    - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      value: 1
+  - mainVfx: {fileID: 3724192508554018544, guid: 212c4d7175e020a4a869477309a4dd5b, type: 3}
+    mainVFXPosition: 0
+    hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
     abilityClip: {fileID: 1827226128182048838, guid: c44b1a1611e2ba24da88eb8950bace42, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      value: 10
+      value: 1
   - mainVfx: {fileID: 3724192508554018544, guid: 212c4d7175e020a4a869477309a4dd5b, type: 3}
     mainVFXPosition: 0
     hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
     abilityClip: {fileID: 1827226128182048838, guid: 758fcd9471e07a74ab3bf0f1b55f062f, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      value: 5
+      value: 1

@@ -579,8 +579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06b82a27ecb3f544b39464738b9906f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityBrainModule
-  m_stopRadius: 1
-  m_minMoveThreshold: 1
+  m_stopRadius: 2
+  m_minMoveThreshold: 2
   m_isMoving: 0
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:

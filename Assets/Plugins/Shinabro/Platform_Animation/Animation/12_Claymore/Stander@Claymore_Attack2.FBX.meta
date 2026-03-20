@@ -58,8 +58,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9983333
-        functionName: OnAbilityEnd
+      - time: 0
+        functionName: OnAbilityStart
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -72,8 +72,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0
-        functionName: OnAbilityStart
+      - time: 0.5761111
+        functionName: OnAbilityEnd
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
