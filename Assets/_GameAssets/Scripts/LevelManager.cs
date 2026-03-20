@@ -1,9 +1,9 @@
 
-using System;
+using System.Collections.Generic;
 using Lean.Pool;
 using MyBox;
+using Stats;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -11,25 +11,34 @@ public class LevelManager : Singleton<LevelManager>
 {
     public Entity m_playerPrefab;
     public Entity m_enemyPrefab;
-    int m_enemyCount = 5;
-    [SerializeField] private bool m_useConstantEnemyCount = true;
+
+    private int m_currentWave = 0;
+    private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
 
     private void Start()
     {
-        if (m_useConstantEnemyCount)
-        {
-            EntityManager.Instance.onEntityUnregistered += ConstantEnemyCount;
-        }
-
         LeanPool.Spawn(m_playerPrefab);
-        for (int i = 0; i < m_enemyCount; i++)
+        EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
+        StartWave();
+    }
+
+    private void StartWave()
+    {
+        m_currentWave++;
+        int count = Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave));
+
+        for (int i = 0; i < count; i++)
         {
-            LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
+            Entity enemy = LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
+            m_waveEnemies.Add(enemy);
         }
     }
 
-    private void ConstantEnemyCount(Entity entity)
+    private void OnEntityUnregistered(Entity entity)
     {
-        LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
+        if (!m_waveEnemies.Remove(entity)) return;
+
+        if (m_waveEnemies.Count == 0)
+            StartWave();
     }
 }

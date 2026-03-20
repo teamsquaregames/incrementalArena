@@ -6,6 +6,7 @@ namespace Stats
         AttackDamage,
         AttackSpeed,
         MoveSpeed,
-        Armor
+        Armor,
+        EnemiesPerWave
     }
 }
