@@ -11,7 +11,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     public Entity m_playerPrefab;
     public Entity m_enemyPrefab;
-    public int m_enemyCount = 5;
+    int m_enemyCount = 5;
     [SerializeField] private bool m_useConstantEnemyCount = true;
 
     private void Start()

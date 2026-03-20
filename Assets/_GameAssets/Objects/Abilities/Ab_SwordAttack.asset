@@ -15,8 +15,8 @@ MonoBehaviour:
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
-  range: 4
-  aoeRadius: 2
+  range: 3
+  aoeRadius: 1.5
   cooldown: 0
   steps:
   - mainVfx: {fileID: 3724192508554018544, guid: 97ae52004b9aac842be9980d291e3dad, type: 3}

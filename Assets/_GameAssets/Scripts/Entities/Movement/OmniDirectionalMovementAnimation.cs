@@ -15,6 +15,9 @@ using Utils;
 ///   Float  "XVelocity"  — lateral  component (-1 = full strafe-left,  +1 = full strafe-right)
 ///   Float  "ZVelocity"  — forward  component (-1 = full walk-backward, +1 = full walk-forward)
 ///
+/// Upper-body layer weight is driven externally by the brain via
+/// <see cref="SetUpperBodyWeight"/> — not managed here.
+///
 /// All values are smoothed each frame via <see cref="m_smoothTime"/> to avoid
 /// jerky blendtree transitions.
 /// </summary>
@@ -31,6 +34,12 @@ public class OmniDirectionalMovementAnimation : EntityModule
     [Tooltip("Lower = snappier, higher = smoother. 0.05–0.15 works well.")]
     [SerializeField, Min(0f)] private float m_smoothTime = 0.08f;
 
+    [Header("Upper Body Layer")]
+    [Tooltip("Index of the upper-body animator layer (usually 1).")]
+    [SerializeField] private int m_upperBodyLayerIndex = 1;
+    [Tooltip("How fast the layer weight blends in and out.")]
+    [SerializeField, Min(0f)] private float m_layerWeightSmoothing = 0.1f;
+
     // Animator parameter hashes
     private int m_hashVelocityX;
     private int m_hashVelocityY;
@@ -38,6 +47,7 @@ public class OmniDirectionalMovementAnimation : EntityModule
     // Current smoothed values
     private float m_currentX;
     private float m_currentY;
+    private float m_layerWeightVel;
 
     // SmoothDamp velocities
     private float m_velX;
@@ -60,6 +70,22 @@ public class OmniDirectionalMovementAnimation : EntityModule
         m_hashVelocityY = Animator.StringToHash(m_velocityYName);
     }
 
+    // ─── Public API ───────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Smoothly drives the upper-body layer weight toward the target value (0 or 1).
+    /// Call this every frame from the brain.
+    /// </summary>
+    public void SetUpperBodyWeight(float target)
+    {
+        if (m_animator == null) return;
+
+        float current  = m_animator.GetLayerWeight(m_upperBodyLayerIndex);
+        float smoothed = Mathf.SmoothDamp(current, target, ref m_layerWeightVel, m_layerWeightSmoothing);
+
+        m_animator.SetLayerWeight(m_upperBodyLayerIndex, smoothed);
+    }
+
     // ─── Update ───────────────────────────────────────────────────────────────
 
     private void Update()
@@ -80,7 +106,5 @@ public class OmniDirectionalMovementAnimation : EntityModule
 
         m_animator.SetFloat(m_hashVelocityX, m_currentX);
         m_animator.SetFloat(m_hashVelocityY, m_currentY);
-
-        this.Log($"[OmniMovAnim] X={m_currentX:F2}  Y={m_currentY:F2}");
     }
 }

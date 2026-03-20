@@ -59,4 +59,15 @@ public abstract class EntityBrainModule : EntityModule
             return abilityModule.TryUseAutoAttack(targetPosition);
         return false;
     }
+
+    /// <summary>
+    /// Drives the upper-body animator layer weight via <see cref="OmniDirectionalMovementAnimation"/>.
+    /// Pass 1f when attacking or casting, 0f otherwise.
+    /// Does nothing if the owner has no <see cref="OmniDirectionalMovementAnimation"/>.
+    /// </summary>
+    protected void SetUpperBodyWeight(float target)
+    {
+        if (Owner.TryGetModule(out OmniDirectionalMovementAnimation animModule))
+            animModule.SetUpperBodyWeight(target);
+    }
 }

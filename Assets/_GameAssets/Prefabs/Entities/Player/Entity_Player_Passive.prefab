@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1054936620964446158, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+      propertyPath: ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2001262478841934903, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2673431603351796059, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5e313611b94ea4042808437d5f898d5c, type: 2}
     - target: {fileID: 4106009951781145495, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
       propertyPath: m_Name
       value: Entity_Player_Passive

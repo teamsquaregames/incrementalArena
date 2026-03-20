@@ -19,6 +19,8 @@ using Utils;
 ///                 Ability list order = priority (index 0 fires first).
 ///
 /// No button presses are required for combat — just stay alive and steer.
+/// Upper-body layer weight is set to 1 whenever any attack or ability is active
+/// (IsBusy), and 0 otherwise.
 /// </summary>
 public class PassiveBrainModule : EntityBrainModule
 {
@@ -42,7 +44,7 @@ public class PassiveBrainModule : EntityBrainModule
     {
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
-        // ── 1. Movement ───────────────────────────────────────────────────────
+        // ── 1. Movement — blocked while any attack or ability is active ───────
         switch (m_movementMode)
         {
             case MovementMode.Keyboard: ThinkKeyboardMovement(); break;
@@ -52,19 +54,17 @@ public class PassiveBrainModule : EntityBrainModule
         // ── 2. Facing — closest enemy in the world, or mouse as fallback ──────
         Entity closestEnemy = GetClosestEnemy();
         if (closestEnemy != null)
-        {
             FacePosition(closestEnemy.transform.position);
-        }
         else if (CursorManager.Instance != null)
-        {
             FacePosition(CursorManager.Instance.MouseWorldPosition);
-        }
 
-        // ── 3. While a non-auto ability is animating, hold off on combat ─────
-        if (abilityModule.IsUsingAbility) return;
+        // ── 3. Upper-body layer — weight 1 during any attack or ability, 0 otherwise
+        SetUpperBodyWeight(abilityModule.IsBusy ? 1f : 0f);
 
-        // ── 4. Auto-cast abilities — each checks its own range independently ──
-        // Abilities take priority; try each in order (index 0 = highest priority).
+        // ── 4. While a non-auto ability is animating, hold off on combat ──────
+        //if (abilityModule.IsUsingAbility) return;
+
+        // ── 5. Auto-cast abilities — each checks its own range independently ──
         for (int i = 0; i < abilityModule.Abilities.Count; i++)
         {
             AbilityConfig ability = abilityModule.Abilities[i];
@@ -72,10 +72,10 @@ public class PassiveBrainModule : EntityBrainModule
             if (target == null) continue;
 
             if (TryUseAbility(i, target.transform.position.OffsetY(0.75f)))
-                return; // ability fired — skip auto-attack this frame
+                return;
         }
 
-        // ── 5. Auto-attack on the closest in-range enemy ──────────────────────
+        // ── 6. Auto-attack on the closest in-range enemy ──────────────────────
         if (abilityModule.AutoAttack != null)
         {
             Entity target = GetClosestEnemyInRange(abilityModule.AutoAttack.range);
