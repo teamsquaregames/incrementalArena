@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 9f3b01f316634deb8c00b35d24db47a2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - _frogIcon: {fileID: 2800000, guid: e55f53c7cdfcbef4ab7550da1d946aaa, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244942
+  packageName: SDF Image - Quality UI Outlines and Shadow
+  packageVersion: 1.3.4
+  assetPath: Packages/com.nickeltin.sdf/Editor/LandingWindow/SDFLandingWindow.cs
+  uploadId: 857568

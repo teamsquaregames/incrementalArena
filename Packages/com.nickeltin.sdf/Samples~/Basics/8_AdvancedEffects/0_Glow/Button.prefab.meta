@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 85ca9672bca781c449e3ab70b5effa42
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244942
+  packageName: SDF Image - Quality UI Outlines and Shadow
+  packageVersion: 1.3.4
+  assetPath: Packages/com.nickeltin.sdf/Samples~/Basics/8_AdvancedEffects/0_Glow/Button.prefab
+  uploadId: 857568

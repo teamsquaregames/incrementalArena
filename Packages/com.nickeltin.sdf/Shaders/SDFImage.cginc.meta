@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 972128f5218d474a8400c47d9a4da51b
+timeCreated: 1752361163
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244942
+  packageName: SDF Image - Quality UI Outlines and Shadow
+  packageVersion: 1.3.4
+  assetPath: Packages/com.nickeltin.sdf/Shaders/SDFImage.cginc
+  uploadId: 857568

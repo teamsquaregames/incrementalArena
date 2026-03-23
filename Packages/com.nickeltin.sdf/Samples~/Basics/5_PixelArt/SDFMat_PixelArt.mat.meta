@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b68dd034483d07c4a94231a45fc94819
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244942
+  packageName: SDF Image - Quality UI Outlines and Shadow
+  packageVersion: 1.3.4
+  assetPath: Packages/com.nickeltin.sdf/Samples~/Basics/5_PixelArt/SDFMat_PixelArt.mat
+  uploadId: 857568

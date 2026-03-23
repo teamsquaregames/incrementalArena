@@ -9,6 +9,27 @@
       },
       "hash": "998bf300cd676f79f1636324d39caf7641fabd3c"
     },
+    "com.nickeltin.core": {
+      "version": "file:com.nickeltin.core",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.editorcoroutines": "1.0.0"
+      }
+    },
+    "com.nickeltin.sdf": {
+      "version": "file:com.nickeltin.sdf",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.2d.sprite": "1.0.0",
+        "com.nickeltin.core": "1.2.10",
+        "com.unity.collections": "2.4.2",
+        "com.unity.burst": "1.8.21",
+        "com.unity.mathematics": "1.2.6"
+      }
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -35,7 +56,7 @@
     },
     "com.unity.burst": {
       "version": "1.8.28",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
@@ -73,6 +94,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
       "depth": 1,
@@ -108,7 +136,7 @@
     },
     "com.unity.mathematics": {
       "version": "1.3.3",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

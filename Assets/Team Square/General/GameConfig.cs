@@ -1,7 +1,5 @@
 using Sirenix.OdinInspector;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 
 [CreateAssetMenu(menuName = "Config/GameConfig")]
@@ -20,13 +18,11 @@ public class GameConfig : ScriptableObject
         return _instance;
     }
 
-
     //-------------------------------------
 
     public DebuggingSettings debuggingSettings = new DebuggingSettings();
     public CheatSettings cheatSettings = new CheatSettings();
     public GameSettings gameSettings = new GameSettings();
-    public UISettings uiSettings = new UISettings();
 
     //-------------------------------------
 
@@ -46,24 +42,6 @@ public class GameConfig : ScriptableObject
     public class DebuggingSettings
     {
         public bool developmentBuild;
-    }
-
-    public class UISettings
-    {
-        [Space(10)]
-        public bool bounceOnClick = true;
-        public float clickScaleDuration = 0.07f;
-        public Vector3 clickScale = Vector3.one * 0.95f;
-        public Vector3 clickBounceScale = Vector3.one * 1.1f;
-
-        [Space(10)]
-        public float hoverScaleDuration = 0.15f;
-        public Vector3 hoverScale = Vector3.one * 1.05f;
-
-        [Space(10)]
-        public float lockedShakeDuration = 0.3f;
-        public float lockedShakeStrenght = 30f;
-        public int lockedShakeVibrato = 20;
     }
 
     [System.Serializable]
