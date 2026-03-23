@@ -65,7 +65,8 @@ public class Entity : MonoBehaviour, IPoolable
             healthModule.OnDeathStart -= Unregister;
             healthModule.OnDeath -= Despawn;
         }
-        
+
+        Unregister();
         LeanPool.Despawn(gameObject);
     }
 
@@ -78,10 +79,7 @@ public class Entity : MonoBehaviour, IPoolable
     private void Unregister()
     {
         m_collider.enabled = false;
-        if (EntityManager.Instance != null)
-        {
-            EntityManager.Instance?.Unregister(this);
-        }
+        EntityManager.Instance?.Unregister(this);
     }
 
     public void OnSpawn()
@@ -92,6 +90,5 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void OnDespawn()
     {
-        Unregister();
     }
 }
