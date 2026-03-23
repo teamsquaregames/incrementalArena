@@ -21,8 +21,7 @@ MonoBehaviour:
     noCurrencyRequired: 1
     noMenu: 1
     disableBootStrapper: 0
+    infiniteRunDuration: 0
   gameSettings:
     isDemo: 0
-    resetedCurrency: []
-    resetCurrenciesNeeded: []
     delayBeforeCanValidateOnClick: 0.2

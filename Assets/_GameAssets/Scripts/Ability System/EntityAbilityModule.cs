@@ -118,7 +118,7 @@ public class EntityAbilityModule : EntityModule
 
     private bool StartAbility(AbilityConfig ability, Vector3 aimPosition, bool isAutoAttack)
     {
-        this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_comboIndex}" : ability.abilityName)} toward {aimPosition}");
+        //this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_comboIndex}" : ability.abilityName)} toward {aimPosition}");
         Vector3 direction = (aimPosition - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
             Owner.transform.rotation = Quaternion.LookRotation(direction);
@@ -162,7 +162,7 @@ public class EntityAbilityModule : EntityModule
 
     internal void HandleAnimationActive()
     {
-        this.Log("Handling animation active event");
+        //this.Log("Handling animation active event");
         if (m_activeAbility == null) return;
 
         // Use the current combo index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
@@ -230,7 +230,7 @@ public class EntityAbilityModule : EntityModule
 
     public void CancelEverything()
     {
-        this.Log("Cancelling everything");
+        //this.Log("Cancelling everything");
 
         m_activeAbility = null;
         m_animator.speed = 1f;

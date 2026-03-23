@@ -66,7 +66,7 @@ public class CameraController : MyBox.Singleton<CameraController>
 
         if (enable)
         {
-            lastMousePosition = Input.mousePosition;
+            lastMousePosition = Mouse.current.position.ReadValue();
         }
     }
 
@@ -77,7 +77,7 @@ public class CameraController : MyBox.Singleton<CameraController>
         // Middle mouse pan
         if (Input.GetMouseButtonDown(2))
         {
-            lastMousePosition = Input.mousePosition;
+            lastMousePosition = Mouse.current.position.ReadValue();
         }
 
         if (Input.GetMouseButton(2))
@@ -92,7 +92,7 @@ public class CameraController : MyBox.Singleton<CameraController>
 
             newPosition = ApplyBoundaryConstraint(newPosition);
             followTarget.position = newPosition;
-            lastMousePosition = Input.mousePosition;
+            lastMousePosition = Mouse.current.position.ReadValue();
         }
 
         // WASD pan (physical key position, cross-layout)

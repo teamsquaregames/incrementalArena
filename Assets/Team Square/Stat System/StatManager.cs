@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using MyBox;
 using Sirenix.OdinInspector;
@@ -23,6 +22,7 @@ namespace Stats
 
             foreach (var definition in m_entityStatDefinitions)
             {
+                Debug.Log(definition.entityType, definition);
                 if (definition == null) continue;
                 m_definitionStats[definition.entityType] = BuildStatDictionary(definition);
             }
@@ -31,19 +31,53 @@ namespace Stats
         private Dictionary<StatType, Stat> BuildStatDictionary(EntityStatDefinition definition)
         {
             var stats = new Dictionary<StatType, Stat>();
-            foreach (StatType statType in Enum.GetValues(typeof(StatType)))
-            {
-                var baseValue = definition.baseValues.TryGetValue(statType, out var v) ? v : 0f;
+            foreach (var (statType, baseValue) in definition.baseValues)
                 stats[statType] = new Stat(baseValue);
-            }
             return stats;
+        }
+
+        private Stat GetOrCreateDefinitionStat(EntityType entityType, StatType statType)
+        {
+            if (!m_definitionStats.TryGetValue(entityType, out var statDict))
+            {
+                statDict = new Dictionary<StatType, Stat>();
+                m_definitionStats[entityType] = statDict;
+            }
+
+            if (!statDict.TryGetValue(statType, out var stat))
+            {
+                stat = new Stat(0f);
+                statDict[statType] = stat;
+            }
+
+            return stat;
+        }
+
+        private Stat GetOrCreateInstanceStat(GameObject owner, StatType statType)
+        {
+            if (!m_instanceStats.TryGetValue(owner, out var statDict))
+            {
+                statDict = new Dictionary<StatType, Stat>();
+                m_instanceStats[owner] = statDict;
+            }
+
+            if (!statDict.TryGetValue(statType, out var stat))
+            {
+                var entityType = m_instanceEntityTypes[owner];
+                var defStat    = GetOrCreateDefinitionStat(entityType, statType);
+                stat           = new Stat(defStat.Value);
+                defStat.OnValueChanged += stat.SetBaseValueAndRecalculate;
+                statDict[statType] = stat;
+            }
+
+            return stat;
         }
 
         // --- Definition access (skill tree, no spawn needed) ---
 
         public Stat GetDefinitionStat(EntityType entityType, StatType statType)
         {
-            return m_definitionStats[entityType][statType];
+            return GetOrCreateDefinitionStat(entityType, statType);
         }
 
         public float GetDefinitionValue(EntityType entityType, StatType statType)
@@ -102,7 +136,7 @@ namespace Stats
 
         public Stat GetInstanceStat(GameObject owner, StatType statType)
         {
-            return m_instanceStats[owner][statType];
+            return GetOrCreateInstanceStat(owner, statType);
         }
 
         public float GetInstanceValue(GameObject owner, StatType statType)

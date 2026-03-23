@@ -39,6 +39,7 @@ public class GameConfig : ScriptableObject
         public bool noCurrencyRequired = false;
         public bool noMenu = false;
         public bool disableBootStrapper = false;
+        public bool infiniteRunDuration;
     }
 
     [System.Serializable]
@@ -70,29 +71,7 @@ public class GameConfig : ScriptableObject
     {
         public bool isDemo = false;
 
-        [Space]
-        public CurrencyAsset[] resetedCurrency;
-        public double[] resetCurrenciesNeeded;
-
         [Space, Header("Tutorial")]
         public float delayBeforeCanValidateOnClick = 0.2f;
-        
-
-        public double GetResetCurrencyNeeded(int index)
-        {
-            if (resetCurrenciesNeeded == null || resetCurrenciesNeeded.Length == 0)
-            {
-                Debug.LogError("resetCurrenciesNeeded is not initialized.");
-                return 0;
-            }
-
-            if (index < 0 || index >= resetCurrenciesNeeded.Length)
-            {
-                Debug.LogWarning($"Index {index} is out of bounds for resetCurrenciesNeeded array.");
-                return resetCurrenciesNeeded[resetCurrenciesNeeded.Length - 1];
-            }
-
-            return resetCurrenciesNeeded[index];
-        }
     }
 }

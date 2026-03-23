@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 public struct CurrencyAmount
@@ -61,14 +62,14 @@ public class GameData : ScriptableObject
 
 	public bool firstGameLaunch = true;
 	public bool runExistInSave;
-	public bool runStarted;
+	public bool runActive;
 	
 	public static void ResetGameData()
 	{
 		Instance.ResetCurrencies();
 		Instance.teckTreeNodesLevels = new SerializableDictionary<string, int>();
 		Instance.firstGameLaunch = true;
-		Instance.runStarted = false;
+		Instance.runActive = false;
 		Instance.completedFtueSteps.Clear();
 
 		Instance.runExistInSave = false;
@@ -90,10 +91,6 @@ public class GameData : ScriptableObject
 
 	public void ResetRun()
 	{
-		ResetRunCurrencies();
-		
-		runStarted = false;
-
 		Save();
 	}
 
@@ -193,15 +190,6 @@ public class GameData : ScriptableObject
 		{
 			if (!Instance.currencies.ContainsKey(currencyAsset.Currency))
 				Instance.currencies.Add(currencyAsset.Currency, 0);
-		}
-	}
-
-	public void ResetRunCurrencies()
-	{
-		foreach (CurrencyAsset currencyAsset in GameConfig.Instance.gameSettings.resetedCurrency)
-		{
-			if (Instance.currencies.ContainsKey(currencyAsset.Currency))
-				Instance.currencies[currencyAsset.Currency] = 0;
 		}
 	}
 	

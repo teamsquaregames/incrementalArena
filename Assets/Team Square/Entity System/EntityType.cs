@@ -4,6 +4,5 @@ using System;
 public enum EntityType
 {
     Player   = 1 << 0,
-    Skeleton = 1 << 1,
-    Boss     = 1 << 2,
+    Orc = 1 << 1,
 }
