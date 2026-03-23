@@ -8,6 +8,7 @@ public static class ResolveApplication
 {
     public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context)
     {
+        Debug.Log($"Resolving applications for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
         List<Entity> results = new List<Entity>();
         
         List<Entity> preselectedTargets = targetingInfo.quickTarget switch
@@ -33,6 +34,8 @@ public static class ResolveApplication
 
     private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets)
     {
+        Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+        
         switch (applicationInfo.effectZoneType)
         {
             case AbilityApplicationInfo.Type.Direct:
@@ -53,6 +56,8 @@ public static class ResolveApplication
 
     private static List<Entity> AoeSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
+        Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+
         Transform owner = context.Caster != null ? context.Caster.transform : null;
         Quaternion rotation = owner != null ? owner.rotation : Quaternion.identity;
         Vector3 rotatedOffset = rotation * applicationInfo.aoeInfo.offset;
@@ -63,6 +68,7 @@ public static class ResolveApplication
         switch (applicationInfo.aoeInfo.effectShape)
         {
             case AoEInfo.Shape.Circle:
+                Debug.Log($"Performing circular AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.radius}");
                 hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.radius);
                 break;
 

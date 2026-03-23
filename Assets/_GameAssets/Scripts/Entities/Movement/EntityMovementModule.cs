@@ -102,7 +102,7 @@ public class EntityMovementModule : EntityModule
             float t = elapsed / duration;
             Vector3 newPosition = Vector3.Lerp(startPosition, position, t);
             transform.position = newPosition;
-            this.Log($"Dashing... {t * 100f:0.0}% / {newPosition}");
+            // this.Log($"Dashing... {t * 100f:0.0}% / {newPosition}");
             yield return null;
         }
     }

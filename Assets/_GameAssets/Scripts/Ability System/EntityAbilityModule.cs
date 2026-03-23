@@ -30,7 +30,7 @@ public class EntityAbilityModule : EntityModule
     [InlineProperty] private AbilityConfig m_activeAbility;
     private AbilityContext m_activeContext;
     private bool m_isAutoAttack;
-    private int m_comboIndex;
+    private int m_stepIndex;
     private Dictionary<string, float> m_cooldowns = new();
 
     public AbilityConfig AutoAttack => m_autoAttack;
@@ -102,7 +102,7 @@ public class EntityAbilityModule : EntityModule
         // Don't re-trigger while already auto-attacking
         if (IsBusy) return false;
 
-        m_comboIndex = m_comboIndex % m_autoAttack.steps.Count;
+        m_stepIndex = m_stepIndex % m_autoAttack.steps.Count;
         return StartAbility(m_autoAttack, aimPosition, isAutoAttack: true);
     }
 
@@ -112,18 +112,18 @@ public class EntityAbilityModule : EntityModule
         if (!CanUse(ability)) return false;
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
+        m_stepIndex = 0;
         return StartAbility(ability, aimPosition, isAutoAttack: false);
     }
 
 
     private bool StartAbility(AbilityConfig ability, Vector3 aimPosition, bool isAutoAttack)
     {
-        this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_comboIndex}" : ability.abilityName)} toward {aimPosition}");
+        // this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_stepIndex}" : ability.abilityName)} toward {aimPosition}");
+
         Vector3 direction = (aimPosition - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
             Owner.transform.rotation = Quaternion.LookRotation(direction);
-
-        int stepIndex = isAutoAttack ? m_comboIndex : 0;
 
         m_activeAbility = ability;
         m_isAutoAttack = isAutoAttack;
@@ -135,7 +135,7 @@ public class EntityAbilityModule : EntityModule
             AbilityConfig = ability
         };
 
-        SetAbilityClip(ability.steps[stepIndex].abilityClip, isAutoAttack);
+        SetAbilityClip(ability.steps[m_stepIndex].abilityClip, isAutoAttack);
 
         if (!isAutoAttack && m_stopMovementOnCast)
         {
@@ -146,7 +146,7 @@ public class EntityAbilityModule : EntityModule
         if (isAutoAttack)
         {
             m_animator.SetBool(IS_ATTACKING, true);
-            m_animator.CrossFadeInFixedTime(AUTO_ATTACK_CLIP_SLOT, m_comboIndex == 0 ? 0.1f : 0f);
+            m_animator.CrossFadeInFixedTime(AUTO_ATTACK_CLIP_SLOT, m_stepIndex == 0 ? 0.1f : 0f);
         }
         else
             m_animator.SetTrigger(TRIGGER_ABILITY);
@@ -162,12 +162,11 @@ public class EntityAbilityModule : EntityModule
 
     internal void HandleAnimationActive()
     {
-        this.Log("Handling animation active event");
+        // this.Log($"Handling animation active event. stepIndex={m_stepIndex}, activeAbility={m_activeAbility?.abilityName}, isAutoAttack={m_isAutoAttack}");
         if (m_activeAbility == null) return;
 
-        // Use the current combo index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
-        int step = m_isAutoAttack ? m_comboIndex : 0;
-        AbilityStep activeStep = m_activeAbility.steps[step];
+        // Use the current step index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
+        AbilityStep activeStep = m_activeAbility.steps[m_stepIndex];
 
         LeanPool.Spawn(
             activeStep.mainVfx,
@@ -180,7 +179,7 @@ public class EntityAbilityModule : EntityModule
         List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
         foreach (var target in targets)
         {
-            LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(0.5f), Quaternion.identity);
+            LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(0), Quaternion.identity);
             foreach (var entry in activeStep.effects)
             {
                 m_activeContext.Value = entry.value;
@@ -200,6 +199,9 @@ public class EntityAbilityModule : EntityModule
                 _ => m_activeContext.AimPosition
             };
         }
+
+        m_stepIndex++;
+        m_activeContext.CurrentStepIndex = m_stepIndex;
     }
     
     internal void HandleAnimationEnd()
@@ -208,8 +210,8 @@ public class EntityAbilityModule : EntityModule
         m_animator.SetBool(IS_ATTACKING, false);
         m_animator.speed = 1f;
 
-        if (m_isAutoAttack)
-            m_comboIndex++;
+        if (!m_isAutoAttack)
+            m_stepIndex = 0;
 
         m_activeAbility = null;
         m_activeContext = null;
@@ -230,7 +232,7 @@ public class EntityAbilityModule : EntityModule
 
     public void CancelEverything()
     {
-        this.Log("Cancelling everything");
+        // this.Log("Cancelling everything");
 
         m_activeAbility = null;
         m_animator.speed = 1f;
@@ -244,7 +246,7 @@ public class EntityAbilityModule : EntityModule
     public void ResetCombo()
     {
         // this.Log("Resetting combo");
-        m_comboIndex = 0;
+        m_stepIndex = 0;
     }
 
     private bool CanUse(AbilityConfig ability)
