@@ -28,12 +28,12 @@ public class CursorBrainModule : EntityBrainModule
         // ── 1. While a non-auto ability is animating, block all input ─────────
         if (abilityModule.IsUsingAbility) return;
 
-        Entity targetEnemy = GetClosestEnemyInCursor();
+        Entity targetEnemy = GetClosestEnemyInCursor(Owner);
 
         // ── 2. Try to use a regular ability automatically if an enemy is present
         if (targetEnemy != null)
         {
-            Vector3 aimPoint = targetEnemy.transform.position.OffsetY(0.75f);
+            Vector3 aimPoint = targetEnemy.transform.position.OffsetY(0f);
 
             // Iterate over available abilities and fire the first one that is off cooldown
             for (int i = 0; i < abilityModule.Abilities.Count; i++)
@@ -58,10 +58,11 @@ public class CursorBrainModule : EntityBrainModule
         if (inAttackRange)
         {
             StopMovement();
-            TryAutoAttack(targetEnemy.transform.position.OffsetY(0.75f));
+            TryAutoAttack(targetEnemy.transform.position.OffsetY(0f));
         }
         else
         {
+            // abilityModule.CancelEverything();
             MoveToward(targetPosition);
         }
     }
@@ -69,7 +70,7 @@ public class CursorBrainModule : EntityBrainModule
     // ─── Private helpers ──────────────────────────────────────────────────────
 
     /// <summary>Returns the enemy inside the cursor closest to the player, or null if none.</summary>
-    private Entity GetClosestEnemyInCursor()
+    public static Entity GetClosestEnemyInCursor(Entity owner)
     {
         Entity closest        = null;
         float  closestSqrDist = float.MaxValue;
@@ -79,7 +80,7 @@ public class CursorBrainModule : EntityBrainModule
             if (!entity.TryGetModule(out EntityTeamModule tm) || tm.Team != Team.Enemy)
                 continue;
 
-            float sqrDist = (entity.transform.position - Owner.transform.position).sqrMagnitude;
+            float sqrDist = (entity.transform.position - owner.transform.position).sqrMagnitude;
             if (sqrDist < closestSqrDist)
             {
                 closestSqrDist = sqrDist;

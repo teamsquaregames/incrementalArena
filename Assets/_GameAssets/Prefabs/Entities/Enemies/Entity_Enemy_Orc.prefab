@@ -128,6 +128,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1687823931497025180, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687823931497025180, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687823931497025180, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Name
       value: Entity_Enemy_Orc
@@ -176,6 +188,10 @@ PrefabInstance:
       propertyPath: 'm_renderers.Array.data[7]'
       value: 
       objectReference: {fileID: 9106362369280223076}
+    - target: {fileID: 5319705569266897079, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_Height
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2536590874434918458, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
@@ -183,10 +199,39 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4920909466871179119, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6860283986614340844}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5487824343631458890}
   m_SourcePrefab: {fileID: 100100000, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
 --- !u!4 &1866722747172709200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4920909466871179119, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
   m_PrefabInstance: {fileID: 6750187086863156287}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &5386623499183901347 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1687823931497025180, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+  m_PrefabInstance: {fileID: 6750187086863156287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8951252404499559207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+  m_PrefabInstance: {fileID: 6750187086863156287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5487824343631458890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8951252404499559207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d1b1e1ebf390d4eb881e4c6f11a5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityMovementModule
+  m_rigidbody: {fileID: 5386623499183901347}
+  m_fallbackMoveSpeed: 10
+  m_faceVelocity: 0
+  m_rotationSpeed: 20

@@ -1,5 +1,8 @@
+using System.Collections;
 using Stats;
 using UnityEngine;
+using Utils;
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class EntityMovementModule : EntityModule
@@ -18,12 +21,12 @@ public class EntityMovementModule : EntityModule
     private float m_moveSpeed;
     public float MoveSpeed => m_moveSpeed;
 
+    private Coroutine m_dashCoroutine;
+
     private void Reset() => CacheReferences();
 
     private void FixedUpdate()
     {
-        if (m_rigidbody == null) return;
-
         RefreshMoveSpeed();
         ApplyMovement();
 
@@ -38,7 +41,8 @@ public class EntityMovementModule : EntityModule
 
     public void AddImpulse(Vector3 impulse)
     {
-        m_rigidbody?.AddForce(impulse, ForceMode.VelocityChange);
+        // this.Log($"Adding impulse {impulse}");
+        m_rigidbody?.AddForce(impulse, ForceMode.Impulse);
     }
 
     protected virtual void OnAfterMovementApplied() { }
@@ -71,5 +75,35 @@ public class EntityMovementModule : EntityModule
     {
         base.CacheReferences();
         m_rigidbody = GetComponent<Rigidbody>();
+    }
+
+    
+    public void DashToPosition(Vector3 position, float duration)
+    {
+        this.Log($"Dashing to {position} over {duration} seconds");
+
+        if (m_dashCoroutine != null)
+        {
+            StopCoroutine(m_dashCoroutine);
+            m_dashCoroutine = null;
+        }
+
+        m_dashCoroutine = StartCoroutine(DashCR(position, duration));
+    }
+
+    private IEnumerator DashCR(Vector3 position, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 startPosition = Owner.transform.position;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            Vector3 newPosition = Vector3.Lerp(startPosition, position, t);
+            transform.position = newPosition;
+            this.Log($"Dashing... {t * 100f:0.0}% / {newPosition}");
+            yield return null;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     public Entity m_playerPrefab;
     public Entity m_enemyPrefab;
-    int m_enemyCount = 5;
+    public int m_enemyCount = 5;
     [SerializeField] private bool m_useConstantEnemyCount = true;
 
     private void Start()
@@ -32,7 +32,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void ConstantEnemyCount(Entity entity)
     {
-        this.Log("Enemy died, spawning a new one to keep the count constant");
+        // this.Log("Enemy died, spawning a new one to keep the count constant");
         LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
     }
 }

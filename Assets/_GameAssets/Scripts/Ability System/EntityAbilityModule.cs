@@ -13,6 +13,9 @@ public class EntityAbilityModule : EntityModule
     public const string IS_ATTACKING = "IsAttacking";
     public const string TRIGGER_ABILITY = "Ability";
 
+    [TitleGroup("References")]
+    [SerializeField] private AbilityApplicationGizmos m_gizmos;
+
     [Header("Auto Attack")]
     [SerializeField, InlineEditor] private AbilityConfig m_autoAttack;
 
@@ -91,10 +94,8 @@ public class EntityAbilityModule : EntityModule
         }
     }
 
-    // -------------------------------------------------------------------------
-    // Auto Attack — no cooldown, interruptible by abilities
-    // -------------------------------------------------------------------------
-    public bool TryUseAutoAttack(Vector3 targetPos)
+
+    public bool TryUseAutoAttack(Vector3 aimPosition)
     {
         if (m_autoAttack == null) return false;
 
@@ -102,27 +103,23 @@ public class EntityAbilityModule : EntityModule
         if (IsBusy) return false;
 
         m_comboIndex = m_comboIndex % m_autoAttack.steps.Count;
-        return StartAbility(m_autoAttack, targetPos, isAutoAttack: true);
+        return StartAbility(m_autoAttack, aimPosition, isAutoAttack: true);
     }
 
-    // -------------------------------------------------------------------------
-    // Regular abilities — subject to cooldown, interrupt auto-attacks
-    // -------------------------------------------------------------------------
-    public bool TryUseAbility(AbilityConfig ability, Vector3 targetPos)
+
+    public bool TryUseAbility(AbilityConfig ability, Vector3 aimPosition)
     {
         if (!CanUse(ability)) return false;
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
-        return StartAbility(ability, targetPos, isAutoAttack: false);
+        return StartAbility(ability, aimPosition, isAutoAttack: false);
     }
 
-    // -------------------------------------------------------------------------
-    // Shared activation logic
-    // -------------------------------------------------------------------------
-    private bool StartAbility(AbilityConfig ability, Vector3 targetPos, bool isAutoAttack)
+
+    private bool StartAbility(AbilityConfig ability, Vector3 aimPosition, bool isAutoAttack)
     {
-        // this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_comboIndex}" : ability.abilityName)} toward {targetPos}");
-        Vector3 direction = (targetPos - Owner.transform.position).SetY(0);
+        this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_comboIndex}" : ability.abilityName)} toward {aimPosition}");
+        Vector3 direction = (aimPosition - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
             Owner.transform.rotation = Quaternion.LookRotation(direction);
 
@@ -133,7 +130,8 @@ public class EntityAbilityModule : EntityModule
         m_activeContext = new AbilityContext
         {
             Caster = Owner,
-            TargetPosition = targetPos,
+            AimPosition = aimPosition,
+            ClosestEntity = CursorBrainModule.GetClosestEnemyInCursor(Owner),
             AbilityConfig = ability
         };
 
@@ -156,9 +154,7 @@ public class EntityAbilityModule : EntityModule
         return true;
     }
 
-    // -------------------------------------------------------------------------
-    // Animation callbacks (called by animation events on the clip)
-    // -------------------------------------------------------------------------
+
     internal void HandleAnimationStart()
     {
     }
@@ -166,7 +162,7 @@ public class EntityAbilityModule : EntityModule
 
     internal void HandleAnimationActive()
     {
-        // this.Log("Handling animation active event");
+        this.Log("Handling animation active event");
         if (m_activeAbility == null) return;
 
         // Use the current combo index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
@@ -176,12 +172,12 @@ public class EntityAbilityModule : EntityModule
         LeanPool.Spawn(
             activeStep.mainVfx,
             activeStep.mainVFXPosition == VFXPosition.Target
-                ? m_activeContext.TargetPosition
+                ? m_activeContext.AimPosition
                 : transform.position.OffsetY(0.75f),
             transform.rotation
         );
 
-        List<Entity> targets = ResolveTargets(m_activeContext.TargetPosition, m_activeAbility.aoeRadius);
+        List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
         foreach (var target in targets)
         {
             LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(0.5f), Quaternion.identity);
@@ -190,6 +186,19 @@ public class EntityAbilityModule : EntityModule
                 m_activeContext.Value = entry.value;
                 entry.effect?.Execute(m_activeContext, target);
             }
+        }
+
+        if (m_gizmos != null)
+        {
+            m_gizmos.applicationInfo = activeStep.applicationInfos.Count > 0 ? activeStep.applicationInfos[0] : null;
+            m_gizmos.targetingInfo = activeStep.targetingInfo;
+            m_gizmos.position = activeStep.targetingInfo.quickTarget switch
+            {
+                TargetingInfo.QuickTarget.Self => m_activeContext.Caster.transform.position,
+                TargetingInfo.QuickTarget.Current => m_activeContext.ClosestEntity != null ? m_activeContext.ClosestEntity.transform.position : m_activeContext.AimPosition,
+                // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
+                _ => m_activeContext.AimPosition
+            };
         }
     }
     
@@ -219,29 +228,9 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    private List<Entity> ResolveTargets(Vector3 position, float radius)
-    {
-        var results = new List<Entity>();
-        var hits = Physics.OverlapSphere(position, radius);
-        var casterCollider = m_activeContext.Caster.GetComponent<Collider>();
-
-        foreach (var hit in hits)
-        {
-            if (hit == casterCollider) continue;
-
-            if (EntityManager.Instance != null &&
-                EntityManager.Instance.EntitiesByCollider.TryGetValue(hit, out Entity entity))
-            {
-                results.Add(entity);
-            }
-        }
-
-        return results;
-    }
-
     public void CancelEverything()
     {
-        // this.Log("Cancelling everything");
+        this.Log("Cancelling everything");
 
         m_activeAbility = null;
         m_animator.speed = 1f;

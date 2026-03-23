@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1713da05ac407764db1555383edaf5ad, type: 3}
-  m_Name: DamageEffect
-  m_EditorClassIdentifier: Assembly-CSharp::DamageEffect
-  m_damage: 10
-  m_isAOE: 0
-  m_isCrit: 0
+  m_Script: {fileID: 11500000, guid: d8013cd4b89af5f438d6d2d73f568cbb, type: 3}
+  m_Name: AbE_Impulse
+  m_EditorClassIdentifier: Assembly-CSharp::PushEffect

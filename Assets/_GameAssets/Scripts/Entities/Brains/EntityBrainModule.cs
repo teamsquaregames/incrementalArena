@@ -39,24 +39,24 @@ public abstract class EntityBrainModule : EntityModule
     }
 
     /// <summary>Try to fire an ability toward a world-space target position.</summary>
-    protected bool TryUseAbility(int abilityIndex, Vector3 targetPosition)
+    protected bool TryUseAbility(int abilityIndex, Vector3 aimPosition)
     {
         if (abilityIndex < 0) return false;
         
         if (Owner.TryGetModule(out EntityAbilityModule abilityModule))
         {
             if (abilityIndex > abilityModule.Abilities.Count - 1) return false;
-            return abilityModule.TryUseAbility(abilityModule.Abilities[abilityIndex], targetPosition);
+            return abilityModule.TryUseAbility(abilityModule.Abilities[abilityIndex], aimPosition);
         }
 
         return false;
     }
 
     /// <summary>Try to fire the owner's auto-attack toward a world-space target position.</summary>
-    protected bool TryAutoAttack(Vector3 targetPosition)
+    protected bool TryAutoAttack(Vector3 aimPosition)
     {
         if (Owner.TryGetModule(out EntityAbilityModule abilityModule))
-            return abilityModule.TryUseAutoAttack(targetPosition);
+            return abilityModule.TryUseAutoAttack(aimPosition);
         return false;
     }
 

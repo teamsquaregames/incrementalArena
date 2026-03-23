@@ -59,6 +59,7 @@ public class PlayerBrainModule : EntityBrainModule
         }
         else
         {
+            this.Log($"Moving toward target. Distance to target: {distanceToTarget}");
             abilityModule.CancelEverything();
             MoveToward(targetPosition);
         }
