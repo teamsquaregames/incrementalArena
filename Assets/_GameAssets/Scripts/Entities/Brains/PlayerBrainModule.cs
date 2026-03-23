@@ -30,7 +30,7 @@ public class PlayerBrainModule : EntityBrainModule
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             abilityModule.CancelEverything();
-            TryUseAbility(0, CursorManager.Instance.MouseWorldPosition.OffsetY(0.75f));
+            TryUseAbility(0, CursorManager.Instance.MouseWorldPosition.OffsetY(0f));
             return;
         }
 
@@ -55,7 +55,7 @@ public class PlayerBrainModule : EntityBrainModule
         {
             m_isMoving = false;
             StopMovement();
-            TryAutoAttack(targetEnemy.transform.position.OffsetY(0.75f));
+            TryAutoAttack(targetEnemy.transform.position.OffsetY(0f));
         }
         else
         {
