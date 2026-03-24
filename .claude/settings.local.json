@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/UnityProjects/IncrementalArena/Assets -type f -name *Skill*.cs)",
+      "Bash(find /c/UnityProjects/IncrementalArena/Assets -type f -name *Quest*.cs)",
+      "Bash(find /c/UnityProjects/IncrementalArena/Assets -type f -name *.cs)",
+      "Bash(xargs grep:*)",
+      "Bash(grep -r 'enum TrackedValueType' /c/UnityProjects/IncrementalArena/Assets --include=*.cs)",
+      "Bash(grep -r \"Slider\\\\|TextMeshProUGUI\\\\|Text \" /c/UnityProjects/IncrementalArena/Assets/_GameAssets/Scripts --include=*.cs)",
+      "Bash(grep -r \"Duration\\\\|RunDuration\\\\|Timer\\\\|Time\" /c/UnityProjects/IncrementalArena/Assets/_GameAssets/Scripts --include=*.cs)",
+      "Bash(find /c/UnityProjects/IncrementalArena/Assets -type f -name *.asset)"
+    ]
+  }
+}

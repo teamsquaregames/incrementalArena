@@ -3,12 +3,55 @@ using Sirenix.OdinInspector;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils;
 using UnityEngine.EventSystems;
-
+using nickeltin.SDF.Runtime;
 
 public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    #region Inner Class
+    [System.Serializable]
+    public class ButtonSettings
+    {
+        [FoldoutGroup("Click")]
+        public bool bounceOnClick = true;
+        [FoldoutGroup("Click")]
+        public float clickScaleDuration = 0.07f;
+        [FoldoutGroup("Click")]
+        public float clickBounceScale = 1.15f;
+        [FoldoutGroup("Click")]
+        public float pressedScale = 0.9f;
+
+        [FoldoutGroup("Hover")]
+        public float hoverEnterDuration = 0.07f;
+        [FoldoutGroup("Hover")]
+        public float hoverExitDuration = 0.2f;
+        [FoldoutGroup("Hover")]
+        public float hoverScale = 1.1f;
+        [FoldoutGroup("Hover")]
+        public bool useHoverTextColor = false;
+        [FoldoutGroup("Hover")]
+        [ShowIf("useHoverTextColor")]
+        public Color hoverColor = Color.white;
+
+        [FoldoutGroup("Hover")]
+        public bool useHoverOutline = false;
+        [FoldoutGroup("Hover")]
+        [ShowIf("useHoverOutline")]
+        public Color hoverOutlineColor = Color.white;
+        [FoldoutGroup("Hover")]
+        [ShowIf("useHoverOutline")]
+        [Range(0f, 1f)]
+        public float hoverOutlineWidth = 0.6f;
+
+        [FoldoutGroup("Locked")]
+        public float lockedShakeDuration = 0.3f;
+        [FoldoutGroup("Locked")]
+        public float lockedShakeStrength = 30f;
+        [FoldoutGroup("Locked")]
+        public int lockedShakeVibrato = 20;
+    }
+    #endregion
+
     #region Actions
     [TitleGroup("Actions")]
     public Action<int> onClick;
@@ -23,15 +66,15 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     [SerializeField] protected RectTransform m_lockedContent;
     [TitleGroup("Dependencies")]
     [SerializeField] private GameObject m_highlightObject;
+    [TitleGroup("Dependencies")]
+    [SerializeField] private SDFImage m_sdfBackground;
     #endregion
 
-    #region Settings    
-    [TitleGroup("Settings")]
-    [ReadOnly]
-    [SerializeField] protected int m_index;
-    public int Index => m_index;
-    public GameConfig.UISettings UISettings => GameConfig.Instance.uiSettings;
+    #region Settings
     
+    [TitleGroup("Settings")]
+    [SerializeField] private ButtonSettings m_buttonSettings = new ButtonSettings();
+
     #endregion
 
     #region Var
@@ -40,18 +83,62 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     protected bool m_isLocked;
     protected bool m_isHovered;
     protected bool m_isPressed;
+    protected int m_index;
+    private TMPro.TMP_Text[] m_texts;
+    private Image[] m_images;
+    private Color[] m_originalTextColors;
+    private Color[] m_originalImageColors;
+    private bool m_originalOutlineEnabled;
+    private Color m_originalOutlineColor;
+    private float m_originalOutlineWidth;
     #endregion
+    
+    public int Index => m_index;
 
+    [Button]
+    public void CacheReferences()
+    {
+        Transform contentTfm = transform.Find("Content");
+        if (contentTfm != null && contentTfm.TryGetComponent(out RectTransform rectTransform))
+        {
+            m_content = rectTransform;
+        }
+
+        m_button = GetComponent<Button>();
+        m_sdfBackground = GetComponentInChildren<SDFImage>();
+    }
 
     public override void Init()
     {
-        // this.Log("Init");
+        CacheHoverColorTargets();
     }
 
     public virtual void Init(int _index)
     {
-        // this.Log($"button init {_index}");
         SetIndex(_index);
+        CacheHoverColorTargets();
+    }
+
+    private void CacheHoverColorTargets()
+    {
+        if (m_content == null) return;
+
+        m_texts = m_content.GetComponentsInChildren<TMPro.TMP_Text>(true);
+        m_originalTextColors = new Color[m_texts.Length];
+        for (int i = 0; i < m_texts.Length; i++)
+            m_originalTextColors[i] = m_texts[i].color;
+
+        m_images = m_content.GetComponentsInChildren<Image>(true);
+        m_originalImageColors = new Color[m_images.Length];
+        for (int i = 0; i < m_images.Length; i++)
+            m_originalImageColors[i] = m_images[i].color;
+
+        if (m_sdfBackground != null)
+        {
+            m_originalOutlineEnabled = m_sdfBackground.RenderOutline;
+            m_originalOutlineColor = m_sdfBackground.OutlineColor;
+            m_originalOutlineWidth = m_sdfBackground.OutlineWidth;
+        }
     }
 
     public virtual void SetLock(bool _isLocked)
@@ -65,89 +152,84 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     public virtual void SetInteractible(bool _isInteractible)
     {
         m_button.interactable = _isInteractible;
-        
-        // Reset scale if becoming non-interactable while hovered
+
         if (!_isInteractible && m_isHovered)
         {
             m_isHovered = false;
             m_isPressed = false;
             ResetHoverScale();
+            ResetTextColor();
         }
     }
 
-    [Button]
     public virtual void SetHighlighted(bool _highlighted)
     {
         if (m_highlightObject != null)
             m_highlightObject.gameObject.SetActive(_highlighted);
     }
 
+    [Button("Highlight (Debug)")]
+    private void DebugHighlight() => SetHighlighted(true);
+
+    [Button("Unhighlight (Debug)")]
+    private void DebugUnhighlight() => SetHighlighted(false);
+
     public virtual void UpdateValues() { }
 
+    public virtual void Lock() { }
 
-    public virtual void Lock()
-    {
-        this.Log($"Lock");
-    }
+    public virtual void Unlock() { }
 
-    public virtual void Unlock()
-    {
-        this.Log($"Unlock");
-    }
+    [Button("Lock (Debug)")]
+    private void DebugLock() => SetLock(true);
+
+    [Button("Unlock (Debug)")]
+    private void DebugUnlock() => SetLock(false);
 
     public virtual void PlayClickSound()
     {
-        SoundManager.Instance.PlaySound(SoundKeys.ui_button_click_negative);
-        
-    }
-    
-    public virtual void PlayNegativeClickSound()
-    {
-        SoundManager.Instance.PlaySound(SoundKeys.ui_button_click_negative);
+        SoundManager.Instance?.PlaySound(SoundKeys.ui_button_click_negative);
     }
 
+    public virtual void PlayNegativeClickSound()
+    {
+        SoundManager.Instance?.PlaySound(SoundKeys.ui_button_click_negative);
+    }
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        if (!m_button.interactable)
-            return;
-
-        if (m_isLocked)
-            return;
+        if (!m_button.interactable || m_isLocked) return;
 
         m_isPressed = true;
-        
-        // Scale down on press
+
         if (m_hoverSequence != null && m_hoverSequence.IsActive())
             m_hoverSequence.Complete();
+
+        m_hoverSequence = DOTween.Sequence().SetUpdate(true);
+        m_hoverSequence.Join(m_content.DOScale(Vector3.one * m_buttonSettings.pressedScale, m_buttonSettings.hoverEnterDuration)
+            .SetEase(Ease.OutQuad)
+            .SetUpdate(true));
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-        if (!m_button.interactable)
-            return;
-
-        if (m_isLocked)
-            return;
-
-        if (!m_isPressed)
-            return;
+        if (!m_button.interactable || m_isLocked || !m_isPressed) return;
 
         m_isPressed = false;
 
-        // Bounce back on release
-        if (UISettings.bounceOnClick)
+        if (m_buttonSettings.bounceOnClick)
+        {
             ClickBounce();
+        }
         else
         {
-            // If no bounce, just return to hover or normal scale
-            Vector3 targetScale = m_isHovered ? UISettings.hoverScale : Vector3.one;
+            Vector3 targetScale = m_isHovered ? Vector3.one * m_buttonSettings.hoverScale : Vector3.one;
+
             if (m_hoverSequence != null && m_hoverSequence.IsActive())
                 m_hoverSequence.Complete();
-  
-            
+
             m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-            m_hoverSequence.Join(m_content.DOScale(targetScale, UISettings.hoverScaleDuration)
+            m_hoverSequence.Join(m_content.DOScale(targetScale, m_buttonSettings.hoverExitDuration)
                 .SetEase(Ease.OutQuad)
                 .SetUpdate(true));
         }
@@ -155,11 +237,8 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        // this.Log($"on click index {m_index}. invo: {onClick?.GetInvocationList()[0]}");
         if (eventData.button != PointerEventData.InputButton.Left) return;
-
-        if (!m_button.interactable)
-            return;
+        if (!m_button.interactable) return;
 
         if (m_isLocked)
         {
@@ -176,91 +255,142 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     {
         if (!m_button.interactable || m_isLocked) return;
 
-        ScaleOnHoverEnter();
-        
         m_isHovered = true;
+        ScaleOnHoverEnter();
+        SetHoverTextColor();
         onHoverEnter?.Invoke(m_index);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
-        if (!m_button.interactable || m_isLocked) return;   
-        
+        if (!m_button.interactable || m_isLocked) return;
+
         m_isHovered = false;
         m_isPressed = false;
-        onHoverExit?.Invoke(m_index);
-        
         ScaleOnHoverExit();
+        ResetTextColor();
+        onHoverExit?.Invoke(m_index);
     }
-
 
     protected virtual void ScaleOnHoverEnter()
     {
-        // Kill existing hover tween
         if (m_hoverSequence != null && m_hoverSequence.IsActive())
             m_hoverSequence.Complete();
-        
+
         m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-        m_hoverSequence.Join(m_content.DOPunchScale(Vector3.one * 0.3f, 0.15f, 1));
-        m_hoverSequence.Join(m_content.DOPunchRotation(Vector3.forward * -5f, 0.15f, 1));
+        m_hoverSequence.Join(m_content.DOScale(Vector3.one * m_buttonSettings.hoverScale, m_buttonSettings.hoverEnterDuration)
+            .SetEase(Ease.OutQuad)
+            .SetUpdate(true));
     }
 
     protected virtual void ScaleOnHoverExit()
     {
-        // Kill existing hover tween
         if (m_hoverSequence != null && m_hoverSequence.IsActive())
             m_hoverSequence.Complete();
-        
+
         m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-        m_hoverSequence.Join(m_content.DOScale(Vector3.one, 0.15f));
+        m_hoverSequence.Join(m_content.DOScale(Vector3.one, m_buttonSettings.hoverExitDuration)
+            .SetEase(Ease.OutQuad)
+            .SetUpdate(true));
     }
 
     protected virtual void ResetHoverScale()
     {
-        // Kill existing hover tween
         if (m_hoverSequence != null && m_hoverSequence.IsActive())
             m_hoverSequence.Kill();
-        
+
         m_content.localScale = Vector3.one;
+
+        KillColorTweens();
+        for (int i = 0; i < m_texts.Length; i++)
+            m_texts[i].color = m_originalTextColors[i];
+        for (int i = 0; i < m_images.Length; i++)
+            m_images[i].color = m_originalImageColors[i];
+    }
+
+    private void KillColorTweens()
+    {
+        for (int i = 0; i < m_texts.Length; i++)
+            DOTween.Kill(m_texts[i]);
+        for (int i = 0; i < m_images.Length; i++)
+            DOTween.Kill(m_images[i]);
+    }
+
+    private void SetHoverTextColor()
+    {
+        if (m_buttonSettings.useHoverTextColor)
+        {
+            KillColorTweens();
+            for (int i = 0; i < m_texts.Length; i++)
+                m_texts[i].DOColor(m_buttonSettings.hoverColor, m_buttonSettings.hoverEnterDuration).SetUpdate(true);
+            for (int i = 0; i < m_images.Length; i++)
+                m_images[i].DOColor(m_buttonSettings.hoverColor, m_buttonSettings.hoverEnterDuration).SetUpdate(true);
+        }
+
+        if (m_buttonSettings.useHoverOutline && m_sdfBackground != null)
+        {
+            m_sdfBackground.RenderOutline = true;
+            m_sdfBackground.OutlineColor = m_buttonSettings.hoverOutlineColor;
+            m_sdfBackground.OutlineWidth = m_buttonSettings.hoverOutlineWidth;
+        }
+    }
+
+    private void ResetTextColor()
+    {
+        if (m_buttonSettings.useHoverTextColor)
+        {
+            KillColorTweens();
+            for (int i = 0; i < m_texts.Length; i++)
+                m_texts[i].DOColor(m_originalTextColors[i], m_buttonSettings.hoverExitDuration).SetUpdate(true);
+            for (int i = 0; i < m_images.Length; i++)
+                m_images[i].DOColor(m_originalImageColors[i], m_buttonSettings.hoverExitDuration).SetUpdate(true);
+        }
+
+        if (m_buttonSettings.useHoverOutline && m_sdfBackground != null)
+        {
+            m_sdfBackground.RenderOutline = m_originalOutlineEnabled;
+            m_sdfBackground.OutlineColor = m_originalOutlineColor;
+            m_sdfBackground.OutlineWidth = m_originalOutlineWidth;
+        }
     }
 
     public void ClickBounce()
     {
         if (m_tweenSequence != null && m_tweenSequence.IsActive() && m_tweenSequence.IsPlaying()) return;
-        
-        Vector3 targetScale = m_isHovered ? UISettings.hoverScale : Vector3.one;
-        
+
+        Vector3 targetScale = m_isHovered ? Vector3.one * m_buttonSettings.hoverScale : Vector3.one;
+
         m_tweenSequence = DOTween.Sequence().SetUpdate(true);
-        m_tweenSequence.Append(m_content.DOScale(UISettings.clickBounceScale, UISettings.clickScaleDuration).SetEase(Ease.OutQuad));
-        m_tweenSequence.Append(m_content.DOScale(targetScale, UISettings.clickScaleDuration).SetEase(Ease.OutQuad));
+        m_tweenSequence.Append(m_content.DOScale(Vector3.one * m_buttonSettings.clickBounceScale, m_buttonSettings.clickScaleDuration).SetEase(Ease.OutQuad));
+        m_tweenSequence.Append(m_content.DOScale(targetScale, m_buttonSettings.clickScaleDuration).SetEase(Ease.OutQuad));
     }
 
     public void LockedClickBounce()
     {
-        if (m_tweenSequence != null) if (m_tweenSequence.IsPlaying()) return;
+        if (m_tweenSequence != null && m_tweenSequence.IsPlaying()) return;
         m_tweenSequence = DOTween.Sequence().SetUpdate(true);
-        m_tweenSequence.Append(m_lockedContent.DOShakeAnchorPos(UISettings.lockedShakeDuration, UISettings.lockedShakeStrenght, UISettings.lockedShakeVibrato, 90, false, true, ShakeRandomnessMode.Harmonic).SetEase(Ease.OutQuad));
+        m_tweenSequence.Append(m_lockedContent.DOShakeAnchorPos(m_buttonSettings.lockedShakeDuration, m_buttonSettings.lockedShakeStrength, m_buttonSettings.lockedShakeVibrato, 90, false, true, ShakeRandomnessMode.Harmonic).SetEase(Ease.OutQuad));
     }
 
     public void NegativeClickBounce()
     {
         if (m_tweenSequence != null && m_tweenSequence.IsActive() && m_tweenSequence.IsPlaying()) return;
         m_tweenSequence = DOTween.Sequence().SetUpdate(true);
-        m_tweenSequence.Append(m_content.DOShakeAnchorPos(UISettings.lockedShakeDuration, UISettings.lockedShakeStrenght, UISettings.lockedShakeVibrato, 90, false, true, ShakeRandomnessMode.Harmonic).SetEase(Ease.OutQuad));
+        m_tweenSequence.Append(m_content.DOShakeAnchorPos(m_buttonSettings.lockedShakeDuration, m_buttonSettings.lockedShakeStrength, m_buttonSettings.lockedShakeVibrato, 90, false, true, ShakeRandomnessMode.Harmonic).SetEase(Ease.OutQuad));
     }
 
     public void Hide(bool _isHidden)
     {
-        this.Log($"Hide {_isHidden}");
+        //this.Log($"Hide {_isHidden}");
         m_content.gameObject.SetActive(!_isHidden);
         m_button.interactable = !_isHidden;
-        
-        // Reset hover state when hiding
+
         if (_isHidden)
         {
             m_isHovered = false;
             m_isPressed = false;
             ResetHoverScale();
+            ResetTextColor();
         }
     }
 

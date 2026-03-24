@@ -1,7 +1,17 @@
 fileFormatVersion: 2
 guid: 3e9868aea2f61fd46b849fdc67986099
+AssetOrigin:
+  serializedVersion: 1
+  productId: 323247
+  packageName: Dark Fantasy HUD - Synty INTERFACE - GUI
+  packageVersion: 1.0.1
+  assetPath: Assets/Synty/InterfaceDarkFantasyHUD/Sprites/HUD/SPR_HUD_DarkFantasy_Bar_Parchment_01.png
+  uploadId: 782052
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      114: 4841691349494579287
+    second: 1cb6f2d9cbe81b77166fef2d9df34c9b
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -67,7 +77,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +90,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,7 +103,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -110,6 +120,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -119,16 +130,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  userData: 
+  userData: '{"entries":[{"key":"SDFImportSettings","data":"{\"BorderOffset\":64,\"ResolutionScale\":0.10000000149011612,\"GradientSize\":0.20000000298023225,\"GenerateSDF\":true,\"SDFGenerationBackend\":\"auto\"}"}]}'
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 323247
-  packageName: Dark Fantasy HUD - Synty INTERFACE - GUI
-  packageVersion: 1.0.1
-  assetPath: Assets/Synty/InterfaceDarkFantasyHUD/Sprites/HUD/SPR_HUD_DarkFantasy_Bar_Parchment_01.png
-  uploadId: 782052

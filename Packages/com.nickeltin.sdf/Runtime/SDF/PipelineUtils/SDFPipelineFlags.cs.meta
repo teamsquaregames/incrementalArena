@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b0bfdf559d6340d5b9d7db558a014b05
+timeCreated: 1711120524
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244942
+  packageName: SDF Image - Quality UI Outlines and Shadow
+  packageVersion: 1.3.4
+  assetPath: Packages/com.nickeltin.sdf/Runtime/SDF/PipelineUtils/SDFPipelineFlags.cs
+  uploadId: 857568

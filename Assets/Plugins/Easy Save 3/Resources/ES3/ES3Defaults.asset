@@ -47,6 +47,8 @@ MonoBehaviour:
     - LeanPool
     - MPUIKit
     - MyBox
+    - nickeltin.Core.Runtime
+    - nickeltin.SDF.Runtime
     - ParticleImage
     - VInspector
     showAdvancedSettings: 0

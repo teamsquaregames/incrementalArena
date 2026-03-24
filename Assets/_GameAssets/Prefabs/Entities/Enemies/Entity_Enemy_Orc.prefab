@@ -203,6 +203,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5487824343631458890}
+    - targetCorrespondingSourceObject: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8236658199900533257}
   m_SourcePrefab: {fileID: 100100000, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
 --- !u!4 &1866722747172709200 stripped
 Transform:
@@ -235,3 +238,16 @@ MonoBehaviour:
   m_fallbackMoveSpeed: 10
   m_faceVelocity: 0
   m_rotationSpeed: 20
+--- !u!114 &8236658199900533257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8951252404499559207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023dea0cc5f17c948837f1e35bb9683d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatModule
+  m_entityType: 2

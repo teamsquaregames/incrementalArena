@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4b33e36440816b844aa10fbe8765deb5
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244942
+  packageName: SDF Image - Quality UI Outlines and Shadow
+  packageVersion: 1.3.4
+  assetPath: Packages/com.nickeltin.core/Runtime/nickeltin.Core.Runtime.asmdef
+  uploadId: 857568

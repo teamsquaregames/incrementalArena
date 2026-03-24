@@ -15,12 +15,46 @@ public class LevelManager : Singleton<LevelManager>
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
 
+    private float m_runDuration;
+    private float m_timeRemaining;
+
+    public float TimeRemaining => m_timeRemaining;
+    public float RunDuration   => m_runDuration;
+
     private void Start()
     {
-        LeanPool.Spawn(m_playerPrefab);
+        GameManager.Instance.OnRunStart += OnRunStart;
+        GameManager.Instance.OnRunEnd   += OnRunEnd;
         EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
-        StartWave();
+        
+        //placeholder
+        GameManager.Instance.StartRun();
     }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.OnRunStart -= OnRunStart;
+        GameManager.Instance.OnRunEnd   -= OnRunEnd;
+    }
+
+    private void Update()
+    {
+        if (!GameData.Instance.runActive) return;
+        if (GameConfig.Instance.cheatSettings.infiniteRunDuration) return;
+
+        m_timeRemaining -= Time.deltaTime;
+
+        if (m_timeRemaining <= 0f)
+        {
+            m_timeRemaining = 0f;
+            GameManager.Instance.EndRun();
+        }
+    }
+
+
+
+    #region  Run
 
     private void StartWave()
     {
@@ -33,6 +67,33 @@ public class LevelManager : Singleton<LevelManager>
             m_waveEnemies.Add(enemy);
         }
     }
+    
+    private void StartTimer()
+    {
+        float statValue = StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.RunDuration);
+        m_runDuration   = statValue > 0f ? statValue : 60f;
+        m_timeRemaining = m_runDuration;
+    }
+    
+    private void OnRunStart()
+    {
+        this.Log("On run start");
+        m_currentWave = 0;
+        m_waveEnemies.Clear();
+        LeanPool.Spawn(m_playerPrefab);
+        
+        StartWave();
+        StartTimer();
+    }
+
+    private void OnRunEnd()
+    {
+        this.Log("On run end");
+    }
+
+    #endregion
+
+
 
     private void OnEntityUnregistered(Entity entity)
     {
