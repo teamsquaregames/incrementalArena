@@ -8,7 +8,7 @@ public static class ResolveApplication
 {
     public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context)
     {
-        Debug.Log($"Resolving applications for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+        //Debug.Log($"Resolving applications for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
         List<Entity> results = new List<Entity>();
         
         List<Entity> preselectedTargets = targetingInfo.quickTarget switch
@@ -34,7 +34,7 @@ public static class ResolveApplication
 
     private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets)
     {
-        Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+        //Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
         
         switch (applicationInfo.effectZoneType)
         {
@@ -50,13 +50,13 @@ public static class ResolveApplication
                 break;
         }
 
-        Debug.LogWarning("ApplicationSwitch is not implemented yet. Returning empty entity list.");
+        //Debug.LogWarning("ApplicationSwitch is not implemented yet. Returning empty entity list.");
         return new List<Entity>();
     }
 
     private static List<Entity> AoeSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
-        Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+        //Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
 
         Transform owner = context.Caster != null ? context.Caster.transform : null;
         Quaternion rotation = owner != null ? owner.rotation : Quaternion.identity;
@@ -68,7 +68,7 @@ public static class ResolveApplication
         switch (applicationInfo.aoeInfo.effectShape)
         {
             case AoEInfo.Shape.Circle:
-                Debug.Log($"Performing circular AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.radius}");
+                //Debug.Log($"Performing circular AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.radius}");
                 hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.radius);
                 break;
 
@@ -82,11 +82,11 @@ public static class ResolveApplication
 
             case AoEInfo.Shape.Cone:
                 // Implement cone-shaped AoE logic here (this is more complex and may require custom calculations)
-                Debug.LogWarning("Cone-shaped AoE is not implemented yet. Returning empty collider array.");
+                //Debug.LogWarning("Cone-shaped AoE is not implemented yet. Returning empty collider array.");
                 hits = new Collider[0];
                 break;
             default:
-                Debug.LogWarning("Unknown AoE shape. Returning empty collider array.");
+                //Debug.LogWarning("Unknown AoE shape. Returning empty collider array.");
                 hits = new Collider[0];
                 break;
         }

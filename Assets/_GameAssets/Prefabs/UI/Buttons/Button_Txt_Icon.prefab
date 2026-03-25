@@ -640,10 +640,10 @@ MonoBehaviour:
     RegularColor: {r: 0.8901961, g: 0.73333335, b: 0.44313726, a: 1}
     RenderOutline: 0
     OutlineColor: {r: 1, g: 0.15532212, b: 0, a: 1}
-    OutlineWidth: 0.6
+    OutlineWidth: 0.557
     RenderShadow: 0
     ShadowColor: {r: 0, g: 0, b: 0, a: 0.5}
-    ShadowWidth: 0.549
+    ShadowWidth: 0.512
     ShadowOffset: {x: 10, y: -10}
   _sdfSpriteReference:
     _metadataAsset: {fileID: 4841691349494579287, guid: 3e9868aea2f61fd46b849fdc67986099, type: 3}

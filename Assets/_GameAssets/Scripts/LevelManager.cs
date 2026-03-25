@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using Lean.Pool;
 using MyBox;
@@ -15,41 +16,16 @@ public class LevelManager : Singleton<LevelManager>
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
 
-    private float m_runDuration;
-    private float m_timeRemaining;
-
-    public float TimeRemaining => m_timeRemaining;
-    public float RunDuration   => m_runDuration;
-
-    private void Start()
+    private void Awake()
     {
-        GameManager.Instance.OnRunStart += OnRunStart;
-        GameManager.Instance.OnRunEnd   += OnRunEnd;
+        GameManager.Instance.onRunTimerStart += OnRunTimerStart;
         EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
-        
-        //placeholder
-        GameManager.Instance.StartRun();
     }
 
     private void OnDestroy()
     {
         if (GameManager.Instance == null) return;
-        GameManager.Instance.OnRunStart -= OnRunStart;
-        GameManager.Instance.OnRunEnd   -= OnRunEnd;
-    }
-
-    private void Update()
-    {
-        if (!GameData.Instance.runActive) return;
-        if (GameConfig.Instance.cheatSettings.infiniteRunDuration) return;
-
-        m_timeRemaining -= Time.deltaTime;
-
-        if (m_timeRemaining <= 0f)
-        {
-            m_timeRemaining = 0f;
-            GameManager.Instance.EndRun();
-        }
+        GameManager.Instance.onRunTimerStart -= OnRunTimerStart;
     }
 
 
@@ -68,27 +44,12 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
     
-    private void StartTimer()
+    private void OnRunTimerStart()
     {
-        float statValue = StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.RunDuration);
-        m_runDuration   = statValue > 0f ? statValue : 60f;
-        m_timeRemaining = m_runDuration;
-    }
-    
-    private void OnRunStart()
-    {
-        this.Log("On run start");
         m_currentWave = 0;
         m_waveEnemies.Clear();
         LeanPool.Spawn(m_playerPrefab);
-        
         StartWave();
-        StartTimer();
-    }
-
-    private void OnRunEnd()
-    {
-        this.Log("On run end");
     }
 
     #endregion

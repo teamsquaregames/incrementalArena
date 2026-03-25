@@ -80,7 +80,7 @@ public class EntityMovementModule : EntityModule
     
     public void DashToPosition(Vector3 position, float duration)
     {
-        this.Log($"Dashing to {position} over {duration} seconds");
+        //this.Log($"Dashing to {position} over {duration} seconds");
 
         if (m_dashCoroutine != null)
         {

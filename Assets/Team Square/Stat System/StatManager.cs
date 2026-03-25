@@ -22,7 +22,7 @@ namespace Stats
 
             foreach (var definition in m_entityStatDefinitions)
             {
-                Debug.Log(definition.entityType, definition);
+                //Debug.Log(definition.entityType, definition);
                 if (definition == null) continue;
                 m_definitionStats[definition.entityType] = BuildStatDictionary(definition);
             }

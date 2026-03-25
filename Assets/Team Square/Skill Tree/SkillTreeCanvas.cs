@@ -27,10 +27,7 @@ public class SkillTreeCanvas : CanvasHandler
 
     public void StartRun()
     {
-        FadeManager.Instance.FadeIn(() =>
-        {
-            GameManager.Instance.StartRun();
-        });
+        GameManager.Instance.FadeAndEnterRun();
     }
 
     public override void Open()
