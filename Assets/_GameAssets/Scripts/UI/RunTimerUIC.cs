@@ -8,9 +8,11 @@ public class RunTimerUIC : UIContainer
 {
     [TitleGroup("Dependencies")]
     [Required] [SerializeField] private TMP_Text m_timeText;
+    [SerializeField] private GameObject m_pausedObject;
 
     private float m_runDuration;
     private float m_timeRemaining;
+    private bool m_isPaused;
 
     public float TimeRemaining => m_timeRemaining;
     public float RunDuration   => m_runDuration;
@@ -28,6 +30,12 @@ public class RunTimerUIC : UIContainer
         GameManager.Instance.onRunTimerEnd   -= Close;
     }
 
+    public void SetTimerPause(bool isPaused)
+    {
+        m_isPaused = isPaused;
+        m_pausedObject.SetActive(m_isPaused);
+    }
+
     private void OnRunTimerStart()
     {
         float statValue = StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.RunDuration);
@@ -38,7 +46,7 @@ public class RunTimerUIC : UIContainer
 
     private void Update()
     {
-        if (!m_isOpen || !GameData.Instance.runActive) return;
+        if (!m_isOpen || !GameData.Instance.runActive || m_isPaused) return;
 
         if (GameConfig.Instance.cheatSettings.infiniteRunDuration)
         {

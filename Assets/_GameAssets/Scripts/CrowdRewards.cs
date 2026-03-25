@@ -70,7 +70,7 @@ public class CrowdRewards : MonoBehaviour
         float remainingValue = m_totalRewardValue;
         float elapsedTime = 0f;
         
-        while (remainingValue > 0f && elapsedTime < m_spawnDuration)
+        while (elapsedTime < m_spawnDuration)
         {
             // Sélectionne un reward pondéré
             RewardItem selectedReward = SelectWeightedReward();

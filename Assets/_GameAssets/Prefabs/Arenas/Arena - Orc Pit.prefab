@@ -556,7 +556,7 @@ MonoBehaviour:
   m_velocityRangeZ: {x: -3, y: 3}
   m_addRandomTorque: 1
   m_torqueStrength: 10
-  m_showGizmos: 1
+  m_showGizmos: 0
 --- !u!1 &2080542875038763505
 GameObject:
   m_ObjectHideFlags: 0
