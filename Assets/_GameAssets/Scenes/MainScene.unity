@@ -172,8 +172,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8994679995668497372, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
-      propertyPath: m_showGizmos
-      value: 0
+      propertyPath: m_spawnDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994679995668497372, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
+      propertyPath: m_totalRewardValue
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -471,6 +475,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1107883307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8994679995668497372, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
+  m_PrefabInstance: {fileID: 31835037}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bd893ab26c3994ea7696146dffc816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrowdRewards
 --- !u!1 &1344984731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1457,10 @@ PrefabInstance:
       propertyPath: m_enemyCount
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_crowdRewards
+      value: 
+      objectReference: {fileID: 1107883307}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_playerPrefab
       value: 

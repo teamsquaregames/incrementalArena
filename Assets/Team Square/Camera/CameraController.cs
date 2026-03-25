@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Unity.Cinemachine;
 using Sirenix.OdinInspector;
@@ -50,6 +51,22 @@ public class CameraController : MyBox.Singleton<CameraController>
             Debug.LogWarning("CameraController: CinemachineCamera has no Follow target assigned!");
 
         followTarget = virtualCamera.Follow;
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.onRunTimerStart += OnRunTimerStart;
+        GameManager.Instance.onRunTimerEnd += OnRunTimerEnd;
+    }
+    
+    private void OnRunTimerStart()
+    {
+        SetControl(true);
+    }
+    
+    private void OnRunTimerEnd()
+    {
+        SetControl(false);
     }
 
     private void Update()
