@@ -66,6 +66,7 @@ MonoBehaviour:
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 0}
+    mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
     abilityClip: {fileID: 7400000, guid: e51de0dc2e58699469bf98933aa25f0e, type: 2}
@@ -119,7 +120,8 @@ MonoBehaviour:
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
-    mainVfx: {fileID: 5830332333185645519, guid: 6b68fe46da8d6e443b7c04c1215916bd, type: 3}
+    mainVfx: {fileID: 0}
+    mainVfxGraph: {fileID: 2290930611710396488, guid: 585b1a643cd6f1c4ab963b6a4501fa71, type: 3}
     mainVFXPosition: 0
     hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
     abilityClip: {fileID: 0}

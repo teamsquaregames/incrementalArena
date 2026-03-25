@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [Serializable]
 public class AbilityStep
@@ -12,6 +13,7 @@ public class AbilityStep
 
     [TitleGroup("VFXs")]
     public ParticleSystem mainVfx;
+    public VisualEffect mainVfxGraph;
     public VFXPosition mainVFXPosition;
     public ParticleSystem hitVfx;
     

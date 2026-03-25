@@ -4,6 +4,7 @@ using MyBox;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
+using UnityEngine.XR;
 using Utils;
 
 public class EntityAbilityModule : EntityModule
@@ -168,13 +169,6 @@ public class EntityAbilityModule : EntityModule
         // Use the current step index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
         AbilityStep activeStep = m_activeAbility.steps[m_stepIndex];
 
-        LeanPool.Spawn(
-            activeStep.mainVfx,
-            activeStep.mainVFXPosition == VFXPosition.Target
-                ? m_activeContext.AimPosition
-                : transform.position.OffsetY(0.75f),
-            transform.rotation
-        );
 
         List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
         foreach (var target in targets)
@@ -186,6 +180,8 @@ public class EntityAbilityModule : EntityModule
                 entry.effect?.Execute(m_activeContext, target);
             }
         }
+
+        HandleVFXs(activeStep);
 
         if (m_gizmos != null)
         {
@@ -203,7 +199,8 @@ public class EntityAbilityModule : EntityModule
         m_stepIndex++;
         m_activeContext.CurrentStepIndex = m_stepIndex;
     }
-    
+
+
     internal void HandleAnimationEnd()
     {
         // this.Log("Handling animation end event");
@@ -270,5 +267,28 @@ public class EntityAbilityModule : EntityModule
         var keys = new List<string>(m_cooldowns.Keys);
         foreach (var k in keys)
             m_cooldowns[k] = Mathf.Max(0f, m_cooldowns[k] - Time.deltaTime);
+    }
+
+
+    private void HandleVFXs(AbilityStep activeStep)
+    {
+        if (activeStep.mainVfx != null)
+            LeanPool.Spawn(
+                activeStep.mainVfx,
+                activeStep.mainVFXPosition == VFXPosition.Target
+                    ? m_activeContext.AimPosition
+                    : transform.position.OffsetY(0f),
+                transform.rotation
+            );
+        if (activeStep.mainVfxGraph != null)
+        {
+            LeanPool.Spawn(
+                activeStep.mainVfxGraph,
+                activeStep.mainVFXPosition == VFXPosition.Target
+                    ? m_activeContext.AimPosition
+                    : transform.position.OffsetY(0f),
+                transform.rotation
+            );
+        }
     }
 }
