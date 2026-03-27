@@ -1,79 +1,67 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils;
 using UnityEngine.UI;
 using GIGA.AutoRadialLayout;
 using UnityEngine.EventSystems;
-using MPUIKIT;
 using System.Collections;
 using DG.Tweening;
 using MyBox;
 using Stats;
+using TMPro;
+using Unity.VisualScripting;
+using Sequence = DG.Tweening.Sequence;
+
+[Serializable]
+public class NodeRankVisual
+{
+    public Sprite m_frameSprite;
+    public Sprite m_backgroundSprite;
+    public Sprite m_sigilSprite;
+}
 
 
 public class STNodeButton : CustomButton
 {
     #region Fields
-    [TitleGroup("Dependencies")]
-    [SerializeField, Required] private STNodeAsset m_asset;
-    [TitleGroup("Dependencies")]
-    [SerializeField, Required] private RadialLayoutNode m_radialLayoutNode;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private Image m_icon;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private Image m_background;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private MPImage[] m_frames;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private Image m_sheen;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField] private GameObject m_subLayoutBG;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField] private SerializableDictionary<NodeRank, GameObject> m_ranksVisuals;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField] private GameObject m_levelsParent;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField] private GameObject m_affordableParent;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private GameObject[] m_levelObjects;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private GameObject[] m_levelActivatedObjects;
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required] private CanvasGroup m_contentCanvasGroup;
-
-    [TitleGroup("Dependencies - Display")]
-    [SerializeField, Required, Space] private GameObject m_demoLockObject;
-
-    [TitleGroup("Dependencies - Max Level Flash")]
-    [SerializeField, Required] private Image m_maxLevelFlashImage;
-
-    [TitleGroup("Settings")]
-    [SerializeField] private bool m_lockedByDefault = true;
-    [TitleGroup("Settings")]
-    [SerializeField] private bool m_demoLocked = false;
-
-    [TitleGroup("Settings")]
-    [SerializeField] private float m_level0Opacity = .3f;
-    [TitleGroup("Settings")]
-    [SerializeField] private float m_lerpDuration = 0.5f;
-    [TitleGroup("Settings")]
-    [SerializeField] private Color m_activeBackgroundColor = Color.white;
-    [TitleGroup("Settings")]
-    [SerializeField] private Color m_defaultSheenColor = Color.white;
-    [TitleGroup("Settings")]
-    [SerializeField] private Color m_hoverSheenColor = Color.red;
+    [SerializeField, Required, TitleGroup("Node Asset", order:-1)] private STNodeAsset m_asset;
     
+    [SerializeField, Required, TitleGroup("Dependencies")] private RadialLayoutNode m_radialLayoutNode;
+    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_icon;
+    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_background;
+    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_frame;
+    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_sigil;
+    [SerializeField, Required, TitleGroup("Dependencies")] private SerializableDictionary<NodeRank, NodeRankVisual> m_ranksVisuals;
+    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_levelsParent;
+    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_unlimitedLevelParent;
+    [SerializeField, Required, TitleGroup("Dependencies")] private TMP_Text m_unlimitedLevelText;
+    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_affordableParent;
+    [SerializeField, Required, TitleGroup("Dependencies")] private NodeLevel[] m_nodeLevels;
+    [SerializeField, Required, TitleGroup("Dependencies")] private CanvasGroup m_contentCanvasGroup;
+    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_demoLockObject;
+    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_maxLevelFlashImage;
+    
+    [SerializeField, TitleGroup("Settings")] private bool m_lockedByDefault = true;
+    [SerializeField, TitleGroup("Settings")] private bool m_demoLocked = false;
+    
+    [SerializeField, FoldoutGroup("Breathe")] private float m_breatheScale = 1.08f;
+    [SerializeField, FoldoutGroup("Breathe")] private float m_breatheIconScale = 1.14f;
+    [SerializeField, FoldoutGroup("Breathe")] private float m_breatheHalfDuration = 0.6f;
+    [SerializeField, FoldoutGroup("Breathe")] private Ease m_breatheEase = Ease.InOutSine;  
+    
+    [SerializeField, FoldoutGroup("Completion flash")] private float m_maxLevelFlashDuration = 0.6f;
+    [SerializeField, FoldoutGroup("Completion flash")] private float m_maxLevelFlashStartScale = 1.5f;
+    [SerializeField, FoldoutGroup("Completion flash")] private float m_maxLevelFlashEndScale = 0.5f;
+    [SerializeField, FoldoutGroup("Completion flash")] private Ease m_maxLevelFlashScaleEase = Ease.OutQuad;
+    [SerializeField, FoldoutGroup("Completion flash")] private Ease m_maxLevelFlashFadeEase = Ease.InQuad;
+    
+    private Sequence m_breatheSequence;
     private RadialLayoutLink m_arrivingLink;
     private int m_level = 0;
-    private Coroutine m_colorLerpCoroutine;
     private bool m_isLockInitialized = false;
     private PanelController m_panelController;
-    
-    private float m_maxLevelFlashDuration = 0.6f;
-    private float m_maxLevelFlashStartScale = 1.5f;
-    private float m_maxLevelFlashEndScale = 0.5f;
-    private Ease m_maxLevelFlashScaleEase = Ease.OutQuad;
-    private Ease m_maxLevelFlashFadeEase = Ease.InQuad;
+
     
     public STNodeAsset LinkedNodeAsset => m_asset;
     public PanelController PanelController { get; set; }
@@ -100,14 +88,17 @@ public class STNodeButton : CustomButton
             m_maxLevelFlashImage.gameObject.SetActive(false);
 
         m_level = GameData.Instance.GetNodeLevel(m_asset.ID);
-        
-        for (int i = 4; i >= m_asset.MaxLevel; i--)
-            m_levelObjects[i].SetActive(false);
+
+        if (!m_asset.IsUnlimited)
+        {
+            for (int i = m_asset.MaxLevel; i < m_nodeLevels.Length; i++)
+                m_nodeLevels[i].gameObject.SetActive(false);
+        }
+
+        m_demoLockObject.SetActive(m_demoLocked && GameConfig.Instance.gameSettings.isDemo);
 
         if (m_level > 0)
         {
-            m_demoLockObject.SetActive(m_demoLocked && GameConfig.Instance.gameSettings.isDemo);
-            
             ApplyStatModifiers();
             SetChildrenLock(false);
             SetLock(false);
@@ -115,17 +106,10 @@ public class STNodeButton : CustomButton
         }
         else
         {
-            m_sheen.gameObject.SetActive(false);
-            m_demoLockObject.SetActive(m_demoLocked && GameConfig.Instance.gameSettings.isDemo);
-
-            if (m_subLayoutBG != null)
-                m_subLayoutBG.SetActive(false);
-            
             if (!m_isLockInitialized)
                 SetLock(m_lockedByDefault);
 
             SetChildrenLock(true);
-            m_levelsParent.SetActive(false);
             SetActivatedNodeFeedback(false);
         }
     }
@@ -168,29 +152,85 @@ public class STNodeButton : CustomButton
         if (eventData.pointerCurrentRaycast.gameObject != m_content.gameObject) return;
 
         base.OnPointerEnter(eventData);
-        
-        UIManager.Instance.GetCanvas<SkillTreeCanvas>().GetContainer<STNodeDetailsUIC>().Setup(this);
-        
-        if (m_colorLerpCoroutine != null)
-            StopCoroutine(m_colorLerpCoroutine);
-        m_colorLerpCoroutine = StartCoroutine(LerpColor(m_sheen, m_hoverSheenColor, m_lerpDuration));
-        
-        MouseCursorSetter.Instance.SetCursorHighlight(true);
+
+        MouseCursorSetter.Instance?.SetCursorHighlight(true);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         if (!m_button.interactable) return;
-
+        
         base.OnPointerExit(eventData);
-        
-        UIManager.Instance.GetCanvas<SkillTreeCanvas>().GetContainer<STNodeDetailsUIC>().Close();
 
-        if (m_colorLerpCoroutine != null)
-            StopCoroutine(m_colorLerpCoroutine);
-        m_colorLerpCoroutine = StartCoroutine(LerpColor(m_sheen, m_defaultSheenColor, m_lerpDuration));
-        
-        MouseCursorSetter.Instance.SetCursorHighlight(false);
+        MouseCursorSetter.Instance?.SetCursorHighlight(false);
+    }
+
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        StopBreatheTween();
+        base.OnPointerDown(eventData);
+    }
+
+    public override void OnPointerUp(PointerEventData eventData)
+    {
+        if (!m_button.interactable || m_isLocked || !m_isPressed) return;
+
+        m_isPressed = false;
+
+        if (m_buttonSettings.bounceOnClick)
+        {
+            // Bounce ends at Vector3.one so breathe always starts clean from baseline
+            m_tweenSequence = DOTween.Sequence().SetUpdate(true);
+            m_tweenSequence.Append(m_content.DOScale(Vector3.one * m_buttonSettings.clickBounceScale, m_buttonSettings.clickScaleDuration).SetEase(Ease.OutQuad));
+            m_tweenSequence.Append(m_content.DOScale(Vector3.one, m_buttonSettings.clickScaleDuration).SetEase(Ease.OutQuad));
+            m_tweenSequence.OnComplete(() => { if (m_isHovered) StartBreatheTween(); });
+        }
+        else
+        {
+            if (m_isHovered) StartBreatheTween();
+            else m_hoverTween = m_content.DOScale(Vector3.one, m_buttonSettings.hoverExitDuration).SetEase(Ease.OutQuad).SetUpdate(true);
+        }
+    }
+
+    protected override void ScaleOnHoverEnter()
+    {
+        m_hoverTween?.Kill();
+        StartBreatheTween();
+    }
+
+    protected override void ScaleOnHoverExit()
+    {
+        StopBreatheTween();
+        m_hoverTween?.Kill();
+        m_hoverTween = m_content.DOScale(Vector3.one, m_buttonSettings.hoverExitDuration)
+            .SetEase(Ease.OutQuad).SetUpdate(true);
+        m_icon.transform.DOScale(Vector3.one, m_buttonSettings.hoverExitDuration)
+            .SetEase(Ease.OutQuad).SetUpdate(true);
+    }
+
+    protected override void ResetHoverScale()
+    {
+        StopBreatheTween();
+        m_icon.transform.localScale = Vector3.one;
+        base.ResetHoverScale();
+    }
+
+    private void StartBreatheTween()
+    {
+        m_breatheSequence?.Kill();
+        m_breatheSequence = DOTween.Sequence().SetUpdate(true);
+        m_breatheSequence.Append(m_content.DOScale(Vector3.one * m_breatheScale, m_breatheHalfDuration).SetEase(m_breatheEase));
+        m_breatheSequence.Join(m_icon.transform.DOScale(Vector3.one * m_breatheIconScale, m_breatheHalfDuration).SetEase(m_breatheEase));
+        m_breatheSequence.Append(m_content.DOScale(Vector3.one, m_breatheHalfDuration).SetEase(m_breatheEase));
+        m_breatheSequence.Join(m_icon.transform.DOScale(Vector3.one, m_breatheHalfDuration).SetEase(m_breatheEase));
+        m_breatheSequence.SetLoops(-1);
+    }
+
+    private void StopBreatheTween()
+    {
+        m_breatheSequence?.Kill();
+        m_breatheSequence = null;
+        m_icon.transform.localScale = Vector3.one;
     }
 
     public override void SetHighlighted(bool _highlighted)
@@ -199,9 +239,6 @@ public class STNodeButton : CustomButton
 
         m_content.gameObject.SetActive(true);
         m_background.gameObject.SetActive(!m_isLocked);
-
-        foreach (Image frame in m_frames)
-            frame.gameObject.SetActive(!m_isLocked);
 
         SetInteractible(!m_isLocked);
         m_contentCanvasGroup.alpha = m_isLocked && !_highlighted ? 0 : 1;
@@ -224,12 +261,18 @@ public class STNodeButton : CustomButton
     public override void PlayClickSound()
     {
         if (!CanAfford()) return;
-        
+
+        if (m_asset.IsUnlimited)
+        {
+            SoundManager.Instance?.PlaySound(SoundKeys.ui_TTnode_click, 1f);
+            return;
+        }
+
         if (GameData.Instance.GetNodeLevel(m_asset.ID) < m_asset.MaxLevel - 1)
-            SoundManager.Instance.PlaySound(SoundKeys.ui_TTnode_click, Mathf.Lerp(.8f, 1.25f, (float)GameData.Instance.GetNodeLevel(m_asset.ID) / m_asset.MaxLevel));
+            SoundManager.Instance?.PlaySound(SoundKeys.ui_TTnode_click, Mathf.Lerp(.8f, 1.25f, (float)GameData.Instance.GetNodeLevel(m_asset.ID) / m_asset.MaxLevel));
 
         if (GameData.Instance.GetNodeLevel(m_asset.ID) == m_asset.MaxLevel - 1)
-            SoundManager.Instance.PlaySound(SoundKeys.ui_TTnode_maxlevel);
+            SoundManager.Instance?.PlaySound(SoundKeys.ui_TTnode_maxlevel);
     }
 
     private void TryLevelUpNode()
@@ -240,7 +283,7 @@ public class STNodeButton : CustomButton
             return;
         }
 
-        if (GameData.Instance.GetNodeLevel(m_asset.ID) >= m_asset.MaxLevel)
+        if (!m_asset.IsUnlimited && GameData.Instance.GetNodeLevel(m_asset.ID) >= m_asset.MaxLevel)
         {
             RejectClick();
             return;
@@ -283,8 +326,15 @@ public class STNodeButton : CustomButton
 
     private void ApplyStatModifiers()
     {
+        if (StatManager.Instance ==  null) return;
+        
         foreach (LeveledStatModifier statModifier in m_asset.StatModifiers)
-            StatManager.Instance.AddDefinitionModifier(statModifier.entityType, statModifier.GetModifierAtLevel(m_level - 1));
+        {
+            var modifier = m_asset.IsUnlimited
+                ? statModifier.GetLinearModifierAtLevel(m_level)
+                : statModifier.GetModifierAtLevel(m_level - 1);
+            StatManager.Instance.AddDefinitionModifier(statModifier.entityType, modifier);
+        }
     }
 
     private void SetChildrenLock(bool locked)
@@ -296,12 +346,12 @@ public class STNodeButton : CustomButton
     private void LevelUpNode()
     {
         ClickBounce();
+        
+        if (GameData.Instance == null) return;
+        
         m_level = GameData.Instance.LevelUpNode(m_asset.ID);
-        
+
         ApplyStatModifiers();
-        
-        if (m_level == m_asset.MaxLevel)
-            PlayMaxLevelFlashEffect();
 
         if (m_level == 1)
         {
@@ -309,8 +359,23 @@ public class STNodeButton : CustomButton
             SetChildrenLock(false);
         }
 
-        for (int i = 0; i < m_levelActivatedObjects.Length; i++)
-            m_levelActivatedObjects[i].SetActive(i < m_level);
+        if (m_asset.IsUnlimited)
+        {
+            if (m_unlimitedLevelText != null) m_unlimitedLevelText.text = m_level.ToString();
+        }
+        else
+        {
+            if (m_level == m_asset.MaxLevel)
+                PlayMaxLevelFlashEffect();
+
+            for (int i = 0; i < m_nodeLevels.Length; i++)
+            {
+                if (i == m_level - 1)
+                    m_nodeLevels[i].Activate();
+                else
+                    m_nodeLevels[i].SetActive(i < m_level);
+            }
+        }
 
         GameData.Instance.IncrementTrackedValue(TrackedValueType.NodeUpgradesPurchased, 1);
     }
@@ -344,23 +409,20 @@ public class STNodeButton : CustomButton
 
     private void SetActivatedNodeFeedback(bool activated)
     {
-        m_background.color = m_activeBackgroundColor.WithAlphaSetTo(activated ? 1 : 0.75f);
-        
-        foreach (MPImage frame in m_frames)
-            frame.color = frame.color.WithAlphaSetTo(activated ? 1 : 0.1f);
-        
-        m_sheen.gameObject.SetActive(activated);
-
         if (m_arrivingLink != null && activated)
             m_arrivingLink.ProgressValue = 1;
 
-        if (m_subLayoutBG != null && m_radialLayoutNode.IsSubLayout)
-            m_subLayoutBG.SetActive(activated);
-
-        m_levelsParent.SetActive(activated);
-
-        for (int i = 0; i < m_levelActivatedObjects.Length; i++)
-            m_levelActivatedObjects[i].SetActive(i < m_level);
+        if (m_asset.IsUnlimited)
+        {
+            if (m_unlimitedLevelParent != null) m_unlimitedLevelParent.SetActive(activated);
+            if (activated && m_unlimitedLevelText != null) m_unlimitedLevelText.text = m_level.ToString();
+        }
+        else
+        {
+            m_levelsParent.SetActive(activated);
+            for (int i = 0; i < m_nodeLevels.Length; i++)
+                m_nodeLevels[i].SetActive(i < m_level);
+        }
     }
 
     private IEnumerator LerpColor(Image _image, Color _targetColor, float _duration)
@@ -384,7 +446,7 @@ public class STNodeButton : CustomButton
     {
         if (m_affordableParent == null) return;
 
-        if (m_asset.MaxLevel <= m_level)
+        if (!m_asset.IsUnlimited && m_asset.MaxLevel <= m_level)
         {
             m_affordableParent.SetActive(false);
             return;
@@ -405,19 +467,40 @@ public class STNodeButton : CustomButton
     [Button]
     private void OnAssetChanged()
     {
-        if (m_icon != null && m_asset != null)
+        m_previousAsset = m_asset;
+
+        if (m_asset == null) return;
+
+        // Icon
+        if (m_icon != null)
             m_icon.sprite = m_asset.Icon;
 
-        if (m_ranksVisuals != null)
+        // Rank visuals
+        if (m_ranksVisuals != null && m_ranksVisuals.TryGetValue(m_asset.Rank, out NodeRankVisual visual))
         {
-            foreach (var kvp in m_ranksVisuals)
-                kvp.Value.SetActive(false);
-
-            if (m_asset != null && m_ranksVisuals.ContainsKey(m_asset.Rank))
-                m_ranksVisuals[m_asset.Rank].SetActive(true);
+            if (m_frame != null) m_frame.sprite = visual.m_frameSprite;
+            if (m_background != null) m_background.sprite = visual.m_backgroundSprite;
+            if (m_sigil != null) m_sigil.sprite = visual.m_sigilSprite;
         }
 
-        m_previousAsset = m_asset;
+        // Level visuals — show pips for Limited, text for Unlimited
+        bool isUnlimited = m_asset.IsUnlimited;
+        if (m_levelsParent != null) m_levelsParent.SetActive(!isUnlimited);
+        if (m_unlimitedLevelParent != null) m_unlimitedLevelParent.SetActive(isUnlimited);
+        if (isUnlimited && m_unlimitedLevelText != null) m_unlimitedLevelText.text = "0";
+        if (!isUnlimited && m_nodeLevels != null)
+        {
+            for (int i = 0; i < m_nodeLevels.Length; i++)
+                m_nodeLevels[i].gameObject.SetActive(i < m_asset.MaxLevel);
+        }
+
+        // Demo lock — preview based on the flag alone (no GameConfig in editor)
+        if (m_demoLockObject != null)
+            m_demoLockObject.SetActive(m_demoLocked);
+
+        // Affordable — always off in editor, no currency context
+        if (m_affordableParent != null)
+            m_affordableParent.SetActive(false);
     }
 #endif
 }
