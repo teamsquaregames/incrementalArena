@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utils;
 
 [CreateAssetMenu(menuName = "Abilities/Effects/Dash")]
 public class DashEffect : AbilityEffect

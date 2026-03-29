@@ -53,14 +53,14 @@ public class ActiveBrainModule : EntityBrainModule
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             abilityModule.CancelEverything();
-            TryUseAbility(0, mouseWorld.OffsetY(0.75f));
+            TryUseAbility(0, mouseWorld.OffsetY(0f));
             return;
         }
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             abilityModule.CancelEverything();
-            TryUseAbility(1, mouseWorld.OffsetY(0.75f));
+            TryUseAbility(1, mouseWorld.OffsetY(0f));
             return;
         }
 
@@ -75,7 +75,7 @@ public class ActiveBrainModule : EntityBrainModule
             Vector3 aimDir          = (mouseWorld - Owner.transform.position).SetY(0).normalized;
             Vector3 attackTargetPos = Owner.transform.position + aimDir * abilityModule.AutoAttack.range;
 
-            TryAutoAttack(attackTargetPos.OffsetY(0.75f));
+            TryAutoAttack(attackTargetPos.OffsetY(0f));
         }
     }
 }

@@ -34,7 +34,7 @@ public static class ResolveApplication
 
     private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets)
     {
-        //Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+        Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
         
         switch (applicationInfo.effectZoneType)
         {

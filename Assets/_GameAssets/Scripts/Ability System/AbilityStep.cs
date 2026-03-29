@@ -16,6 +16,7 @@ public class AbilityStep
     public VisualEffect mainVfxGraph;
     public VFXPosition mainVFXPosition;
     public ParticleSystem hitVfx;
+    public VisualEffect hitVfxGraph;
     
     [TitleGroup("Animation")]
     public AnimationClip abilityClip;

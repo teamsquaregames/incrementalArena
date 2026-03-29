@@ -171,17 +171,12 @@ public class EntityAbilityModule : EntityModule
 
 
         List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
-        foreach (var target in targets)
+        foreach (var item in targets)
         {
-            LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(0), Quaternion.identity);
-            foreach (var entry in activeStep.effects)
-            {
-                m_activeContext.Value = entry.value;
-                entry.effect?.Execute(m_activeContext, target);
-            }
+            this.Log($"Resolved targets: {item.name}, position: {item.transform.position}");
         }
 
-        HandleVFXs(activeStep);
+        HandleEffects(activeStep, targets);
 
         if (m_gizmos != null)
         {
@@ -270,8 +265,9 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    private void HandleVFXs(AbilityStep activeStep)
+    private void HandleEffects(AbilityStep activeStep, List<Entity> targets = null)
     {
+        /// Ability
         if (activeStep.mainVfx != null)
             LeanPool.Spawn(
                 activeStep.mainVfx,
@@ -289,6 +285,32 @@ public class EntityAbilityModule : EntityModule
                     : transform.position.OffsetY(0f),
                 transform.rotation
             );
+        }
+
+        /// Hits
+        if (activeStep.hitVfx != null)
+        {
+            foreach (var target in targets)
+            {
+                LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(1), Quaternion.identity, target.transform);
+                foreach (var entry in activeStep.effects)
+                {
+                    m_activeContext.Value = entry.value;
+                    entry.effect?.Execute(m_activeContext, target);
+                }
+            }
+        }
+        if (activeStep.hitVfxGraph != null)
+        {
+            foreach (var target in targets)
+            {
+                LeanPool.Spawn(activeStep.hitVfxGraph, target.transform.position.OffsetY(1), Quaternion.identity, target.transform);
+                foreach (var entry in activeStep.effects)
+                {
+                    m_activeContext.Value = entry.value;
+                    entry.effect?.Execute(m_activeContext, target);
+                }
+            }
         }
     }
 }
