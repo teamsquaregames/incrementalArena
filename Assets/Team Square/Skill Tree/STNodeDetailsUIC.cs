@@ -15,6 +15,7 @@ public class STNodeDetailsUIC : UIContainer
     [SerializeField, Required] private CurrencyCostUIE m_currencyCostUIE;
     [SerializeField, Required] private GameObject[] m_levelObjects;
     [SerializeField, Required] private GameObject[] m_enabledLevelObjects;
+    [SerializeField] private TMP_Text m_unlimitedLevelText;
     
     private STNodeAsset m_currentAsset;
 
@@ -40,7 +41,7 @@ public class STNodeDetailsUIC : UIContainer
         m_name.text = m_currentAsset.DisplayName;
         m_description.text = BuildNodeDescription(m_currentAsset, level);
 
-        if (level >= m_currentAsset.MaxLevel)
+        if (!m_currentAsset.IsUnlimited && level >= m_currentAsset.MaxLevel)
             m_currencyCostUIE.Hide();
         else
         {
@@ -56,11 +57,20 @@ public class STNodeDetailsUIC : UIContainer
 
     private void HandleLevelDisplay()
     {
+        bool isUnlimited = m_currentAsset.IsUnlimited;
+        int currentLevel = GameData.Instance.GetNodeLevel(m_currentAsset.ID);
+
         for (int i = 0; i < m_levelObjects.Length; i++)
-            m_levelObjects[i].SetActive(i < m_currentAsset.MaxLevel);
+            m_levelObjects[i].SetActive(!isUnlimited && i < m_currentAsset.MaxLevel);
 
         for (int i = 0; i < m_enabledLevelObjects.Length; i++)
-            m_enabledLevelObjects[i].SetActive(i < GameData.Instance.GetNodeLevel(m_currentAsset.ID));
+            m_enabledLevelObjects[i].SetActive(!isUnlimited && i < currentLevel);
+
+        if (m_unlimitedLevelText != null)
+        {
+            m_unlimitedLevelText.gameObject.SetActive(isUnlimited);
+            if (isUnlimited) m_unlimitedLevelText.text = $"Lv. {currentLevel}";
+        }
     }
 
     public void LevelUp(int level)
@@ -69,7 +79,7 @@ public class STNodeDetailsUIC : UIContainer
         
         m_description.text = BuildNodeDescription(m_currentAsset, level);
 
-        if (level >= m_currentAsset.MaxLevel)
+        if (!m_currentAsset.IsUnlimited && level >= m_currentAsset.MaxLevel)
             m_currencyCostUIE.Hide();
         else
         {

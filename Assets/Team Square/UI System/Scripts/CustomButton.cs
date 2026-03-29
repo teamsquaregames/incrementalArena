@@ -4,7 +4,6 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using nickeltin.SDF.Runtime;
 
 public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -12,43 +11,20 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     [System.Serializable]
     public class ButtonSettings
     {
-        [FoldoutGroup("Click")]
-        public bool bounceOnClick = true;
-        [FoldoutGroup("Click")]
-        public float clickScaleDuration = 0.07f;
-        [FoldoutGroup("Click")]
-        public float clickBounceScale = 1.15f;
-        [FoldoutGroup("Click")]
-        public float pressedScale = 0.9f;
+        [FoldoutGroup("Click")] public bool bounceOnClick = true;
+        [FoldoutGroup("Click")] public float clickScaleDuration = 0.07f;
+        [FoldoutGroup("Click")] public float clickBounceScale = 1.15f;
+        [FoldoutGroup("Click")] public float pressedScale = 0.9f;
 
-        [FoldoutGroup("Hover")]
-        public float hoverEnterDuration = 0.07f;
-        [FoldoutGroup("Hover")]
-        public float hoverExitDuration = 0.2f;
-        [FoldoutGroup("Hover")]
-        public float hoverScale = 1.1f;
-        [FoldoutGroup("Hover")]
-        public bool useHoverTextColor = false;
-        [FoldoutGroup("Hover")]
-        [ShowIf("useHoverTextColor")]
-        public Color hoverColor = Color.white;
+        [FoldoutGroup("Hover")] public float hoverEnterDuration = 0.07f;
+        [FoldoutGroup("Hover")] public float hoverExitDuration = 0.2f;
+        [FoldoutGroup("Hover")] public float hoverScale = 1.1f;
+        [FoldoutGroup("Hover")] public bool useHoverTextColor = false;
+        [FoldoutGroup("Hover"), ShowIf("useHoverTextColor")]public Color hoverColor = Color.white;
 
-        [FoldoutGroup("Hover")]
-        public bool useHoverOutline = false;
-        [FoldoutGroup("Hover")]
-        [ShowIf("useHoverOutline")]
-        public Color hoverOutlineColor = Color.white;
-        [FoldoutGroup("Hover")]
-        [ShowIf("useHoverOutline")]
-        [Range(0f, 1f)]
-        public float hoverOutlineWidth = 0.6f;
-
-        [FoldoutGroup("Locked")]
-        public float lockedShakeDuration = 0.3f;
-        [FoldoutGroup("Locked")]
-        public float lockedShakeStrength = 30f;
-        [FoldoutGroup("Locked")]
-        public int lockedShakeVibrato = 20;
+        [FoldoutGroup("Locked")] public float lockedShakeDuration = 0.3f;
+        [FoldoutGroup("Locked")] public float lockedShakeStrength = 30f;
+        [FoldoutGroup("Locked")] public int lockedShakeVibrato = 20;
     }
     #endregion
 
@@ -66,20 +42,18 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     [SerializeField] protected RectTransform m_lockedContent;
     [TitleGroup("Dependencies")]
     [SerializeField] private GameObject m_highlightObject;
-    [TitleGroup("Dependencies")]
-    [SerializeField] private SDFImage m_sdfBackground;
     #endregion
 
     #region Settings
     
     [TitleGroup("Settings")]
-    [SerializeField] private ButtonSettings m_buttonSettings = new ButtonSettings();
+    [SerializeField] protected ButtonSettings m_buttonSettings = new ButtonSettings();
 
     #endregion
 
     #region Var
     protected Sequence m_tweenSequence = null;
-    protected Sequence m_hoverSequence = null;
+    protected Tween m_hoverTween = null;
     protected bool m_isLocked;
     protected bool m_isHovered;
     protected bool m_isPressed;
@@ -88,9 +62,6 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     private Image[] m_images;
     private Color[] m_originalTextColors;
     private Color[] m_originalImageColors;
-    private bool m_originalOutlineEnabled;
-    private Color m_originalOutlineColor;
-    private float m_originalOutlineWidth;
     #endregion
     
     public int Index => m_index;
@@ -105,7 +76,6 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
         }
 
         m_button = GetComponent<Button>();
-        m_sdfBackground = GetComponentInChildren<SDFImage>();
     }
 
     public override void Init()
@@ -133,12 +103,6 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
         for (int i = 0; i < m_images.Length; i++)
             m_originalImageColors[i] = m_images[i].color;
 
-        if (m_sdfBackground != null)
-        {
-            m_originalOutlineEnabled = m_sdfBackground.RenderOutline;
-            m_originalOutlineColor = m_sdfBackground.OutlineColor;
-            m_originalOutlineWidth = m_sdfBackground.OutlineWidth;
-        }
     }
 
     public virtual void SetLock(bool _isLocked)
@@ -202,13 +166,9 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
 
         m_isPressed = true;
 
-        if (m_hoverSequence != null && m_hoverSequence.IsActive())
-            m_hoverSequence.Complete();
-
-        m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-        m_hoverSequence.Join(m_content.DOScale(Vector3.one * m_buttonSettings.pressedScale, m_buttonSettings.hoverEnterDuration)
-            .SetEase(Ease.OutQuad)
-            .SetUpdate(true));
+        m_hoverTween?.Complete();
+        m_hoverTween = m_content.DOScale(Vector3.one * m_buttonSettings.pressedScale, m_buttonSettings.hoverEnterDuration)
+            .SetEase(Ease.OutQuad).SetUpdate(true);
     }
 
     public virtual void OnPointerUp(PointerEventData eventData)
@@ -225,13 +185,9 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
         {
             Vector3 targetScale = m_isHovered ? Vector3.one * m_buttonSettings.hoverScale : Vector3.one;
 
-            if (m_hoverSequence != null && m_hoverSequence.IsActive())
-                m_hoverSequence.Complete();
-
-            m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-            m_hoverSequence.Join(m_content.DOScale(targetScale, m_buttonSettings.hoverExitDuration)
-                .SetEase(Ease.OutQuad)
-                .SetUpdate(true));
+            m_hoverTween?.Complete();
+            m_hoverTween = m_content.DOScale(targetScale, m_buttonSettings.hoverExitDuration)
+                .SetEase(Ease.OutQuad).SetUpdate(true);
         }
     }
 
@@ -274,30 +230,21 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
 
     protected virtual void ScaleOnHoverEnter()
     {
-        if (m_hoverSequence != null && m_hoverSequence.IsActive())
-            m_hoverSequence.Complete();
-
-        m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-        m_hoverSequence.Join(m_content.DOScale(Vector3.one * m_buttonSettings.hoverScale, m_buttonSettings.hoverEnterDuration)
-            .SetEase(Ease.OutQuad)
-            .SetUpdate(true));
+        m_hoverTween?.Complete();
+        m_hoverTween = m_content.DOScale(Vector3.one * m_buttonSettings.hoverScale, m_buttonSettings.hoverEnterDuration)
+            .SetEase(Ease.OutQuad).SetUpdate(true);
     }
 
     protected virtual void ScaleOnHoverExit()
     {
-        if (m_hoverSequence != null && m_hoverSequence.IsActive())
-            m_hoverSequence.Complete();
-
-        m_hoverSequence = DOTween.Sequence().SetUpdate(true);
-        m_hoverSequence.Join(m_content.DOScale(Vector3.one, m_buttonSettings.hoverExitDuration)
-            .SetEase(Ease.OutQuad)
-            .SetUpdate(true));
+        m_hoverTween?.Complete();
+        m_hoverTween = m_content.DOScale(Vector3.one, m_buttonSettings.hoverExitDuration)
+            .SetEase(Ease.OutQuad).SetUpdate(true);
     }
 
     protected virtual void ResetHoverScale()
     {
-        if (m_hoverSequence != null && m_hoverSequence.IsActive())
-            m_hoverSequence.Kill();
+        m_hoverTween?.Kill();
 
         m_content.localScale = Vector3.one;
 
@@ -327,12 +274,6 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
                 m_images[i].DOColor(m_buttonSettings.hoverColor, m_buttonSettings.hoverEnterDuration).SetUpdate(true);
         }
 
-        if (m_buttonSettings.useHoverOutline && m_sdfBackground != null)
-        {
-            m_sdfBackground.RenderOutline = true;
-            m_sdfBackground.OutlineColor = m_buttonSettings.hoverOutlineColor;
-            m_sdfBackground.OutlineWidth = m_buttonSettings.hoverOutlineWidth;
-        }
     }
 
     private void ResetTextColor()
@@ -346,12 +287,6 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
                 m_images[i].DOColor(m_originalImageColors[i], m_buttonSettings.hoverExitDuration).SetUpdate(true);
         }
 
-        if (m_buttonSettings.useHoverOutline && m_sdfBackground != null)
-        {
-            m_sdfBackground.RenderOutline = m_originalOutlineEnabled;
-            m_sdfBackground.OutlineColor = m_originalOutlineColor;
-            m_sdfBackground.OutlineWidth = m_originalOutlineWidth;
-        }
     }
 
     public void ClickBounce()

@@ -16,6 +16,11 @@ public class STNodeAsset : ScriptableObject
     [SerializeField] private string m_id;
 
     [VerticalGroup("Settings/Row/Left")]
+    [EnumToggleButtons]
+    [SerializeField] private LevelingType m_levelingType = LevelingType.Limited;
+
+    [VerticalGroup("Settings/Row/Left")]
+    [ShowIf(nameof(IsLimited))]
     [SerializeField] private int m_maxLevel;
 
     [VerticalGroup("Settings/Row/Left")]
@@ -37,9 +42,12 @@ public class STNodeAsset : ScriptableObject
 
     private int m_lastMaxLevel = -1;
 
+    private bool IsLimited => m_levelingType == LevelingType.Limited;
+
     [OnInspectorGUI]
     private void CheckMaxLevelChanged()
     {
+        if (!IsLimited) return;
         if (m_maxLevel == m_lastMaxLevel) return;
         m_lastMaxLevel = m_maxLevel;
 
@@ -59,6 +67,8 @@ public class STNodeAsset : ScriptableObject
     public string Description => m_description;
     public Cost[] Cost => m_cost;
     public int MaxLevel => m_maxLevel;
+    public LevelingType LevelingType => m_levelingType;
+    public bool IsUnlimited => m_levelingType == LevelingType.Unlimited;
     #endregion
 
     private void OnMaxLevelChanged()

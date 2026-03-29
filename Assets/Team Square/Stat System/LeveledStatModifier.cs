@@ -33,6 +33,17 @@ namespace Stats
             return new StatModifier(entityType, statType, m_values[level], type, id);
         }
         
+        public StatModifier GetLinearModifierAtLevel(int level)
+        {
+            if (m_values == null || m_values.Length == 0)
+            {
+                Debug.LogWarning($"LeveledStatModifier '{id}' has no values defined. Returning modifier with value 0.");
+                return new StatModifier(entityType, statType, 0, ModifierType.Flat, id);
+            }
+
+            return new StatModifier(entityType, statType, m_values[0] * level, type, id);
+        }
+
         public void ResizeValues(int newSize)
         {
             if (newSize < 0) newSize = 0;

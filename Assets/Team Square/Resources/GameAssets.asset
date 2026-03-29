@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae80819850f8de409784797a8236ca5, type: 3}
   m_Name: GameAssets
   m_EditorClassIdentifier: 
-  currencyAssets: []
+  currencyAssets:
+  - {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
   critTextConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}

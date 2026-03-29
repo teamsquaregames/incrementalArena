@@ -120,7 +120,7 @@ public class CrowdRewards : MonoBehaviour
             elapsedTime += spawnInterval * 0.5f;
         }
         
-        Debug.Log($"Spawned {m_spawnedRewards.Count} rewards with total value ~{m_totalRewardValue - remainingValue:F1}");
+        //Debug.Log($"Spawned {m_spawnedRewards.Count} rewards with total value ~{m_totalRewardValue - remainingValue:F1}");
     }
     
     private void CalculateTotalWeight()
