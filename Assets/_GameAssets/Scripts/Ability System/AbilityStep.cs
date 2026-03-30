@@ -8,6 +8,7 @@ using UnityEngine.VFX;
 public class AbilityStep
 {
     [TitleGroup("Behaviour")]
+    public bool isRooting;
     public TargetingInfo targetingInfo;
     public List<AbilityApplicationInfo> applicationInfos = new List<AbilityApplicationInfo>();
 

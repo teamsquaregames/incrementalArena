@@ -73,6 +73,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
   m_collider: {fileID: 0}
+  m_knockUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.598259
+      outSlope: -1.598259
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.027603567
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_modelT: {fileID: 3902489620234916321}
 --- !u!114 &2582337669702917554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +126,8 @@ MonoBehaviour:
   sheenHoldDuration: 0.05
   sheenFadeDuration: 0.15
   m_renderers: []
+  EMISSION_COLOR_PROPERTY: _EmissionColor
+  EMISSION_ENABLE_PROPERTY: _Emission
 --- !u!1 &6964580587330997796
 GameObject:
   m_ObjectHideFlags: 0

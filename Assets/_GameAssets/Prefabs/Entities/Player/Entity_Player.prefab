@@ -1361,8 +1361,9 @@ MonoBehaviour:
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities:
   - {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
-  m_stopMovementOnCast: 0
+  m_stopMovementOnCast: 1
   m_animator: {fileID: 2673431603351796059}
+  IsCastRooted: 0
 --- !u!114 &8929558195775867111
 MonoBehaviour:
   m_ObjectHideFlags: 0

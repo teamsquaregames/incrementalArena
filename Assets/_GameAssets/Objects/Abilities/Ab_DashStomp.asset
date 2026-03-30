@@ -18,8 +18,9 @@ MonoBehaviour:
   range: 12
   cooldown: 3
   steps:
-  - targetingInfo:
-      quickTarget: 2
+  - isRooting: 1
+    targetingInfo:
+      quickTarget: 1
       target: 0
       delayInterval: 0
       retriggerAnimation: 0
@@ -74,7 +75,8 @@ MonoBehaviour:
     effects:
     - effect: {fileID: 11400000, guid: de3f6eaaf68fe5e46abff6a960bca37b, type: 2}
       value: 0
-  - targetingInfo:
+  - isRooting: 1
+    targetingInfo:
       quickTarget: 1
       target: 0
       delayInterval: 0
@@ -130,3 +132,5 @@ MonoBehaviour:
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
       value: 10
+    - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
+      value: 1

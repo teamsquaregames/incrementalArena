@@ -22,7 +22,6 @@ public class EntityAbilityModule : EntityModule
 
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
-    [SerializeField] private bool m_stopMovementOnCast = true;
 
     [SerializeField] private Animator m_animator;
 
@@ -37,13 +36,9 @@ public class EntityAbilityModule : EntityModule
     public AbilityConfig AutoAttack => m_autoAttack;
     public List<AbilityConfig> Abilities => m_abilities;
 
-    /// <summary>True only while a non-auto ability animation is running.</summary>
     public bool IsUsingAbility => m_activeAbility != null && !m_isAutoAttack;
-
-    /// <summary>True while any ability (including auto-attack) animation is running.</summary>
     public bool IsBusy => m_activeAbility != null;
-
-    /// <summary>The config of the ability currently being cast, or null if none.</summary>
+    public bool IsCastRooted;
     public AbilityConfig ActiveAbility => m_activeAbility;
 
     #region Module
@@ -138,7 +133,7 @@ public class EntityAbilityModule : EntityModule
 
         SetAbilityClip(ability.steps[m_stepIndex].abilityClip, isAutoAttack);
 
-        if (!isAutoAttack && m_stopMovementOnCast)
+        if (ability.steps[m_stepIndex].isRooting)
         {
             if (Owner.TryGetModule(out EntityMovementModule movementModule))
                 movementModule.SetMoveInput(Vector2.zero);
@@ -173,10 +168,18 @@ public class EntityAbilityModule : EntityModule
         List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
         foreach (var item in targets)
         {
-            this.Log($"Resolved targets: {item.name}, position: {item.transform.position}");
+            // this.Log($"Resolved targets: {item.name}, position: {item.transform.position}");
         }
 
         HandleEffects(activeStep, targets);
+        HandleVFXs(activeStep, targets);
+
+        
+        if (activeStep.isRooting)
+        {
+            if (Owner.TryGetModule(out EntityMovementModule movementModule))
+                movementModule.SetMoveInput(Vector2.zero);
+        }
 
         if (m_gizmos != null)
         {
@@ -265,9 +268,9 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    private void HandleEffects(AbilityStep activeStep, List<Entity> targets = null)
+    private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null)
     {
-        /// Ability
+        /// Ability VFX
         if (activeStep.mainVfx != null)
             LeanPool.Spawn(
                 activeStep.mainVfx,
@@ -293,11 +296,6 @@ public class EntityAbilityModule : EntityModule
             foreach (var target in targets)
             {
                 LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(1), Quaternion.identity, target.transform);
-                foreach (var entry in activeStep.effects)
-                {
-                    m_activeContext.Value = entry.value;
-                    entry.effect?.Execute(m_activeContext, target);
-                }
             }
         }
         if (activeStep.hitVfxGraph != null)
@@ -305,11 +303,18 @@ public class EntityAbilityModule : EntityModule
             foreach (var target in targets)
             {
                 LeanPool.Spawn(activeStep.hitVfxGraph, target.transform.position.OffsetY(1), Quaternion.identity, target.transform);
-                foreach (var entry in activeStep.effects)
-                {
-                    m_activeContext.Value = entry.value;
-                    entry.effect?.Execute(m_activeContext, target);
-                }
+            }
+        }
+    }
+
+    private void HandleEffects(AbilityStep activeStep, List<Entity> targets)
+    {
+        foreach (var target in targets)
+        {
+            foreach (var entry in activeStep.effects)
+            {
+                m_activeContext.Value = entry.value;
+                entry.effect?.Execute(m_activeContext, target);
             }
         }
     }
