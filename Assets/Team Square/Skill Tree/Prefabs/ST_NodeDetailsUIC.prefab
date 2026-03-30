@@ -249,8 +249,8 @@ MonoBehaviour:
   m_moveOutVector: {x: 0, y: 0}
   m_hideDuration: 0.25
   m_icon: {fileID: 6214000717832683943}
-  m_name: {fileID: 0}
-  m_description: {fileID: 0}
+  m_name: {fileID: 3803028144298196469}
+  m_description: {fileID: 9081334391561610470}
   m_currencyCostUIE: {fileID: 3443519203291375536}
   m_levelObjects:
   - {fileID: 5239272131361149025}
@@ -1441,6 +1441,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9199229178102778939, guid: 120883518b8c0d749937f05d80ceda68, type: 3}
   m_PrefabInstance: {fileID: 7010813290198688617}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9081334391561610470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2255186350224443279, guid: 120883518b8c0d749937f05d80ceda68, type: 3}
+  m_PrefabInstance: {fileID: 7010813290198688617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &8279494718847463907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1560,6 +1571,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b0aa3bae2144b842814b4e0e5267cbe, type: 3}
+--- !u!114 &3803028144298196469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5053528503460613142, guid: 4b0aa3bae2144b842814b4e0e5267cbe, type: 3}
+  m_PrefabInstance: {fileID: 8279494718847463907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &7633153316474883298 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1948023353712622849, guid: 4b0aa3bae2144b842814b4e0e5267cbe, type: 3}
