@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2809212323636707711}
   - component: {fileID: 7805724018380989557}
   - component: {fileID: 2769874426217783381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4890,7 +4890,7 @@ GameObject:
   - component: {fileID: 6137530695200162985}
   - component: {fileID: 6588841245388711520}
   - component: {fileID: 3086591989773344240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9760,7 +9760,7 @@ GameObject:
   - component: {fileID: 2814928534669729680}
   - component: {fileID: 7207147708102180699}
   - component: {fileID: 7716197754383210260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14630,7 +14630,7 @@ GameObject:
   - component: {fileID: 8649103730721317898}
   - component: {fileID: 8649103730721317896}
   - component: {fileID: 8649103730721317899}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19464,7 +19464,7 @@ GameObject:
   - component: {fileID: 8649103730900180660}
   - component: {fileID: 8649103730900180658}
   - component: {fileID: 8649103730900180661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit_fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24304,7 +24304,7 @@ GameObject:
   - component: {fileID: 8649103731752422248}
   - component: {fileID: 8649103731752422262}
   - component: {fileID: 8649103731752422249}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29138,7 +29138,7 @@ GameObject:
   - component: {fileID: 5761010786440003377}
   - component: {fileID: 8201199102673897201}
   - component: {fileID: 1856075322480501778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

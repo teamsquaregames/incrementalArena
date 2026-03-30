@@ -4,6 +4,7 @@ using MyBox;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
+using UnityEngine.XR;
 using Utils;
 
 public class EntityAbilityModule : EntityModule
@@ -21,7 +22,6 @@ public class EntityAbilityModule : EntityModule
 
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
-    [SerializeField] private bool m_stopMovementOnCast = true;
 
     [SerializeField] private Animator m_animator;
 
@@ -36,13 +36,9 @@ public class EntityAbilityModule : EntityModule
     public AbilityConfig AutoAttack => m_autoAttack;
     public List<AbilityConfig> Abilities => m_abilities;
 
-    /// <summary>True only while a non-auto ability animation is running.</summary>
     public bool IsUsingAbility => m_activeAbility != null && !m_isAutoAttack;
-
-    /// <summary>True while any ability (including auto-attack) animation is running.</summary>
     public bool IsBusy => m_activeAbility != null;
-
-    /// <summary>The config of the ability currently being cast, or null if none.</summary>
+    public bool IsCastRooted;
     public AbilityConfig ActiveAbility => m_activeAbility;
 
     #region Module
@@ -137,7 +133,7 @@ public class EntityAbilityModule : EntityModule
 
         SetAbilityClip(ability.steps[m_stepIndex].abilityClip, isAutoAttack);
 
-        if (!isAutoAttack && m_stopMovementOnCast)
+        if (ability.steps[m_stepIndex].isRooting)
         {
             if (Owner.TryGetModule(out EntityMovementModule movementModule))
                 movementModule.SetMoveInput(Vector2.zero);
@@ -168,23 +164,21 @@ public class EntityAbilityModule : EntityModule
         // Use the current step index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
         AbilityStep activeStep = m_activeAbility.steps[m_stepIndex];
 
-        LeanPool.Spawn(
-            activeStep.mainVfx,
-            activeStep.mainVFXPosition == VFXPosition.Target
-                ? m_activeContext.AimPosition
-                : transform.position.OffsetY(0.75f),
-            transform.rotation
-        );
 
         List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
-        foreach (var target in targets)
+        foreach (var item in targets)
         {
-            LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(0), Quaternion.identity);
-            foreach (var entry in activeStep.effects)
-            {
-                m_activeContext.Value = entry.value;
-                entry.effect?.Execute(m_activeContext, target);
-            }
+            // this.Log($"Resolved targets: {item.name}, position: {item.transform.position}");
+        }
+
+        HandleEffects(activeStep, targets);
+        HandleVFXs(activeStep, targets);
+
+        
+        if (activeStep.isRooting)
+        {
+            if (Owner.TryGetModule(out EntityMovementModule movementModule))
+                movementModule.SetMoveInput(Vector2.zero);
         }
 
         if (m_gizmos != null)
@@ -203,7 +197,8 @@ public class EntityAbilityModule : EntityModule
         m_stepIndex++;
         m_activeContext.CurrentStepIndex = m_stepIndex;
     }
-    
+
+
     internal void HandleAnimationEnd()
     {
         // this.Log("Handling animation end event");
@@ -270,5 +265,57 @@ public class EntityAbilityModule : EntityModule
         var keys = new List<string>(m_cooldowns.Keys);
         foreach (var k in keys)
             m_cooldowns[k] = Mathf.Max(0f, m_cooldowns[k] - Time.deltaTime);
+    }
+
+
+    private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null)
+    {
+        /// Ability VFX
+        if (activeStep.mainVfx != null)
+            LeanPool.Spawn(
+                activeStep.mainVfx,
+                activeStep.mainVFXPosition == VFXPosition.Target
+                    ? m_activeContext.AimPosition
+                    : transform.position.OffsetY(0f),
+                transform.rotation
+            );
+        if (activeStep.mainVfxGraph != null)
+        {
+            LeanPool.Spawn(
+                activeStep.mainVfxGraph,
+                activeStep.mainVFXPosition == VFXPosition.Target
+                    ? m_activeContext.AimPosition
+                    : transform.position.OffsetY(0f),
+                transform.rotation
+            );
+        }
+
+        /// Hits
+        if (activeStep.hitVfx != null)
+        {
+            foreach (var target in targets)
+            {
+                LeanPool.Spawn(activeStep.hitVfx, target.transform.position.OffsetY(1), Quaternion.identity, target.transform);
+            }
+        }
+        if (activeStep.hitVfxGraph != null)
+        {
+            foreach (var target in targets)
+            {
+                LeanPool.Spawn(activeStep.hitVfxGraph, target.transform.position.OffsetY(1), Quaternion.identity, target.transform);
+            }
+        }
+    }
+
+    private void HandleEffects(AbilityStep activeStep, List<Entity> targets)
+    {
+        foreach (var target in targets)
+        {
+            foreach (var entry in activeStep.effects)
+            {
+                m_activeContext.Value = entry.value;
+                entry.effect?.Execute(m_activeContext, target);
+            }
+        }
     }
 }

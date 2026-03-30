@@ -385,7 +385,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.36666667
+        time: 0.23333333
         value: 3.2650437
         inSlope: 0.9865331
         outSlope: 0.9865331
@@ -394,7 +394,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.53333336
+        time: 0.46666667
         value: 3.2761724
         inSlope: -1.1278708
         outSlope: -1.1278708
@@ -403,7 +403,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6
+        time: 0.53333336
         value: 0.63580465
         inSlope: -0.55678105
         outSlope: -0.55678105
@@ -28705,7 +28705,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.36666667
+        time: 0.23333333
         value: 3.2650437
         inSlope: 0.9865331
         outSlope: 0.9865331
@@ -28714,7 +28714,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.53333336
+        time: 0.46666667
         value: 3.2761724
         inSlope: -1.1278708
         outSlope: -1.1278708
@@ -28723,7 +28723,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6
+        time: 0.53333336
         value: 0.63580465
         inSlope: -0.55678105
         outSlope: -0.55678105
@@ -55441,14 +55441,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.13333334
+  - time: 0.46666667
     functionName: OnAbilityActive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.56666666
+  - time: 0.53333336
     functionName: OnAbilityActive
     data: 
     objectReferenceParameter: {fileID: 0}

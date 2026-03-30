@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
+  m_Name: Ab_DashStomp_v2
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
+  abilityName: 
+  icon: {fileID: 0}
+  description: 
+  range: 4
+  cooldown: 6
+  steps:
+  - targetingInfo:
+      quickTarget: 2
+      target: 0
+      delayInterval: 0
+      retriggerAnimation: 0
+    applicationInfos:
+    - effectZoneType: 0
+      projectileInfo:
+        type: 0
+        speed: 1
+        distance: 10
+        lifeTime: 0
+        projectileTrajectory: 0
+        curveTopHeight: 0
+        trajectoryCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        origin: 0
+        startPositionOffset: {x: 0, y: 0, z: 0}
+        autoOffsetWithWidth: 0
+        spreadAngle: 0
+        applyEffectThroughTrajectory: 0
+        frequency: 0
+        destroyOnHit: 0
+        projectileVisualEffect: {fileID: 0}
+      aoeInfo:
+        effectShape: 0
+        radius: 0
+        scale: {x: 0, y: 0, z: 0}
+        angle: 0
+        range: 0
+        offset: {x: 0, y: 0, z: 0}
+        effectDirection: 0
+        effectPosition: 0
+        time: 0
+        duration: 0
+        frequency: 0
+        stackEffect: 0
+      delay: 0
+      repeatCount: 0
+      repeatDuration: 0
+      additionalRotation: 0
+      additionalPosition: {x: 0, y: 0, z: 0}
+      excludeHitEntity: 1
+    mainVfx: {fileID: 0}
+    mainVfxGraph: {fileID: 0}
+    mainVFXPosition: 0
+    hitVfx: {fileID: 0}
+    hitVfxGraph: {fileID: 0}
+    abilityClip: {fileID: 7400000, guid: e51de0dc2e58699469bf98933aa25f0e, type: 2}
+    effects:
+    - effect: {fileID: 11400000, guid: de3f6eaaf68fe5e46abff6a960bca37b, type: 2}
+      value: 0.2
+  - targetingInfo:
+      quickTarget: 1
+      target: 0
+      delayInterval: 0
+      retriggerAnimation: 0
+    applicationInfos:
+    - effectZoneType: 1
+      projectileInfo:
+        type: 0
+        speed: 1
+        distance: 10
+        lifeTime: 0
+        projectileTrajectory: 0
+        curveTopHeight: 0
+        trajectoryCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        origin: 0
+        startPositionOffset: {x: 0, y: 0, z: 0}
+        autoOffsetWithWidth: 0
+        spreadAngle: 0
+        applyEffectThroughTrajectory: 0
+        frequency: 0
+        destroyOnHit: 0
+        projectileVisualEffect: {fileID: 0}
+      aoeInfo:
+        effectShape: 0
+        radius: 3
+        scale: {x: 0, y: 0, z: 0}
+        angle: 0
+        range: 0
+        offset: {x: 0, y: 0, z: 0}
+        effectDirection: 0
+        effectPosition: 0
+        time: 0
+        duration: 0
+        frequency: 0
+        stackEffect: 0
+      delay: 0
+      repeatCount: 0
+      repeatDuration: 0
+      additionalRotation: 0
+      additionalPosition: {x: 0, y: 0, z: 0}
+      excludeHitEntity: 1
+    mainVfx: {fileID: 3067244524998136167, guid: b2a276c944ab9654eb95205fcb571d7c, type: 3}
+    mainVfxGraph: {fileID: 2290930611710396488, guid: 585b1a643cd6f1c4ab963b6a4501fa71, type: 3}
+    mainVFXPosition: 0
+    hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
+    hitVfxGraph: {fileID: 0}
+    abilityClip: {fileID: 0}
+    effects:
+    - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      value: 10
