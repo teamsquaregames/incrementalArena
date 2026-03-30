@@ -8,5 +8,10 @@ public enum SoundKeys
     ui_button_hover,
     ui_currency_gain,
     ui_TTnode_click,
-    ui_TTnode_maxlevel
+    ui_TTnode_maxlevel,
+    SFX_Woosh,
+    SFX_Groan,
+    SFX_Impact,
+    SFX_Destruction,
+    SFX_Impact_Magic
 }

@@ -147,7 +147,15 @@ public class EntityAbilityModule : EntityModule
         else
             m_animator.SetTrigger(TRIGGER_ABILITY);
 
+        SFXDelayed(ability.sfx, ability.sfxDelay);
+
         return true;
+    }
+
+    private async void SFXDelayed(SoundKeys sfx, float delay)
+    {
+        await System.Threading.Tasks.Task.Delay((int)(delay * 1000));
+        SoundManager.Instance.PlaySound(sfx);
     }
 
 
@@ -173,8 +181,10 @@ public class EntityAbilityModule : EntityModule
 
         HandleEffects(activeStep, targets);
         HandleVFXs(activeStep, targets);
+        if (activeStep.activeSfx != SoundKeys._None)
+            SoundManager.Instance.PlaySound(activeStep.activeSfx);
 
-        
+
         if (activeStep.isRooting)
         {
             if (Owner.TryGetModule(out EntityMovementModule movementModule))

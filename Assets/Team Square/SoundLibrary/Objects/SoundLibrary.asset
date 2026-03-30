@@ -22,8 +22,13 @@ MonoBehaviour:
     - ui_currency_gain
     - ui_TTnode_click
     - ui_TTnode_maxlevel
+    - SFX_Woosh
+    - SFX_Groan
+    - SFX_Impact
+    - SFX_Destruction
+    - SFX_Impact_Magic
     values:
-    - clip: {fileID: 8300000, guid: cf2117e58c682ac45ae9c2b7d60f5ca5, type: 3}
+    - clip: {fileID: 8300000, guid: 2be487d73129d734490a003286584097, type: 3}
       loop: 1
       volume: 0.25
       pitchMode: 0
@@ -75,6 +80,41 @@ MonoBehaviour:
     - clip: {fileID: 8300000, guid: 6de22e542bb9e9b44af140807e71ce85, type: 3}
       loop: 0
       volume: 0.5
+      pitchMode: 0
+      randomPitchRange: {x: 0.9, y: 1.1}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: c6532e4d567db0242b203faa7cda82f5, type: 3}
+      loop: 0
+      volume: 1
+      pitchMode: 1
+      randomPitchRange: {x: 0.8, y: 1.2}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 30f632b3890745e438b5c4438f9a601a, type: 3}
+      loop: 0
+      volume: 1
+      pitchMode: 1
+      randomPitchRange: {x: 0.7882801, y: 1.1025524}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 5cbe1c38064275b469f7c18c856261ba, type: 3}
+      loop: 0
+      volume: 1
+      pitchMode: 1
+      randomPitchRange: {x: 0.9, y: 1.1}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: f128710505731574aade14cf95c100fc, type: 3}
+      loop: 0
+      volume: 1
+      pitchMode: 0
+      randomPitchRange: {x: 0.9, y: 1.1}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 5a047510ae9faf54c993935fb1797ed0, type: 3}
+      loop: 0
+      volume: 1
       pitchMode: 0
       randomPitchRange: {x: 0.9, y: 1.1}
       fixedPitch: 1

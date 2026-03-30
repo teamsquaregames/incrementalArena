@@ -16,7 +16,9 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   range: 12
-  cooldown: 3
+  cooldown: 6
+  sfx: 0
+  sfxDelay: 0
   steps:
   - isRooting: 1
     targetingInfo:
@@ -71,6 +73,7 @@ MonoBehaviour:
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 0}
+    activeSfx: 13
     abilityClip: {fileID: 7400000, guid: e51de0dc2e58699469bf98933aa25f0e, type: 2}
     effects:
     - effect: {fileID: 11400000, guid: de3f6eaaf68fe5e46abff6a960bca37b, type: 2}
@@ -128,6 +131,7 @@ MonoBehaviour:
     mainVFXPosition: 0
     hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
     hitVfxGraph: {fileID: 0}
+    activeSfx: 12
     abilityClip: {fileID: 0}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}

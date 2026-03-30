@@ -17,11 +17,11 @@ public class EntityHealthModule : EntityModule
     public Action<float, float> OnHealed;
     public Action OnDeathStart;
     public Action OnDeath;
-    
+
     [Header("References")]
     [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_deathFxPefab;
-    
+
     [FoldoutGroup("Feedback settings")][SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
     [FoldoutGroup("Feedback settings")][SerializeField, Min(0f)] private float punchDuration = 0.35f;
     [FoldoutGroup("Feedback settings")][SerializeField, Min(1)] private int punchVibrato = 6;
@@ -43,7 +43,7 @@ public class EntityHealthModule : EntityModule
             {
                 this.LogWarning("No StatModule attached. Couldn't get MaxHealth value. Returning 100 as default");
                 return 100;
-                
+
             }
         }
     }
@@ -82,6 +82,8 @@ public class EntityHealthModule : EntityModule
         {
             m_animator.SetTrigger("Damage");
         }
+
+        SoundManager.Instance.PlaySound(SoundKeys.SFX_Impact);
     }
 
     private void PlayPunchScale()
@@ -136,8 +138,10 @@ public class EntityHealthModule : EntityModule
     public void Die()
     {
         m_punchTween?.Kill(complete: true);
-        
-        LeanPool.Spawn(m_deathFxPefab,transform.position, Quaternion.identity);
+
+        LeanPool.Spawn(m_deathFxPefab, transform.position, Quaternion.identity);
+
+        SoundManager.Instance.PlaySound(SoundKeys.SFX_Groan);
 
         OnDeath?.Invoke();
     }
