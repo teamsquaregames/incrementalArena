@@ -25,9 +25,11 @@ public class AbilityApplicationInfo
 
     [Title("Other Settings")]
     public float delay = 0f;
-    public int repeatCount;
+    public int repeatCount = 1;
     [ShowIf("@this.repeatCount > 1")]
     public float repeatDuration;
+    [ShowIf("@this.repeatCount > 1")]
+    public bool repeatFX;
 
     [ShowIf("@this.effectZoneType != Type.Direct")]
     public float additionalRotation;
