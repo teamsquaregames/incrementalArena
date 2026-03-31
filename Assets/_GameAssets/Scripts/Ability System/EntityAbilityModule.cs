@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Lean.Pool;
 using MyBox;
@@ -32,6 +33,10 @@ public class EntityAbilityModule : EntityModule
     private bool m_isAutoAttack;
     private int m_stepIndex;
     private Dictionary<string, float> m_cooldowns = new();
+
+    public event Action<AbilityConfig> OnAbilityUsed;
+    public event Action<AbilityConfig> OnAbilityAdded;
+    public event Action<AbilityConfig> OnAbilityRemoved;
 
     public AbilityConfig AutoAttack => m_autoAttack;
     public List<AbilityConfig> Abilities => m_abilities;
@@ -99,7 +104,9 @@ public class EntityAbilityModule : EntityModule
         if (IsBusy) return false;
 
         m_stepIndex = m_stepIndex % m_autoAttack.steps.Count;
-        return StartAbility(m_autoAttack, aimPosition, isAutoAttack: true);
+        bool started = StartAbility(m_autoAttack, aimPosition, isAutoAttack: true);
+        if (started) OnAbilityUsed?.Invoke(m_autoAttack);
+        return started;
     }
 
 
@@ -109,7 +116,22 @@ public class EntityAbilityModule : EntityModule
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
         m_stepIndex = 0;
-        return StartAbility(ability, aimPosition, isAutoAttack: false);
+        bool started = StartAbility(ability, aimPosition, isAutoAttack: false);
+        if (started) OnAbilityUsed?.Invoke(ability);
+        return started;
+    }
+
+    public void AddAbility(AbilityConfig ability)
+    {
+        if (ability == null || m_abilities.Contains(ability)) return;
+        m_abilities.Add(ability);
+        OnAbilityAdded?.Invoke(ability);
+    }
+
+    public void RemoveAbility(AbilityConfig ability)
+    {
+        if (ability == null || !m_abilities.Remove(ability)) return;
+        OnAbilityRemoved?.Invoke(ability);
     }
 
 
