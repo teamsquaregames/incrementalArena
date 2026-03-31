@@ -13,6 +13,10 @@ public class AbilityConfig : ScriptableObject
     [TitleGroup("General")]
     public float range = 2f;
     public float cooldown = 1f;
+    
+    [TitleGroup("SFXs")]
+    public SoundKeys sfx;
+    public float sfxDelay;
 
     [TitleGroup("Steps")]
     public List<AbilityStep> steps = new List<AbilityStep>();

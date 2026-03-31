@@ -17,6 +17,8 @@ MonoBehaviour:
   description: Sword attack ma gueule
   range: 2
   cooldown: 0
+  sfx: 0
+  sfxDelay: 0
   steps:
   - isRooting: 1
     targetingInfo:
@@ -71,6 +73,7 @@ MonoBehaviour:
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
+    activeSfx: 9
     abilityClip: {fileID: 1827226128182048838, guid: 2bc14a1041470cd4094c562113975d25, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
@@ -130,6 +133,7 @@ MonoBehaviour:
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
+    activeSfx: 9
     abilityClip: {fileID: 1827226128182048838, guid: c44b1a1611e2ba24da88eb8950bace42, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
@@ -189,6 +193,7 @@ MonoBehaviour:
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
+    activeSfx: 9
     abilityClip: {fileID: 1827226128182048838, guid: 758fcd9471e07a74ab3bf0f1b55f062f, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}

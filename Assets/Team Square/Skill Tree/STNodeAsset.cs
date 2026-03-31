@@ -47,6 +47,7 @@ public class STNodeAsset : ScriptableObject
     [OnInspectorGUI]
     private void CheckMaxLevelChanged()
     {
+#if UNITY_EDITOR
         if (!IsLimited) return;
         if (m_maxLevel == m_lastMaxLevel) return;
         m_lastMaxLevel = m_maxLevel;
@@ -56,6 +57,7 @@ public class STNodeAsset : ScriptableObject
             OnMaxLevelChanged();
             UnityEditor.EditorUtility.SetDirty(this);
         };
+#endif
     }
 
     #region Getters

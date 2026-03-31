@@ -18,6 +18,9 @@ public class AbilityStep
     public VFXPosition mainVFXPosition;
     public ParticleSystem hitVfx;
     public VisualEffect hitVfxGraph;
+
+    [TitleGroup("SFXs")]
+    public SoundKeys activeSfx;
     
     [TitleGroup("Animation")]
     public AnimationClip abilityClip;
