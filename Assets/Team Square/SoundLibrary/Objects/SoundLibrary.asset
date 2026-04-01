@@ -94,8 +94,8 @@ MonoBehaviour:
     - clip: {fileID: 8300000, guid: 30f632b3890745e438b5c4438f9a601a, type: 3}
       loop: 0
       volume: 1
-      pitchMode: 1
-      randomPitchRange: {x: 0.7882801, y: 1.1025524}
+      pitchMode: 0
+      randomPitchRange: {x: 0.6394143, y: 1.0363898}
       fixedPitch: 1
       audioMixerGroup: {fileID: 0}
     - clip: {fileID: 8300000, guid: 5cbe1c38064275b469f7c18c856261ba, type: 3}

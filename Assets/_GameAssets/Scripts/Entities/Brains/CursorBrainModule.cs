@@ -14,7 +14,7 @@ using Utils;
 public class CursorBrainModule : EntityBrainModule
 {
     [Header("Movement")]
-    [SerializeField, Min(0f)] private float m_stopRadius      = 0.2f;
+    [SerializeField, Min(0f)] private float m_stopRadius = 0.2f;
     [SerializeField, Min(0f)] private float m_minMoveThreshold = 0.2f;
 
     [ReadOnly]
@@ -25,8 +25,6 @@ public class CursorBrainModule : EntityBrainModule
         if (CursorManager.Instance == null) return;
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
-        // ── 1. While a non-auto ability is animating, block all input ─────────
-        if (abilityModule.IsUsingAbility) return;
 
         Entity targetEnemy = GetClosestEnemyInCursor(Owner);
 
@@ -38,32 +36,39 @@ public class CursorBrainModule : EntityBrainModule
             // Iterate over available abilities and fire the first one that is off cooldown
             for (int i = 0; i < abilityModule.Abilities.Count; i++)
             {
+                this.Log($"Trying to use ability {abilityModule.Abilities[i].name} toward {aimPoint}");
                 if (TryUseAbility(i, aimPoint))
                     return; // ability fired — skip auto-attack this frame
             }
         }
 
         // ── 3. Normal auto-attack + movement logic ────────────────────────────
-        Vector3 targetPosition = targetEnemy != null
+        Vector3 targetPosition = targetEnemy != null //|| abilityModule.IsUsingAbility
             ? targetEnemy.transform.position
             : CursorManager.Instance.MouseWorldPosition;
 
-        float distanceToTarget = Vector3.Distance(
-            new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
-            new Vector3(targetPosition.x,           0f, targetPosition.z));
-
-        bool inAttackRange = targetEnemy != null
-                             && distanceToTarget <= abilityModule.AutoAttack.range;
-
-        if (inAttackRange)
+        if (!abilityModule.IsUsingAbility)
         {
-            StopMovement();
-            TryAutoAttack(targetEnemy.transform.position.OffsetY(0f));
+            float distanceToTarget = Vector3.Distance(
+                new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
+                new Vector3(targetPosition.x, 0f, targetPosition.z));
+
+            bool inAttackRange = targetEnemy != null
+                                 && distanceToTarget <= abilityModule.AutoAttack.range;
+
+            if (inAttackRange)
+            {
+                StopMovement();
+                TryAutoAttack(targetEnemy.transform.position.OffsetY(0f));
+            }
+            else
+            {
+                MoveToward(targetPosition);
+            }
         }
-        else
+        else if (!abilityModule.IsCastRooted)
         {
-            // abilityModule.CancelEverything();
-            MoveToward(targetPosition);
+            MoveToward(CursorManager.Instance.MouseWorldPosition, true);
         }
     }
 
@@ -72,8 +77,8 @@ public class CursorBrainModule : EntityBrainModule
     /// <summary>Returns the enemy inside the cursor closest to the player, or null if none.</summary>
     public static Entity GetClosestEnemyInCursor(Entity owner)
     {
-        Entity closest        = null;
-        float  closestSqrDist = float.MaxValue;
+        Entity closest = null;
+        float closestSqrDist = float.MaxValue;
 
         foreach (Entity entity in CursorManager.Instance.EntitiesInCursor)
         {
@@ -84,7 +89,7 @@ public class CursorBrainModule : EntityBrainModule
             if (sqrDist < closestSqrDist)
             {
                 closestSqrDist = sqrDist;
-                closest        = entity;
+                closest = entity;
             }
         }
 
@@ -92,24 +97,28 @@ public class CursorBrainModule : EntityBrainModule
     }
 
     /// <summary>Drives the movement module toward a world-space position.</summary>
-    private void MoveToward(Vector3 worldTarget)
+    private void MoveToward(Vector3 worldTarget, bool ignoreStopRadius = false)
     {
-        Vector3 delta     = worldTarget - Owner.transform.position;
+        Vector3 delta = worldTarget - Owner.transform.position;
         Vector2 flatDelta = new Vector2(delta.x, delta.z);
 
-        if (m_isMoving || flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius > m_minMoveThreshold * m_minMoveThreshold)
+        float stopRadiusSqr = m_stopRadius * m_stopRadius;
+        if (ignoreStopRadius)
+            stopRadiusSqr = 0f;
+
+        if (m_isMoving || flatDelta.sqrMagnitude - stopRadiusSqr > m_minMoveThreshold * m_minMoveThreshold)
         {
             m_isMoving = true;
-            SetMoveInput(flatDelta.sqrMagnitude > m_stopRadius * m_stopRadius
+            SetMoveInput(flatDelta.sqrMagnitude > stopRadiusSqr
                 ? flatDelta.normalized
                 : Vector2.zero);
         }
 
-        if (flatDelta.sqrMagnitude <= m_stopRadius * m_stopRadius)
+        if (flatDelta.sqrMagnitude <= stopRadiusSqr)
         {
             m_isMoving = false;
         }
 
-        // this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - m_stopRadius * m_stopRadius}");
+        // this.Log($"Moving toward distance: {flatDelta.sqrMagnitude - stopRadiusSqr}");
     }
 }

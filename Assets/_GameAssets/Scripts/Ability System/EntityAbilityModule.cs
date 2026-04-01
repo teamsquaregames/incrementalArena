@@ -1,7 +1,9 @@
+using System.Collections;
 using System;
 using System.Collections.Generic;
 using Lean.Pool;
 using MyBox;
+using NUnit.Framework;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
@@ -112,7 +114,7 @@ public class EntityAbilityModule : EntityModule
 
     public bool TryUseAbility(AbilityConfig ability, Vector3 aimPosition)
     {
-        if (!CanUse(ability)) return false;
+        if (!CanUse(ability, aimPosition)) return false;
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
         m_stepIndex = 0;
@@ -157,9 +159,12 @@ public class EntityAbilityModule : EntityModule
 
         if (ability.steps[m_stepIndex].isRooting)
         {
+            IsCastRooted = true;
             if (Owner.TryGetModule(out EntityMovementModule movementModule))
                 movementModule.SetMoveInput(Vector2.zero);
         }
+        else
+            IsCastRooted = false;
 
         if (isAutoAttack)
         {
@@ -193,38 +198,18 @@ public class EntityAbilityModule : EntityModule
 
         // Use the current step index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
         AbilityStep activeStep = m_activeAbility.steps[m_stepIndex];
-
-
         List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
-        foreach (var item in targets)
-        {
-            // this.Log($"Resolved targets: {item.name}, position: {item.transform.position}");
-        }
 
-        HandleEffects(activeStep, targets);
-        HandleVFXs(activeStep, targets);
-        if (activeStep.activeSfx != SoundKeys._None)
-            SoundManager.Instance.PlaySound(activeStep.activeSfx);
-
+        StartCoroutine(HandleReapetitionCR(activeStep, targets));
 
         if (activeStep.isRooting)
         {
+            IsCastRooted = true;
             if (Owner.TryGetModule(out EntityMovementModule movementModule))
                 movementModule.SetMoveInput(Vector2.zero);
         }
-
-        if (m_gizmos != null)
-        {
-            m_gizmos.applicationInfo = activeStep.applicationInfos.Count > 0 ? activeStep.applicationInfos[0] : null;
-            m_gizmos.targetingInfo = activeStep.targetingInfo;
-            m_gizmos.position = activeStep.targetingInfo.quickTarget switch
-            {
-                TargetingInfo.QuickTarget.Self => m_activeContext.Caster.transform.position,
-                TargetingInfo.QuickTarget.Current => m_activeContext.ClosestEntity != null ? m_activeContext.ClosestEntity.transform.position : m_activeContext.AimPosition,
-                // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
-                _ => m_activeContext.AimPosition
-            };
-        }
+        else
+            IsCastRooted = false;
 
         m_stepIndex++;
         m_activeContext.CurrentStepIndex = m_stepIndex;
@@ -276,9 +261,11 @@ public class EntityAbilityModule : EntityModule
         m_stepIndex = 0;
     }
 
-    private bool CanUse(AbilityConfig ability)
+    private bool CanUse(AbilityConfig ability, Vector3 targetPosition)
     {
         if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
+        if (ability.range > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.range)
+            return false;
         return true;
     }
 
@@ -300,6 +287,39 @@ public class EntityAbilityModule : EntityModule
     }
 
 
+    private IEnumerator HandleReapetitionCR(AbilityStep activeStep, List<Entity> targets)
+    {
+        AbilityApplicationInfo applicationInfo = activeStep.applicationInfos.Count > 0 ? activeStep.applicationInfos[0] : null;
+        for (int i = 0; i < applicationInfo.repeatCount; i++)
+        {
+            HandleEffects(activeStep, targets);
+
+            if (applicationInfo.repeatFX || i == 0)
+            {
+                HandleVFXs(activeStep, targets);
+
+                if (activeStep.activeSfx != SoundKeys._None)
+                    SoundManager.Instance.PlaySound(activeStep.activeSfx);
+            }
+
+            if (m_gizmos != null)
+            {
+                m_gizmos.applicationInfo = applicationInfo;
+                m_gizmos.targetingInfo = activeStep.targetingInfo;
+                m_gizmos.position = activeStep.targetingInfo.quickTarget switch
+                {
+                    TargetingInfo.QuickTarget.Self => m_activeContext.Caster.transform.position,
+                    TargetingInfo.QuickTarget.Current => m_activeContext.ClosestEntity != null ? m_activeContext.ClosestEntity.transform.position : m_activeContext.AimPosition,
+                    // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
+                    _ => m_activeContext.AimPosition
+                };
+            }
+
+            if (applicationInfo.repeatCount > 1)
+                yield return new WaitForSeconds(applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1));
+        }
+    }
+
     private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null)
     {
         /// Ability VFX
@@ -308,8 +328,9 @@ public class EntityAbilityModule : EntityModule
                 activeStep.mainVfx,
                 activeStep.mainVFXPosition == VFXPosition.Target
                     ? m_activeContext.AimPosition
-                    : transform.position.OffsetY(0f),
-                transform.rotation
+                    : transform.position,
+                transform.rotation,
+                Owner.transform
             );
         if (activeStep.mainVfxGraph != null)
         {
@@ -317,8 +338,9 @@ public class EntityAbilityModule : EntityModule
                 activeStep.mainVfxGraph,
                 activeStep.mainVFXPosition == VFXPosition.Target
                     ? m_activeContext.AimPosition
-                    : transform.position.OffsetY(0f),
-                transform.rotation
+                    : transform.position,
+                transform.rotation,
+                Owner.transform
             );
         }
 

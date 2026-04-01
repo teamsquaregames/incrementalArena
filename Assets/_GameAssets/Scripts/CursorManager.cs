@@ -89,7 +89,7 @@ public class CursorManager : Singleton<CursorManager>
 
     private IEnumerator HighlightCursor()
     {
-        this.Log("Highlighting cursor");
+        // this.Log("Highlighting cursor");
         m_isCursorHighlighted = true;
         m_cursorWidget.gameObject.SetActive(true);
 
@@ -125,7 +125,7 @@ public class CursorManager : Singleton<CursorManager>
 
     private IEnumerator UnhighlightCursor()
     {
-        this.Log("Unhighlighting cursor");
+        // this.Log("Unhighlighting cursor");
         m_isCursorHighlighted = false;
         m_cursorSizeTween?.Kill();
         m_highlightShaderTween?.Kill();
