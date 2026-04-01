@@ -36,6 +36,7 @@ public class CursorBrainModule : EntityBrainModule
             // Iterate over available abilities and fire the first one that is off cooldown
             for (int i = 0; i < abilityModule.Abilities.Count; i++)
             {
+                this.Log($"Trying to use ability {abilityModule.Abilities[i].name} toward {aimPoint}");
                 if (TryUseAbility(i, aimPoint))
                     return; // ability fired — skip auto-attack this frame
             }

@@ -15,14 +15,14 @@ MonoBehaviour:
   abilityName: 
   icon: {fileID: 0}
   description: 
-  range: 12
+  range: 6
   cooldown: 6
   sfx: 0
   sfxDelay: 0
   steps:
   - isRooting: 1
     targetingInfo:
-      quickTarget: 1
+      quickTarget: 2
       target: 0
       delayInterval: 0
       retriggerAnimation: 0
@@ -65,6 +65,7 @@ MonoBehaviour:
       delay: 0
       repeatCount: 0
       repeatDuration: 0
+      repeatFX: 0
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
@@ -123,6 +124,7 @@ MonoBehaviour:
       delay: 0
       repeatCount: 1
       repeatDuration: 0
+      repeatFX: 0
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1

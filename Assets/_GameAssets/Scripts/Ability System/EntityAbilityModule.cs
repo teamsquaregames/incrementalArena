@@ -107,7 +107,7 @@ public class EntityAbilityModule : EntityModule
 
     public bool TryUseAbility(AbilityConfig ability, Vector3 aimPosition)
     {
-        if (!CanUse(ability)) return false;
+        if (!CanUse(ability, aimPosition)) return false;
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
         m_stepIndex = 0;
@@ -239,9 +239,11 @@ public class EntityAbilityModule : EntityModule
         m_stepIndex = 0;
     }
 
-    private bool CanUse(AbilityConfig ability)
+    private bool CanUse(AbilityConfig ability, Vector3 targetPosition)
     {
         if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
+        if (ability.range > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.range)
+            return false;
         return true;
     }
 
@@ -291,7 +293,8 @@ public class EntityAbilityModule : EntityModule
                 };
             }
 
-            yield return new WaitForSeconds(applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1));
+            if (applicationInfo.repeatCount > 1)
+                yield return new WaitForSeconds(applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1));
         }
     }
 
