@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_TourbiLoL
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
-  abilityName: 
+  abilityName: Tourbi LoL
   icon: {fileID: 0}
   description: 
-  range: 3
+  range: 2.5
   cooldown: 6
   sfx: 0
   sfxDelay: 0

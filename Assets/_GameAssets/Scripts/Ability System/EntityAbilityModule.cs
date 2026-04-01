@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using Lean.Pool;
 using MyBox;
-using NUnit.Framework;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
-using UnityEngine.XR;
 using Utils;
+using System.Threading.Tasks;
 
 public class EntityAbilityModule : EntityModule
 {
@@ -34,7 +33,7 @@ public class EntityAbilityModule : EntityModule
     private AbilityContext m_activeContext;
     private bool m_isAutoAttack;
     private int m_stepIndex;
-    private Dictionary<string, float> m_cooldowns = new();
+    [SerializeField] private Dictionary<string, float> m_cooldowns = new();
 
     public event Action<AbilityConfig> OnAbilityUsed;
     public event Action<AbilityConfig> OnAbilityAdded;
@@ -114,12 +113,14 @@ public class EntityAbilityModule : EntityModule
 
     public bool TryUseAbility(AbilityConfig ability, Vector3 aimPosition)
     {
+        // this.Log($"Trying to use ability {ability.abilityName} toward {aimPosition}. CanUse={CanUse(ability, aimPosition)}");
         if (!CanUse(ability, aimPosition)) return false;
 
         m_cooldowns[ability.abilityName] = ability.cooldown;
         m_stepIndex = 0;
         bool started = StartAbility(ability, aimPosition, isAutoAttack: false);
         if (started) OnAbilityUsed?.Invoke(ability);
+
         return started;
     }
 
@@ -191,16 +192,13 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    internal void HandleAnimationActive()
+    internal async void HandleAnimationActive()
     {
-        // this.Log($"Handling animation active event. stepIndex={m_stepIndex}, activeAbility={m_activeAbility?.abilityName}, isAutoAttack={m_isAutoAttack}");
+        this.Log($"Handling animation active event. stepIndex={m_stepIndex}, activeAbility={m_activeAbility?.abilityName}, isAutoAttack={m_isAutoAttack}, caster={m_activeContext?.Caster.name}, aimPosition={m_activeContext?.AimPosition}, closestEntity={m_activeContext?.ClosestEntity?.name}");
         if (m_activeAbility == null) return;
 
         // Use the current step index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)
         AbilityStep activeStep = m_activeAbility.steps[m_stepIndex];
-        List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
-
-        StartCoroutine(HandleReapetitionCR(activeStep, targets));
 
         if (activeStep.isRooting)
         {
@@ -210,6 +208,8 @@ public class EntityAbilityModule : EntityModule
         }
         else
             IsCastRooted = false;
+
+        await HandleReapetition(activeStep);
 
         m_stepIndex++;
         m_activeContext.CurrentStepIndex = m_stepIndex;
@@ -263,6 +263,7 @@ public class EntityAbilityModule : EntityModule
 
     private bool CanUse(AbilityConfig ability, Vector3 targetPosition)
     {
+        if (m_activeAbility != null) return false;
         if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
         if (ability.range > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.range)
             return false;
@@ -287,11 +288,14 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    private IEnumerator HandleReapetitionCR(AbilityStep activeStep, List<Entity> targets)
+    private async Task HandleReapetition(AbilityStep activeStep)
     {
         AbilityApplicationInfo applicationInfo = activeStep.applicationInfos.Count > 0 ? activeStep.applicationInfos[0] : null;
         for (int i = 0; i < applicationInfo.repeatCount; i++)
         {
+            List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
+            // this.Log($"Resolved targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
+
             HandleEffects(activeStep, targets);
 
             if (applicationInfo.repeatFX || i == 0)
@@ -316,7 +320,7 @@ public class EntityAbilityModule : EntityModule
             }
 
             if (applicationInfo.repeatCount > 1)
-                yield return new WaitForSeconds(applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1));
+                await Task.Delay((int)(applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1) * 1000));
         }
     }
 
@@ -363,6 +367,7 @@ public class EntityAbilityModule : EntityModule
 
     private void HandleEffects(AbilityStep activeStep, List<Entity> targets)
     {
+        // this.Log($"Handling effects for step {activeStep} on targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
         foreach (var target in targets)
         {
             foreach (var entry in activeStep.effects)
