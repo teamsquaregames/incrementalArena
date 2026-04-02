@@ -19,7 +19,7 @@ public static class ResolveApplication
             // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
             _ => null
         };
-        context.Caster.Log($"Preselected targets based on quick target {targetingInfo.quickTarget}: {string.Join(", ", preselectedTargets?.ConvertAll(t => t.name) ?? new List<string> { "None" })}");
+        //context.Caster.Log($"Preselected targets based on quick target {targetingInfo.quickTarget}: {string.Join(", ", preselectedTargets?.ConvertAll(t => t.name) ?? new List<string> { "None" })}");
 
         Vector3 position = targetingInfo.quickTarget switch
         {

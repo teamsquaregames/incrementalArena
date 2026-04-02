@@ -194,7 +194,7 @@ public class EntityAbilityModule : EntityModule
 
     internal async void HandleAnimationActive()
     {
-        this.Log($"Handling animation active event. stepIndex={m_stepIndex}, activeAbility={m_activeAbility?.abilityName}, isAutoAttack={m_isAutoAttack}, caster={m_activeContext?.Caster.name}, aimPosition={m_activeContext?.AimPosition}, closestEntity={m_activeContext?.ClosestEntity?.name}");
+        //this.Log($"Handling animation active event. stepIndex={m_stepIndex}, activeAbility={m_activeAbility?.abilityName}, isAutoAttack={m_isAutoAttack}, caster={m_activeContext?.Caster.name}, aimPosition={m_activeContext?.AimPosition}, closestEntity={m_activeContext?.ClosestEntity?.name}");
         if (m_activeAbility == null) return;
 
         // Use the current step index for auto-attacks (not yet incremented — that happens in HandleAnimationEnd)

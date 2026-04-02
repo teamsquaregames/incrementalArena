@@ -22,10 +22,10 @@ public class EntityHealthModule : EntityModule
     [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_deathFxPefab;
 
-    [FoldoutGroup("Feedback settings")][SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
-    [FoldoutGroup("Feedback settings")][SerializeField, Min(0f)] private float punchDuration = 0.35f;
-    [FoldoutGroup("Feedback settings")][SerializeField, Min(1)] private int punchVibrato = 6;
-    [FoldoutGroup("Feedback settings")][SerializeField, Range(0f, 1f)] private float punchElasticity = 0.5f;
+    [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
+    [FoldoutGroup("Feedback settings"), SerializeField, Min(0f)] private float punchDuration = 0.35f;
+    [FoldoutGroup("Feedback settings"), SerializeField, Min(1)] private int punchVibrato = 6;
+    [FoldoutGroup("Feedback settings"), SerializeField, Range(0f, 1f)] private float punchElasticity = 0.5f;
 
     private float m_currentHealth;
     private bool m_isDead;
@@ -48,6 +48,12 @@ public class EntityHealthModule : EntityModule
         }
     }
 
+    public override void CacheReferences()
+    {
+        base.CacheReferences();
+        m_animator = GetComponentInChildren<Animator>();
+    }
+
     protected override void OnInitialize()
     {
         base.OnInitialize();
@@ -61,14 +67,6 @@ public class EntityHealthModule : EntityModule
         m_currentHealth = MaxHealth;
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            TakeDamage(Random.Range(5, 20), false);
-        }
-    }
-
     private void PlayDamageFeedback()
     {
         PlayPunchScale();
@@ -78,12 +76,15 @@ public class EntityHealthModule : EntityModule
             sheenModule.PlayWhiteSheen();
         }
 
+        SoundManager.Instance.PlaySound(SoundKeys.SFX_Impact);
+    }
+
+    public void TriggerDamageAnimation()
+    {
         if (m_animator != null)
         {
             m_animator.SetTrigger("Damage");
         }
-
-        SoundManager.Instance.PlaySound(SoundKeys.SFX_Impact);
     }
 
     private void PlayPunchScale()

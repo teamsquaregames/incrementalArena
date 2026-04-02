@@ -696,6 +696,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: f9cd319bd443abb49894f60171ce075d, type: 2}
     - target: {fileID: 95458022740784092, guid: cb4ff29f6f657bc4d94ed49c50a70be2, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Root'\n\tFrom animation clip 'An_Swing_360
+        aled'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 95458022740784092, guid: cb4ff29f6f657bc4d94ed49c50a70be2, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -1067,6 +1074,10 @@ PrefabInstance:
       value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: spawnVFX
+      value: 
+      objectReference: {fileID: 19820956, guid: 56c3274d2f9ec214ab584a80b5ce2d6d, type: 3}
+    - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_collider
       value: 
       objectReference: {fileID: 5817623271102131256}
@@ -1190,9 +1201,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8633641482994889394}
-    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6280457273270024880}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
@@ -1232,26 +1240,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
   m_PrefabInstance: {fileID: 7714038588239923713}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8633641482994889394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4106009951781145495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity
-  m_collider: {fileID: 5817623271102131256}
-  m_knockUpCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_modelT: {fileID: 0}
 --- !u!114 &6280457273270024880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,9 +1357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityModule
   m_gizmos: {fileID: 7472509132106756632}
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
-  m_abilities:
-  - {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
-  - {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
+  m_abilities: []
   m_animator: {fileID: 2673431603351796059}
   IsCastRooted: 0
 --- !u!114 &8929558195775867111

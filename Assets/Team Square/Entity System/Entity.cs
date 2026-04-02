@@ -2,31 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Lean.Pool;
+using MyBox;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 public class Entity : MonoBehaviour, IPoolable
 {
     [TitleGroup("References")]
     [SerializeField] private Collider m_collider;
+    [SerializeField] private ParticleSystem spawnVFX;
+    
+    [FoldoutGroup("Status"), SerializeField] private AnimationCurve m_knockUpCurve;
+    [FoldoutGroup("Status"), SerializeField] private Transform m_modelT;
 
     private Dictionary<Type, EntityModule> m_modules = new Dictionary<Type, EntityModule>();
-
-    public Collider Collider => m_collider;
-
-    [FoldoutGroup("Status")]
-    public bool IsStunned => m_isStunned;
-    [FoldoutGroup("Status")]
-    [SerializeField] private AnimationCurve m_knockUpCurve;
-    [FoldoutGroup("Status")]
-    [SerializeField] private Transform m_modelT;
-    private bool m_isStunned;
-    private float m_stunEndTime;
-    private Coroutine m_stunCR;
+    private bool m_isStaggered;
+    private float m_staggerEndTime;
+    private Coroutine m_staggerCR;
     private Coroutine m_knockUpCR;
 
+    public Collider Collider => m_collider;
+    public bool IsStaggered => m_isStaggered;
+    
+    
 
     [Button]
     public void CacheReferences()
@@ -99,8 +101,35 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void OnSpawn()
     {
+        LeanPool.Spawn(spawnVFX, transform.position, Quaternion.identity);
+        
         RegisterModules();
         Register();
+    }
+
+    private void OnEnable()
+    {
+        ResetStaggerState();
+    }
+
+    private void ResetStaggerState()
+    {
+        m_isStaggered = false;
+        m_staggerEndTime = 0f;
+
+        if (m_staggerCR != null)
+        {
+            StopCoroutine(m_staggerCR);
+            m_staggerCR = null;
+        }
+
+        if (m_knockUpCR != null)
+        {
+            StopCoroutine(m_knockUpCR);
+            m_knockUpCR = null;
+        }
+
+        m_modelT.localPosition = Vector3.zero;
     }
 
     public void OnDespawn()
@@ -108,51 +137,63 @@ public class Entity : MonoBehaviour, IPoolable
     }
 
 
-    public async void Stun(float duration, bool knockUp = false)
+    public void Stagger(float duration)
     {
-        this.LogWarning($"PREVIEW! Need more implementations. Entity {name} is stunned for {duration} seconds.");
-        m_isStunned = true;
+        m_isStaggered = true;
 
-        if (m_stunCR != null)
+        if (m_staggerCR != null)
         {
-            m_stunEndTime = m_stunEndTime + duration;
+            m_staggerEndTime += duration;
         }
         else
         {
-            m_stunEndTime = Time.time + duration;
-            m_stunCR = StartCoroutine(StunCR(duration));
+            m_staggerEndTime = Time.time + duration;
+            m_staggerCR = StartCoroutine(StaggerCR());
         }
 
-        if (knockUp)
+        if (TryGetModule(out EntityHealthModule healthModule))
         {
-            if (m_knockUpCR != null)
-            {
-                StopCoroutine(m_knockUpCR);
-            }
-            m_knockUpCR = StartCoroutine(KnockUpCR(duration));
+            healthModule.TriggerDamageAnimation();
         }
     }
 
-    private IEnumerator StunCR(float duration)
+    public void Stun(float duration)
     {
-        while (Time.time < m_stunEndTime)
+        this.LogWarning($"PREVIEW! Need more implementations. Entity {name} is stunned for {duration} seconds.");
+        Stagger(duration);
+    }
+
+    public void KnockUp(float duration)
+    {
+        Stagger(duration);
+
+        if (m_knockUpCR != null)
+        {
+            StopCoroutine(m_knockUpCR);
+        }
+        m_knockUpCR = StartCoroutine(KnockUpCR(duration));
+    }
+
+    private IEnumerator StaggerCR()
+    {
+        while (Time.time < m_staggerEndTime)
         {
             yield return null;
         }
 
-        m_isStunned = false;
-        m_stunCR = null;
+        m_isStaggered = false;
+        m_staggerCR = null;
     }
 
     private IEnumerator KnockUpCR(float duration)
     {
         float knockUpStartTime = Time.time;
 
-        while (m_isStunned)
+        while (m_isStaggered)
         {
             float elapsed = Time.time - knockUpStartTime;
             float height = m_knockUpCurve.Evaluate(elapsed / duration);
-            m_modelT.position = Vector3.zero + Vector3.up * height;
+            m_modelT.localPosition = Vector3.zero + Vector3.up * height;
             yield return new WaitForEndOfFrame();
         }
     }
