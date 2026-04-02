@@ -29,14 +29,14 @@ public class CursorBrainModule : EntityBrainModule
         Entity targetEnemy = GetClosestEnemyInCursor(Owner);
 
         // ── 2. Try to use a regular ability automatically if an enemy is present
-        if (targetEnemy != null)
+        if (targetEnemy != null && !abilityModule.IsUsingAbility)
         {
             Vector3 aimPoint = targetEnemy.transform.position.OffsetY(0f);
 
             // Iterate over available abilities and fire the first one that is off cooldown
             for (int i = 0; i < abilityModule.Abilities.Count; i++)
             {
-                this.Log($"Trying to use ability {abilityModule.Abilities[i].name} toward {aimPoint}");
+                // this.Log($"Trying to use ability {abilityModule.Abilities[i].name} toward {aimPoint}");
                 if (TryUseAbility(i, aimPoint))
                     return; // ability fired — skip auto-attack this frame
             }

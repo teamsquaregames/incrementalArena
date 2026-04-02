@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_DashStomp
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
-  abilityName: 
+  abilityName: Dash Stomp
   icon: {fileID: 0}
   description: 
   range: 6
@@ -22,7 +22,7 @@ MonoBehaviour:
   steps:
   - isRooting: 1
     targetingInfo:
-      quickTarget: 2
+      quickTarget: 1
       target: 0
       delayInterval: 0
       retriggerAnimation: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
         frequency: 0
         stackEffect: 0
       delay: 0
-      repeatCount: 0
+      repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
       additionalRotation: 0
