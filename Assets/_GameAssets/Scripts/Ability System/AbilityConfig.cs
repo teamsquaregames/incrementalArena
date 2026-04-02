@@ -11,7 +11,7 @@ public class AbilityConfig : ScriptableObject
     [TextArea] public string description;
 
     [TitleGroup("General")]
-    public float range = 2f;
+    public Vector2 range = new Vector2(0f, 2f);
     public float cooldown = 1f;
     
     [TitleGroup("SFXs")]

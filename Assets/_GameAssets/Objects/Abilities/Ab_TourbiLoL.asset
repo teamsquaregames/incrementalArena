@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Tourbi LoL
   icon: {fileID: 0}
   description: 
-  range: 2.5
+  range: {x: 0, y: 2.2}
   cooldown: 6
   sfx: 0
   sfxDelay: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
         projectileVisualEffect: {fileID: 0}
       aoeInfo:
         effectShape: 0
-        radius: 3
+        radius: 2.5
         scale: {x: 0, y: 0, z: 0}
         angle: 0
         range: 0
@@ -63,8 +63,8 @@ MonoBehaviour:
         frequency: 0
         stackEffect: 0
       delay: 0
-      repeatCount: 5
-      repeatDuration: 1.7
+      repeatCount: 10
+      repeatDuration: 2
       repeatFX: 0
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}

@@ -48,10 +48,11 @@ public class PlayerBrainModule : EntityBrainModule
             new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
             new Vector3(targetPosition.x, 0f, targetPosition.z));
 
-        bool inAttackRange = targetEnemy != null &&
-                             distanceToTarget <= abilityModule.AutoAttack.range;
+            bool inAARange = targetEnemy != null
+                                 && distanceToTarget <= abilityModule.AutoAttack.range.y
+                                 && distanceToTarget >= abilityModule.AutoAttack.range.x;
 
-        if (inAttackRange)
+        if (inAARange)
         {
             m_isMoving = false;
             StopMovement();

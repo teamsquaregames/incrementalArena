@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
-  range: 2
+  range: {x: 0, y: 2}
   cooldown: 0
   sfx: 0
   sfxDelay: 0
@@ -52,10 +52,10 @@ MonoBehaviour:
       aoeInfo:
         effectShape: 1
         radius: 2
-        scale: {x: 6, y: 2, z: 3}
+        scale: {x: 4, y: 2, z: 2.5}
         angle: 0
         range: 0
-        offset: {x: 0, y: 0, z: 0.5}
+        offset: {x: 0, y: 0, z: 1}
         effectDirection: 2
         effectPosition: 0
         time: 0
@@ -113,10 +113,10 @@ MonoBehaviour:
       aoeInfo:
         effectShape: 1
         radius: 3
-        scale: {x: 6, y: 2, z: 3}
+        scale: {x: 4, y: 2, z: 2.5}
         angle: 0
         range: 0
-        offset: {x: 0, y: 0, z: 0.5}
+        offset: {x: 0, y: 0, z: 1}
         effectDirection: 0
         effectPosition: 0
         time: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
         scale: {x: 0, y: 0, z: 0}
         angle: 0
         range: 0
-        offset: {x: 0, y: 0, z: 1}
+        offset: {x: 0, y: 0, z: 1.5}
         effectDirection: 0
         effectPosition: 0
         time: 0
