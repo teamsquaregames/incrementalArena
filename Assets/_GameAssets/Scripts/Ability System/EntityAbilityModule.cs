@@ -29,7 +29,7 @@ public class EntityAbilityModule : EntityModule
 
     private AnimatorOverrideController m_overrideController;
 
-    [InlineProperty] private AbilityConfig m_activeAbility;
+    [SerializeField, ReadOnly] private AbilityConfig m_activeAbility;
     private AbilityContext m_activeContext;
     private bool m_isAutoAttack;
     private int m_stepIndex;
@@ -58,6 +58,13 @@ public class EntityAbilityModule : EntityModule
     protected override void OnInitialize()
     {
         base.OnInitialize();
+
+        m_activeAbility = null;
+        m_isAutoAttack = false;
+        m_stepIndex = 0;
+        m_cooldowns.Clear();
+        IsCastRooted = false;
+
         InitOverrideController();
     }
 

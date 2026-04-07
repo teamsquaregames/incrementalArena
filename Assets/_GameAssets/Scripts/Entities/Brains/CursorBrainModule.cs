@@ -22,6 +22,8 @@ public class CursorBrainModule : EntityBrainModule
 
     protected override void Think()
     {
+        // this.Log("Thinking...");
+
         if (CursorManager.Instance == null) return;
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
