@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Lean.Pool;
 using MyBox;
 using Stats;
@@ -66,7 +67,11 @@ public class LevelManager : Singleton<LevelManager>
         m_currentWave = 0;
         m_waveEnemies.Clear();
         LeanPool.Spawn(m_playerPrefab);
-        StartWave();
+
+        DOVirtual.DelayedCall(3f, () =>
+        {
+            StartWave();
+        });
     }
 
     #endregion

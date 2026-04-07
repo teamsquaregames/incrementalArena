@@ -72,7 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
-  m_collider: {fileID: 0}
+  m_collider: {fileID: 4301391412074964537}
+  spawnVFX: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   m_knockUpCurve:
     serializedVersion: 2
     m_Curve:

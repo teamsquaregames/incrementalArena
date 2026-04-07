@@ -20,9 +20,5 @@ public class GameAssets : ScriptableObject
 
     [AssetList(Path = "Team Square/Currency/Objects", AutoPopulate = true)]
     public CurrencyAsset[] currencyAssets;
-
     public FloatingTextConfig critTextConfig;
-
-    // [AssetList(Path = "_GameAssets/Stats/")]
-    // public StatData[] statData;
-}
+}   
