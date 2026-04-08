@@ -8,6 +8,7 @@ using Stats;
 using UnityEngine;
 using Utils;
 using System.Threading.Tasks;
+using Random = UnityEngine.Random;
 
 public class EntityAbilityModule : EntityModule
 {

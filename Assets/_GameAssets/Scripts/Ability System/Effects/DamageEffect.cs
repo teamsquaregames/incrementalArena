@@ -1,4 +1,5 @@
 using Stats;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Effects/Damage")]
 public class DamageEffect : AbilityEffect
