@@ -47,17 +47,10 @@ public class EntityHealthUIModule : EntityModule
         if (delta < 0f)
         {
             float amount = Mathf.Abs(delta);
-            string text = isCrit
-                ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}"
-                : amount.ToString("N0");
-            FloatingTextConfig config = isCrit
-                ? GameAssets.Instance.critDamageTextConfig
-                : GameAssets.Instance.damageTextConfig;
+            string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
+            FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
+            
             FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, text, config);
-        }
-        else
-        {
-            FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, delta.ToString("N0"), m_floatingTextConfig);
         }
     }
 
