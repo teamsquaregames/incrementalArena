@@ -1,5 +1,4 @@
 using Stats;
-using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Effects/Damage")]
 public class DamageEffect : AbilityEffect
@@ -9,14 +8,10 @@ public class DamageEffect : AbilityEffect
         if (!target.TryGetModule(out EntityHealthModule healthModule)) return;
 
         float damage = ctx.Value;
-        bool isCrit = false;
 
         if (ctx.Caster.TryGetModule(out EntityStatModule statModule))
-        {
             damage += statModule.GetValue(StatType.AttackDamage);
-            isCrit = Random.value < statModule.GetValue(StatType.CriticalChance);
-        }
 
-        healthModule.TakeDamage(damage, isCrit);
+        healthModule.TakeDamage(damage, ctx.IsCrit);
     }
 }

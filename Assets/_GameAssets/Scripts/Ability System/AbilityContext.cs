@@ -8,4 +8,5 @@ public class AbilityContext
     public Entity ClosestEntity;
     public int CurrentStepIndex;
     public float Value;
+    public bool IsCrit;
 }

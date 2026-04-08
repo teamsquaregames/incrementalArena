@@ -368,6 +368,10 @@ public class EntityAbilityModule : EntityModule
     private void HandleEffects(AbilityStep activeStep, List<Entity> targets)
     {
         // this.Log($"Handling effects for step {activeStep} on targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
+        m_activeContext.IsCrit = false;
+        if (m_activeContext.Caster.TryGetModule(out EntityStatModule statModule))
+            m_activeContext.IsCrit = Random.value < statModule.GetValue(StatType.CriticalChance);
+
         foreach (var target in targets)
         {
             foreach (var entry in activeStep.effects)
