@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 
 public class EntityHealthModule : EntityModule
 {
-    public Action<float, float, float> OnHealthChanged;
+    public Action<float, float, float, bool> OnHealthChanged;
     public Action<float, float> OnDamageTaken;
     public Action<float, float> OnHealed;
     public Action OnDeathStart;
@@ -107,17 +107,10 @@ public class EntityHealthModule : EntityModule
         m_currentHealth = Mathf.Max(0f, m_currentHealth - amount);
         float delta = m_currentHealth - previous;
 
-        string amountText = "";
-        if (isCrit)
-        {
-            amountText += "<sprite=\"crit\" name=\"crit\"> ";
-        }
-        amountText += amount.ToString("N0");
-
         PlayDamageFeedback();
 
         OnDamageTaken?.Invoke(amount, m_currentHealth);
-        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta);
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit);
 
         if (m_currentHealth <= 0f)
         {
