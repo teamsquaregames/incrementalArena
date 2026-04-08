@@ -13,6 +13,6 @@ public class DamageEffect : AbilityEffect
         if (ctx.Caster.TryGetModule(out EntityStatModule statModule))
             damage += statModule.GetValue(StatType.AttackDamage);
 
-        healthModule.TakeDamage(damage, false);
+        healthModule.TakeDamage(damage, ctx.IsCrit);
     }
 }

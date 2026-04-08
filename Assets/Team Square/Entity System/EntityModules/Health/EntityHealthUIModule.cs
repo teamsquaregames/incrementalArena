@@ -39,12 +39,19 @@ public class EntityHealthUIModule : EntityModule
         m_genericGauge = null;
     }
 
-    private void HandleHealthChanged(float currentHealth, float maxHealth, float delta)
+    private void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit)
     {
         if (m_genericGauge == null) return;
         m_genericGauge.SetValue(currentHealth, maxHealth);
-        
-        FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, delta.ToString("N0"), m_floatingTextConfig);
+
+        if (delta < 0f)
+        {
+            float amount = Mathf.Abs(delta);
+            string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
+            FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
+            
+            FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, text, config);
+        }
     }
 
     private void OnDeathStart()

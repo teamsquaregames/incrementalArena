@@ -8,6 +8,7 @@ namespace Stats
         MoveSpeed,
         Armor,
         EnemiesPerWave,
-        RunDuration
+        RunDuration,
+        CriticalChance
     }
 }

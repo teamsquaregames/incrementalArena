@@ -101,19 +101,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '100
+  m_text: '100 <sprite="crit" name="crit">
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 09edf4f5598fe944ba2698b97b75f188, type: 2}
-  m_sharedMaterial: {fileID: -5152807015047547772, guid: 09edf4f5598fe944ba2698b97b75f188, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d20824bc4acb4db42aa73559672e79c7, type: 2}
+  m_sharedMaterial: {fileID: -5152807015047547772, guid: d20824bc4acb4db42aa73559672e79c7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278209535
+  m_fontColor: {r: 1, g: 0.29316193, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIFloatingText
   text: {fileID: 1136236474409571087}
   m_parent: {fileID: 6461446075833695348}
-  m_linkedConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
+  m_linkedConfig: {fileID: 11400000, guid: 40acaab185154ae4da3a1d9aacb76e0c, type: 2}
 --- !u!222 &2893954711107260461
 CanvasRenderer:
   m_ObjectHideFlags: 0

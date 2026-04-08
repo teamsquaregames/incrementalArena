@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currencyAssets:
   - {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-  critTextConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
-  dustBurstVFX: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
+  damageTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
+  critDamageTextConfig: {fileID: 11400000, guid: 40acaab185154ae4da3a1d9aacb76e0c, type: 2}
