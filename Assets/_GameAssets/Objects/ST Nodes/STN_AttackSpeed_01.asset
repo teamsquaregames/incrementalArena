@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_PlaceHolder 1
+  m_Name: STN_AttackSpeed_01
   m_EditorClassIdentifier: 
-  m_displayName: STN_PlaceHolder 1
-  m_id: STN_PlaceHolder 1
-  m_levelingType: 1
-  m_maxLevel: 5
-  m_rank: 1
-  m_icon: {fileID: 21300000, guid: ddc2df63915ad5f41b148846bd73c413, type: 3}
-  m_description: TNN_PlaceHolder 1
+  m_displayName: Attack Speed
+  m_id: STN_AttackSpeed_01
+  m_levelingType: 0
+  m_maxLevel: 3
+  m_rank: 0
+  m_icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
+  m_description: Improve basic attack speed
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0f000000000000001e000000000000003c000000000000007800000000000000f000000000000000
-  m_statModifiers: []
+    m_amount: 0f000000000000001e000000000000002d00000000000000
+  m_statModifiers:
+  - id: STN_AttackDamage_01
+    entityType: 1
+    statType: 2
+    type: 1
+    m_values:
+    - 5
+    - 10
+    - 15

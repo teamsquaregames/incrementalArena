@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -38,5 +39,23 @@ public struct Cost
             m_amount = newArr;
         }
         m_amount[index] = value;
+    }
+
+    public void ResizeAmounts(int targetSize)
+    {
+        targetSize = Mathf.Max(0, targetSize);
+
+        if (m_amount == null)
+        {
+            m_amount = new ulong[targetSize];
+            return;
+        }
+
+        if (m_amount.Length == targetSize)
+            return;
+
+        ulong[] resized = new ulong[targetSize];
+        Array.Copy(m_amount, resized, Mathf.Min(m_amount.Length, targetSize));
+        m_amount = resized;
     }
 }

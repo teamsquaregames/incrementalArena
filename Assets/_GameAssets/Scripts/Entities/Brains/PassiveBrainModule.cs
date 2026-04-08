@@ -149,20 +149,21 @@ public class PassiveBrainModule : EntityBrainModule
     /// Returns the closest live enemy within <paramref name="range"/>,
     /// or null if none qualifies. Used for ability and auto-attack targeting.
     /// </summary>
-    private Entity GetClosestEnemyInRange(float range)
+    private Entity GetClosestEnemyInRange(Vector2 range)
     {
         if (EntityManager.Instance == null) return null;
 
         List<Entity> enemies  = EntityManager.Instance.Enemies;
         Entity       closest  = null;
-        float        sqrRange = range * range;
+        float        sqrRangeMin = range.x * range.x;
+        float        sqrRangeMax = range.y * range.y;
         float        bestSqr  = float.MaxValue;
 
         foreach (Entity enemy in enemies)
         {
             if (enemy == null) continue;
             float sqrDist = (enemy.transform.position - Owner.transform.position).sqrMagnitude;
-            if (sqrDist <= sqrRange && sqrDist < bestSqr)
+            if (sqrDist >= sqrRangeMin && sqrDist <= sqrRangeMax && sqrDist < bestSqr)
             {
                 bestSqr = sqrDist;
                 closest = enemy;

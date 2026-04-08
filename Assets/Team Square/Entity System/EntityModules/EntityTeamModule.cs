@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public enum Team
@@ -8,7 +9,9 @@ public enum Team
 
 public class EntityTeamModule : EntityModule
 {
-    [SerializeField] private Team team;
+    [SerializeField]
+    [EnumToggleButtons]
+    private Team team;
 
     public Team Team => team;
 }

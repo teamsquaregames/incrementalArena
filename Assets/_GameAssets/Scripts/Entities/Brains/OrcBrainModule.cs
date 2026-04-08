@@ -31,7 +31,7 @@ public class OrcBrainModule : EntityBrainModule
             new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
             new Vector3(playerPos.x, 0f, playerPos.z));
 
-        bool inAttackRange = distanceToPlayer <= abilityModule.AutoAttack.range;
+        bool inAttackRange = distanceToPlayer <= abilityModule.AutoAttack.range.y;
         
         //MoveToward(playerPos);
         

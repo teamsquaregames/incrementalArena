@@ -22,6 +22,8 @@ public class CursorBrainModule : EntityBrainModule
 
     protected override void Think()
     {
+        // this.Log("Thinking...");
+
         if (CursorManager.Instance == null) return;
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
@@ -53,10 +55,11 @@ public class CursorBrainModule : EntityBrainModule
                 new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
                 new Vector3(targetPosition.x, 0f, targetPosition.z));
 
-            bool inAttackRange = targetEnemy != null
-                                 && distanceToTarget <= abilityModule.AutoAttack.range;
+            bool inAARange = targetEnemy != null
+                                 && distanceToTarget <= abilityModule.AutoAttack.range.y
+                                 && distanceToTarget >= abilityModule.AutoAttack.range.x;
 
-            if (inAttackRange)
+            if (inAARange)
             {
                 StopMovement();
                 TryAutoAttack(targetEnemy.transform.position.OffsetY(0f));

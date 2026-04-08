@@ -471,6 +471,8 @@ public class STNodeButton : CustomButton
 
         if (m_asset == null) return;
 
+        name = $"{m_asset.ID}";
+
         // Icon
         if (m_icon != null)
             m_icon.sprite = m_asset.Icon;

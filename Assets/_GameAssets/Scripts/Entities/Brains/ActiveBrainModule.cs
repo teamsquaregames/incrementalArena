@@ -73,7 +73,7 @@ public class ActiveBrainModule : EntityBrainModule
             // Place the target at exactly AutoAttack.range in the aim direction
             // so the attack resolves at max range regardless of cursor distance.
             Vector3 aimDir          = (mouseWorld - Owner.transform.position).SetY(0).normalized;
-            Vector3 attackTargetPos = Owner.transform.position + aimDir * abilityModule.AutoAttack.range;
+            Vector3 attackTargetPos = Owner.transform.position + aimDir * abilityModule.AutoAttack.range.y;
 
             TryAutoAttack(attackTargetPos.OffsetY(0f));
         }

@@ -75,6 +75,17 @@ public class STNodeAsset : ScriptableObject
 
     private void OnMaxLevelChanged()
     {
+        // resize amount array of each cost to fit the new max level
+        if (m_cost != null)
+        {
+            for (int i = 0; i < m_cost.Length; i++)
+            {
+                Cost cost = m_cost[i];
+                cost.ResizeAmounts(m_maxLevel);
+                m_cost[i] = cost;
+            }
+        }
+
         if (m_statModifiers == null) return;
 
         foreach (var modifier in m_statModifiers)
@@ -83,4 +94,29 @@ public class STNodeAsset : ScriptableObject
             modifier.ResizeValues(m_maxLevel);
         }
     }
+
+#if UNITY_EDITOR
+    private string m_previousId;
+
+    private void OnValidate()
+    {
+        if (m_id != m_previousId)
+            OnAssetChanged();
+    }
+
+    [Button]
+    private void OnAssetChanged()
+    {
+        ///. change le nom du fichier pour correspondre à l'ID
+        if (string.IsNullOrEmpty(m_id)) return;
+        string assetPath = UnityEditor.AssetDatabase.GetAssetPath(this);
+        string assetName = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+        if (assetName != m_id)
+        {
+            UnityEditor.AssetDatabase.RenameAsset(assetPath, m_id);
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+
+    }
+#endif
 }

@@ -30,7 +30,7 @@ public class EntityAbilityModule : EntityModule
 
     private AnimatorOverrideController m_overrideController;
 
-    [InlineProperty] private AbilityConfig m_activeAbility;
+    [SerializeField, ReadOnly] private AbilityConfig m_activeAbility;
     private AbilityContext m_activeContext;
     private bool m_isAutoAttack;
     private int m_stepIndex;
@@ -59,6 +59,13 @@ public class EntityAbilityModule : EntityModule
     protected override void OnInitialize()
     {
         base.OnInitialize();
+
+        m_activeAbility = null;
+        m_isAutoAttack = false;
+        m_stepIndex = 0;
+        m_cooldowns.Clear();
+        IsCastRooted = false;
+
         InitOverrideController();
     }
 
@@ -266,8 +273,8 @@ public class EntityAbilityModule : EntityModule
     {
         if (m_activeAbility != null) return false;
         if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
-        if (ability.range > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.range)
-            return false;
+        if (ability.range.y > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.range.y) return false;
+        if (ability.range.x > 0f && Vector3.Distance(Owner.transform.position, targetPosition) < ability.range.x) return false;
         return true;
     }
 
@@ -377,9 +384,26 @@ public class EntityAbilityModule : EntityModule
         {
             foreach (var entry in activeStep.effects)
             {
-                m_activeContext.Value = entry.value;
-                entry.effect?.Execute(m_activeContext, target);
+                if (ResolveTeamApplication(entry.teamApplication, target, Owner))
+                {
+                    m_activeContext.Value = entry.value;
+                    entry.effect?.Execute(m_activeContext, target);
+                }
             }
         }
+    }
+
+    private bool ResolveTeamApplication(TeamApplication application, Entity target, Entity owner)
+    {
+        target.TryGetModule(out EntityTeamModule targetTeamModule);
+        owner.TryGetModule(out EntityTeamModule ownerTeamModule);
+        bool isAlly = targetTeamModule.Team == ownerTeamModule.Team;
+
+        if (application.HasFlag(TeamApplication.Allies) && isAlly)
+            return true;
+        if (application.HasFlag(TeamApplication.Opponent) && !isAlly)
+            return true;
+
+        return false;
     }
 }

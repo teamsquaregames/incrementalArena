@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Ab_TourbiLoL
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
   abilityName: Tourbi LoL
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ddc2df63915ad5f41b148846bd73c413, type: 3}
   description: 
-  range: 2.5
+  range: {x: 0, y: 2.2}
   cooldown: 6
   sfx: 0
   sfxDelay: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
         projectileVisualEffect: {fileID: 0}
       aoeInfo:
         effectShape: 0
-        radius: 3
+        radius: 2.5
         scale: {x: 0, y: 0, z: 0}
         angle: 0
         range: 0
@@ -63,8 +63,8 @@ MonoBehaviour:
         frequency: 0
         stackEffect: 0
       delay: 0
-      repeatCount: 5
-      repeatDuration: 1.7
+      repeatCount: 10
+      repeatDuration: 2
       repeatFX: 0
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
@@ -78,4 +78,4 @@ MonoBehaviour:
     abilityClip: {fileID: 7400000, guid: 73aaee46dc94f8a4fb65439dcd9818c5, type: 2}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      value: 1
+      value: 0.5
