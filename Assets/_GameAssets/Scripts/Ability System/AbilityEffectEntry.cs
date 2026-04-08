@@ -2,15 +2,11 @@ using Sirenix.OdinInspector;
 using UnityEditor.ShaderGraph.Internal;
 using System;
 
-[Flags]
+[EnumToggleButtons]
 public enum TeamApplication
 {
-    None = 0,
-    Opponent = 1 << 0,   // 1
-    Allies = 1 << 1,   // 2
-    
-    // Combos pratiques (optionnel)
-    AllOptions = Opponent | Allies
+    Opponent = 0,
+    Allies = 1,
 }
 
 [System.Serializable]

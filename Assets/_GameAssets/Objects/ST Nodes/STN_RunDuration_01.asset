@@ -25,9 +25,9 @@ MonoBehaviour:
   m_statModifiers:
   - id: STN_Rewards_01
     entityType: 1
-    statType: 0
+    statType: 6
     type: 0
     m_values:
-    - 1
     - 2
-    - 3
+    - 4
+    - 6

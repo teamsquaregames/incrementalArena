@@ -10,21 +10,30 @@ public class AbilityStep
     [TitleGroup("Behaviour")]
     public bool isRooting;
     public TargetingInfo targetingInfo;
+    [PropertySpace(SpaceAfter = 10)]
     public List<AbilityApplicationInfo> applicationInfos = new List<AbilityApplicationInfo>();
 
-    [TitleGroup("VFXs")]
+    [FoldoutGroup("Visuals")]
+    [Title("VFXs")]
     public ParticleSystem mainVfx;
+    [FoldoutGroup("Visuals")]
     public VisualEffect mainVfxGraph;
+    [FoldoutGroup("Visuals")]
     public VFXPosition mainVFXPosition;
+    [FoldoutGroup("Visuals")]
     public ParticleSystem hitVfx;
+    [FoldoutGroup("Visuals")]
     public VisualEffect hitVfxGraph;
 
-    [TitleGroup("SFXs")]
+    [FoldoutGroup("Visuals")]
+    [Title("SFXs")]
     public SoundKeys activeSfx;
     
-    [TitleGroup("Animation")]
+    [FoldoutGroup("Visuals")]
+    [Title("Animation")]
     public AnimationClip abilityClip;
     
     [TitleGroup("Effects")]
+    [TableList]
     public List<AbilityEffectEntry> effects = new List<AbilityEffectEntry>();
 }

@@ -41,6 +41,9 @@ public class STNodeButton : CustomButton
     [SerializeField, Required, TitleGroup("Dependencies")] private CanvasGroup m_contentCanvasGroup;
     [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_demoLockObject;
     [SerializeField, Required, TitleGroup("Dependencies")] private Image m_maxLevelFlashImage;
+
+    private STNodeDetailsUIC m_detailsUI;
+
     
     [SerializeField, TitleGroup("Settings")] private bool m_lockedByDefault = true;
     [SerializeField, TitleGroup("Settings")] private bool m_demoLocked = false;
@@ -77,8 +80,9 @@ public class STNodeButton : CustomButton
 
     public override void Init()
     {
-        m_icon.sprite = m_asset.Icon;
+        this.Log($"Initializing STNodeButton: {name}");
         m_radialLayoutNode.onSetArrivingLink += onSetArrivingLink;
+        m_detailsUI = UIManager.Instance.GetCanvas<SkillTreeCanvas>().GetComponentInChildren<STNodeDetailsUIC>(true);
         UpdateVisuals();
     }
 
@@ -153,6 +157,8 @@ public class STNodeButton : CustomButton
 
         base.OnPointerEnter(eventData);
 
+        m_detailsUI.Setup(this);
+
         MouseCursorSetter.Instance?.SetCursorHighlight(true);
     }
 
@@ -161,6 +167,8 @@ public class STNodeButton : CustomButton
         if (!m_button.interactable) return;
         
         base.OnPointerExit(eventData);
+
+        m_detailsUI.Close();
 
         MouseCursorSetter.Instance?.SetCursorHighlight(false);
     }
