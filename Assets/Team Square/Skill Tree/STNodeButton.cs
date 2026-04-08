@@ -80,7 +80,7 @@ public class STNodeButton : CustomButton
 
     public override void Init()
     {
-        this.Log($"Initializing STNodeButton: {name}");
+        // this.Log($"Initializing STNodeButton: {name}");
         m_radialLayoutNode.onSetArrivingLink += onSetArrivingLink;
         m_detailsUI = UIManager.Instance.GetCanvas<SkillTreeCanvas>().GetComponentInChildren<STNodeDetailsUIC>(true);
         UpdateVisuals();

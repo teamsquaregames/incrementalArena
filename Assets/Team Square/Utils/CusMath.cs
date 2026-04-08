@@ -45,7 +45,7 @@ namespace Utils
 
             return successes;
         }
-        
+
         public static double RandomBinomial(double _trials, double _probability)
         {
             if (_probability == 1)
@@ -61,6 +61,30 @@ namespace Utils
             }
 
             return successes;
+        }
+
+
+
+        public static float RngGaussian()
+        {
+            return RngGaussian(0.5f, 0.15f);
+        }
+
+        public static float RngGaussian(float tipicalRange)
+        {
+            return RngGaussian(0.5f, tipicalRange);
+        }
+
+        // 🔸 Fonction interne : Box-Muller (génère une vraie gaussienne)
+        private static float RngGaussian(float moyenne, float tipicalRange)
+        {
+            float u1 = 1.0f - Random.value; // éviter log(0)
+            float u2 = 1.0f - Random.value;
+
+            float randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) *
+                                  Mathf.Sin(2.0f * Mathf.PI * u2);
+
+            return moyenne + tipicalRange * randStdNormal;
         }
     }
 }
