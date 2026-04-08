@@ -97,7 +97,7 @@ namespace Stats
                 if (mod.type == ModifierType.Multiplier)         multiplier      *= mod.value;
             }
 
-            m_cachedValue = flat * (1f + additivePercent) * multiplier;
+            m_cachedValue = flat * (1f + additivePercent / 100f) * multiplier;
             m_isDirty = false;
         }
     }
