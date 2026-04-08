@@ -9,10 +9,14 @@ public class DamageEffect : AbilityEffect
         if (!target.TryGetModule(out EntityHealthModule healthModule)) return;
 
         float damage = ctx.Value;
+        bool isCrit = false;
 
         if (ctx.Caster.TryGetModule(out EntityStatModule statModule))
+        {
             damage += statModule.GetValue(StatType.AttackDamage);
+            isCrit = Random.value < statModule.GetValue(StatType.CriticalChance);
+        }
 
-        healthModule.TakeDamage(damage, false);
+        healthModule.TakeDamage(damage, isCrit);
     }
 }
