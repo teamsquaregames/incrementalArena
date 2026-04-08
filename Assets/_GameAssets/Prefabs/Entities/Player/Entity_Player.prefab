@@ -1085,6 +1085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entity_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6276155754864417840, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_renderers.Array.size
       value: 12
@@ -1359,6 +1363,7 @@ MonoBehaviour:
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities: []
   m_animator: {fileID: 2673431603351796059}
+  m_activeAbility: {fileID: 0}
   IsCastRooted: 0
 --- !u!114 &8929558195775867111
 MonoBehaviour:
