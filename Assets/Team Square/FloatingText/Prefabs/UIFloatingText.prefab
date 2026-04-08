@@ -105,8 +105,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a5d22f97e3744534e8effd3e64a2c8b2, type: 2}
-  m_sharedMaterial: {fileID: 9222596237866965274, guid: a5d22f97e3744534e8effd3e64a2c8b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09edf4f5598fe944ba2698b97b75f188, type: 2}
+  m_sharedMaterial: {fileID: -5152807015047547772, guid: 09edf4f5598fe944ba2698b97b75f188, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIFloatingText
   text: {fileID: 1136236474409571087}
   m_parent: {fileID: 6461446075833695348}
-  m_linkedConfig: {fileID: 11400000, guid: cdb3af6339353804b9d16b0b6b4fe187, type: 2}
+  m_linkedConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
 --- !u!222 &2893954711107260461
 CanvasRenderer:
   m_ObjectHideFlags: 0
