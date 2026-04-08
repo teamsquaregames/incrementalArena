@@ -21,6 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
     private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
+    private List<RewardObject> m_spawnedRewards = new List<RewardObject>();
 
     private void Awake()
     {
@@ -56,9 +57,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         m_runTimerUIC.SetTimerPause(true);
         m_crowdRewards.SpawnRewards();
-        
+
         yield return new WaitForSeconds(5);
-        
+
+        CollectAllRewards();
         StartWave();
     }
     
@@ -76,7 +78,29 @@ public class LevelManager : Singleton<LevelManager>
 
     #endregion
 
+    #region Rewards
 
+    public void RegisterReward(RewardObject reward)
+    {
+        m_spawnedRewards.Add(reward);
+    }
+
+    public void UnregisterReward(RewardObject reward)
+    {
+        m_spawnedRewards.Remove(reward);
+    }
+
+    public void CollectAllRewards()
+    {
+        var rewardsToCollect = new List<RewardObject>(m_spawnedRewards);
+        foreach (var reward in rewardsToCollect)
+        {
+            if (reward != null)
+                reward.PickUp();
+        }
+    }
+
+    #endregion
 
     private void OnEntityUnregistered(Entity entity)
     {
