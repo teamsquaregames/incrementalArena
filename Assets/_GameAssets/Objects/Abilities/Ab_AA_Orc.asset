@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
-  range: 1.5
+  range: {x: 0, y: 2}
   cooldown: 0
   sfx: 0
   sfxDelay: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
     abilityClip: {fileID: 1827226128182048838, guid: 2bc14a1041470cd4094c562113975d25, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      teamApplication: 1
       value: 5
   - isRooting: 1
     targetingInfo:
@@ -137,6 +138,7 @@ MonoBehaviour:
     abilityClip: {fileID: 1827226128182048838, guid: c44b1a1611e2ba24da88eb8950bace42, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      teamApplication: 1
       value: 5
   - isRooting: 1
     targetingInfo:
@@ -196,4 +198,5 @@ MonoBehaviour:
     abilityClip: {fileID: 1827226128182048838, guid: 758fcd9471e07a74ab3bf0f1b55f062f, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      teamApplication: 1
       value: 12

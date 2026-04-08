@@ -78,6 +78,7 @@ MonoBehaviour:
     abilityClip: {fileID: 7400000, guid: e51de0dc2e58699469bf98933aa25f0e, type: 2}
     effects:
     - effect: {fileID: 11400000, guid: de3f6eaaf68fe5e46abff6a960bca37b, type: 2}
+      teamAffected: 0
       value: 0
   - isRooting: 1
     targetingInfo:
@@ -137,6 +138,8 @@ MonoBehaviour:
     abilityClip: {fileID: 0}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      teamAffected: 0
       value: 2
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
+      teamAffected: 0
       value: 1

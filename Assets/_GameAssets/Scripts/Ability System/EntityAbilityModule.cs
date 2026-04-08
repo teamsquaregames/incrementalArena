@@ -379,9 +379,26 @@ public class EntityAbilityModule : EntityModule
         {
             foreach (var entry in activeStep.effects)
             {
-                m_activeContext.Value = entry.value;
-                entry.effect?.Execute(m_activeContext, target);
+                if (ResolveTeamApplication(entry.teamApplication, target, Owner))
+                {
+                    m_activeContext.Value = entry.value;
+                    entry.effect?.Execute(m_activeContext, target);
+                }
             }
         }
+    }
+
+    private bool ResolveTeamApplication(TeamApplication application, Entity target, Entity owner)
+    {
+        target.TryGetModule(out EntityTeamModule targetTeamModule);
+        owner.TryGetModule(out EntityTeamModule ownerTeamModule);
+        bool isAlly = targetTeamModule.Team == ownerTeamModule.Team;
+
+        if (application.HasFlag(TeamApplication.Allies) && isAlly)
+            return true;
+        if (application.HasFlag(TeamApplication.Opponent) && !isAlly)
+            return true;
+
+        return false;
     }
 }
