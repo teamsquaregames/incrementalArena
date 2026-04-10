@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debuggingSettings:
     developmentBuild: 0
+    noMusic: 1
   cheatSettings:
     preventSave: 0
     startResetData: 1
@@ -22,6 +23,7 @@ MonoBehaviour:
     noMenu: 0
     disableBootStrapper: 0
     infiniteRunDuration: 0
+    usePrefabAbilities: 0
   gameSettings:
     isDemo: 0
     delayBeforeCanValidateOnClick: 0.2

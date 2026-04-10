@@ -58,6 +58,7 @@ public class EntityAbilityModule : EntityModule
 
     protected override void OnInitialize()
     {
+        // this.Log("Initializing EntityAbilityModule");
         base.OnInitialize();
 
         m_activeAbility = null;
@@ -65,6 +66,12 @@ public class EntityAbilityModule : EntityModule
         m_stepIndex = 0;
         m_cooldowns.Clear();
         IsCastRooted = false;
+
+        if (!GameConfig.Instance.cheatSettings.usePrefabAbilities)
+        {
+            m_abilities = new List<AbilityConfig>(GameData.Instance.unlockedAbilities);
+            // this.Log($"Loaded abilities from GameData: {string.Join(", ", m_abilities.ConvertAll(a => a.abilityName))}");
+        }
 
         InitOverrideController();
     }
@@ -134,14 +141,14 @@ public class EntityAbilityModule : EntityModule
 
     public void AddAbility(AbilityConfig ability)
     {
-        if (ability == null || m_abilities.Contains(ability)) return;
+        // this.Log($"Adding ability {ability.abilityName}");
         m_abilities.Add(ability);
         OnAbilityAdded?.Invoke(ability);
     }
 
     public void RemoveAbility(AbilityConfig ability)
     {
-        if (ability == null || !m_abilities.Remove(ability)) return;
+        // this.Log($"Removing ability {ability.abilityName}");
         OnAbilityRemoved?.Invoke(ability);
     }
 

@@ -132,7 +132,7 @@ public class NpcBrainModule : EntityBrainModule
 
     private async Task EnterIdleState()
     {
-        this.Log("Entering Idle State");
+        // this.Log("Entering Idle State");
         m_currentState = NpcState.Idle;
 
         StopMovement();

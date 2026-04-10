@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Lean.Pool;
 using MyBox;
+using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
 using Utils;
@@ -14,9 +15,14 @@ public class LevelManager : Singleton<LevelManager>
 {
     public Entity m_playerPrefab;
     public Entity m_enemyPrefab;
-    
-    [Header("Scene references")]
-    [SerializeField] private CrowdRewards m_crowdRewards;
+
+    [Header("Dependencies")]
+    [SerializeField, Required] private CrowdRewards m_crowdRewards;
+    [SerializeField, Required] private CrowdManager m_crowdManager;
+
+    [TitleGroup("Settings")]
+    [SerializeField] private Vector2 m_spawnRange = new Vector2(5, 5);
+    [SerializeField] private bool m_spawnRangeGizmos = true;
 
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
@@ -46,10 +52,10 @@ public class LevelManager : Singleton<LevelManager>
 
         for (int i = 0; i < count; i++)
         {
-            Entity enemy = LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
+            Entity enemy = LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-m_spawnRange.x, m_spawnRange.x), 0, Random.Range(-m_spawnRange.y, m_spawnRange.y)), Quaternion.identity);
             m_waveEnemies.Add(enemy);
         }
-        
+
         m_runTimerUIC.SetTimerPause(false);
     }
 
@@ -57,13 +63,14 @@ public class LevelManager : Singleton<LevelManager>
     {
         m_runTimerUIC.SetTimerPause(true);
         m_crowdRewards.SpawnRewards();
+        m_crowdManager.CrowdCheer();
 
         yield return new WaitForSeconds(5);
 
         CollectAllRewards();
         StartWave();
     }
-    
+
     private void OnRunTimerStart()
     {
         m_currentWave = 0;
@@ -109,6 +116,17 @@ public class LevelManager : Singleton<LevelManager>
         if (m_waveEnemies.Count == 0)
         {
             StartCoroutine(OnWaveComplete());
+        }
+    }
+
+
+    /// spawn range gizmos
+    private void OnDrawGizmosSelected()
+    {
+        if (m_spawnRangeGizmos)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(m_spawnRange.x * 2, 0.1f, m_spawnRange.y * 2));
         }
     }
 }

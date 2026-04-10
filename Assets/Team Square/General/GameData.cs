@@ -85,6 +85,8 @@ public class GameData : ScriptableObject
 				Instance.trackedValues.Add(trackedValueType, new TrackedValue(trackedValueType, 0));
 		}
 
+		Instance.unlockedAbilities = new List<AbilityConfig>();
+
 		Instance.Save();
 		Instance.OnResetData?.Invoke();
 	}
@@ -304,6 +306,7 @@ public class GameData : ScriptableObject
 	#region Teck Tree Nodes
 	[Header("Teck Tree")]
 	public SerializableDictionary<string, int> teckTreeNodesLevels = new SerializableDictionary<string, int>();
+	public List<AbilityConfig> unlockedAbilities = new List<AbilityConfig>();
 
 	public int GetNodeLevel(string _nodeID)
 	{
@@ -324,6 +327,15 @@ public class GameData : ScriptableObject
 
 		onNodeLevelUp?.Invoke(teckTreeNodesLevels[_nodeID]);
 		return teckTreeNodesLevels[_nodeID];
+	}
+	
+	public void UnlockAbility(AbilityConfig ability)
+	{
+		if (!unlockedAbilities.Contains(ability))
+		{
+			unlockedAbilities.Add(ability);
+			Save();
+		}
 	}
 	#endregion
 }

@@ -19,6 +19,8 @@ public class CrowdManager : MonoBehaviour
     [Button]
     public void CrowdCheer()
     {
+        SoundManager.Instance.PlaySound(SoundKeys.SFX_CrowdCheer);
+
         foreach (var animator in m_crowdAnimators)
         {
             float randomDelay = UnityEngine.Random.Range(0f, m_cheerMaxDelay);
