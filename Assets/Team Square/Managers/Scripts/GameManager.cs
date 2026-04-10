@@ -9,16 +9,18 @@ public class GameManager : Singleton<GameManager>
 {
     public Action onRunTimerStart;
     public Action onRunTimerEnd;
-    
+
     private bool m_isPaused = false;
     public bool IsPaused => m_isPaused;
-    
+
     void Start()
     {
         TutorialManager.Instance.Init();
-    
-        SoundManager.Instance.PlayMusic(SoundKeys.music);
-        SoundManager.Instance.PlayAmbient(SoundKeys.ambient);
+
+        if (!GameConfig.Instance.debuggingSettings.noMusic)
+            SoundManager.Instance.PlayMusic(SoundKeys.music);
+            
+            SoundManager.Instance.PlayAmbient(SoundKeys.ambient);
     }
 
     public void StartRun()
@@ -31,12 +33,12 @@ public class GameManager : Singleton<GameManager>
         onRunTimerEnd?.Invoke();
         QuitRun();
     }
-    
+
     public void EnterRun()
     {
         UIManager.Instance.GetCanvas<GameCanvas>().Open();
         UIManager.Instance.GetCanvas<SkillTreeCanvas>().Close();
-        
+
         SetPause(false);
         GameData.Instance.runActive = true;
         DespawnPooledObjectAndTuto();
@@ -50,7 +52,7 @@ public class GameManager : Singleton<GameManager>
             EnterRun();
         });
     }
-    
+
     [Button]
     public void QuitRun()
     {
@@ -58,7 +60,7 @@ public class GameManager : Singleton<GameManager>
         GameData.Instance.IncrementTrackedValue(TrackedValueType.RunCount, 1);
         CameraController.Instance.SetControl(false);
         GameData.Instance.runActive = false;
-        
+
         FadeManager.Instance.FadeIn(() =>
         {
             DespawnPooledObjectAndTuto();
@@ -66,17 +68,17 @@ public class GameManager : Singleton<GameManager>
             UIManager.Instance.GetCanvas<SkillTreeCanvas>().Open();
         });
     }
-    
+
     private void DespawnPooledObjectAndTuto()
     {
         LeanPool.DespawnAll();
         TutorialUIManager.Instance?.DespawnAllTutos();
     }
-    
+
     public void SetPause(bool paused)
     {
         m_isPaused = paused;
-    
+
         if (CameraController.Instance != null)
             CameraController.Instance.SetControl(!paused);
     }

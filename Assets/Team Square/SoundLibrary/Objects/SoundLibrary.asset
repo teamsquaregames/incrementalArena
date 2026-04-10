@@ -27,10 +27,11 @@ MonoBehaviour:
     - SFX_Impact
     - SFX_Destruction
     - SFX_Impact_Magic
+    - SFX_CrowdCheer
     values:
     - clip: {fileID: 8300000, guid: 2be487d73129d734490a003286584097, type: 3}
       loop: 1
-      volume: 0.25
+      volume: 0.2
       pitchMode: 0
       randomPitchRange: {x: 0.9, y: 1.1}
       fixedPitch: 1
@@ -51,7 +52,7 @@ MonoBehaviour:
       audioMixerGroup: {fileID: 0}
     - clip: {fileID: 8300000, guid: dbe2c92c4b58ed540b2b47693e1ef580, type: 3}
       loop: 1
-      volume: 0.03
+      volume: 1
       pitchMode: 0
       randomPitchRange: {x: 0.9, y: 1.1}
       fixedPitch: 1
@@ -113,6 +114,13 @@ MonoBehaviour:
       fixedPitch: 1
       audioMixerGroup: {fileID: 0}
     - clip: {fileID: 8300000, guid: 5a047510ae9faf54c993935fb1797ed0, type: 3}
+      loop: 0
+      volume: 1
+      pitchMode: 0
+      randomPitchRange: {x: 0.9, y: 1.1}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 2559da2016fa7a443add82928d55e6bc, type: 3}
       loop: 0
       volume: 1
       pitchMode: 0

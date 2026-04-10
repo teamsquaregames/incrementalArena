@@ -29,19 +29,21 @@ public class GameConfig : ScriptableObject
     [System.Serializable]
     public class CheatSettings
     {
-        public bool preventSave = false;
-        public bool startResetData = false;
-        public bool noFTUE = false;
-        public bool noCurrencyRequired = false;
-        public bool noMenu = false;
-        public bool disableBootStrapper = false;
+        public bool preventSave;
+        public bool startResetData;
+        public bool noFTUE;
+        public bool noCurrencyRequired;
+        public bool noMenu;
+        public bool disableBootStrapper;
         public bool infiniteRunDuration;
+        public bool usePrefabAbilities;
     }
 
     [System.Serializable]
     public class DebuggingSettings
     {
         public bool developmentBuild;
+        public bool noMusic;
     }
 
     [System.Serializable]

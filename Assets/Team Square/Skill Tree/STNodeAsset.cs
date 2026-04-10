@@ -38,6 +38,7 @@ public class STNodeAsset : ScriptableObject
     [SerializeField] protected Cost[] m_cost;
 
     [TitleGroup("Bonuses")]
+    [SerializeField] protected AbilityConfig m_abilityGranted;
     [SerializeField] protected LeveledStatModifier[] m_statModifiers;
 
     private int m_lastMaxLevel = -1;
@@ -61,6 +62,7 @@ public class STNodeAsset : ScriptableObject
     }
 
     #region Getters
+    public AbilityConfig AbilityGranted => m_abilityGranted;
     public LeveledStatModifier[] StatModifiers => m_statModifiers;
     public string DisplayName => m_displayName;
     public string ID => m_id;

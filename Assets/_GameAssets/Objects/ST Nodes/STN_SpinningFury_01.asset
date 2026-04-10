@@ -10,25 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_AttackSpeed_01
+  m_Name: STN_SpinningFury_01
   m_EditorClassIdentifier: 
-  m_displayName: Attack Speed
-  m_id: STN_AttackSpeed_01
+  m_displayName: Spinning Fury
+  m_id: STN_SpinningFury_01
   m_levelingType: 0
-  m_maxLevel: 3
+  m_maxLevel: 1
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
-  m_description: Improve basic attack speed
+  m_icon: {fileID: 21300000, guid: 561862b433e86744aa6c0edf7df4cf36, type: 3}
+  m_description: Unlock the spinning fury ability.
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0f000000000000001e000000000000002d00000000000000
-  m_abilityGranted: {fileID: 0}
-  m_statModifiers:
-  - id: STN_AttackSpeed_01
-    entityType: 1
-    statType: 2
-    type: 1
-    m_values:
-    - 10
-    - 20
-    - 30
+    m_amount: 3200000000000000
+  m_abilityGranted: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+  m_statModifiers: []

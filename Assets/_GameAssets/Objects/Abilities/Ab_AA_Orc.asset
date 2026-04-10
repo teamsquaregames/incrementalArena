@@ -79,7 +79,7 @@ MonoBehaviour:
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
       teamApplication: 0
-      value: 5
+      value: 1
   - isRooting: 1
     targetingInfo:
       quickTarget: 1
@@ -139,7 +139,7 @@ MonoBehaviour:
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
       teamApplication: 0
-      value: 5
+      value: 1
   - isRooting: 1
     targetingInfo:
       quickTarget: 1
@@ -199,4 +199,4 @@ MonoBehaviour:
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
       teamApplication: 0
-      value: 12
+      value: 1.2

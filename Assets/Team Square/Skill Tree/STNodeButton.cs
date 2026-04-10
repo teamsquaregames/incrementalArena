@@ -142,6 +142,9 @@ public class STNodeButton : CustomButton
         {
             GameData.Instance.onCurrencyChanged += OnCurrencyChange;
             OnCurrencyChange(); 
+            m_background.gameObject.SetActive(true);
+            m_frame.gameObject.SetActive(true);
+            m_sigil.gameObject.SetActive(true);
         }
         else
         {
@@ -332,19 +335,6 @@ public class STNodeButton : CustomButton
         PlayNegativeClickSound();
     }
 
-    private void ApplyStatModifiers()
-    {
-        if (StatManager.Instance ==  null) return;
-        
-        foreach (LeveledStatModifier statModifier in m_asset.StatModifiers)
-        {
-            var modifier = m_asset.IsUnlimited
-                ? statModifier.GetLinearModifierAtLevel(m_level)
-                : statModifier.GetModifierAtLevel(m_level - 1);
-            StatManager.Instance.AddDefinitionModifier(statModifier.entityType, modifier);
-        }
-    }
-
     private void SetChildrenLock(bool locked)
     {
         foreach (RadialLayoutNode child in m_radialLayoutNode.GetChildNodes())
@@ -359,6 +349,7 @@ public class STNodeButton : CustomButton
         
         m_level = GameData.Instance.LevelUpNode(m_asset.ID);
 
+        UnlockAbility();
         ApplyStatModifiers();
 
         if (m_level == 1)
@@ -387,6 +378,26 @@ public class STNodeButton : CustomButton
 
         GameData.Instance.IncrementTrackedValue(TrackedValueType.NodeUpgradesPurchased, 1);
     }
+    
+    private void UnlockAbility()
+    {
+        if (m_asset.AbilityGranted != null)
+            GameData.Instance.UnlockAbility(m_asset.AbilityGranted);
+    }
+
+    private void ApplyStatModifiers()
+    {
+        if (StatManager.Instance ==  null) return;
+        
+        foreach (LeveledStatModifier statModifier in m_asset.StatModifiers)
+        {
+            var modifier = m_asset.IsUnlimited
+                ? statModifier.GetLinearModifierAtLevel(m_level)
+                : statModifier.GetModifierAtLevel(m_level - 1);
+            StatManager.Instance.AddDefinitionModifier(statModifier.entityType, modifier);
+        }
+    }
+
 
     private void PlayMaxLevelFlashEffect()
     {

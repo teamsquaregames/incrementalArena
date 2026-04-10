@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_AttackSpeed_01
+  m_Name: STN_MovementSpeed_01
   m_EditorClassIdentifier: 
-  m_displayName: Attack Speed
-  m_id: STN_AttackSpeed_01
+  m_displayName: Movement Speed
+  m_id: STN_MovementSpeed_01
   m_levelingType: 0
-  m_maxLevel: 3
+  m_maxLevel: 1
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
-  m_description: Improve basic attack speed
+  m_icon: {fileID: 21300000, guid: 9926fa01cc37c9242aecf3c1cf2b17e3, type: 3}
+  m_description: More time for killing.
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0f000000000000001e000000000000002d00000000000000
+    m_amount: 0f00000000000000
   m_abilityGranted: {fileID: 0}
   m_statModifiers:
-  - id: STN_AttackSpeed_01
+  - id: STN_Rewards_01
     entityType: 1
-    statType: 2
-    type: 1
+    statType: 3
+    type: 0
     m_values:
-    - 10
-    - 20
-    - 30
+    - 0.5
