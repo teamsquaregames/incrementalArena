@@ -8,6 +8,7 @@ using MyBox;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -28,6 +29,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
+    private EntityHealthModule m_playerHealthModule;
     private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
     private void Awake()
     {
@@ -75,7 +77,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         m_currentWave = 0;
         m_waveEnemies.Clear();
-        LeanPool.Spawn(m_playerPrefab);
+        Entity player = LeanPool.Spawn(m_playerPrefab);
+
+        if (player.TryGetModule(out m_playerHealthModule))
+            m_playerHealthModule.OnDeath += OnPlayerDeath;
 
         DOVirtual.DelayedCall(3f, () =>
         {
@@ -93,6 +98,19 @@ public class LevelManager : Singleton<LevelManager>
         {
             StartCoroutine(OnWaveComplete());
         }
+    }
+
+    private void Update()
+    {
+        if (!GameConfig.Instance.debuggingSettings.developmentBuild) return;
+        if (Keyboard.current.endKey.wasPressedThisFrame)
+            GameManager.Instance.EndRun();
+    }
+
+    private void OnPlayerDeath()
+    {
+        m_playerHealthModule.OnDeath -= OnPlayerDeath;
+        GameManager.Instance.EndRun();
     }
 
 
