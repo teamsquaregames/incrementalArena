@@ -1487,6 +1487,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena - Orc Pit
       objectReference: {fileID: 0}
+    - target: {fileID: 2944303635654189257, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2944303635654189257, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
+      propertyPath: m_Center.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7961157997081988881, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1568,8 +1576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bd893ab26c3994ea7696146dffc816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrowdRewards
-  m_rewardObjects:
-  - {fileID: -1859593976463896301, guid: 713e9bce5770c304cb9ffad6607bd804, type: 3}
   m_spawnDuration: 2
   m_spawnCenterOffset: {x: 0, y: 2.1, z: 0}
   m_spawnAreaSize: {x: 23.03, y: 1.34, z: 12.8}
@@ -1581,6 +1587,7 @@ MonoBehaviour:
   m_velocityRangeZ: {x: -3, y: 3}
   m_addRandomTorque: 1
   m_torqueStrength: 10
+  m_collectFloatingTextConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}
   m_showGizmos: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

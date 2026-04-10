@@ -331,6 +331,18 @@ PrefabInstance:
       propertyPath: m_Height
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5741457465335769739, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_dropEntries.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741457465335769739, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_dropEntries.Array.data[0].value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741457465335769739, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_dropEntries.Array.data[0].rewardObject
+      value: 
+      objectReference: {fileID: -1859593976463896301, guid: 713e9bce5770c304cb9ffad6607bd804, type: 3}
     - target: {fileID: 6275878422327301310, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_animator
       value: 

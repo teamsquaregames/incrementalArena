@@ -17,12 +17,12 @@ public class LevelManager : Singleton<LevelManager>
     
     [Header("Scene references")]
     [SerializeField] private CrowdRewards m_crowdRewards;
+    
+    public CrowdRewards CrowdRewards => m_crowdRewards;
 
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
     private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
-    private List<RewardObject> m_spawnedRewards = new List<RewardObject>();
-
     private void Awake()
     {
         GameManager.Instance.onRunTimerStart += OnRunTimerStart;
@@ -60,7 +60,7 @@ public class LevelManager : Singleton<LevelManager>
 
         yield return new WaitForSeconds(5);
 
-        CollectAllRewards();
+        m_crowdRewards.CollectAllRewards();
         StartWave();
     }
     
@@ -74,30 +74,6 @@ public class LevelManager : Singleton<LevelManager>
         {
             StartWave();
         });
-    }
-
-    #endregion
-
-    #region Rewards
-
-    public void RegisterReward(RewardObject reward)
-    {
-        m_spawnedRewards.Add(reward);
-    }
-
-    public void UnregisterReward(RewardObject reward)
-    {
-        m_spawnedRewards.Remove(reward);
-    }
-
-    public void CollectAllRewards()
-    {
-        var rewardsToCollect = new List<RewardObject>(m_spawnedRewards);
-        foreach (var reward in rewardsToCollect)
-        {
-            if (reward != null)
-                reward.PickUp();
-        }
     }
 
     #endregion

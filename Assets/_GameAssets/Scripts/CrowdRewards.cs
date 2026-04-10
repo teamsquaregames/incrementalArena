@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using System.Collections;
 using Lean.Pool;
 using Sirenix.OdinInspector;
-using UnityEngine.Serialization;
 
 [System.Serializable]
 public class CrowdRewards : MonoBehaviour
 {
-    [FormerlySerializedAs("m_rewardEntries")]
-    [TitleGroup("Reward Settings")]
-    [SerializeField] private List<RewardObject> m_rewardObjects = new List<RewardObject>();
-
     [TitleGroup("Spawn Settings")]
     [SerializeField] private float m_spawnDuration = 2f;
     
@@ -27,10 +22,61 @@ public class CrowdRewards : MonoBehaviour
     [SerializeField, FoldoutGroup("Physics")] private bool m_addRandomTorque = true;
     [SerializeField, FoldoutGroup("Physics"), ShowIf(nameof(m_addRandomTorque))] private float m_torqueStrength = 10f;
 
+    [TitleGroup("Floating Text")]
+    [SerializeField] private FloatingTextConfig m_collectFloatingTextConfig;
+
     [TitleGroup("Debug")]
     [SerializeField] private bool m_showGizmos = true;
 
     private List<RewardObject> m_spawnedRewards = new List<RewardObject>();
+    private List<RewardEntry> m_rewardEntries = new List<RewardEntry>();
+
+    public void AddRewardEntry(RewardEntry entry)
+    {
+        m_rewardEntries.Add(entry);
+    }
+
+    public void RegisterReward(RewardObject reward)
+    {
+        m_spawnedRewards.Add(reward);
+    }
+
+    public void UnregisterReward(RewardObject reward)
+    {
+        m_spawnedRewards.Remove(reward);
+    }
+
+    public void CollectAllRewards()
+    {
+        var rewardsToCollect = new List<RewardObject>(m_spawnedRewards);
+
+        // Sum total value per CurrencyAsset across all pending rewards
+        var totals = new Dictionary<CurrencyAsset, double>();
+        foreach (var reward in rewardsToCollect)
+        {
+            if (reward == null || reward.RewardConfig == null || reward.RewardConfig.CurrencyAsset == null) continue;
+            CurrencyAsset asset = reward.RewardConfig.CurrencyAsset;
+            totals.TryGetValue(asset, out double current);
+            totals[asset] = current + reward.Value;
+        }
+
+        // Show one floating text per currency at the player's position
+        Vector3 textPos = EntityManager.Instance?.Player?.transform.position ?? Vector3.zero;
+        foreach (var kvp in totals)
+        {
+            string text = $"+{kvp.Value:N0} {kvp.Key.SpriteAssetString}";
+            FloatingTextManager.Instance?.SpawnWorldText(textPos, text, m_collectFloatingTextConfig);
+        }
+
+        // Collect all without individual floating texts
+        foreach (var reward in rewardsToCollect)
+        {
+            if (reward != null)
+                reward.PickUp(showFloatingText: false);
+        }
+        
+        m_rewardEntries.Clear();
+    }
 
     [Button(ButtonSizes.Large), GUIColor(0.4f, 0.8f, 1f)]
     public void SpawnRewards()
@@ -41,22 +87,27 @@ public class CrowdRewards : MonoBehaviour
 
     private IEnumerator SpawnRewardsCoroutine()
     {
-        int nbToSpawn = 100;
-        float interval = m_spawnDuration / nbToSpawn;
-
-        for (int i = 0; i < nbToSpawn; i++)
+        if (m_rewardEntries.Count == 0)
         {
-            SpawnReward(m_rewardObjects[0]);
-            if (i < nbToSpawn - 1)
+            Debug.LogWarning("CrowdRewards: No reward entries to spawn.");
+            yield break;
+        }
+
+        float interval = m_spawnDuration / m_rewardEntries.Count;
+
+        for (int i = 0; i < m_rewardEntries.Count; i++)
+        {
+            SpawnReward(m_rewardEntries[i]);
+            if (i < m_rewardEntries.Count - 1)
                 yield return new WaitForSeconds(interval);
         }
     }
 
-    private void SpawnReward(RewardObject prefab)
+    private void SpawnReward(RewardEntry entry)
     {
         Vector3 spawnPos = GetRandomSpawnPosition();
-        RewardObject reward = LeanPool.Spawn(prefab, spawnPos, Random.rotation);
-        reward.SetValue(1);
+        RewardObject reward = LeanPool.Spawn(entry.rewardObject, spawnPos, Random.rotation);
+        reward.SetValue(entry.value);
 
         Rigidbody rb = reward.GetComponent<Rigidbody>();
         if (rb != null)
@@ -75,8 +126,6 @@ public class CrowdRewards : MonoBehaviour
             if (m_addRandomTorque)
                 rb.angularVelocity = Random.insideUnitSphere * m_torqueStrength;
         }
-
-        m_spawnedRewards.Add(reward);
     }
 
     private Vector3 GetRandomSpawnPosition()
