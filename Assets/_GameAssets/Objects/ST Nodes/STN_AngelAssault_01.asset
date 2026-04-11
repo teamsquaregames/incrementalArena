@@ -16,7 +16,7 @@ MonoBehaviour:
   m_id: STN_AngelAssault_01
   m_levelingType: 0
   m_maxLevel: 1
-  m_rank: 0
+  m_rank: 2
   m_icon: {fileID: 21300000, guid: 385e76ec12cc55a43828f87031b6e01a, type: 3}
   m_description: Unlock the Angel Assault ability.
   m_cost:

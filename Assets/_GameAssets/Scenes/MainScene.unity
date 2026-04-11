@@ -1416,6 +1416,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_crowdManager
+      value: 
+      objectReference: {fileID: 3296670727443297552}
+    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_crowdRewards
       value: 
       objectReference: {fileID: 8994679995696136257}
@@ -1423,6 +1427,10 @@ PrefabInstance:
       propertyPath: m_playerPrefab
       value: 
       objectReference: {fileID: 7623534507439280228, guid: 14a9fc8373715104daa682789bef1f4f, type: 3}
+    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnRange.x
+      value: 9.83
+      objectReference: {fileID: 0}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_useConstantEnemyCount
       value: 1
