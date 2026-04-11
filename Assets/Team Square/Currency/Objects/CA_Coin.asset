@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_currency: 1
   m_displayName: Coin
-  m_icon: {fileID: 21300000, guid: 85e739db6829155449c1f857387f4e49, type: 3}
-  m_spriteAssetString: <sprite="T_Icon_Coin_Outlined" name="T_Icon_Coin_Outlined">
+  m_icon: {fileID: 21300000, guid: 0fa2dd99ef79ebe47a2f2271b0db601e, type: 3}
+  m_spriteAssetString: <sprite="coin" name="coin">
   trackedValuesWithCurrencyGained: 451f0000

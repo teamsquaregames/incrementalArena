@@ -12,28 +12,41 @@ public class RewardObject : MonoBehaviour, IPoolable
     [SerializeField] private List<Collider> m_colliders;
     [SerializeField, FoldoutGroup("Jump Tween")] private float m_jumpPower = 2f;
     [SerializeField, FoldoutGroup("Jump Tween")] private float m_jumpDuration = 0.4f;
+    [SerializeField] private FloatingTextConfig m_textConfig;
 
     private double m_value;
     private bool m_isBeingPickedUp;
+
+    public double Value => m_value;
+    public RewardConfig RewardConfig => m_rewardConfig;
 
     public void SetValue(double val)
     {
         m_value = val;
     }
 
-    public void PickUp()
+    public void PickUp(bool showFloatingText = true)
     {
+        LevelManager.Instance?.CrowdRewards.UnregisterReward(this);
+        
         if (m_isBeingPickedUp) return;
         m_isBeingPickedUp = true;
-                
+
         m_rb.isKinematic = true;
         foreach (Collider col in m_colliders)
             col.enabled = false;
 
-        StartCoroutine(JumpToPlayerCoroutine());
+        StartCoroutine(JumpToPlayerCoroutine(showFloatingText));
     }
 
-    private IEnumerator JumpToPlayerCoroutine()
+    public void ShowFloatingText(Vector3 worldPosition)
+    {
+        if (m_rewardConfig == null || m_rewardConfig.CurrencyAsset == null) return;
+        string text = $"+{m_value:N0} {m_rewardConfig.CurrencyAsset.SpriteAssetString}";
+        FloatingTextManager.Instance?.SpawnWorldText(worldPosition, text, m_textConfig);
+    }
+
+    private IEnumerator JumpToPlayerCoroutine(bool showFloatingText)
     {
         float elapsed = 0f;
         Vector3 flatPosition = transform.position;
@@ -59,6 +72,9 @@ public class RewardObject : MonoBehaviour, IPoolable
         if (m_rewardConfig != null && m_rewardConfig.CurrencyAsset != null)
             GameData.Instance.AddCurrency(m_rewardConfig.CurrencyAsset, m_value);
 
+        if (showFloatingText)
+            ShowFloatingText(transform.position);
+
         LeanPool.Despawn(gameObject);
     }
 
@@ -73,16 +89,15 @@ public class RewardObject : MonoBehaviour, IPoolable
     public void OnSpawn()
     {
         m_isBeingPickedUp = false;
-        
         m_rb.isKinematic = false;
+        
         foreach (Collider col in m_colliders)
             col.enabled = true;
 
-        LevelManager.Instance?.RegisterReward(this);
+        LevelManager.Instance?.CrowdRewards.RegisterReward(this);
     }
 
     public void OnDespawn()
     {
-        LevelManager.Instance?.UnregisterReward(this);
     }
 }

@@ -8,6 +8,7 @@ using MyBox;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -23,12 +24,13 @@ public class LevelManager : Singleton<LevelManager>
     [TitleGroup("Settings")]
     [SerializeField] private Vector2 m_spawnRange = new Vector2(5, 5);
     [SerializeField] private bool m_spawnRangeGizmos = true;
+    
+    public CrowdRewards CrowdRewards => m_crowdRewards;
 
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
+    private EntityHealthModule m_playerHealthModule;
     private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
-    private List<RewardObject> m_spawnedRewards = new List<RewardObject>();
-
     private void Awake()
     {
         GameManager.Instance.onRunTimerStart += OnRunTimerStart;
@@ -67,7 +69,7 @@ public class LevelManager : Singleton<LevelManager>
 
         yield return new WaitForSeconds(5);
 
-        CollectAllRewards();
+        m_crowdRewards.CollectAllRewards();
         StartWave();
     }
 
@@ -75,36 +77,15 @@ public class LevelManager : Singleton<LevelManager>
     {
         m_currentWave = 0;
         m_waveEnemies.Clear();
-        LeanPool.Spawn(m_playerPrefab);
+        Entity player = LeanPool.Spawn(m_playerPrefab);
+
+        if (player.TryGetModule(out m_playerHealthModule))
+            m_playerHealthModule.OnDeath += OnPlayerDeath;
 
         DOVirtual.DelayedCall(3f, () =>
         {
             StartWave();
         });
-    }
-
-    #endregion
-
-    #region Rewards
-
-    public void RegisterReward(RewardObject reward)
-    {
-        m_spawnedRewards.Add(reward);
-    }
-
-    public void UnregisterReward(RewardObject reward)
-    {
-        m_spawnedRewards.Remove(reward);
-    }
-
-    public void CollectAllRewards()
-    {
-        var rewardsToCollect = new List<RewardObject>(m_spawnedRewards);
-        foreach (var reward in rewardsToCollect)
-        {
-            if (reward != null)
-                reward.PickUp();
-        }
     }
 
     #endregion
@@ -117,6 +98,19 @@ public class LevelManager : Singleton<LevelManager>
         {
             StartCoroutine(OnWaveComplete());
         }
+    }
+
+    private void Update()
+    {
+        if (!GameConfig.Instance.debuggingSettings.developmentBuild) return;
+        if (Keyboard.current.endKey.wasPressedThisFrame)
+            GameManager.Instance.EndRun();
+    }
+
+    private void OnPlayerDeath()
+    {
+        m_playerHealthModule.OnDeath -= OnPlayerDeath;
+        GameManager.Instance.EndRun();
     }
 
 
