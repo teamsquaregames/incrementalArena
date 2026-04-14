@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EntityHealthUIModule : EntityModule
 {
+    [SerializeField] private FloatingTextConfig m_floatingTextConfig;
+
     protected GenericGauge m_genericGauge;
 
     public override void OnAllModuleInitialized()
@@ -23,7 +25,13 @@ public class EntityHealthUIModule : EntityModule
 
     protected virtual void DespawnHealthBar() { }
 
-    protected virtual void OnDamageTextRequested(float amount, bool isCrit) { }
+    protected void OnDamageTextRequested(float amount, bool isCrit)
+    {
+        string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
+        FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
+
+        FloatingTextManager.Instance.SpawnWorldText(Owner.transform.position, text, config);
+    }
 
     protected void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit, bool suppressFeedback)
     {

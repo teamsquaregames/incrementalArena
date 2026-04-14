@@ -5,7 +5,6 @@ public class EnemyHealthUIModule : EntityHealthUIModule
 {
     [SerializeField] private GenericGauge m_genericGaugePrefab;
     [SerializeField] private Transform m_healthBarTarget;
-    [SerializeField] private FloatingTextConfig m_floatingTextConfig;
 
     protected override void SpawnHealthBar(float maxHealth)
     {
@@ -22,11 +21,4 @@ public class EnemyHealthUIModule : EntityHealthUIModule
         m_genericGauge = null;
     }
 
-    protected override void OnDamageTextRequested(float amount, bool isCrit)
-    {
-        string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
-        FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
-
-        FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, text, config);
-    }
 }

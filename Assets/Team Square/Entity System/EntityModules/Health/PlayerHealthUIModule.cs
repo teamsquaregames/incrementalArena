@@ -18,4 +18,5 @@ public class PlayerHealthUIModule : EntityHealthUIModule
         PlayerHealthBarUIC.Close();
         m_genericGauge = null;
     }
+
 }
