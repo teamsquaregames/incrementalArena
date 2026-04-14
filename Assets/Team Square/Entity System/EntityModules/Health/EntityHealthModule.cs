@@ -137,6 +137,9 @@ public class EntityHealthModule : EntityModule
 
         SoundManager.Instance.PlaySound(SoundKeys.SFX_Groan);
 
+        if (Owner.TryGetModule(out EntityTeamModule teamModule) && teamModule.Team == Team.Enemy)
+            GameData.Instance.IncrementTrackedValue(TrackedValueType.EnemiesKilledThisRun);
+
         OnDeath?.Invoke();
     }
 }

@@ -59,7 +59,7 @@ public class EntityManager : Singleton<EntityManager>
         {
             if (teamModule.Team == Team.Player)
             {
-                m_player = entity;
+                m_player = null;
             }
             else if (teamModule.Team == Team.Enemy)
             {

@@ -30,7 +30,6 @@ public class LevelManager : Singleton<LevelManager>
     private int m_currentWave = 0;
     private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
     private EntityHealthModule m_playerHealthModule;
-    private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
     private void Awake()
     {
         GameManager.Instance.onRunTimerStart += OnRunTimerStart;
@@ -57,13 +56,10 @@ public class LevelManager : Singleton<LevelManager>
             Entity enemy = LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-m_spawnRange.x, m_spawnRange.x), 0, Random.Range(-m_spawnRange.y, m_spawnRange.y)), Quaternion.identity);
             m_waveEnemies.Add(enemy);
         }
-
-        m_runTimerUIC.SetTimerPause(false);
     }
 
     private IEnumerator OnWaveComplete()
     {
-        m_runTimerUIC.SetTimerPause(true);
         m_crowdRewards.SpawnRewards();
         m_crowdManager.CrowdCheer();
 
@@ -104,13 +100,24 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (!GameConfig.Instance.debuggingSettings.developmentBuild) return;
         if (Keyboard.current.endKey.wasPressedThisFrame)
-            GameManager.Instance.EndRun();
+            EndRun();
     }
 
     private void OnPlayerDeath()
     {
+        EndRun();
+    }
+
+    public void EndRun()
+    {
         m_playerHealthModule.OnDeath -= OnPlayerDeath;
-        GameManager.Instance.EndRun();
+
+        m_crowdRewards.GrantAllPendingGold();
+
+        UIManager.Instance.GetCanvas<EndRoundCanvas>().Open();
+
+        foreach (TrackedValueType type in GameConfig.Instance.gameSettings.trackedValuesToResetOnRunEnd)
+            GameData.Instance.ResetTrackedValue(type);
     }
 
 

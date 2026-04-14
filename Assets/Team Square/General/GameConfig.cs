@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils;
@@ -53,5 +54,8 @@ public class GameConfig : ScriptableObject
 
         [Space, Header("Tutorial")]
         public float delayBeforeCanValidateOnClick = 0.2f;
+
+        [Space, Header("Run Reset")]
+        public List<TrackedValueType> trackedValuesToResetOnRunEnd = new List<TrackedValueType>();
     }
 }

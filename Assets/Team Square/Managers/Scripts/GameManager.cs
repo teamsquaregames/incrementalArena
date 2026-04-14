@@ -38,6 +38,7 @@ public class GameManager : Singleton<GameManager>
     {
         UIManager.Instance.GetCanvas<GameCanvas>().Open();
         UIManager.Instance.GetCanvas<SkillTreeCanvas>().Close();
+        UIManager.Instance.GetCanvas<EndRoundCanvas>().Close();
 
         SetPause(false);
         GameData.Instance.runActive = true;

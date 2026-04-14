@@ -46,6 +46,25 @@ public class CrowdRewards : MonoBehaviour
         m_spawnedRewards.Remove(reward);
     }
 
+    public void GrantAllPendingGold()
+    {
+        foreach (RewardEntry entry in m_rewardEntries)
+        {
+            if (entry.rewardObject == null || entry.rewardObject.RewardConfig?.CurrencyAsset == null) continue;
+            GameData.Instance.AddCurrency(entry.rewardObject.RewardConfig.CurrencyAsset, entry.value);
+        }
+        m_rewardEntries.Clear();
+
+        var spawnedCopy = new List<RewardObject>(m_spawnedRewards);
+        foreach (RewardObject reward in spawnedCopy)
+        {
+            if (reward == null || reward.RewardConfig?.CurrencyAsset == null) continue;
+            GameData.Instance.AddCurrency(reward.RewardConfig.CurrencyAsset, reward.Value);
+            LeanPool.Despawn(reward);
+        }
+        m_spawnedRewards.Clear();
+    }
+
     public void CollectAllRewards()
     {
         var rewardsToCollect = new List<RewardObject>(m_spawnedRewards);
