@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using Utils.UI;
 
-public class EndRoundUIC : UIContainer
+public class RunEndUIC : UIContainer
 {
     [SerializeField] private TextMeshProUGUI m_nbEnemiesKilledText;
     [SerializeField] private TextMeshProUGUI m_goldGainedText;

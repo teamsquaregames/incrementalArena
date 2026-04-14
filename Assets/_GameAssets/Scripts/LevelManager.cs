@@ -114,7 +114,7 @@ public class LevelManager : Singleton<LevelManager>
 
         m_crowdRewards.GrantAllPendingGold();
 
-        UIManager.Instance.GetCanvas<EndRoundCanvas>().Open();
+        UIManager.Instance.GetCanvas<RunEndCanvas>().Open();
 
         foreach (TrackedValueType type in GameConfig.Instance.gameSettings.trackedValuesToResetOnRunEnd)
             GameData.Instance.ResetTrackedValue(type);
