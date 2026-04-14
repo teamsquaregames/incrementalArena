@@ -9,6 +9,7 @@ namespace Stats
         Armor,
         EnemiesPerWave,
         RunDuration,
-        CriticalChance
+        CriticalChance,
+        PlayerHealthLostPerSecond,
     }
 }

@@ -25,12 +25,12 @@ public class EntityHealthUIModule : EntityModule
 
     protected virtual void OnDamageTextRequested(float amount, bool isCrit) { }
 
-    protected void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit)
+    protected void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit, bool suppressFeedback)
     {
         if (m_genericGauge == null) return;
-        m_genericGauge.SetValue(currentHealth, maxHealth);
+        m_genericGauge.SetValue(currentHealth, maxHealth, instant: false, showChunks: !suppressFeedback);
 
-        if (delta < 0f)
+        if (delta < 0f && !suppressFeedback)
             OnDamageTextRequested(Mathf.Abs(delta), isCrit);
     }
 

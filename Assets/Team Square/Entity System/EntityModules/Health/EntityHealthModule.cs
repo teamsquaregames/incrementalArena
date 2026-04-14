@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 
 public class EntityHealthModule : EntityModule
 {
-    public Action<float, float, float, bool> OnHealthChanged;
+    public Action<float, float, float, bool, bool> OnHealthChanged;
     public Action<float, float> OnDamageTaken;
     public Action<float, float> OnHealed;
     public Action OnDeathStart;
@@ -30,6 +30,7 @@ public class EntityHealthModule : EntityModule
     private float m_currentHealth;
     private bool m_isDead;
     private Tween m_punchTween;
+    private EntityStatModule m_statModule;
 
     public float MaxHealth
     {
@@ -64,6 +65,7 @@ public class EntityHealthModule : EntityModule
     public override void OnAllModuleInitialized()
     {
         base.OnAllModuleInitialized();
+        Owner.TryGetModule(out m_statModule);
         m_currentHealth = MaxHealth;
     }
 
@@ -98,8 +100,17 @@ public class EntityHealthModule : EntityModule
             .SetLink(Owner.gameObject);
     }
 
+    private void Update()
+    {
+        if (m_isDead || m_statModule == null) return;
+
+        float healthLostPerSecond = m_statModule.GetValue(StatType.PlayerHealthLostPerSecond);
+        if (healthLostPerSecond > 0f)
+            TakeDamage(healthLostPerSecond * Time.deltaTime, false, suppressFeedback: true);
+    }
+
     [Button]
-    public void TakeDamage(float amount, bool isCrit)
+    public void TakeDamage(float amount, bool isCrit, bool suppressFeedback = false)
     {
         if (m_isDead || amount <= 0f) return;
 
@@ -107,10 +118,11 @@ public class EntityHealthModule : EntityModule
         m_currentHealth = Mathf.Max(0f, m_currentHealth - amount);
         float delta = m_currentHealth - previous;
 
-        PlayDamageFeedback();
+        if (!suppressFeedback)
+            PlayDamageFeedback();
 
         OnDamageTaken?.Invoke(amount, m_currentHealth);
-        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit);
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit, suppressFeedback);
 
         if (m_currentHealth <= 0f)
         {
