@@ -1214,9 +1214,6 @@ PrefabInstance:
       addedObject: {fileID: 8403113568194058257}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5071099908346814444}
-    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 54798341076026425}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
@@ -1233,12 +1230,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1801247843536792731}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6627275760260663025}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
---- !u!4 &2359152899963624071 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-  m_PrefabInstance: {fileID: 7714038588239923713}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4106009951781145495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
@@ -1302,21 +1297,6 @@ MonoBehaviour:
   punchDuration: 0.15
   punchVibrato: 6
   punchElasticity: 0.5
---- !u!114 &5071099908346814444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4106009951781145495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8339412d66624eb42bd19d8c2c3e0fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityHealthUIModule
-  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: affca4250dc7eb94082ae4a6f72809ea, type: 3}
-  m_healthBarTarget: {fileID: 2359152899963624071}
-  m_floatingTextConfig: {fileID: 11400000, guid: c7e3b62d1cd32494bad5463db47f671c, type: 2}
 --- !u!114 &54798341076026425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,6 +1439,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662628b9eaf6fd444a23c916dbafe34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityUIModule
+--- !u!114 &-6627275760260663025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3079e1b229961e34bba86d37cc769190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthUIModule
+  m_genericGaugePrefab: {fileID: 0}
+  m_healthBarTarget: {fileID: 0}
+  m_floatingTextConfig: {fileID: 0}
+  m_genericGaugePrefab: {fileID: 0}
+  m_healthBarTarget: {fileID: 0}
+  m_floatingTextConfig: {fileID: 0}
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

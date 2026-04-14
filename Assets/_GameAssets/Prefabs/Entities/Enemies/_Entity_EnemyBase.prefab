@@ -246,9 +246,6 @@ PrefabInstance:
       addedObject: {fileID: 5946857670838697958}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8662926402860652392}
-    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1687823931497025180}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
@@ -256,6 +253,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5741457465335769739}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3866129708232008600}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
 --- !u!1 &2419637819542009624 stripped
 GameObject:
@@ -280,21 +280,6 @@ MonoBehaviour:
   punchDuration: 0.35
   punchVibrato: 6
   punchElasticity: 0.5
---- !u!114 &8662926402860652392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2419637819542009624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8339412d66624eb42bd19d8c2c3e0fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityHealthUIModule
-  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
-  m_healthBarTarget: {fileID: 4166490037408409096}
-  m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
 --- !u!54 &1687823931497025180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,6 +334,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityDropModule
   m_dropEntries: []
+--- !u!114 &3866129708232008600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419637819542009624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d5f6fb673fe0e499a5daea4c90c4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUIModule
+  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
+  m_healthBarTarget: {fileID: 4166490037408409096}
+  m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
 --- !u!4 &4166490037408409096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
