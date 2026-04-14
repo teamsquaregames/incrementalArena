@@ -19,6 +19,7 @@ public class NodeRankVisual
     public Sprite m_frameSprite;
     public Sprite m_backgroundSprite;
     public Sprite m_sigilSprite;
+    public float m_scale = 1f;
 }
 
 
@@ -502,6 +503,11 @@ public class STNodeButton : CustomButton
             if (m_frame != null) m_frame.sprite = visual.m_frameSprite;
             if (m_background != null) m_background.sprite = visual.m_backgroundSprite;
             if (m_sigil != null) m_sigil.sprite = visual.m_sigilSprite;
+            if (transform is RectTransform rectTransform)
+            {
+                rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, visual.m_scale * 100);
+                rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, visual.m_scale * 100);
+            }
         }
 
         // Level visuals — show pips for Limited, text for Unlimited
