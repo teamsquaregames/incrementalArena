@@ -16,5 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
   critDamageTextConfig: {fileID: 11400000, guid: 40acaab185154ae4da3a1d9aacb76e0c, type: 2}
   arenaConfigs:
-  - {fileID: 11400000, guid: a1990926edaed6544a0aa5f270955dab, type: 2}
   - {fileID: 11400000, guid: 67f98ac202d40b84ea5b4726d591282d, type: 2}
+  - {fileID: 11400000, guid: a1990926edaed6544a0aa5f270955dab, type: 2}

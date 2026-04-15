@@ -72,9 +72,9 @@ public class CameraController : MyBox.Singleton<CameraController>
     private void Update()
     {
         if (!isControlling) return;
-        HandlePanning();
-        HandleZoom();
-        HandleRotation();
+        // HandlePanning();
+        // HandleZoom();
+        // HandleRotation();
     }
 
     public void SetControl(bool enable)
