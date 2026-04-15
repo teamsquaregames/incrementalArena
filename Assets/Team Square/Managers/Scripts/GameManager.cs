@@ -59,7 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         UIManager.Instance.GetCanvas<GameCanvas>().Close();
         GameData.Instance.IncrementTrackedValue(TrackedValueType.RunCount, 1);
-        CameraController.Instance.SetControl(false);
+        //CameraController.Instance.SetControl(false);
         GameData.Instance.runActive = false;
 
         FadeManager.Instance.FadeIn(() =>
@@ -80,7 +80,7 @@ public class GameManager : Singleton<GameManager>
     {
         m_isPaused = paused;
 
-        if (CameraController.Instance != null)
-            CameraController.Instance.SetControl(!paused);
+        // if (CameraController.Instance != null)
+        //     CameraController.Instance.SetControl(!paused);
     }
 }
