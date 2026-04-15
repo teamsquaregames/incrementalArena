@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: 'm_renderers.Array.data[7]'
       value: 
       objectReference: {fileID: 9106362369280223076}
+    - target: {fileID: 4312584928852569556, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_entityType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5319705569266897079, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Height
       value: 6
@@ -414,7 +418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023dea0cc5f17c948837f1e35bb9683d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatModule
-  m_entityType: 2
 --- !u!114 &6876498744149481489
 MonoBehaviour:
   m_ObjectHideFlags: 0

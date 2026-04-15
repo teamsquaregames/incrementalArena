@@ -24,7 +24,7 @@ MonoBehaviour:
     m_amount: 0f000000000000001e000000000000003c00000000000000
   m_abilityGranted: {fileID: 0}
   m_statModifiers:
-  - id: STN_Rewards_01
+  - id: STN_RunDuration_01
     entityType: 1
     statType: 6
     type: 0

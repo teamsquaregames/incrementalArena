@@ -86,6 +86,7 @@ public class GameData : ScriptableObject
 		}
 
 		Instance.unlockedAbilities = new List<AbilityConfig>();
+		Instance.unlockedEnemies = GameConfig.Instance.gameSettings.defaultEnemies != null ? new List<Entity>(GameConfig.Instance.gameSettings.defaultEnemies) : new List<Entity>();
 
 		Instance.Save();
 		Instance.OnResetData?.Invoke();
@@ -307,6 +308,7 @@ public class GameData : ScriptableObject
 	[Header("Teck Tree")]
 	public SerializableDictionary<string, int> teckTreeNodesLevels = new SerializableDictionary<string, int>();
 	public List<AbilityConfig> unlockedAbilities = new List<AbilityConfig>();
+	public List<Entity> unlockedEnemies = new List<Entity>();
 
 	public int GetNodeLevel(string _nodeID)
 	{
@@ -334,6 +336,15 @@ public class GameData : ScriptableObject
 		if (!unlockedAbilities.Contains(ability))
 		{
 			unlockedAbilities.Add(ability);
+			Save();
+		}
+	}
+
+	public void UnlockEnemy(Entity enemy)
+	{
+		if (!unlockedEnemies.Contains(enemy))
+		{
+			unlockedEnemies.Add(enemy);
 			Save();
 		}
 	}

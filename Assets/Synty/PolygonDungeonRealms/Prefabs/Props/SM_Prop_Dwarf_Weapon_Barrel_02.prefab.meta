@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a48cc47b43d0ff846b00cd6cda85b61f
+timeCreated: 1611202471
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Prefabs/Props/SM_Prop_Dwarf_Weapon_Barrel_02.prefab
+  uploadId: 861060

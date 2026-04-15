@@ -5,11 +5,12 @@ namespace Stats
 {
     public class EntityStatModule : EntityModule
     {
-        [SerializeField] private EntityType m_entityType;
 
-        private void Awake()
+        protected override void OnInitialize()
         {
-            StatManager.Instance.RegisterInstance(gameObject, m_entityType);
+            base.OnInitialize();
+
+            StatManager.Instance.RegisterInstance(gameObject, Owner.EntityType);
         }
 
         private void OnDestroy()

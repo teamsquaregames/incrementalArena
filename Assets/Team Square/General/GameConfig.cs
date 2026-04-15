@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils;
@@ -37,6 +38,7 @@ public class GameConfig : ScriptableObject
         public bool disableBootStrapper;
         public bool infiniteRunDuration;
         public bool usePrefabAbilities;
+        public bool usePrefabEnemies;
     }
 
     [System.Serializable]
@@ -53,5 +55,7 @@ public class GameConfig : ScriptableObject
 
         [Space, Header("Tutorial")]
         public float delayBeforeCanValidateOnClick = 0.2f;
+
+        public List<Entity> defaultEnemies;
     }
 }

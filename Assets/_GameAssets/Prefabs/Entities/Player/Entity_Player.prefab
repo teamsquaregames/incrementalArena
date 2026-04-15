@@ -459,10 +459,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.95
+      - m_Value: 0.26
         m_Name: TrailsIntensity
         m_Overridden: 1
-      - m_Value: 1.7
+      - m_Value: 0.32
         m_Name: Core Intensity
         m_Overridden: 1
       - m_Value: 5.77
@@ -1081,6 +1081,10 @@ PrefabInstance:
       propertyPath: m_collider
       value: 
       objectReference: {fileID: 5817623271102131256}
+    - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_entityType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Name
       value: Entity_Player
@@ -1256,7 +1260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023dea0cc5f17c948837f1e35bb9683d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatModule
-  m_entityType: 1
 --- !u!54 &1242883771397363075
 Rigidbody:
   m_ObjectHideFlags: 0

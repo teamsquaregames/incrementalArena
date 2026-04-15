@@ -39,6 +39,7 @@ public class STNodeAsset : ScriptableObject
 
     [TitleGroup("Bonuses")]
     [SerializeField] protected AbilityConfig m_abilityGranted;
+    [SerializeField] protected Entity m_enemyUnlocked;
     [SerializeField] protected LeveledStatModifier[] m_statModifiers;
 
     private int m_lastMaxLevel = -1;
@@ -63,6 +64,7 @@ public class STNodeAsset : ScriptableObject
 
     #region Getters
     public AbilityConfig AbilityGranted => m_abilityGranted;
+    public Entity EnemyUnlocked => m_enemyUnlocked;
     public LeveledStatModifier[] StatModifiers => m_statModifiers;
     public string DisplayName => m_displayName;
     public string ID => m_id;
@@ -119,6 +121,11 @@ public class STNodeAsset : ScriptableObject
             UnityEditor.EditorUtility.SetDirty(this);
         }
 
+        foreach (var modifier in m_statModifiers)
+        {
+            if (modifier == null) continue;
+            modifier.id = m_id;
+        }
     }
 #endif
 }

@@ -1495,6 +1495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena - Orc Pit
       objectReference: {fileID: 0}
+    - target: {fileID: 1277518400628367632, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2944303635654189257, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
       propertyPath: m_Size.y
       value: 1

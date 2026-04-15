@@ -384,6 +384,9 @@ public class STNodeButton : CustomButton
     {
         if (m_asset.AbilityGranted != null)
             GameData.Instance.UnlockAbility(m_asset.AbilityGranted);
+            
+        if (m_asset.EnemyUnlocked != null)
+            GameData.Instance.UnlockEnemy(m_asset.EnemyUnlocked);
     }
 
     private void ApplyStatModifiers()

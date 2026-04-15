@@ -5,5 +5,7 @@ public enum NodeRank
     BASIC,
     ADVANCED,
     ELITE,
-    ULTIMATE
+    EnemyBasic,
+    EnemyAdvanced,
+    EnemyElite
 }

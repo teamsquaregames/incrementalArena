@@ -19,6 +19,11 @@ public class Entity : MonoBehaviour, IPoolable
     [FoldoutGroup("Status"), SerializeField] private AnimationCurve m_knockUpCurve;
     [FoldoutGroup("Status"), SerializeField] private Transform m_modelT;
 
+    
+    [TitleGroup("Settings")]
+    [SerializeField] private EntityType m_entityType;
+    public EntityType EntityType => m_entityType;
+
     private Dictionary<Type, EntityModule> m_modules = new Dictionary<Type, EntityModule>();
     private bool m_isStaggered;
     private float m_staggerEndTime;

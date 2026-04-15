@@ -15,22 +15,20 @@ using Random = UnityEngine.Random;
 public class LevelManager : Singleton<LevelManager>
 {
     public Entity m_playerPrefab;
-    public Entity m_enemyPrefab;
 
     [Header("Dependencies")]
     [SerializeField, Required] private CrowdRewards m_crowdRewards;
     [SerializeField, Required] private CrowdManager m_crowdManager;
+    [SerializeField, Required] private SpawnManager m_spawnManager;
 
-    [TitleGroup("Settings")]
-    [SerializeField] private Vector2 m_spawnRange = new Vector2(5, 5);
-    [SerializeField] private bool m_spawnRangeGizmos = true;
     
     public CrowdRewards CrowdRewards => m_crowdRewards;
 
-    private int m_currentWave = 0;
-    private HashSet<Entity> m_waveEnemies = new HashSet<Entity>();
+    private int m_currentRound = 0;
     private EntityHealthModule m_playerHealthModule;
     private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
+    private HashSet<Entity> m_waveEnemies => m_spawnManager.RoundEnemies;
+
     private void Awake()
     {
         GameManager.Instance.onRunTimerStart += OnRunTimerStart;
@@ -44,19 +42,13 @@ public class LevelManager : Singleton<LevelManager>
     }
 
 
-
     #region  Run
 
-    private void StartWave()
+    private void StartRound()
     {
-        m_currentWave++;
-        int count = Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave));
+        m_currentRound++;
 
-        for (int i = 0; i < count; i++)
-        {
-            Entity enemy = LeanPool.Spawn(m_enemyPrefab, new Vector3(Random.Range(-m_spawnRange.x, m_spawnRange.x), 0, Random.Range(-m_spawnRange.y, m_spawnRange.y)), Quaternion.identity);
-            m_waveEnemies.Add(enemy);
-        }
+        m_spawnManager.SpawnRound(m_currentRound);
 
         m_runTimerUIC.SetTimerPause(false);
     }
@@ -70,12 +62,12 @@ public class LevelManager : Singleton<LevelManager>
         yield return new WaitForSeconds(5);
 
         m_crowdRewards.CollectAllRewards();
-        StartWave();
+        StartRound();
     }
 
     private void OnRunTimerStart()
     {
-        m_currentWave = 0;
+        m_currentRound = 0;
         m_waveEnemies.Clear();
         Entity player = LeanPool.Spawn(m_playerPrefab);
 
@@ -84,7 +76,7 @@ public class LevelManager : Singleton<LevelManager>
 
         DOVirtual.DelayedCall(3f, () =>
         {
-            StartWave();
+            StartRound();
         });
     }
 
@@ -114,13 +106,4 @@ public class LevelManager : Singleton<LevelManager>
     }
 
 
-    /// spawn range gizmos
-    private void OnDrawGizmosSelected()
-    {
-        if (m_spawnRangeGizmos)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(m_spawnRange.x * 2, 0.1f, m_spawnRange.y * 2));
-        }
-    }
 }

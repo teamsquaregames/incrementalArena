@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0c87d132a29fde84eaf827693e818151
+timeCreated: 1613081684
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 43977016026103738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189093
+  packageName: POLYGON - Dungeon Realms Pack - Art by Synty
+  packageVersion: 1.4.3
+  assetPath: Assets/Synty/PolygonDungeonRealms/Models/Collision/Convex/SM_Prop_Hell_Fence_03_Convex.asset
+  uploadId: 861060
