@@ -11,5 +11,6 @@ namespace Stats
         RunDuration,
         CriticalChance,
         SpawnWeight,
+        PlayerHealthLostPerSecond
     }
 }

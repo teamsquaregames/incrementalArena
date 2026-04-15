@@ -1,13 +1,10 @@
-using Lean.Pool;
 using UnityEngine;
 
 public class EntityHealthUIModule : EntityModule
 {
-    [SerializeField] private GenericGauge m_genericGaugePrefab;
-    [SerializeField] private Transform m_healthBarTarget;
     [SerializeField] private FloatingTextConfig m_floatingTextConfig;
 
-    private GenericGauge m_genericGauge;
+    protected GenericGauge m_genericGauge;
 
     public override void OnAllModuleInitialized()
     {
@@ -21,40 +18,31 @@ public class EntityHealthUIModule : EntityModule
         healthModule.OnDeathStart += OnDeathStart;
         healthModule.OnDeath += OnDeath;
 
-        SpawnHealthBar(m_healthBarTarget, healthModule.MaxHealth);
+        SpawnHealthBar(healthModule.MaxHealth);
     }
 
-    private void SpawnHealthBar(Transform target, float maxHealth)
+    protected virtual void SpawnHealthBar(float maxHealth) { }
+
+    protected virtual void DespawnHealthBar() { }
+
+    protected void OnDamageTextRequested(float amount, bool isCrit)
     {
-        Transform canvasTransform = UIManager.Instance.GetCanvas<GameCanvas>().transform;
-        m_genericGauge = LeanPool.Spawn(m_genericGaugePrefab, canvasTransform);
-        m_genericGauge.Setup(target, maxHealth, maxHealth);
+        string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
+        FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
+
+        FloatingTextManager.Instance.SpawnWorldText(Owner.transform.position, text, config);
     }
 
-    private void DespawnHealthBar()
-    {
-        if (m_genericGauge == null) return;
-        
-        LeanPool.Despawn(m_genericGaugePrefab);
-        m_genericGauge = null;
-    }
-
-    private void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit)
+    protected void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit, bool suppressFeedback)
     {
         if (m_genericGauge == null) return;
-        m_genericGauge.SetValue(currentHealth, maxHealth);
+        m_genericGauge.SetValue(currentHealth, maxHealth, instant: false, showChunks: !suppressFeedback);
 
-        if (delta < 0f)
-        {
-            float amount = Mathf.Abs(delta);
-            string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
-            FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
-            
-            FloatingTextManager.Instance.SpawnWorldText(m_healthBarTarget.position, text, config);
-        }
+        if (delta < 0f && !suppressFeedback)
+            OnDamageTextRequested(Mathf.Abs(delta), isCrit);
     }
 
-    private void OnDeathStart()
+    protected virtual void OnDeathStart()
     {
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
         {
@@ -63,13 +51,10 @@ public class EntityHealthUIModule : EntityModule
             healthModule.OnDeath -= OnDeath;
         }
 
-        if (m_genericGauge != null)
-        { 
-            LeanPool.Despawn(m_genericGauge);   
-        }
+        DespawnHealthBar();
     }
-    
-    private void OnDeath()
+
+    protected virtual void OnDeath()
     {
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
         {
@@ -78,9 +63,6 @@ public class EntityHealthUIModule : EntityModule
             healthModule.OnDeath -= OnDeath;
         }
 
-        if (m_genericGauge != null)
-        { 
-            LeanPool.Despawn(m_genericGauge);   
-        }
+        DespawnHealthBar();
     }
 }

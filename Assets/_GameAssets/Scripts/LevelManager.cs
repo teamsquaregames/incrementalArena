@@ -26,7 +26,6 @@ public class LevelManager : Singleton<LevelManager>
 
     private int m_currentRound = 0;
     private EntityHealthModule m_playerHealthModule;
-    private RunTimerUIC m_runTimerUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<RunTimerUIC>();
     private HashSet<Entity> m_waveEnemies => m_spawnManager.RoundEnemies;
 
     private void Awake()
@@ -49,13 +48,10 @@ public class LevelManager : Singleton<LevelManager>
         m_currentRound++;
 
         m_spawnManager.SpawnRound(m_currentRound);
-
-        m_runTimerUIC.SetTimerPause(false);
     }
 
     private IEnumerator OnWaveComplete()
     {
-        m_runTimerUIC.SetTimerPause(true);
         m_crowdRewards.SpawnRewards();
         m_crowdManager.CrowdCheer();
 
@@ -96,13 +92,24 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (!GameConfig.Instance.debuggingSettings.developmentBuild) return;
         if (Keyboard.current.endKey.wasPressedThisFrame)
-            GameManager.Instance.EndRun();
+            EndRun();
     }
 
     private void OnPlayerDeath()
     {
+        EndRun();
+    }
+
+    public void EndRun()
+    {
         m_playerHealthModule.OnDeath -= OnPlayerDeath;
-        GameManager.Instance.EndRun();
+
+        m_crowdRewards.GrantAllPendingGold();
+
+        UIManager.Instance.GetCanvas<RunEndCanvas>().Open();
+
+        foreach (TrackedValueType type in GameConfig.Instance.gameSettings.trackedValuesToResetOnRunEnd)
+            GameData.Instance.ResetTrackedValue(type);
     }
 
 

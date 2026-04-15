@@ -37,6 +37,12 @@ public class NpcBrainModule : EntityBrainModule
 
     protected override void Think()
     {
+        if (EntityManager.Instance.Player == null)
+        {
+            StopMovement();
+            return;
+        }
+        
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
         if (Owner.IsStaggered)
         {
