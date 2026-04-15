@@ -32,7 +32,7 @@ MonoBehaviour:
   trackedValues:
     keys: 01000000401f0000411f0000292300002a230000
     values:
-    - value: 1
+    - value: 0
     - value: 0
     - value: 0
     - value: 0
@@ -42,4 +42,4 @@ MonoBehaviour:
     values: 
   unlockedAbilities: []
   unlockedEnemies:
-  - {fileID: 7382554555577117163, guid: f43592b3593101a4c839509b4cda8750, type: 3}
+  - {fileID: 0}
