@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils;
@@ -21,4 +22,5 @@ public class GameAssets : ScriptableObject
     [AssetList(Path = "Team Square/Currency/Objects", AutoPopulate = true)]
     public CurrencyAsset[] currencyAssets;
     public FloatingTextConfig critDamageTextConfig;
+    public List<ArenaConfig> arenaConfigs;
 }   

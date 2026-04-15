@@ -12,3 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d735201b0be224da6f2747493e9f07, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  isDirty: 0
+  firstGameLaunch: 1
+  runExistInSave: 0
+  runActive: 1
+  currentArenaID: arena2
+  currencies:
+    keys: 01000000
+    values:
+    - 0
+  completedFtueSteps: []
+  currentQuestIndex: 0
+  completedQuestIds: []
+  questObjectiveSnapshots:
+    keys:
+    - quest1_obj_0
+    values:
+    - 0
+  trackedValues:
+    keys: 01000000401f0000411f0000292300002a230000
+    values:
+    - value: 0
+    - value: 0
+    - value: 0
+    - value: 0
+    - value: 0
+  teckTreeNodesLevels:
+    keys: []
+    values: 
+  unlockedAbilities: []
+  unlockedEnemies:
+  - {fileID: 0}

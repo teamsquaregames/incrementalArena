@@ -39,7 +39,7 @@ public class SpawnManager : Singleton<SpawnManager>
             spawnWeight[i] = StatManager.Instance.GetDefinitionValue(m_enemyPrefabs[i].EntityType, StatType.SpawnWeight);
         }
 
-        // Debug.Log($"Spawning round {roundNumber} with {count} enemies. Spawn weights: {string.Join(", ", spawnWeight)}");
+        Debug.Log($"Spawning round {roundNumber} with {count} enemies. Spawn weights: {string.Join(", ", spawnWeight)}");
 
         for (int i = 0; i < count; i++)
         {

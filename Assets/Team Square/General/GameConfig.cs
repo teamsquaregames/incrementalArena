@@ -55,12 +55,9 @@ public class GameConfig : ScriptableObject
 
         [Space, Header("Tutorial")]
         public float delayBeforeCanValidateOnClick = 0.2f;
-
-<<<<<<< HEAD
+        
         public List<Entity> defaultEnemies;
-=======
         [Space, Header("Run Reset")]
         public List<TrackedValueType> trackedValuesToResetOnRunEnd = new List<TrackedValueType>();
->>>>>>> 5e6518935e2f119908fdcd84b9b119ac65bc08ff
     }
 }

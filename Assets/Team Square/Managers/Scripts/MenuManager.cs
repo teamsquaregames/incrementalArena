@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
     private async Task NoMenu()
     {
         UIManager.Instance.GetCanvas<MenuCanvas>().Close();
-        await SceneManager.LoadSceneAsync("MainScene");
+        await SceneManager.LoadSceneAsync(GameAssets.Instance.arenaConfigs.Find(x => x.arenaID == GameData.Instance.currentArenaID).sceneRef.SceneName);
         GameManager.Instance.EnterRun();
     }
 }

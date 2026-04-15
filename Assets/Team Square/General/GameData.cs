@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using MyBox;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -63,6 +65,7 @@ public class GameData : ScriptableObject
 	public bool firstGameLaunch = true;
 	public bool runExistInSave;
 	public bool runActive;
+	public string currentArenaID;
 	
 	public static void ResetGameData()
 	{
@@ -71,6 +74,7 @@ public class GameData : ScriptableObject
 		Instance.firstGameLaunch = true;
 		Instance.runActive = false;
 		Instance.completedFtueSteps.Clear();
+		Instance.currentArenaID = GameAssets.Instance.arenaConfigs[0].arenaID;
 
 		Instance.runExistInSave = false;
 
@@ -347,6 +351,11 @@ public class GameData : ScriptableObject
 			unlockedEnemies.Add(enemy);
 			Save();
 		}
+	}
+	
+	public void UnlockArena(string arenaID)
+	{
+		currentArenaID = arenaID;
 	}
 	#endregion
 }

@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Action onRunTimerStart;
-    public Action onRunTimerEnd;
+    public Action onRunStart;
+    public Action onRunEnd;
 
     private bool m_isPaused = false;
     public bool IsPaused => m_isPaused;
@@ -25,12 +25,12 @@ public class GameManager : Singleton<GameManager>
 
     public void StartRun()
     {
-        onRunTimerStart?.Invoke();
+        onRunStart?.Invoke();
     }
 
     public void EndRun()
     {
-        onRunTimerEnd?.Invoke();
+        onRunEnd?.Invoke();
         QuitRun();
     }
 
@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     public void FadeAndEnterRun()
     {
-        FadeManager.Instance.FadeInWithScene("MainScene", () =>
+        FadeManager.Instance.FadeInWithScene(GameAssets.Instance.arenaConfigs.Find(x => x.arenaID == GameData.Instance.currentArenaID).sceneRef.SceneName, () =>
         {
             EnterRun();
         });
