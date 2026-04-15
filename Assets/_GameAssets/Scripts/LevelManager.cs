@@ -30,14 +30,14 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
-        GameManager.Instance.onRunTimerStart += OnRunTimerStart;
+        GameManager.Instance.onRunStart += OnRunTimerStart;
         EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
     }
 
     private void OnDestroy()
     {
         if (GameManager.Instance == null) return;
-        GameManager.Instance.onRunTimerStart -= OnRunTimerStart;
+        GameManager.Instance.onRunStart -= OnRunTimerStart;
     }
 
 

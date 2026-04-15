@@ -55,8 +55,8 @@ public class CameraController : MyBox.Singleton<CameraController>
 
     private void Start()
     {
-        GameManager.Instance.onRunTimerStart += OnRunTimerStart;
-        GameManager.Instance.onRunTimerEnd += OnRunTimerEnd;
+        GameManager.Instance.onRunStart += OnRunTimerStart;
+        GameManager.Instance.onRunEnd += OnRunTimerEnd;
     }
     
     private void OnRunTimerStart()

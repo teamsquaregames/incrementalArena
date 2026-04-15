@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/_GameAssets/Scenes/MenuScene.unity
     guid: e29e262307806f04fb153b5a8b0c1eb4
   - enabled: 1
-    path: Assets/_GameAssets/Scenes/MainScene.unity
+    path: Assets/_GameAssets/Scenes/MainScene - Orc Pit.unity
     guid: 02265c4cf95e33c45ab3ccc830fa6934
+  - enabled: 1
+    path: Assets/_GameAssets/Scenes/MainScene - Dark Demacia.unity
+    guid: aa84fdc0c182f064c86da9f998bb369a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

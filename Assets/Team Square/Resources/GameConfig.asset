@@ -24,6 +24,10 @@ MonoBehaviour:
     disableBootStrapper: 0
     infiniteRunDuration: 0
     usePrefabAbilities: 0
+    usePrefabEnemies: 0
   gameSettings:
     isDemo: 0
     delayBeforeCanValidateOnClick: 0.2
+    defaultEnemies:
+    - {fileID: 7382554555577117163, guid: f43592b3593101a4c839509b4cda8750, type: 3}
+    trackedValuesToResetOnRunEnd: 411f000029230000

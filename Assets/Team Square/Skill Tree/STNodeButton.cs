@@ -351,6 +351,8 @@ public class STNodeButton : CustomButton
         m_level = GameData.Instance.LevelUpNode(m_asset.ID);
 
         UnlockAbility();
+        UnlockEnemy();
+        UnlockArena();
         ApplyStatModifiers();
 
         if (m_level == 1)
@@ -385,8 +387,19 @@ public class STNodeButton : CustomButton
         if (m_asset.AbilityGranted != null)
             GameData.Instance.UnlockAbility(m_asset.AbilityGranted);
             
+
+    }
+
+    private void UnlockEnemy()
+    {
         if (m_asset.EnemyUnlocked != null)
             GameData.Instance.UnlockEnemy(m_asset.EnemyUnlocked);
+    }
+    
+    private void UnlockArena()
+    {
+        if (m_asset.ArenaUnlocked != null)
+            GameData.Instance.UnlockArena(m_asset.ArenaUnlocked.arenaID);
     }
 
     private void ApplyStatModifiers()
