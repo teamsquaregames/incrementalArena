@@ -28,9 +28,9 @@ public class EntityHealthModule : EntityModule
     [FoldoutGroup("Feedback settings"), SerializeField, Range(0f, 1f)] private float punchElasticity = 0.5f;
 
     private float m_currentHealth;
-    private bool m_isDead;
+    protected bool m_isDead;
     private Tween m_punchTween;
-    private EntityStatModule m_statModule;
+    protected EntityStatModule m_statModule;
 
     public float MaxHealth
     {
@@ -98,15 +98,6 @@ public class EntityHealthModule : EntityModule
             .DOPunchScale(punchScale, punchDuration, punchVibrato, punchElasticity)
             .SetUpdate(UpdateType.Normal)
             .SetLink(Owner.gameObject);
-    }
-
-    private void Update()
-    {
-        if (m_isDead || m_statModule == null) return;
-
-        float healthLostPerSecond = m_statModule.GetValue(StatType.PlayerHealthLostPerSecond);
-        if (healthLostPerSecond > 0f)
-            TakeDamage(healthLostPerSecond * Time.deltaTime, false, suppressFeedback: true);
     }
 
     [Button]

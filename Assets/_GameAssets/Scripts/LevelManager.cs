@@ -24,6 +24,8 @@ public class LevelManager : Singleton<LevelManager>
     
     public CrowdRewards CrowdRewards => m_crowdRewards;
 
+    public bool IsWaveActive { get; private set; }
+
     private int m_currentRound = 0;
     private EntityHealthModule m_playerHealthModule;
     private HashSet<Entity> m_waveEnemies => m_spawnManager.RoundEnemies;
@@ -53,11 +55,13 @@ public class LevelManager : Singleton<LevelManager>
         
         yield return new WaitForSeconds(2);
         
+        IsWaveActive = true;
         m_spawnManager.SpawnRound(m_currentRound);
     }
 
     private IEnumerator OnWaveComplete()
     {
+        IsWaveActive = false;
         m_crowdRewards.SpawnRewards();
         m_crowdManager.CrowdCheer();
 
