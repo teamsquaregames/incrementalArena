@@ -5,6 +5,7 @@ using Lean.Pool;
 using MyBox;
 using Sirenix.OdinInspector;
 using Stats;
+using Unity.Cinemachine;
 using UnityEngine;
 using Utils;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ public class EntityAbilityModule : EntityModule
 
     [TitleGroup("References")]
     [SerializeField] private AbilityApplicationGizmos m_gizmos;
+    [SerializeField] private CinemachineImpulseSource m_impulseSource;
+
+    public CinemachineImpulseSource ImpulseSource => m_impulseSource;
 
     [Header("Auto Attack")]
     [SerializeField, InlineEditor] private AbilityConfig m_autoAttack;
