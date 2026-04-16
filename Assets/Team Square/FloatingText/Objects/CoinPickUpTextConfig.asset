@@ -19,7 +19,7 @@ MonoBehaviour:
   enableScaleIn: 1
   scaleInEase: 18
   enableFadeIn: 1
-  stayDuration: 0.2
+  stayDuration: 1
   despawnDuration: 0.15
   enableScaleOut: 0
   enableFadeOut: 1

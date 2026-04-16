@@ -24,9 +24,12 @@ public class LevelManager : Singleton<LevelManager>
     
     public CrowdRewards CrowdRewards => m_crowdRewards;
 
+    public bool IsWaveActive { get; private set; }
+
     private int m_currentRound = 0;
     private EntityHealthModule m_playerHealthModule;
     private HashSet<Entity> m_waveEnemies => m_spawnManager.RoundEnemies;
+    private EndRoundUIC endRoundUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<EndRoundUIC>();
 
     private void Awake()
     {
@@ -43,22 +46,31 @@ public class LevelManager : Singleton<LevelManager>
 
     #region  Run
 
-    private void StartRound()
+    private IEnumerator StartRound()
     {
         m_currentRound++;
 
+        endRoundUIC.SetAnnouncementText($"Round {m_currentRound}");
+        endRoundUIC.Open();
+        
+        yield return new WaitForSeconds(2);
+        
+        IsWaveActive = true;
         m_spawnManager.SpawnRound(m_currentRound);
     }
 
     private IEnumerator OnWaveComplete()
     {
+        IsWaveActive = false;
         m_crowdRewards.SpawnRewards();
         m_crowdManager.CrowdCheer();
 
-        yield return new WaitForSeconds(5);
-
+        yield return new WaitForSeconds(3);
+        
         m_crowdRewards.CollectAllRewards();
-        StartRound();
+        
+        yield return new WaitForSeconds(1);
+        StartCoroutine(StartRound());
     }
 
     private void OnRunTimerStart()
@@ -72,7 +84,7 @@ public class LevelManager : Singleton<LevelManager>
 
         DOVirtual.DelayedCall(3f, () =>
         {
-            StartRound();
+            StartCoroutine(StartRound());
         });
     }
 
