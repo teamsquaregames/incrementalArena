@@ -53,6 +53,7 @@ MonoBehaviour:
   m_colliders:
   - {fileID: 6777028751872587495}
   - {fileID: 571096092926048809}
+  m_trail: {fileID: 162930212400357033}
   m_jumpPower: 2
   m_jumpDuration: 0.4
   m_textConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}

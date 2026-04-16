@@ -10,6 +10,7 @@ public class RewardObject : MonoBehaviour, IPoolable
     [SerializeField] private RewardConfig m_rewardConfig;
     [SerializeField] private Rigidbody m_rb;
     [SerializeField] private List<Collider> m_colliders;
+    [SerializeField] private TrailRenderer m_trail;
     [SerializeField, FoldoutGroup("Jump Tween")] private float m_jumpPower = 2f;
     [SerializeField, FoldoutGroup("Jump Tween")] private float m_jumpDuration = 0.4f;
     [SerializeField] private FloatingTextConfig m_textConfig;
@@ -88,6 +89,13 @@ public class RewardObject : MonoBehaviour, IPoolable
 
     public void OnSpawn()
     {
+        if (m_trail != null)
+        {
+            m_trail.Clear();
+            m_trail.enabled = false;
+            m_trail.enabled = true;
+        }
+
         m_isBeingPickedUp = false;
         m_rb.isKinematic = false;
         

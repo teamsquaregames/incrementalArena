@@ -70,7 +70,7 @@ public class EntityHealthModule : EntityModule
         m_currentHealth = MaxHealth;
     }
 
-    private void PlayDamageFeedback()
+    protected virtual void PlayDamageFeedback()
     {
         PlayPunchScale();
 
