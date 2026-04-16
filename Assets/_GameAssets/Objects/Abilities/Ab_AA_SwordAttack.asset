@@ -69,7 +69,7 @@ MonoBehaviour:
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
-    mainVfx: {fileID: 0}
+    mainVfx: {fileID: 4278106076369189116, guid: a090ee0d17c67014fb8a8de4e2d844cd, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
-    mainVfx: {fileID: 0}
+    mainVfx: {fileID: 4278106076369189116, guid: a090ee0d17c67014fb8a8de4e2d844cd, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
     hitVfx: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
       additionalRotation: 0
       additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
-    mainVfx: {fileID: 0}
+    mainVfx: {fileID: 4278106076369189116, guid: a090ee0d17c67014fb8a8de4e2d844cd, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
     hitVfx: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 4ba8cf8be6ccd0a409ef99af8189c767, type: 3}
   description: 
   range: {x: 3, y: 6}
-  cooldown: 6
+  cooldown: 12
   sfx: 0
   sfxDelay: 0
   steps:

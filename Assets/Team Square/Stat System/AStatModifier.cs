@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 
 namespace Stats
 {
@@ -14,7 +15,9 @@ namespace Stats
     public abstract class AStatModifier
     {
         public string id;
+        // [ShowIf("ability", null)]
         public EntityType entityType;
+        public AbilityConfig ability;
         public StatType statType;
         public ModifierType type;
 

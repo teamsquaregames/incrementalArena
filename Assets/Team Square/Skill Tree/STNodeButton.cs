@@ -26,8 +26,8 @@ public class NodeRankVisual
 public class STNodeButton : CustomButton
 {
     #region Fields
-    [SerializeField, Required, TitleGroup("Node Asset", order:-1)] private STNodeAsset m_asset;
-    
+    [SerializeField, Required, TitleGroup("Node Asset", order: -1)] private STNodeAsset m_asset;
+
     [SerializeField, Required, TitleGroup("Dependencies")] private RadialLayoutNode m_radialLayoutNode;
     [SerializeField, Required, TitleGroup("Dependencies")] private Image m_icon;
     [SerializeField, Required, TitleGroup("Dependencies")] private Image m_background;
@@ -45,28 +45,28 @@ public class STNodeButton : CustomButton
 
     private STNodeDetailsUIC m_detailsUI;
 
-    
+
     [SerializeField, TitleGroup("Settings")] private bool m_lockedByDefault = true;
     [SerializeField, TitleGroup("Settings")] private bool m_demoLocked = false;
-    
+
     [SerializeField, FoldoutGroup("Breathe")] private float m_breatheScale = 1.08f;
     [SerializeField, FoldoutGroup("Breathe")] private float m_breatheIconScale = 1.14f;
     [SerializeField, FoldoutGroup("Breathe")] private float m_breatheHalfDuration = 0.6f;
-    [SerializeField, FoldoutGroup("Breathe")] private Ease m_breatheEase = Ease.InOutSine;  
-    
+    [SerializeField, FoldoutGroup("Breathe")] private Ease m_breatheEase = Ease.InOutSine;
+
     [SerializeField, FoldoutGroup("Completion flash")] private float m_maxLevelFlashDuration = 0.6f;
     [SerializeField, FoldoutGroup("Completion flash")] private float m_maxLevelFlashStartScale = 1.5f;
     [SerializeField, FoldoutGroup("Completion flash")] private float m_maxLevelFlashEndScale = 0.5f;
     [SerializeField, FoldoutGroup("Completion flash")] private Ease m_maxLevelFlashScaleEase = Ease.OutQuad;
     [SerializeField, FoldoutGroup("Completion flash")] private Ease m_maxLevelFlashFadeEase = Ease.InQuad;
-    
+
     private Sequence m_breatheSequence;
     private RadialLayoutLink m_arrivingLink;
     private int m_level = 0;
     private bool m_isLockInitialized = false;
     private PanelController m_panelController;
 
-    
+
     public STNodeAsset LinkedNodeAsset => m_asset;
     public PanelController PanelController { get; set; }
     #endregion
@@ -134,7 +134,7 @@ public class STNodeButton : CustomButton
         base.SetLock(_isLocked);
         SetInteractible(!_isLocked);
         m_contentCanvasGroup.alpha = 1;
-        
+
         m_content.gameObject.SetActive(!_isLocked);
         if (m_arrivingLink != null)
             m_arrivingLink.gameObject.SetActive(!_isLocked);
@@ -142,7 +142,7 @@ public class STNodeButton : CustomButton
         if (!_isLocked)
         {
             GameData.Instance.onCurrencyChanged += OnCurrencyChange;
-            OnCurrencyChange(); 
+            OnCurrencyChange();
             m_background.gameObject.SetActive(true);
             m_frame.gameObject.SetActive(true);
             m_sigil.gameObject.SetActive(true);
@@ -169,7 +169,7 @@ public class STNodeButton : CustomButton
     public override void OnPointerExit(PointerEventData eventData)
     {
         if (!m_button.interactable) return;
-        
+
         base.OnPointerExit(eventData);
 
         m_detailsUI.Close();
@@ -255,7 +255,7 @@ public class STNodeButton : CustomButton
         SetInteractible(!m_isLocked);
         m_contentCanvasGroup.alpha = m_isLocked && !_highlighted ? 0 : 1;
     }
-    
+
     private void onSetArrivingLink(RadialLayoutLink _link)
     {
         m_arrivingLink = _link;
@@ -345,9 +345,9 @@ public class STNodeButton : CustomButton
     private void LevelUpNode()
     {
         ClickBounce();
-        
+
         if (GameData.Instance == null) return;
-        
+
         m_level = GameData.Instance.LevelUpNode(m_asset.ID);
 
         UnlockAbility();
@@ -381,12 +381,12 @@ public class STNodeButton : CustomButton
 
         GameData.Instance.IncrementTrackedValue(TrackedValueType.NodeUpgradesPurchased, 1);
     }
-    
+
     private void UnlockAbility()
     {
         if (m_asset.AbilityGranted != null)
             GameData.Instance.UnlockAbility(m_asset.AbilityGranted);
-            
+
 
     }
 
@@ -395,7 +395,7 @@ public class STNodeButton : CustomButton
         if (m_asset.EnemyUnlocked != null)
             GameData.Instance.UnlockEnemy(m_asset.EnemyUnlocked);
     }
-    
+
     private void UnlockArena()
     {
         if (m_asset.ArenaUnlocked != null)
@@ -404,14 +404,19 @@ public class STNodeButton : CustomButton
 
     private void ApplyStatModifiers()
     {
-        if (StatManager.Instance ==  null) return;
-        
+        if (StatManager.Instance == null) return;
+
         foreach (LeveledStatModifier statModifier in m_asset.StatModifiers)
         {
             var modifier = m_asset.IsUnlimited
                 ? statModifier.GetLinearModifierAtLevel(m_level)
                 : statModifier.GetModifierAtLevel(m_level - 1);
-            StatManager.Instance.AddDefinitionModifier(statModifier.entityType, modifier);
+
+            if (statModifier.entityType != 0)
+                StatManager.Instance.AddDefinitionModifier(statModifier.entityType, modifier);
+
+            if (statModifier.ability != null)
+                StatManager.Instance.AddDefinitionModifier(statModifier.ability, modifier);
         }
     }
 

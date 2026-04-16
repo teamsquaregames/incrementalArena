@@ -280,8 +280,8 @@ public class EntityAbilityModule : EntityModule
     {
         if (m_activeAbility != null) return false;
         if (m_cooldowns.TryGetValue(ability.abilityName, out float cd) && cd > 0f) return false;
-        if (ability.range.y > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.range.y) return false;
-        if (ability.range.x > 0f && Vector3.Distance(Owner.transform.position, targetPosition) < ability.range.x) return false;
+        if (ability.Range(Owner).y > 0f && Vector3.Distance(Owner.transform.position, targetPosition) > ability.Range(Owner).y) return false;
+        if (ability.Range(Owner).x > 0f && Vector3.Distance(Owner.transform.position, targetPosition) < ability.Range(Owner).x) return false;
         return true;
     }
 
