@@ -10,7 +10,7 @@ namespace Stats
         private float m_baseValue;
         private readonly List<StatModifier> m_modifiers = new();
         private bool m_isDirty = true;
-        
+
         [SerializeField] private float m_cachedValue;
 
         public float Value
@@ -20,6 +20,18 @@ namespace Stats
                 if (m_isDirty) Recalculate();
                 return m_cachedValue;
             }
+        }
+
+        public float GetSpecificModifierValue(ModifierType type)
+        {            
+            float value = 0f;
+            foreach (var mod in m_modifiers)
+            {
+                if (mod.type == type)
+                    value += mod.value;
+            }
+            // Debug.Log($"Getting specific modifier value for stat: type {type}, value {value}");
+            return value;
         }
 
         public event Action<float> OnValueChanged;
@@ -35,7 +47,7 @@ namespace Stats
             m_baseValue = value;
             MarkDirty();
         }
-        
+
         public void SetBaseValueAndRecalculate(float value)
         {
             m_baseValue = value;
@@ -45,6 +57,7 @@ namespace Stats
 
         public void AddModifier(StatModifier mod)
         {
+            // Debug.Log($"Adding modifier to stat: {mod.statType} {mod.value} ({mod.type}) with id {mod.id}");
             var copy = mod.Copy();
 
             if (copy.id != null)
@@ -86,15 +99,15 @@ namespace Stats
 
         private void Recalculate()
         {
-            float flat              = m_baseValue;
-            float additivePercent   = 0f;
-            float multiplier        = 1f;
+            float flat = m_baseValue;
+            float additivePercent = 0f;
+            float multiplier = 1f;
 
             foreach (var mod in m_modifiers)
             {
-                if (mod.type == ModifierType.Flat)               flat            += mod.value;
+                if (mod.type == ModifierType.Flat) flat += mod.value;
                 if (mod.type == ModifierType.AdditivePercentage) additivePercent += mod.value;
-                if (mod.type == ModifierType.Multiplier)         multiplier      *= mod.value;
+                if (mod.type == ModifierType.Multiplier) multiplier *= mod.value;
             }
 
             m_cachedValue = flat * (1f + additivePercent / 100f) * multiplier;

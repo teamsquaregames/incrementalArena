@@ -10,27 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_Rewards_01
+  m_Name: STN_DarkDemacia_01
   m_EditorClassIdentifier: 
-  m_displayName: Rewards
-  m_id: STN_Rewards_01
+  m_displayName: Big Arena
+  m_id: STN_DarkDemacia_01
   m_levelingType: 0
-  m_maxLevel: 3
-  m_rank: 0
-  m_icon: {fileID: 21300000, guid: 9a8a25ac41ae7e64fb90860519393128, type: 3}
-  m_description: Get more coin for each kill.
+  m_maxLevel: 1
+  m_rank: 2
+  m_icon: {fileID: 21300000, guid: 856218c30c9904647a10655349283562, type: 3}
+  m_description: Unlock a new arena
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0f000000000000001e000000000000003c00000000000000
+    m_amount: 3200000000000000
   m_abilityGranted: {fileID: 0}
   m_enemyUnlocked: {fileID: 0}
   m_arenaUnlocked: {fileID: 0}
-  m_statModifiers:
-  - id: STN_Rewards_01
-    entityType: 6
-    statType: 10
-    type: 1
-    m_values:
-    - 20
-    - 40
-    - 60
+  m_statModifiers: []

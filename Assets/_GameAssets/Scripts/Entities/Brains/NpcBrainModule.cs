@@ -81,7 +81,7 @@ public class NpcBrainModule : EntityBrainModule
 
     private void AgressiveBehaviour(float distanceToPlayer, Vector3 playerPos, EntityAbilityModule abilityModule)
     {
-        bool inAttackRange = distanceToPlayer <= abilityModule.AutoAttack.range.y;
+        bool inAttackRange = distanceToPlayer <= abilityModule.AutoAttack.Range(Owner).y;
 
         //MoveToward(playerPos);
 

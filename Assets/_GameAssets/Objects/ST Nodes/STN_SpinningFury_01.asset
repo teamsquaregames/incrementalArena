@@ -23,4 +23,5 @@ MonoBehaviour:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 3200000000000000
   m_abilityGranted: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+  m_enemyUnlocked: {fileID: 0}
   m_statModifiers: []

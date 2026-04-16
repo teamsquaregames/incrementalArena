@@ -49,8 +49,8 @@ public class PlayerBrainModule : EntityBrainModule
             new Vector3(targetPosition.x, 0f, targetPosition.z));
 
             bool inAARange = targetEnemy != null
-                                 && distanceToTarget <= abilityModule.AutoAttack.range.y
-                                 && distanceToTarget >= abilityModule.AutoAttack.range.x;
+                                 && distanceToTarget <= abilityModule.AutoAttack.Range(Owner).y
+                                 && distanceToTarget >= abilityModule.AutoAttack.Range(Owner).x;
 
         if (inAARange)
         {

@@ -9,15 +9,22 @@ namespace Stats
     public class StatManager : Singleton<StatManager>
     {
         [SerializeField, AssetList(Path = "Team Square/Stat System", AutoPopulate = true)] private List<EntityStatDefinition> m_entityStatDefinitions;
+
         [SerializeField, ReadOnly] private SerializableDictionary<EntityType, Dictionary<StatType, Stat>> m_definitionStats;
+        [SerializeField, ReadOnly] private SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat>> m_definitionAbilityStats;
+    
         [SerializeField, ReadOnly] private SerializableDictionary<GameObject, Dictionary<StatType, Stat>> m_instanceStats;
+        [SerializeField, ReadOnly] private SerializableDictionary<GameObject, Dictionary<AbilityConfig, Dictionary<StatType, Stat>>> m_instanceAbilityStats;
 
         private SerializableDictionary<GameObject, EntityType> m_instanceEntityTypes;
 
         protected void Awake()
         {
-            m_definitionStats     = new SerializableDictionary<EntityType, Dictionary<StatType, Stat>>();
-            m_instanceStats       = new SerializableDictionary<GameObject, Dictionary<StatType, Stat>>();
+            m_definitionStats = new SerializableDictionary<EntityType, Dictionary<StatType, Stat>>();
+            m_definitionAbilityStats = new SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat>>();
+            m_instanceStats = new SerializableDictionary<GameObject, Dictionary<StatType, Stat>>();
+            m_instanceAbilityStats = new SerializableDictionary<GameObject, Dictionary<AbilityConfig, Dictionary<StatType, Stat>>>();
+
             m_instanceEntityTypes = new SerializableDictionary<GameObject, EntityType>();
 
             foreach (var definition in m_entityStatDefinitions)
@@ -53,6 +60,26 @@ namespace Stats
             return stat;
         }
 
+        private Stat GetOrCreateDefinitionStat(AbilityConfig ability, StatType statType)
+        {
+            // this.Log($"Getting definition stat for ability '{ability.abilityName}' and stat type '{statType}'");
+            if (!m_definitionAbilityStats.TryGetValue(ability, out var statDict))
+            {
+                statDict = new Dictionary<StatType, Stat>();
+                m_definitionAbilityStats[ability] = statDict;
+                // this.Log($"Created new stat dictionary for ability '{ability.abilityName}'");
+            }
+
+            if (!statDict.TryGetValue(statType, out var stat))
+            {
+                stat = new Stat(0f);
+                statDict[statType] = stat;
+                // this.Log($"Created new stat for ability '{ability.abilityName}' and stat type '{statType}' with base value 0");
+            }
+
+            return stat;
+        }
+
         private Stat GetOrCreateInstanceStat(GameObject owner, StatType statType)
         {
             if (!m_instanceStats.TryGetValue(owner, out var statDict))
@@ -64,8 +91,8 @@ namespace Stats
             if (!statDict.TryGetValue(statType, out var stat))
             {
                 var entityType = m_instanceEntityTypes[owner];
-                var defStat    = GetOrCreateDefinitionStat(entityType, statType);
-                stat           = new Stat(defStat.Value);
+                var defStat = GetOrCreateDefinitionStat(entityType, statType);
+                stat = new Stat(defStat.Value);
                 defStat.OnValueChanged += stat.SetBaseValueAndRecalculate;
                 statDict[statType] = stat;
             }
@@ -73,6 +100,32 @@ namespace Stats
             return stat;
         }
 
+        private Stat GetOrCreateInstanceStat(GameObject owner, AbilityConfig ability, StatType statType)
+        {
+            if (!m_instanceAbilityStats.TryGetValue(owner, out var abilityDict))
+            {
+                abilityDict = new Dictionary<AbilityConfig, Dictionary<StatType, Stat>>();
+                m_instanceAbilityStats[owner] = abilityDict;
+            }
+
+            if (!abilityDict.TryGetValue(ability, out var statDict))
+            {
+                statDict = new Dictionary<StatType, Stat>();
+                abilityDict[ability] = statDict;
+            }
+
+            if (!statDict.TryGetValue(statType, out var stat))
+            {
+                var defStat = GetOrCreateDefinitionStat(ability, statType);
+                stat = new Stat(defStat.Value);
+                defStat.OnValueChanged += stat.SetBaseValueAndRecalculate;
+                statDict[statType] = stat;
+            }
+
+            return stat;
+        }
+        
+        
         // --- Definition access (skill tree, no spawn needed) ---
 
         public Stat GetDefinitionStat(EntityType entityType, StatType statType)
@@ -80,20 +133,47 @@ namespace Stats
             return GetOrCreateDefinitionStat(entityType, statType);
         }
 
+        public Stat GetDefinitionStat(AbilityConfig ability, StatType statType)
+        {
+            return GetOrCreateDefinitionStat(ability, statType);
+        }
+
         public float GetDefinitionValue(EntityType entityType, StatType statType)
         {
             return GetDefinitionStat(entityType, statType).Value;
         }
+        
+        public float GetDefinitionValue(AbilityConfig ability, StatType statType)
+        {
+            return GetDefinitionStat(ability, statType).Value;
+        }
+
 
         public void AddDefinitionModifier(EntityType entityType, StatModifier mod)
         {
-            GetDefinitionStat(entityType, mod.statType).AddModifier(mod);
+            foreach (var flag in entityType.GetFlags())
+            {
+                GetDefinitionStat(flag, mod.statType).AddModifier(mod);
+            }
         }
-
         public void RemoveDefinitionModifier(EntityType entityType, StatModifier mod)
         {
-            GetDefinitionStat(entityType, mod.statType).RemoveModifier(mod);
+            foreach (var flag in entityType.GetFlags())
+            {
+                GetDefinitionStat(flag, mod.statType).RemoveModifier(mod);
+            }
         }
+
+        public void AddDefinitionModifier(AbilityConfig ability, StatModifier mod)
+        {
+            GetDefinitionStat(ability, mod.statType).AddModifier(mod);
+        }
+
+        public void RemoveDefinitionModifier(AbilityConfig ability, StatModifier mod)
+        {
+            GetDefinitionStat(ability, mod.statType).RemoveModifier(mod);
+        }
+
 
         // --- Instance access (spawned units) ---
 
@@ -112,7 +192,7 @@ namespace Stats
                 }
             }
 
-            m_instanceStats[owner]       = stats;
+            m_instanceStats[owner] = stats;
             m_instanceEntityTypes[owner] = entityType;
         }
 

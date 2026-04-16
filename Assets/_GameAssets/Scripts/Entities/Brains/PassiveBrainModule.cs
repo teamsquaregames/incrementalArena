@@ -68,7 +68,7 @@ public class PassiveBrainModule : EntityBrainModule
         for (int i = 0; i < abilityModule.Abilities.Count; i++)
         {
             AbilityConfig ability = abilityModule.Abilities[i];
-            Entity target = GetClosestEnemyInRange(ability.range);
+            Entity target = GetClosestEnemyInRange(ability.Range(Owner));
             if (target == null) continue;
 
             if (TryUseAbility(i, target.transform.position.OffsetY(0.75f)))
@@ -78,7 +78,7 @@ public class PassiveBrainModule : EntityBrainModule
         // ── 6. Auto-attack on the closest in-range enemy ──────────────────────
         if (abilityModule.AutoAttack != null)
         {
-            Entity target = GetClosestEnemyInRange(abilityModule.AutoAttack.range);
+            Entity target = GetClosestEnemyInRange(abilityModule.AutoAttack.Range(Owner));
             if (target != null)
                 TryAutoAttack(target.transform.position.OffsetY(0.75f));
         }

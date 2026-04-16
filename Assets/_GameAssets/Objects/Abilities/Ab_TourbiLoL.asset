@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ddc2df63915ad5f41b148846bd73c413, type: 3}
   description: 
   range: {x: 0, y: 2.2}
-  cooldown: 6
+  cooldown: 12
   sfx: 0
   sfxDelay: 0
   steps:
@@ -78,4 +78,5 @@ MonoBehaviour:
     abilityClip: {fileID: 7400000, guid: 73aaee46dc94f8a4fb65439dcd9818c5, type: 2}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      teamApplication: 0
       value: 0.5
