@@ -14,7 +14,7 @@ public class AbilityConfig : ScriptableObject
 
     [TitleGroup("General")]
     [SerializeField] private Vector2 range = new Vector2(0f, 2f);
-    public float cooldown = 1f;
+    [SerializeField] private float cooldown = 1f;
     
     [TitleGroup("SFXs")]
     public SoundKeys sfx;
@@ -28,8 +28,13 @@ public class AbilityConfig : ScriptableObject
     public Vector2 Range(Entity owner = null)
     {
         Vector2 currentRange = range;
-        currentRange.y = StatManager.Instance.GetDefinitionStat(this, StatType.MaxRange).GetSpecificModifierValue(ModifierType.AdditivePercentage) * range.y;
+        currentRange.y = (StatManager.Instance.GetDefinitionStat(this, StatType.MaxRange).GetSpecificModifierValue(ModifierType.AdditivePercentage) / 100f + 1) * range.y;
         return currentRange;
+    }
+
+    public float Cooldown()
+    {
+        return cooldown - (StatManager.Instance.GetDefinitionStat(this, StatType.CD).GetSpecificModifierValue(ModifierType.AdditivePercentage) / 100f);
     }
     #endregion
 }

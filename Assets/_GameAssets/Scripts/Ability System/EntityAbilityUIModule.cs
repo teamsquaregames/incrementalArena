@@ -47,7 +47,7 @@ public class EntityAbilityUIModule : EntityModule
         foreach (AbilityConfig ability in m_abilityModule.Abilities)
         {
             float remaining = m_abilityModule.GetCooldownRemaining(ability);
-            m_abilityUIC.UpdateCooldown(ability, remaining, ability.cooldown);
+            m_abilityUIC.UpdateCooldown(ability, remaining, ability.Cooldown());
         }
     }
 

@@ -135,7 +135,7 @@ public class EntityAbilityModule : EntityModule
         // this.Log($"Trying to use ability {ability.abilityName} toward {aimPosition}. CanUse={CanUse(ability, aimPosition)}");
         if (!CanUse(ability, aimPosition)) return false;
 
-        m_cooldowns[ability.abilityName] = ability.cooldown;
+        m_cooldowns[ability.abilityName] = ability.Cooldown();
         m_stepIndex = 0;
         bool started = StartAbility(ability, aimPosition, isAutoAttack: false);
         if (started) OnAbilityUsed?.Invoke(ability);
