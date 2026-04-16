@@ -10,7 +10,7 @@ public class PlayerHealthModule : EntityHealthModule
     {
         base.PlayDamageFeedback();
         UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<DamageVignetteUIC>().Flash();
-        m_impulseSource?.GenerateImpulse();
+        m_impulseSource?.GenerateImpulse(.1f);
     }
 
     private void Update()

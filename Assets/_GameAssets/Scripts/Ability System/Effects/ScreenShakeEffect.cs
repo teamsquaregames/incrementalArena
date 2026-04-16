@@ -8,6 +8,6 @@ public class ScreenShakeEffect : AbilityEffect
     {
         if (!ctx.Caster.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
-        abilityModule.ImpulseSource?.GenerateImpulse();
+        abilityModule.ImpulseSource?.GenerateImpulse(ctx.Value);
     }
 }

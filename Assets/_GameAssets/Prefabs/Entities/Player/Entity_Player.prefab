@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityModule
   m_gizmos: {fileID: 7472509132106756632}
-  m_impulseSource: {fileID: 0}
+  m_impulseSource: {fileID: 7013363403045592962}
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities:
   - {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
