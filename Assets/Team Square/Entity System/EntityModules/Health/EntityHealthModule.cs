@@ -101,6 +101,12 @@ public class EntityHealthModule : EntityModule
             .SetLink(Owner.gameObject);
     }
 
+    public void UpdateCurrentHealth()
+    {
+        m_currentHealth = MaxHealth;
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, 0f, false, true);
+    }
+
     [Button]
     public void TakeDamage(float amount, bool isCrit, bool suppressFeedback = false)
     {
