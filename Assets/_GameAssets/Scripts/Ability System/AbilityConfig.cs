@@ -28,13 +28,14 @@ public class AbilityConfig : ScriptableObject
     public Vector2 Range(Entity owner = null)
     {
         Vector2 currentRange = range;
-        currentRange.y = (StatManager.Instance.GetDefinitionStat(this, StatType.MaxRange).GetSpecificModifierValue(ModifierType.AdditivePercentage) / 100f + 1) * range.y;
+        currentRange.y = (StatManager.Instance.GetDefinitionStat(this, StatType.MaxRange).GetSpecificModifierValue(ModifierType.Percentage) / 100f + 1) * range.y;
         return currentRange;
     }
 
     public float Cooldown()
     {
-        return cooldown - (StatManager.Instance.GetDefinitionStat(this, StatType.CD).GetSpecificModifierValue(ModifierType.AdditivePercentage) / 100f);
+        // this.Log($"Calculating cooldown for ability '{abilityName}'. Base cooldown: {cooldown}, cooldown modifiers: {StatManager.Instance.GetDefinitionStat(this, StatType.CD).GetSpecificModifierValue(ModifierType.Percentage)}% = {cooldown - (StatManager.Instance.GetDefinitionStat(this, StatType.CD).GetSpecificModifierValue(ModifierType.Percentage) / 100f * cooldown)} ");
+        return cooldown - (StatManager.Instance.GetDefinitionStat(this, StatType.CD).GetSpecificModifierValue(ModifierType.Percentage) / 100f * cooldown);
     }
     #endregion
 }

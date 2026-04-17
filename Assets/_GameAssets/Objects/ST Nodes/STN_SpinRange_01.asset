@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_Demons_01
+  m_Name: STN_SpinRange_01
   m_EditorClassIdentifier: 
-  m_displayName: Demons
-  m_id: STN_Demons_01
+  m_displayName: Spin Range
+  m_id: STN_SpinRange_01
   m_levelingType: 0
   m_maxLevel: 1
-  m_rank: 5
-  m_icon: {fileID: 21300000, guid: 0fd8e1773bbd9fc46bd2daee17a5c3cf, type: 3}
-  m_description: Get more coin for each kill.
+  m_rank: 0
+  m_icon: {fileID: 21300000, guid: 6a36d5e8f5052904a821c04105cf2d15, type: 3}
+  m_description: Bigger
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0f00000000000000
   m_abilityGranted: {fileID: 0}
-  m_enemyUnlocked: {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
+  m_enemyUnlocked: {fileID: 0}
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_Demons_01
-    entityType: 4
-    ability: {fileID: 0}
-    statType: 8
-    type: 0
+  - id: STN_SpinRange_01
+    entityType: 0
+    ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+    statType: 13
+    type: 1
     m_values:
-    - 10
+    - 200

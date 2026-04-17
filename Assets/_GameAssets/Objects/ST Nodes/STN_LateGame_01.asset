@@ -22,43 +22,77 @@ MonoBehaviour:
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0000000000000000
-  m_abilityGranted: {fileID: 0}
-  m_enemyUnlocked: {fileID: 0}
-  m_arenaUnlocked: {fileID: 0}
+  m_abilityGranted: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+  m_enemyUnlocked: {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
+  m_arenaUnlocked: {fileID: 11400000, guid: 67f98ac202d40b84ea5b4726d591282d, type: 2}
   m_statModifiers:
   - id: STN_LateGame_01
     entityType: 1
+    ability: {fileID: 0}
     statType: 0
     type: 1
     m_values:
     - 1000
   - id: STN_LateGame_01
     entityType: 1
+    ability: {fileID: 0}
     statType: 1
-    type: 0
+    type: 1
     m_values:
     - 1000
   - id: STN_LateGame_01
     entityType: 1
+    ability: {fileID: 0}
     statType: 2
     type: 1
     m_values:
     - 300
   - id: STN_LateGame_01
     entityType: 1
+    ability: {fileID: 0}
     statType: 3
     type: 1
     m_values:
     - 200
   - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 0}
+    statType: 5
+    type: 0
+    m_values:
+    - 20
+  - id: STN_LateGame_01
     entityType: 6
+    ability: {fileID: 0}
     statType: 0
     type: 1
     m_values:
     - 1000
   - id: STN_LateGame_01
     entityType: 6
+    ability: {fileID: 0}
     statType: 10
     type: 1
     m_values:
     - 1000
+  - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+    statType: 12
+    type: 1
+    m_values:
+    - 50
+  - id: STN_LateGame_01
+    entityType: 4
+    ability: {fileID: 0}
+    statType: 8
+    type: 0
+    m_values:
+    - 15
+  - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 0}
+    statType: 9
+    type: 1
+    m_values:
+    - 500

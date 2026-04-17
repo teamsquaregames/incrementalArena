@@ -70,7 +70,7 @@ public static class ResolveApplication
         {
             case AoEInfo.Shape.Circle:
                 //Debug.Log($"Performing circular AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.radius}");
-                hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.radius);
+                hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.Radius(context.AbilityConfig));
                 break;
 
             case AoEInfo.Shape.Rect:
