@@ -20,8 +20,6 @@ public class EnemyScaler : MonoBehaviour
 
         float healthMultiplier = Compute(healthA, healthB, healthC, roundIndex);
         float damageMultiplier = Compute(damageA, damageB, damageC, roundIndex);
-        
-        Debug.Log($"{enemy} damage multiplier by {damageMultiplier}", enemy);
 
         statModule.AddModifier(new StatModifier(enemy.EntityType, StatType.MaxHealth,     healthMultiplier, ModifierType.Multiplier));
         statModule.AddModifier(new StatModifier(enemy.EntityType, StatType.AttackDamage,  damageMultiplier, ModifierType.Multiplier));
