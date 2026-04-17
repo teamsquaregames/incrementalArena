@@ -38,7 +38,7 @@ public class EntityHealthModule : EntityModule
         {
             if (Owner.TryGetModule(out EntityStatModule statModule))
             {
-                // this.Log($"MaxHealth value retrieved from StatModule: {statModule.GetValue(StatType.MaxHealth)}");
+                // this.Log($"{Owner} MaxHealth value retrieved from StatModule: {statModule.GetValue(StatType.MaxHealth)}");
                 return statModule.GetValue(StatType.MaxHealth);
             }
             else

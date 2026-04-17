@@ -7,7 +7,7 @@ namespace Stats
     public enum ModifierType
     {
         Flat,
-        AdditivePercentage,
+        Percentage,
         Multiplier
     }
     

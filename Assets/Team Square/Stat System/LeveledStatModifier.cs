@@ -7,7 +7,7 @@ namespace Stats
     [Serializable]
     public class LeveledStatModifier : AStatModifier
     {
-        [ListDrawerSettings(HideAddButton = true)]
+        [ListDrawerSettings]
         [SerializeField] private float[] m_values;
 
         public LeveledStatModifier(EntityType _entityType, StatType _statType, ModifierType _type, float[] _values, string _id = null)

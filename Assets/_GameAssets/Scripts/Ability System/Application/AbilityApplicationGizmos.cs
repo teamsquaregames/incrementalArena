@@ -73,7 +73,7 @@ public class AbilityApplicationGizmos : MonoBehaviour
     
     private void DrawCircleAoe(Vector3 position)
     {
-        float radius = applicationInfo.aoeInfo.radius;
+        float radius = applicationInfo.aoeInfo.Radius();
         
         // Sphère pleine semi-transparente
         Gizmos.color = gizmoColor;
@@ -107,7 +107,7 @@ public class AbilityApplicationGizmos : MonoBehaviour
     
     private void DrawConeAoe(Vector3 position, Quaternion rotation)
     {
-        float radius = applicationInfo.aoeInfo.radius;
+        float radius = applicationInfo.aoeInfo.Radius();
         float angle = applicationInfo.aoeInfo.angle;
         Vector3 forward = rotation * Vector3.forward;
         

@@ -106,7 +106,7 @@ namespace Stats
             foreach (var mod in m_modifiers)
             {
                 if (mod.type == ModifierType.Flat) flat += mod.value;
-                if (mod.type == ModifierType.AdditivePercentage) additivePercent += mod.value;
+                if (mod.type == ModifierType.Percentage) additivePercent += mod.value;
                 if (mod.type == ModifierType.Multiplier) multiplier *= mod.value;
             }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Stats;
 
 
 [System.Serializable]
@@ -37,7 +38,7 @@ public class AoEInfo
     [EnumToggleButtons]
     public Shape effectShape;
     [ShowIf("@this.effectShape == Shape.Circle")]
-    public float radius;
+    [SerializeField] private float radius;
     [ShowIf("@this.effectShape == Shape.Rect")]
     public Vector3 scale;
     [ShowIf("@this.effectShape == Shape.Cone")]
@@ -65,6 +66,8 @@ public class AoEInfo
     // public AbilityVFX AOEVisualEffect;
     #endregion
 
+
+    #region Getters
     public static AoEInfo AOEFromProjectileTrajectory(float _range, float _width, float _frequency)
     {
         AoEInfo result = new();
@@ -80,4 +83,10 @@ public class AoEInfo
 
         return result;
     }
+
+    public float Radius(AbilityConfig ability = null)
+    {
+        return StatManager.Instance.GetDefinitionStat(ability, StatType.Radius).GetSpecificModifierValue(ModifierType.Percentage) * radius / 100f + radius;
+    }
+    #endregion
 }
