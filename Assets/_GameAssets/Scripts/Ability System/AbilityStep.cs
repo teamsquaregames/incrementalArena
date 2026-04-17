@@ -21,6 +21,8 @@ public class AbilityStep
     [FoldoutGroup("Visuals")]
     public VFXPosition mainVFXPosition;
     [FoldoutGroup("Visuals")]
+    public Vector3 mainVFXOffset;
+    [FoldoutGroup("Visuals")]
     public ParticleSystem hitVfx;
     [FoldoutGroup("Visuals")]
     public VisualEffect hitVfxGraph;

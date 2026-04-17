@@ -72,6 +72,7 @@ MonoBehaviour:
     mainVfx: {fileID: 400324787162481929, guid: 3981792dea78b794f9132d0edf117f3b, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 1, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 13

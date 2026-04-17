@@ -10,78 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
-  m_Name: Ab_DashStomp
+  m_Name: Ab_PurifingVortex
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
-  abilityName: Dash Stomp
-  icon: {fileID: 21300000, guid: 4ba8cf8be6ccd0a409ef99af8189c767, type: 3}
+  abilityName: Purifing Vortex
+  icon: {fileID: 21300000, guid: ddc2df63915ad5f41b148846bd73c413, type: 3}
   description: 
-  range: {x: 3, y: 6}
-  cooldown: 12
+  range: {x: 0, y: 2.2}
+  cooldown: 4
   sfx: 0
   sfxDelay: 0
   steps:
-  - isRooting: 1
-    targetingInfo:
-      quickTarget: 1
-      target: 0
-      delayInterval: 0
-      retriggerAnimation: 0
-    applicationInfos:
-    - effectZoneType: 0
-      projectileInfo:
-        type: 0
-        speed: 1
-        distance: 10
-        lifeTime: 0
-        projectileTrajectory: 0
-        curveTopHeight: 0
-        trajectoryCurve:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        origin: 0
-        startPositionOffset: {x: 0, y: 0, z: 0}
-        autoOffsetWithWidth: 0
-        spreadAngle: 0
-        applyEffectThroughTrajectory: 0
-        frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
-      aoeInfo:
-        effectShape: 0
-        radius: 0
-        scale: {x: 0, y: 0, z: 0}
-        angle: 0
-        range: 0
-        offset: {x: 0, y: 0, z: 0}
-        effectDirection: 0
-        effectPosition: 0
-        time: 0
-        duration: 0
-        frequency: 0
-        stackEffect: 0
-      delay: 0
-      repeatCount: 1
-      repeatDuration: 0
-      repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
-      excludeHitEntity: 1
-    mainVfx: {fileID: 0}
-    mainVfxGraph: {fileID: 0}
-    mainVFXPosition: 0
-    mainVFXOffset: {x: 0, y: 0, z: 0}
-    hitVfx: {fileID: 0}
-    hitVfxGraph: {fileID: 0}
-    activeSfx: 13
-    abilityClip: {fileID: 7400000, guid: e51de0dc2e58699469bf98933aa25f0e, type: 2}
-    effects:
-    - effect: {fileID: 11400000, guid: de3f6eaaf68fe5e46abff6a960bca37b, type: 2}
-      teamApplication: 1
-      value: 0
-  - isRooting: 1
+  - isRooting: 0
     targetingInfo:
       quickTarget: 1
       target: 0
@@ -90,6 +29,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -106,45 +46,74 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 0
-        radius: 3
+        radius: 2.5
         scale: {x: 0, y: 0, z: 0}
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 0}
-        effectDirection: 0
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
         stackEffect: 0
       delay: 0
-      repeatCount: 1
-      repeatDuration: 0
+      repeatCount: 10
+      repeatDuration: 2
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
-    mainVfx: {fileID: 3067244524998136167, guid: b2a276c944ab9654eb95205fcb571d7c, type: 3}
-    mainVfxGraph: {fileID: 2290930611710396488, guid: 585b1a643cd6f1c4ab963b6a4501fa71, type: 3}
+    - effectZoneType: 2
+      projectileInfo:
+        prefab: {fileID: 7935610990029654620, guid: b95afa1267e1f9e478f220c1fb51be99, type: 3}
+        type: 0
+        speed: 15
+        distance: 10
+        lifeTime: 0
+        projectileTrajectory: 0
+        curveTopHeight: 0
+        trajectoryCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        origin: 0
+        startPositionOffset: {x: 0, y: 1, z: 0}
+        autoOffsetWithWidth: 0
+        spreadAngle: 360
+        randomRepartition: 1
+        applyEffectThroughTrajectory: 1
+        frequency: 0
+        piercingAmount: 0
+      aoeInfo:
+        effectShape: 0
+        radius: 0.5
+        scale: {x: 0, y: 0, z: 0}
+        angle: 0
+        range: 0
+        offset: {x: 0, y: 1, z: 0}
+        time: 0
+        duration: 0
+        frequency: 0
+        stackEffect: 0
+      delay: 0
+      repeatCount: 30
+      repeatDuration: 2
+      repeatFX: 0
+      excludeHitEntity: 1
+    mainVfx: {fileID: 400324787162481929, guid: 3981792dea78b794f9132d0edf117f3b, type: 3}
+    mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
-    mainVFXOffset: {x: 0, y: 0, z: 0}
-    hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
-    hitVfxGraph: {fileID: 0}
-    activeSfx: 12
-    abilityClip: {fileID: 0}
+    mainVFXOffset: {x: 0, y: 1, z: 0}
+    hitVfx: {fileID: 0}
+    hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
+    activeSfx: 13
+    abilityClip: {fileID: 7400000, guid: 73aaee46dc94f8a4fb65439dcd9818c5, type: 2}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
       teamApplication: 0
-      value: 2
-    - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
-      teamApplication: 0
-      value: 1
-    - effect: {fileID: 11400000, guid: 14e48a2e553d7544ebd3aa60e74452f3, type: 2}
-      teamApplication: 0
-      value: 1
+      value: 0.5

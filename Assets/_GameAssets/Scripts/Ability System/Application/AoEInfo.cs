@@ -49,12 +49,6 @@ public class AoEInfo
 
     [Space]
     [EnumToggleButtons]
-    public Direction effectDirection;
-    [EnumToggleButtons]
-    public Position effectPosition;
-
-    [Space]
-    [EnumToggleButtons]
     public Time time;
     [ShowIfGroup("time", Condition = "@this.time == Time.OverTime")]
     public float duration; //Temps pendant lequel la zone fait des d�gats 
@@ -68,25 +62,9 @@ public class AoEInfo
 
 
     #region Getters
-    public static AoEInfo AOEFromProjectileTrajectory(float _range, float _width, float _frequency)
-    {
-        AoEInfo result = new();
-        result.effectShape = Shape.Rect;
-        // result.range = new() { value = _range };
-        // result.width = _width;
-        result.effectDirection = Direction.Alined;
-        result.effectPosition = Position.Mid;
-        result.time = Time.OverTime;
-        result.frequency = _frequency;
-
-        //FX constructor
-
-        return result;
-    }
-
     public float Radius(AbilityConfig ability = null)
     {
-        return StatManager.Instance.GetDefinitionStat(ability, StatType.Radius).GetSpecificModifierValue(ModifierType.Percentage) * radius / 100f + radius;
+        return StatManager.Instance.GetDefinitionStat(ability, StatType.Size).GetSpecificModifierValue(ModifierType.Percentage) * radius / 100f + radius;
     }
     #endregion
 }

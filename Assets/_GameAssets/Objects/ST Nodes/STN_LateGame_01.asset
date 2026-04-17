@@ -53,7 +53,7 @@ MonoBehaviour:
     statType: 3
     type: 1
     m_values:
-    - 200
+    - 150
   - id: STN_LateGame_01
     entityType: 1
     ability: {fileID: 0}
@@ -83,6 +83,13 @@ MonoBehaviour:
     m_values:
     - 50
   - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+    statType: 13
+    type: 1
+    m_values:
+    - 100
+  - id: STN_LateGame_01
     entityType: 4
     ability: {fileID: 0}
     statType: 8
@@ -96,3 +103,24 @@ MonoBehaviour:
     type: 1
     m_values:
     - 500
+  - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
+    statType: 12
+    type: 1
+    m_values:
+    - 50
+  - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
+    statType: 13
+    type: 1
+    m_values:
+    - 200
+  - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
+    statType: 11
+    type: 1
+    m_values:
+    - 200

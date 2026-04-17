@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using Utils;
+using Lean.Pool;
 
 
 public static class ResolveApplication
 {
-    public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context)
+    public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context, int applicationIndex = 0)
     {
         //Debug.Log($"Resolving applications for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
         List<Entity> results = new List<Entity>();
@@ -29,8 +30,7 @@ public static class ResolveApplication
             _ => context.AimPosition
         };
 
-
-        return ApplicationSwitch(context.AbilityConfig.steps[context.CurrentStepIndex].applicationInfos[0], position, context, preselectedTargets);
+        return ApplicationSwitch(context.AbilityConfig.steps[context.CurrentStepIndex].applicationInfos[applicationIndex], position, context, preselectedTargets);
     }
 
     private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets)
@@ -44,8 +44,7 @@ public static class ResolveApplication
             case AbilityApplicationInfo.Type.Aoe:
                 return AoeSwitch(applicationInfo, position, context);
             case AbilityApplicationInfo.Type.Projectile:
-                // Launch a projectile from the caster to the target
-                break;
+                return ProjectileApplication(applicationInfo, position, context);
             case AbilityApplicationInfo.Type.Custom:
                 // Handle custom effect application
                 break;
@@ -55,7 +54,7 @@ public static class ResolveApplication
         return new List<Entity>();
     }
 
-    private static List<Entity> AoeSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
+    public static List<Entity> AoeSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
         //Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
 
@@ -104,5 +103,12 @@ public static class ResolveApplication
             }
         }
         return results;
+    }
+
+    private static List<Entity> ProjectileApplication(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
+    {
+        Debug.Log($"Spawning projectile for ability '{context.AbilityConfig.abilityName}' at position {position} with context {context.CurrentStepIndex}");
+        LeanPool.Spawn(applicationInfo.projectileInfo.prefab, position, Quaternion.identity).Spawn(context, applicationInfo, context.CurrentStepIndex);
+        return new List<Entity>();
     }
 }

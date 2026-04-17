@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 [System.Serializable]
 public class ProjectileInfo
 {
+    public Projectile prefab;
     [Title("Travel Settings")]
     [EnumToggleButtons]
     public Type type;
@@ -31,20 +32,19 @@ public class ProjectileInfo
     public bool autoOffsetWithWidth;
     [ShowIf("@this.type == Type.Directional")]
     public float spreadAngle;
+    [ShowIf("@this.type == Type.Directional")]
+    public bool randomRepartition;
 
     [Title("Effect Application Settings")]
     public bool applyEffectThroughTrajectory;
-    // [ShowIf("applyEffectThroughTrajectory")] public SkillScaling width;
     [ShowIf("applyEffectThroughTrajectory")] public float frequency;
-    public bool destroyOnHit;
-    [ShowIf("destroyOnHit")]
-    // public SkillScaling piercingAmount;
+    [ShowIf("applyEffectThroughTrajectory")]
+    public int piercingAmount;
     // public bool computeAoeOnComplete;
     // [ShowIf("computeAoeOnComplete")] public AoEInfo onCompleteAoe;
     // public bool computeAbilityOnComplete;
     // [ShowIf("computeAbilityOnComplete")] public AbilityInfo onCompleteRecursiveAbility;
 
-    [FoldoutGroup("Projectile FX Settings")] public GameObject projectileVisualEffect;
     //[FoldoutGroup("Projectile FX Settings")] [InlineProperty] public FX.FXModifier fxModifier;
 
     public enum ProjectileTrajectory

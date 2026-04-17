@@ -15,6 +15,6 @@ namespace Stats
         DropRewardMultiplier = 10,
         MaxRange = 11,
         CD = 12,
-        Radius = 13,
+        Size = 13,
     }
 }

@@ -19,7 +19,7 @@ public class AbilityApplicationInfo
     [ShowIf("@this.effectZoneType == Type.Projectile"), HideLabel(), InlineProperty()]
     public ProjectileInfo projectileInfo;
 
-    [ShowIf("@this.effectZoneType == Type.Aoe"), HideLabel(), InlineProperty()]
+    [ShowIf("@this.effectZoneType == Type.Aoe || this.effectZoneType == Type.Projectile"), HideLabel(), InlineProperty()]
     //[FoldoutGroup("Effect Zone")]
     public AoEInfo aoeInfo;
 
@@ -31,9 +31,5 @@ public class AbilityApplicationInfo
     [ShowIf("@this.repeatCount > 1")]
     public bool repeatFX;
 
-    [ShowIf("@this.effectZoneType != Type.Direct")]
-    public float additionalRotation;
-    [ShowIf("@this.effectZoneType != Type.Direct")]
-    public Vector3 additionalPosition;
     public bool excludeHitEntity = true;
 }

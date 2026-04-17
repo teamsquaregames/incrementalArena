@@ -228,7 +228,13 @@ public class EntityAbilityModule : EntityModule
         else
             IsCastRooted = false;
 
-        await HandleReapetition(activeStep);
+        for (int i = activeStep.applicationInfos.Count - 1; i >= 0; i--)
+        {
+            if (i != 0)
+                HandleReapetition(activeStep, i);
+            else
+                await HandleReapetition(activeStep, m_stepIndex);
+        }
 
         m_stepIndex++;
         m_activeContext.CurrentStepIndex = m_stepIndex;
@@ -307,17 +313,18 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    private async Task HandleReapetition(AbilityStep activeStep)
+    private async Task HandleReapetition(AbilityStep activeStep, int index)
     {
-        AbilityApplicationInfo applicationInfo = activeStep.applicationInfos.Count > 0 ? activeStep.applicationInfos[0] : null;
+        AbilityApplicationInfo applicationInfo = activeStep.applicationInfos[index];
+
         for (int i = 0; i < applicationInfo.repeatCount; i++)
         {
-            List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext);
+            List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext, index);
             // this.Log($"Resolved targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
 
             HandleEffects(activeStep, targets);
 
-            if (applicationInfo.repeatFX || i == 0)
+            if (index == 0 && applicationInfo.repeatFX || i == 0)
             {
                 HandleVFXs(activeStep, targets);
 
@@ -325,46 +332,40 @@ public class EntityAbilityModule : EntityModule
                     SoundManager.Instance.PlaySound(activeStep.activeSfx);
             }
 
-            if (m_gizmos != null)
-            {
-                m_gizmos.applicationInfo = applicationInfo;
-                m_gizmos.targetingInfo = activeStep.targetingInfo;
-                m_gizmos.position = activeStep.targetingInfo.quickTarget switch
-                {
-                    TargetingInfo.QuickTarget.Self => m_activeContext.Caster.transform.position,
-                    TargetingInfo.QuickTarget.Current => m_activeContext.ClosestEntity != null ? m_activeContext.ClosestEntity.transform.position : m_activeContext.AimPosition,
-                    // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
-                    _ => m_activeContext.AimPosition
-                };
-            }
-
             if (applicationInfo.repeatCount > 1)
                 await Task.Delay((int)(applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1) * 1000));
         }
     }
 
-    private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null)
+    private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null, float scale = 1f)
     {
+        float sizeScale = scale * (1 + StatManager.Instance.GetDefinitionStat(m_activeAbility, StatType.Size).GetSpecificModifierValue(ModifierType.Percentage) / 100f);
+        Vector3 vfxScale = Vector3.one * sizeScale;
+
         /// Ability VFX
         if (activeStep.mainVfx != null)
-            LeanPool.Spawn(
+        {
+            var vfx = LeanPool.Spawn(
                 activeStep.mainVfx,
                 activeStep.mainVFXPosition == VFXPosition.Target
                     ? m_activeContext.AimPosition
-                    : transform.position,
+                    : transform.position + activeStep.mainVFXOffset,
                 transform.rotation,
                 Owner.transform
             );
+            vfx.transform.localScale = vfxScale;
+        }
         if (activeStep.mainVfxGraph != null)
         {
-            LeanPool.Spawn(
+            var vfxGraph = LeanPool.Spawn(
                 activeStep.mainVfxGraph,
                 activeStep.mainVFXPosition == VFXPosition.Target
                     ? m_activeContext.AimPosition
-                    : transform.position,
+                    : transform.position + activeStep.mainVFXOffset,
                 transform.rotation,
                 Owner.transform
             );
+            vfxGraph.transform.localScale = vfxScale;
         }
 
         /// Hits
