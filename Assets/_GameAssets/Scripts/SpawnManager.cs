@@ -17,6 +17,7 @@ public class SpawnManager : Singleton<SpawnManager>
     [SerializeField] private List<Entity> m_enemyPrefabs;
     [SerializeField] private Vector2 m_spawnRange = new Vector2(5, 5);
     [SerializeField] private bool m_spawnRangeGizmos = true;
+    [SerializeField, Required] private EnemyScaler m_enemyScaler;
 
     private HashSet<Entity> m_roundEnemies = new HashSet<Entity>();
     public HashSet<Entity> RoundEnemies => m_roundEnemies;
@@ -49,7 +50,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 0f,
                 Random.Range(-m_spawnRange.y, m_spawnRange.y));
             Entity enemy = LeanPool.Spawn(m_enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
-
+            m_enemyScaler.ApplyScaling(enemy, roundNumber);
             m_roundEnemies.Add(enemy);
         }
     }
