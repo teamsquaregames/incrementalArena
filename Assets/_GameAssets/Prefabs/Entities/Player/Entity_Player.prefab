@@ -1325,6 +1325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityModule
   m_gizmos: {fileID: 7472509132106756632}
+  m_impulseSource: {fileID: 7013363403045592962}
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities:
   - {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
@@ -1455,6 +1456,7 @@ MonoBehaviour:
   punchDuration: 0.15
   punchVibrato: 6
   punchElasticity: 0.5
+  m_impulseSource: {fileID: 7013363403045592962}
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
@@ -1465,3 +1467,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3902489620234916321, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
   m_PrefabInstance: {fileID: 7714038588239923713}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7013363403045592962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 745835995507955075, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+  m_PrefabInstance: {fileID: 7714038588239923713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource

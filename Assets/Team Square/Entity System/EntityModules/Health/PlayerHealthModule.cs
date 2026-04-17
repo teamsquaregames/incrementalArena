@@ -1,12 +1,16 @@
 using Stats;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerHealthModule : EntityHealthModule
 {
+    [SerializeField] private CinemachineImpulseSource m_impulseSource;
+
     protected override void PlayDamageFeedback()
     {
         base.PlayDamageFeedback();
         UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<DamageVignetteUIC>().Flash();
+        m_impulseSource?.GenerateImpulse(.1f);
     }
 
     private void Update()
