@@ -233,7 +233,7 @@ public class EntityAbilityModule : EntityModule
             if (i != 0)
                 HandleReapetition(activeStep, i);
             else
-                await HandleReapetition(activeStep, m_stepIndex);
+                await HandleReapetition(activeStep, i);
         }
 
         m_stepIndex++;
@@ -313,18 +313,19 @@ public class EntityAbilityModule : EntityModule
     }
 
 
-    private async Task HandleReapetition(AbilityStep activeStep, int index)
+    private async Task HandleReapetition(AbilityStep activeStep, int applicationIndex)
     {
-        AbilityApplicationInfo applicationInfo = activeStep.applicationInfos[index];
+        // this.Log($"Handling repetition for step {activeStep} at index {applicationIndex}");
+        AbilityApplicationInfo applicationInfo = activeStep.applicationInfos[applicationIndex];
 
         for (int i = 0; i < applicationInfo.repeatCount; i++)
         {
-            List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext, index);
+            List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext, applicationIndex);
             // this.Log($"Resolved targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
 
             HandleEffects(activeStep, targets);
 
-            if (index == 0 && applicationInfo.repeatFX || i == 0)
+            if (applicationIndex == 0 && applicationInfo.repeatFX || i == 0)
             {
                 HandleVFXs(activeStep, targets);
 
@@ -345,7 +346,7 @@ public class EntityAbilityModule : EntityModule
         /// Ability VFX
         if (activeStep.mainVfx != null)
         {
-            var vfx = LeanPool.Spawn(
+            ParticleSystem vfx = LeanPool.Spawn(
                 activeStep.mainVfx,
                 activeStep.mainVFXPosition == VFXPosition.Target
                     ? m_activeContext.AimPosition
@@ -353,6 +354,7 @@ public class EntityAbilityModule : EntityModule
                 transform.rotation,
                 Owner.transform
             );
+            // this.Log($"Spawned main VFX {activeStep.mainVfx.name} at {(activeStep.mainVFXPosition == VFXPosition.Target ? "target position" : "caster position")} null? {vfx}");
             vfx.transform.localScale = vfxScale;
         }
         if (activeStep.mainVfxGraph != null)

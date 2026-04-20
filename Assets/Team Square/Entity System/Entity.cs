@@ -106,6 +106,7 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void OnSpawn()
     {
+        // this.Log($"Spawning entity {name} of type {EntityType}");
         LeanPool.Spawn(spawnVFX, transform.position, Quaternion.identity);
         
         RegisterModules();

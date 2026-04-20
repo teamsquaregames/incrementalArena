@@ -278,11 +278,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1324458649}
   m_LocalEulerAnglesHint: {x: 427, y: 220.91, z: -125}
---- !u!1 &456618841 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-  m_PrefabInstance: {fileID: 3942764911660706184}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &508250429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -650,24 +645,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
   m_PrefabInstance: {fileID: 3942764911660706184}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1836943353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456618841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc3a43bbb6884d54ba8007651be6e540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyScaler
-  healthA: 1
-  healthB: 0
-  healthC: 1
-  damageA: 1
-  damageB: 0
-  damageC: 1
 --- !u!1 &1851398529
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,40 +772,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &1797783240360864800
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6667704391526821209}
-  - component: {fileID: 3296670727443297552}
-  - component: {fileID: 8994679995696136257}
-  m_Layer: 0
-  m_Name: Crowd
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &3296670727443297552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797783240360864800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a46c133f63da0654080fde258ccb0bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrowdManager
-  m_crowdAnimators: []
-  m_cheerMaxDelay: 0.5
-  m_cheerVarAmount: 4
-  m_cheerCrossFadeDuration: 0.1
 --- !u!1001 &3942764911660706184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,34 +784,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_enemyCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_crowdManager
-      value: 
-      objectReference: {fileID: 3296670727443297552}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_crowdRewards
-      value: 
-      objectReference: {fileID: 8994679995696136257}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_playerPrefab
-      value: 
-      objectReference: {fileID: 7623534507439280228, guid: 14a9fc8373715104daa682789bef1f4f, type: 3}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_spawnRange.x
-      value: 9.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_useConstantEnemyCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_enemyScaler
-      value: 
-      objectReference: {fileID: 1836943353}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -911,14 +826,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6667704391526821209}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 119114305507074286, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1836943353}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
 --- !u!1001 &4805857893916306105
 PrefabInstance:
@@ -993,51 +902,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
---- !u!4 &6667704391526821209
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797783240360864800}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1836943352}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8269791765385410062 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8269791765412361619, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
   m_PrefabInstance: {fileID: 4805857893916306105}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8994679995696136257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797783240360864800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8bd893ab26c3994ea7696146dffc816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrowdRewards
-  m_spawnDuration: 2
-  m_spawnCenterOffset: {x: 0, y: 2.1, z: 0}
-  m_spawnAreaSize: {x: 23.03, y: 1.34, z: 12.8}
-  m_spawnOnEdgesOnly: 1
-  m_edgeThickness: 3
-  m_centerVelocityStrength: 8.52
-  m_velocityRangeX: {x: -3, y: 3}
-  m_velocityRangeY: {x: 2, y: 5}
-  m_velocityRangeZ: {x: -3, y: 3}
-  m_addRandomTorque: 1
-  m_torqueStrength: 10
-  m_collectFloatingTextConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}
-  m_showGizmos: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

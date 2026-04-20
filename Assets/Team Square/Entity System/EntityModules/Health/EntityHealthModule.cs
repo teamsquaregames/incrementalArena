@@ -68,6 +68,7 @@ public class EntityHealthModule : EntityModule
         base.OnAllModuleInitialized();
         Owner.TryGetModule(out m_statModule);
         m_currentHealth = MaxHealth;
+        // this.Log($"Initializing EntityHealthModule for {Owner}. MaxHealth: {MaxHealth}, CurrentHealth: {m_currentHealth}");
     }
 
     protected virtual void PlayDamageFeedback()
@@ -141,6 +142,7 @@ public class EntityHealthModule : EntityModule
 
     public void Die()
     {
+        // this.Log($"{Owner} has died.");
         m_punchTween?.Kill(complete: true);
 
         LeanPool.Spawn(m_deathFxPefab, transform.position, Quaternion.identity);

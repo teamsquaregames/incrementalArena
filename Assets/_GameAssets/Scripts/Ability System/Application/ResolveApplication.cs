@@ -107,7 +107,7 @@ public static class ResolveApplication
 
     private static List<Entity> ProjectileApplication(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
-        Debug.Log($"Spawning projectile for ability '{context.AbilityConfig.abilityName}' at position {position} with context {context.CurrentStepIndex}");
+        // Debug.Log($"Spawning projectile for ability '{context.AbilityConfig.abilityName}' at position {position} with context {context.CurrentStepIndex}");
         LeanPool.Spawn(applicationInfo.projectileInfo.prefab, position, Quaternion.identity).Spawn(context, applicationInfo, context.CurrentStepIndex);
         return new List<Entity>();
     }

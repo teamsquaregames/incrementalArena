@@ -53,6 +53,7 @@ public class SpawnManager : Singleton<SpawnManager>
             m_enemyScaler.ApplyScaling(enemy, roundNumber);
             m_roundEnemies.Add(enemy);
         }
+        this.Log($"Spawned {count} enemies for round {roundNumber}. Enemies: {string.Join(", ", m_roundEnemies)}");
     }
 
 

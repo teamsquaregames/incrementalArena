@@ -21,7 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField, Required] private CrowdManager m_crowdManager;
     [SerializeField, Required] private SpawnManager m_spawnManager;
 
-    
+
     public CrowdRewards CrowdRewards => m_crowdRewards;
 
     public bool IsWaveActive { get; private set; }
@@ -33,14 +33,14 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
-        GameManager.Instance.onRunStart += OnRunTimerStart;
+        GameManager.Instance.onRunStart += OnRunStart;
         EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
     }
 
     private void OnDestroy()
     {
-        if (GameManager.Instance == null) return;
-        GameManager.Instance.onRunStart -= OnRunTimerStart;
+        GameManager.Instance.onRunStart -= OnRunStart;
+        EntityManager.Instance.onEntityUnregistered -= OnEntityUnregistered;
     }
 
 
@@ -52,9 +52,9 @@ public class LevelManager : Singleton<LevelManager>
 
         endRoundUIC.SetAnnouncementText($"Round {m_currentRound}");
         endRoundUIC.Open();
-        
+
         yield return new WaitForSeconds(2);
-        
+
         IsWaveActive = true;
         m_spawnManager.SpawnRound(m_currentRound);
     }
@@ -66,15 +66,16 @@ public class LevelManager : Singleton<LevelManager>
         m_crowdManager.CrowdCheer();
 
         yield return new WaitForSeconds(3);
-        
+
         m_crowdRewards.CollectAllRewards();
-        
+
         yield return new WaitForSeconds(1);
         StartCoroutine(StartRound());
     }
 
-    private void OnRunTimerStart()
+    private void OnRunStart()
     {
+        IsWaveActive = false;
         m_currentRound = 0;
         m_waveEnemies.Clear();
         Entity player = LeanPool.Spawn(m_playerPrefab);
@@ -92,6 +93,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnEntityUnregistered(Entity entity)
     {
+        this.Log($"Entity unregistered: {entity}. Remaining enemies: {m_waveEnemies.Count}");
         if (!m_waveEnemies.Remove(entity)) return;
 
         if (m_waveEnemies.Count == 0)

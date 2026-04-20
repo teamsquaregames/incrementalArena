@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7010389023047661412}
   - component: {fileID: 4070378010177394957}
   - component: {fileID: 4115648040748329235}
+  - component: {fileID: 4295228495593665971}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 1879391398114833914}
   - {fileID: 5118929563348726544}
+  - {fileID: 4570682303018068581}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4070378010177394957
@@ -48,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   m_playerPrefab: {fileID: 7623534507439280228, guid: 14a9fc8373715104daa682789bef1f4f, type: 3}
-  m_crowdRewards: {fileID: 0}
-  m_crowdManager: {fileID: 0}
+  m_crowdRewards: {fileID: 8419906303060280720}
+  m_crowdManager: {fileID: 2155554148062364853}
   m_spawnManager: {fileID: 4115648040748329235}
 --- !u!114 &4115648040748329235
 MonoBehaviour:
@@ -68,6 +70,25 @@ MonoBehaviour:
   - {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
   m_spawnRange: {x: 10, y: 5}
   m_spawnRangeGizmos: 1
+  m_enemyScaler: {fileID: 4295228495593665971}
+--- !u!114 &4295228495593665971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119114305507074286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3a43bbb6884d54ba8007651be6e540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyScaler
+  healthA: 1
+  healthB: 0
+  healthC: 1.5
+  damageA: 1
+  damageB: 0
+  damageC: 1.5
 --- !u!1 &2951453023914597902
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +202,80 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &5155178981220134963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4570682303018068581}
+  - component: {fileID: 2155554148062364853}
+  - component: {fileID: 8419906303060280720}
+  m_Layer: 0
+  m_Name: Crowd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4570682303018068581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155178981220134963}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7010389023047661412}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2155554148062364853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155178981220134963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46c133f63da0654080fde258ccb0bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrowdManager
+  m_crowdAnimators: []
+  m_cheerMaxDelay: 0.5
+  m_cheerVarAmount: 4
+  m_cheerCrossFadeDuration: 0.1
+--- !u!114 &8419906303060280720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155178981220134963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bd893ab26c3994ea7696146dffc816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrowdRewards
+  m_spawnDuration: 2
+  m_spawnCenterOffset: {x: 0, y: 2.1, z: 0}
+  m_spawnAreaSize: {x: 23.03, y: 1.34, z: 12.8}
+  m_spawnOnEdgesOnly: 1
+  m_edgeThickness: 3
+  m_centerVelocityStrength: 8.52
+  m_velocityRangeX: {x: -3, y: 3}
+  m_velocityRangeY: {x: 2, y: 5}
+  m_velocityRangeZ: {x: -3, y: 3}
+  m_addRandomTorque: 1
+  m_torqueStrength: 10
+  m_collectFloatingTextConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}
+  m_showGizmos: 0
 --- !u!1001 &7826821965059761038
 PrefabInstance:
   m_ObjectHideFlags: 0
