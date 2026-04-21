@@ -93,7 +93,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnEntityUnregistered(Entity entity)
     {
-        this.Log($"Entity unregistered: {entity}. Remaining enemies: {m_waveEnemies.Count}");
+        // this.Log($"Entity unregistered: {entity}. Remaining enemies: {m_waveEnemies.Count}");
         if (!m_waveEnemies.Remove(entity)) return;
 
         if (m_waveEnemies.Count == 0)
