@@ -4,6 +4,7 @@ using Lean.Pool;
 using MyBox;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -25,6 +26,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartRun()
     {
+        // this.Log("Run started. Subscribed count for onRunStart: " + (onRunStart?.GetInvocationList().Length ?? 0));
         onRunStart?.Invoke();
     }
 

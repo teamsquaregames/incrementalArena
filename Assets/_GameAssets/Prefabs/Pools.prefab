@@ -324,7 +324,7 @@ MonoBehaviour:
   notification: 3
   strategy: 0
   preload: 0
-  capacity: 4
+  capacity: 2
   persist: 0
   stamp: 0
   warnings: 1

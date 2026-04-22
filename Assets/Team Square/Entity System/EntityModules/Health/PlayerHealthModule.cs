@@ -22,4 +22,12 @@ public class PlayerHealthModule : EntityHealthModule
         if (healthLostPerSecond > 0f)
             TakeDamage(healthLostPerSecond * Time.deltaTime, false, suppressFeedback: true);
     }
+
+    public override void Die()
+    {
+        if (GameConfig.Instance.cheatSettings.playerImmortality)
+            return;
+            
+        base.Die();
+    }
 }

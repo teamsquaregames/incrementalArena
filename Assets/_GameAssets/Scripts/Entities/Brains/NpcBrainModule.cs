@@ -12,7 +12,8 @@ public class NpcBrainModule : EntityBrainModule
         None,
         Idle,
         Agressive,
-        Fleeing
+        Fleeing,
+        Staggered
     }
 
     [TitleGroup("Dependencies")]
@@ -37,15 +38,19 @@ public class NpcBrainModule : EntityBrainModule
 
     protected override void Think()
     {
+        // this.Log($"Thinking... Current state: {m_currentState}, IsMoving: {m_isMoving}, IsStaggered: {Owner.IsStaggered}");
         if (EntityManager.Instance.Player == null)
         {
+            EnterIdleState();
             StopMovement();
             return;
         }
-        
+
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
         if (Owner.IsStaggered)
         {
+            // this.Log("Currently staggered, cannot think.");
+            m_currentState = NpcState.Staggered;
             StopMovement();
             return;
         }
@@ -75,6 +80,13 @@ public class NpcBrainModule : EntityBrainModule
                 break;
             case NpcState.Fleeing:
                 // MoveToward(Owner.transform.position - (playerPos - Owner.transform.position));
+                break;
+            case NpcState.Staggered:
+                if (!Owner.IsStaggered)
+                {
+                    // this.Log("No longer staggered, resuming normal behaviour.");
+                    RandomState();
+                }
                 break;
         }
     }
@@ -142,6 +154,7 @@ public class NpcBrainModule : EntityBrainModule
         m_currentState = NpcState.Idle;
 
         StopMovement();
+        m_isMoving = false;
         m_animator.SetTrigger("Rallying");
 
         float idleDuration = CusMath.RngGaussian() * (m_averageIdleDuration * 2f);
