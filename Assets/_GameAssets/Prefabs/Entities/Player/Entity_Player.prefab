@@ -1078,6 +1078,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 19820956, guid: 56c3274d2f9ec214ab584a80b5ce2d6d, type: 3}
     - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_animator
+      value: 
+      objectReference: {fileID: 2673431603351796059}
+    - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_collider
       value: 
       objectReference: {fileID: 5817623271102131256}
@@ -1446,7 +1450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b636b3b4c26449a42baee857255d7273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthModule
-  m_animator: {fileID: 2673431603351796059}
   m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   punchScale: {x: 0.2, y: -0.15, z: 0}
   punchDuration: 0.15

@@ -29,6 +29,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -45,10 +46,10 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 1
         radius: 2
@@ -56,8 +57,6 @@ MonoBehaviour:
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 1}
-        effectDirection: 2
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
@@ -66,12 +65,11 @@ MonoBehaviour:
       repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 4278106076369189116, guid: a090ee0d17c67014fb8a8de4e2d844cd, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 9
@@ -83,6 +81,9 @@ MonoBehaviour:
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
       teamApplication: 0
       value: 30
+    - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
+      teamApplication: 0
+      value: 0.5
   - isRooting: 1
     targetingInfo:
       quickTarget: 1
@@ -92,6 +93,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -108,10 +110,10 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 1
         radius: 3
@@ -119,8 +121,6 @@ MonoBehaviour:
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 1}
-        effectDirection: 0
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
@@ -129,12 +129,11 @@ MonoBehaviour:
       repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 4278106076369189116, guid: a090ee0d17c67014fb8a8de4e2d844cd, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 9
@@ -146,6 +145,9 @@ MonoBehaviour:
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
       teamApplication: 0
       value: 30
+    - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
+      teamApplication: 0
+      value: 0.5
   - isRooting: 1
     targetingInfo:
       quickTarget: 1
@@ -155,6 +157,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -171,10 +174,10 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 0
         radius: 3
@@ -182,8 +185,6 @@ MonoBehaviour:
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 1.5}
-        effectDirection: 0
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
@@ -192,12 +193,11 @@ MonoBehaviour:
       repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 4278106076369189116, guid: a090ee0d17c67014fb8a8de4e2d844cd, type: 3}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 9
@@ -209,3 +209,6 @@ MonoBehaviour:
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
       teamApplication: 1
       value: 30
+    - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
+      teamApplication: 0
+      value: 0.5

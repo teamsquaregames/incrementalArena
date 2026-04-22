@@ -6,6 +6,7 @@ using DG.Tweening;
 using Lean.Pool;
 using MyBox;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utils;
@@ -13,13 +14,14 @@ using Utils;
 public class Entity : MonoBehaviour, IPoolable
 {
     [TitleGroup("References")]
-    [SerializeField] private Collider m_collider;
-    [SerializeField] private ParticleSystem spawnVFX;
-    
+    [SerializeField, Required] private ParticleSystem spawnVFX;
+    [SerializeField, Required] private Animator m_animator;
+    [SerializeField, Required] private Collider m_collider;
+
     [FoldoutGroup("Status"), SerializeField] private AnimationCurve m_knockUpCurve;
     [FoldoutGroup("Status"), SerializeField] private Transform m_modelT;
 
-    
+
     [TitleGroup("Settings")]
     [SerializeField] private EntityType m_entityType;
     public EntityType EntityType => m_entityType;
@@ -32,13 +34,14 @@ public class Entity : MonoBehaviour, IPoolable
 
     public Collider Collider => m_collider;
     public bool IsStaggered => m_isStaggered;
-    
-    
+
+
 
     [Button]
     public void CacheReferences()
     {
         m_collider = GetComponent<Collider>();
+        m_animator = GetComponentInChildren<Animator>();
     }
 
     private void RegisterModules()
@@ -108,7 +111,7 @@ public class Entity : MonoBehaviour, IPoolable
     {
         // this.Log($"Spawning entity {name} of type {EntityType}");
         LeanPool.Spawn(spawnVFX, transform.position, Quaternion.identity);
-        
+
         RegisterModules();
         Register();
     }
@@ -145,6 +148,9 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void Stagger(float duration)
     {
+        if (!isActiveAndEnabled || duration <= 0f)
+            return;
+
         m_isStaggered = true;
 
         if (m_staggerCR != null)
@@ -159,7 +165,9 @@ public class Entity : MonoBehaviour, IPoolable
 
         if (TryGetModule(out EntityHealthModule healthModule))
         {
-            healthModule.TriggerDamageAnimation();
+            // int staggerVariation = (int)math.round(UnityEngine.Random.Range(0f, 2f));
+            m_animator.SetFloat("StaggerVariation", UnityEngine.Random.Range(0f, 1f));
+            m_animator.Play("Staggered");
         }
     }
 
@@ -171,6 +179,9 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void KnockUp(float duration)
     {
+        if (!isActiveAndEnabled || duration <= 0f)
+            return;
+
         Stagger(duration);
 
         if (m_knockUpCR != null)

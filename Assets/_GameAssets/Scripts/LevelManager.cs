@@ -33,6 +33,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
+        this.Log("LevelManager Awake");
         GameManager.Instance.onRunStart += OnRunStart;
         EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
     }
@@ -48,6 +49,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private IEnumerator StartRound()
     {
+        // this.Log($"Starting round cr {m_currentRound + 1}...");
         m_currentRound++;
 
         endRoundUIC.SetAnnouncementText($"Round {m_currentRound}");
@@ -75,6 +77,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnRunStart()
     {
+        // this.Log("Run started. Initializing level...");
         IsWaveActive = false;
         m_currentRound = 0;
         m_waveEnemies.Clear();

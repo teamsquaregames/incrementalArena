@@ -159,7 +159,7 @@ public class EntityAbilityModule : EntityModule
 
     private bool StartAbility(AbilityConfig ability, Vector3 aimPosition, bool isAutoAttack)
     {
-        this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_stepIndex}" : ability.abilityName)} toward {aimPosition}");
+        // this.Log($"Starting {(isAutoAttack ? $"auto-attack {m_stepIndex}" : ability.abilityName)} toward {aimPosition}");
 
         Vector3 direction = (aimPosition - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
@@ -243,7 +243,7 @@ public class EntityAbilityModule : EntityModule
 
     internal void HandleAnimationEnd()
     {
-        this.Log("Handling animation end event for " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
+        // this.Log("Handling animation end event for " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
         m_animator.SetBool(IS_ATTACKING, false);
         m_animator.speed = 1f;
 
@@ -257,7 +257,7 @@ public class EntityAbilityModule : EntityModule
 
     internal void HandleAnimationInterrupt()
     {
-        this.Log("Handling animation interrupt event for " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
+        // this.Log("Handling animation interrupt event for " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
         m_animator.SetBool(IS_ATTACKING, false);
         m_animator.speed = 1f;
 
@@ -269,7 +269,7 @@ public class EntityAbilityModule : EntityModule
 
     public void CancelEverything()
     {
-        this.Log("Cancelling everything. Current ability: " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
+        // this.Log("Cancelling everything. Current ability: " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
 
         m_activeAbility = null;
         m_animator.speed = 1f;
@@ -315,7 +315,7 @@ public class EntityAbilityModule : EntityModule
 
     private async Task HandleReapetition(AbilityStep activeStep, int applicationIndex)
     {
-        this.Log($"Handling repetition for step {activeStep} at index {applicationIndex}");
+        // this.Log($"Handling repetition for step {activeStep} at index {applicationIndex}");
         AbilityApplicationInfo applicationInfo = activeStep.applicationInfos[applicationIndex];
 
         float repetitionInterval = 0f;
@@ -337,7 +337,7 @@ public class EntityAbilityModule : EntityModule
                     SoundManager.Instance.PlaySound(activeStep.activeSfx);
             }
 
-            this.Log($"Completed repetition {i + 1}/{applicationInfo.repeatCount} for step {activeStep}. Next repetition in {repetitionInterval:F2} seconds. Time: {Time.time:F5}");
+            // this.Log($"Completed repetition {i + 1}/{applicationInfo.repeatCount} for step {activeStep}. Next repetition in {repetitionInterval:F2} seconds. Time: {Time.time:F5}");
             if (applicationInfo.repeatCount > 1)
                 await WaitForGameSeconds(repetitionInterval);
         }

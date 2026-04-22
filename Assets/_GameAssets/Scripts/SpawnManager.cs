@@ -29,6 +29,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnRound(int roundNumber)
     {
+        // this.Log($"Spawning round {roundNumber}. Current enemy prefabs: {string.Join(", ", m_enemyPrefabs)}, count: {Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave))}");
         int count = Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave));
 
         if (!GameConfig.Instance.cheatSettings.usePrefabEnemies)

@@ -37,6 +37,8 @@ public class GameConfig : ScriptableObject
         public bool noMenu;
         public bool disableBootStrapper;
         public bool infiniteRunDuration;
+        public bool playerImmortality;
+        public bool npcImmortality;
         public bool usePrefabAbilities;
         public bool usePrefabEnemies;
     }

@@ -19,7 +19,6 @@ public class EntityHealthModule : EntityModule
     public Action OnDeath;
 
     [Header("References")]
-    [SerializeField] private Animator m_animator;
     [SerializeField] private ParticleSystem m_deathFxPefab;
 
     [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
@@ -53,14 +52,12 @@ public class EntityHealthModule : EntityModule
     public override void CacheReferences()
     {
         base.CacheReferences();
-        m_animator = GetComponentInChildren<Animator>();
     }
 
     protected override void OnInitialize()
     {
         base.OnInitialize();
         m_isDead = false;
-        m_animator = GetComponentInChildren<Animator>();
     }
 
     public override void OnAllModuleInitialized()
@@ -81,14 +78,6 @@ public class EntityHealthModule : EntityModule
         }
 
         SoundManager.Instance.PlaySound(SoundKeys.SFX_Impact);
-    }
-
-    public void TriggerDamageAnimation()
-    {
-        if (m_animator != null)
-        {
-            m_animator.SetTrigger("Damage");
-        }
     }
 
     private void PlayPunchScale()
@@ -140,9 +129,12 @@ public class EntityHealthModule : EntityModule
         OnDeathStart?.Invoke();
     }
 
-    public void Die()
+    public virtual void Die()
     {
         // this.Log($"{Owner} has died.");
+        if (GameConfig.Instance.cheatSettings.npcImmortality)
+            return;
+
         m_punchTween?.Kill(complete: true);
 
         LeanPool.Spawn(m_deathFxPefab, transform.position, Quaternion.identity);
