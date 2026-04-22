@@ -1,7 +1,15 @@
 fileFormatVersion: 2
 guid: 8ff36ea80da93a44bad9bb91c813158d
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157187
+  packageName: Easy Performant Outline 2D | 3D (URP / HDRP and Built-in Renderer)
+  packageVersion: 3.5.7
+  assetPath: Assets/Plugins/Easy performant outline/Resources/Easy performant outline/Models/Rounded
+    box.fbx
+  uploadId: 710656
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -16,8 +24,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -32,7 +38,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 0.53
@@ -58,6 +64,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -107,11 +116,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157187
-  packageName: Easy Performant Outline 2D | 3D (URP / HDRP and Built-in Renderer)
-  packageVersion: 3.5.7
-  assetPath: Assets/Plugins/Easy performant outline/Resources/Easy performant outline/Models/Rounded
-    box.fbx
-  uploadId: 710656

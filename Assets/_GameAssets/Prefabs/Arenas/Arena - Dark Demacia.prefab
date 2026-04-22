@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3296971974207148827
 Transform:
@@ -113,7 +113,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2349700997625549580
 Transform:
@@ -165,7 +165,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1954344950952654803
 Transform:
@@ -198,7 +198,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5636286830964566086
 Transform:
@@ -286,7 +286,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6218353614032523724
 Transform:
@@ -327,7 +327,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1506682571539614263
 Transform:
@@ -417,7 +417,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2264617037470325986
 Transform:
@@ -507,7 +507,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2402294108994369701
 Transform:
@@ -596,7 +596,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5862522508486710066
 Transform:
@@ -650,7 +650,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4965882446192177489
 Transform:
@@ -738,7 +738,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3086775710198726133
 Transform:
@@ -783,7 +783,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6879804239901756380
 Transform:
@@ -873,7 +873,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6866254411398751398
 Transform:
@@ -962,7 +962,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8656708706023162570
 Transform:
@@ -1016,7 +1016,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7474664143154283083
 Transform:
@@ -1105,7 +1105,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2988964058926663526
 Transform:
@@ -1159,7 +1159,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &415019667086187545
 Transform:
@@ -1249,7 +1249,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6130779244784379199
 Transform:
@@ -1337,7 +1337,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1748979938923887294
 Transform:
@@ -1397,7 +1397,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3135945957550615644
 Transform:
@@ -1430,7 +1430,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2554443437866198008
 Transform:
@@ -1484,7 +1484,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2506569485035578341
 Transform:
@@ -1525,7 +1525,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4649043536410257384
 Transform:
@@ -1564,7 +1564,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2309775768293972775
 Transform:
@@ -1620,7 +1620,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4330630012723308404
 Transform:
@@ -1709,7 +1709,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1149525214851112086
 Transform:
@@ -1765,7 +1765,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4247605332396586485
 Transform:
@@ -1854,7 +1854,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7284257597845334773
 Transform:
@@ -1908,7 +1908,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &161921719147890789
 Transform:
@@ -1939,6 +1939,10 @@ PrefabInstance:
     - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
@@ -2015,6 +2019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1166
@@ -2073,6 +2081,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (07)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -2149,6 +2161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Pillar_Half_05 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1576699559912906, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4053797696216970, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
       propertyPath: m_RootOrder
       value: 1216
@@ -2210,6 +2226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Torch_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1240039135307002, guid: 03228befdc5ef264bb7862832d88f161, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4041392968632078, guid: 03228befdc5ef264bb7862832d88f161, type: 3}
       propertyPath: m_RootOrder
       value: 1243
@@ -2268,6 +2288,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (05)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -2340,6 +2364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1180
@@ -2398,6 +2426,10 @@ PrefabInstance:
     - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
@@ -2461,6 +2493,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (01)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -2533,6 +2569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (05)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1173
@@ -2604,6 +2644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rune_Symbol_44 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1055640913352774, guid: 5301029677145ff4083f2bedbb318045, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4205198895817604, guid: 5301029677145ff4083f2bedbb318045, type: 3}
       propertyPath: m_RootOrder
       value: 1237
@@ -2674,6 +2718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1167
@@ -2732,6 +2780,10 @@ PrefabInstance:
     - target: {fileID: 1055640913352774, guid: 5301029677145ff4083f2bedbb318045, type: 3}
       propertyPath: m_Name
       value: SM_Rune_Symbol_44 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055640913352774, guid: 5301029677145ff4083f2bedbb318045, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4205198895817604, guid: 5301029677145ff4083f2bedbb318045, type: 3}
       propertyPath: m_RootOrder
@@ -2807,6 +2859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1178
@@ -2865,6 +2921,10 @@ PrefabInstance:
     - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
@@ -2925,6 +2985,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1175
@@ -2983,6 +3047,10 @@ PrefabInstance:
     - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
@@ -3054,6 +3122,10 @@ PrefabInstance:
     - target: {fileID: 1176943662939856, guid: b8cde05d3b3923f4eb04c10b580724be, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hell_Fence_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176943662939856, guid: b8cde05d3b3923f4eb04c10b580724be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4771077916931534, guid: b8cde05d3b3923f4eb04c10b580724be, type: 3}
       propertyPath: m_RootOrder
@@ -3142,6 +3214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1165
@@ -3204,6 +3280,10 @@ PrefabInstance:
     - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (08)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
@@ -3280,6 +3360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1161
@@ -3350,6 +3434,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (04)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -3422,6 +3510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (02)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1174
@@ -3493,6 +3585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rune_Symbol_20 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1984981188724794, guid: 317dddace538e244f91df4dfc6664d1b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4480991785536246, guid: 317dddace538e244f91df4dfc6664d1b, type: 3}
       propertyPath: m_RootOrder
       value: 1238
@@ -3562,6 +3658,10 @@ PrefabInstance:
     - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (07)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
@@ -3638,6 +3738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1171
@@ -3709,6 +3813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Balustrade_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1148776619383654, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4990271919927686, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
       propertyPath: m_RootOrder
       value: 1225
@@ -3767,6 +3875,10 @@ PrefabInstance:
     - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Bridge_Extension_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4967977360495566, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_RootOrder
@@ -3855,6 +3967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1161
@@ -3926,6 +4042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1175
@@ -3984,6 +4104,10 @@ PrefabInstance:
     - target: {fileID: 1566680017404966, guid: 5777970cb1da87b4aa20e2369f517957, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Stairs_Pillar_04 (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566680017404966, guid: 5777970cb1da87b4aa20e2369f517957, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4077787410783798, guid: 5777970cb1da87b4aa20e2369f517957, type: 3}
       propertyPath: m_RootOrder
@@ -4048,6 +4172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1179
@@ -4107,6 +4235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1169
@@ -4165,6 +4297,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -4237,6 +4373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (005)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1182
@@ -4307,6 +4447,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (01)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -4379,6 +4523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1166
@@ -4437,6 +4585,10 @@ PrefabInstance:
     - target: {fileID: 1576699559912906, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Pillar_Half_05 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576699559912906, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4053797696216970, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
       propertyPath: m_RootOrder
@@ -4498,6 +4650,10 @@ PrefabInstance:
     - target: {fileID: 1921589778919192, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_01 (75)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921589778919192, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4856333322215248, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
       propertyPath: m_RootOrder
@@ -4577,6 +4733,10 @@ PrefabInstance:
     - target: {fileID: 1107131576171882, guid: 530138731117a8344b763cc2eb8162f1, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hell_Fence_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107131576171882, guid: 530138731117a8344b763cc2eb8162f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4435954935285058, guid: 530138731117a8344b763cc2eb8162f1, type: 3}
       propertyPath: m_RootOrder
@@ -4661,6 +4821,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3296971974207148827}
     m_Modifications:
+    - target: {fileID: 1853603665414856, guid: 505e904550aae3144bf5040b16b80179, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4650672877970060, guid: 505e904550aae3144bf5040b16b80179, type: 3}
       propertyPath: m_RootOrder
       value: 1142
@@ -4735,6 +4899,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (09)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1162
@@ -4806,6 +4974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1175
@@ -4865,6 +5037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1175
@@ -4920,6 +5096,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3296971974207148827}
     m_Modifications:
+    - target: {fileID: 1098641387070072, guid: a2ee63b9a0474814688d916ca60e3c50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294921983493420, guid: a2ee63b9a0474814688d916ca60e3c50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768886311720666, guid: a2ee63b9a0474814688d916ca60e3c50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4359328055429706, guid: a2ee63b9a0474814688d916ca60e3c50, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4990,6 +5178,10 @@ PrefabInstance:
     - target: {fileID: 1100758159335554, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
       propertyPath: m_Name
       value: SM_Rune_Symbol_28 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100758159335554, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4097761649022968, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
       propertyPath: m_RootOrder
@@ -5064,6 +5256,10 @@ PrefabInstance:
     - target: {fileID: 1107131576171882, guid: 530138731117a8344b763cc2eb8162f1, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hell_Fence_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107131576171882, guid: 530138731117a8344b763cc2eb8162f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4435954935285058, guid: 530138731117a8344b763cc2eb8162f1, type: 3}
       propertyPath: m_RootOrder
@@ -5152,6 +5348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (09)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1162
@@ -5227,6 +5427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_01 (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 1921589778919192, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4856333322215248, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
       propertyPath: m_RootOrder
       value: 1112
@@ -5301,6 +5505,10 @@ PrefabInstance:
     - target: {fileID: 1176943662939856, guid: b8cde05d3b3923f4eb04c10b580724be, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hell_Fence_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176943662939856, guid: b8cde05d3b3923f4eb04c10b580724be, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4771077916931534, guid: b8cde05d3b3923f4eb04c10b580724be, type: 3}
       propertyPath: m_RootOrder
@@ -5389,6 +5597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1177
@@ -5448,6 +5660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1177
@@ -5503,6 +5719,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3296971974207148827}
     m_Modifications:
+    - target: {fileID: 1507387749869200, guid: 355126364ffea3e4ebe5826e6b2d19c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4402529711516728, guid: 355126364ffea3e4ebe5826e6b2d19c3, type: 3}
       propertyPath: m_RootOrder
       value: 1239
@@ -5561,6 +5781,10 @@ PrefabInstance:
     - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Bridge_Extension_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4967977360495566, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_RootOrder
@@ -5649,6 +5873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Block_Angular_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1680216140284548, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4983202087242602, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
       propertyPath: m_RootOrder
       value: 1164
@@ -5724,6 +5952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Brazier_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1958086971213872, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4296542897869964, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
       propertyPath: m_RootOrder
       value: 1222
@@ -5795,6 +6027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1176
@@ -5857,6 +6093,10 @@ PrefabInstance:
     - target: {fileID: 1958086971213872, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Brazier_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958086971213872, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4296542897869964, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
       propertyPath: m_RootOrder
@@ -5928,6 +6168,10 @@ PrefabInstance:
     - target: {fileID: 1369601670085858, guid: 7442ed425b411914aaefb870e5d3384a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Statue_05 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369601670085858, guid: 7442ed425b411914aaefb870e5d3384a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4187327948781528, guid: 7442ed425b411914aaefb870e5d3384a, type: 3}
       propertyPath: m_RootOrder
@@ -6003,6 +6247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Pillar_Half_05 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1576699559912906, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4053797696216970, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
       propertyPath: m_RootOrder
       value: 1218
@@ -6064,6 +6312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Balustrade_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1148776619383654, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4990271919927686, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
       propertyPath: m_RootOrder
       value: 1226
@@ -6122,6 +6374,10 @@ PrefabInstance:
     - target: {fileID: 1276598632478310, guid: a48cc47b43d0ff846b00cd6cda85b61f, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Weapon_Barrel_02 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1276598632478310, guid: a48cc47b43d0ff846b00cd6cda85b61f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4393772918325814, guid: a48cc47b43d0ff846b00cd6cda85b61f, type: 3}
       propertyPath: m_RootOrder
@@ -6186,6 +6442,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3296971974207148827}
     m_Modifications:
+    - target: {fileID: 1689538794988068, guid: 38d5a76bb9ec86346b3a2b9b27262d9b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4213420345773942, guid: 38d5a76bb9ec86346b3a2b9b27262d9b, type: 3}
       propertyPath: m_RootOrder
       value: 1190
@@ -6255,6 +6515,10 @@ PrefabInstance:
     - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (08)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
@@ -6326,6 +6590,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (09)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -6402,6 +6670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (03)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1172
@@ -6473,6 +6745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1143
@@ -6531,6 +6807,10 @@ PrefabInstance:
     - target: {fileID: 1100758159335554, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
       propertyPath: m_Name
       value: SM_Rune_Symbol_28 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100758159335554, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4097761649022968, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
       propertyPath: m_RootOrder
@@ -6606,6 +6886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1166
@@ -6665,6 +6949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1168
@@ -6723,6 +7011,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (08)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -6799,6 +7091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rune_Symbol_28 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1100758159335554, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4097761649022968, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
       propertyPath: m_RootOrder
       value: 1187
@@ -6872,6 +7168,10 @@ PrefabInstance:
     - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Bridge_Extension_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4967977360495566, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_RootOrder
@@ -6960,6 +7260,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (02)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1172
@@ -7031,6 +7335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rune_Symbol_20 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1984981188724794, guid: 317dddace538e244f91df4dfc6664d1b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4480991785536246, guid: 317dddace538e244f91df4dfc6664d1b, type: 3}
       propertyPath: m_RootOrder
       value: 1189
@@ -7101,6 +7409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Weapon_Barrel_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1276598632478310, guid: a48cc47b43d0ff846b00cd6cda85b61f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4393772918325814, guid: a48cc47b43d0ff846b00cd6cda85b61f, type: 3}
       propertyPath: m_RootOrder
       value: 1242
@@ -7160,6 +7472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Torch_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1240039135307002, guid: 03228befdc5ef264bb7862832d88f161, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4041392968632078, guid: 03228befdc5ef264bb7862832d88f161, type: 3}
       propertyPath: m_RootOrder
       value: 1244
@@ -7218,6 +7534,10 @@ PrefabInstance:
     - target: {fileID: 1369601670085858, guid: 7442ed425b411914aaefb870e5d3384a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Statue_05 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369601670085858, guid: 7442ed425b411914aaefb870e5d3384a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4187327948781528, guid: 7442ed425b411914aaefb870e5d3384a, type: 3}
       propertyPath: m_RootOrder
@@ -7292,6 +7612,10 @@ PrefabInstance:
     - target: {fileID: 1109990490310250, guid: 28d20cf3ca7e24d42bc0060249326f26, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hell_Fence_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109990490310250, guid: 28d20cf3ca7e24d42bc0060249326f26, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4338962964647998, guid: 28d20cf3ca7e24d42bc0060249326f26, type: 3}
       propertyPath: m_RootOrder
@@ -7380,6 +7704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_01 (74)
       objectReference: {fileID: 0}
+    - target: {fileID: 1921589778919192, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4856333322215248, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
       propertyPath: m_RootOrder
       value: 1112
@@ -7459,6 +7787,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (06)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1173
@@ -7530,6 +7862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1166
@@ -7588,6 +7924,10 @@ PrefabInstance:
     - target: {fileID: 1604035063843996, guid: 96d9854b2fc1a0a4cbb92eba75587367, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Weapon_Rack_04 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604035063843996, guid: 96d9854b2fc1a0a4cbb92eba75587367, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4264011706999224, guid: 96d9854b2fc1a0a4cbb92eba75587367, type: 3}
       propertyPath: m_RootOrder
@@ -7655,6 +7995,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -7727,6 +8071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (07)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1162
@@ -7797,6 +8145,10 @@ PrefabInstance:
     - target: {fileID: 1680216140284548, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Block_Angular_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680216140284548, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4983202087242602, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
       propertyPath: m_RootOrder
@@ -7873,6 +8225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Weapon_Rack_04
       objectReference: {fileID: 0}
+    - target: {fileID: 1604035063843996, guid: 96d9854b2fc1a0a4cbb92eba75587367, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4264011706999224, guid: 96d9854b2fc1a0a4cbb92eba75587367, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7939,6 +8295,10 @@ PrefabInstance:
     - target: {fileID: 1921589778919192, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_01 (70)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921589778919192, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4856333322215248, guid: df9f30afad26d794683a8951d22e8fa1, type: 3}
       propertyPath: m_RootOrder
@@ -8019,6 +8379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Block_Angular_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1680216140284548, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4983202087242602, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
       propertyPath: m_RootOrder
       value: 1144
@@ -8094,6 +8458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rune_Symbol_28 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1100758159335554, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4097761649022968, guid: 1b7fd3df5e7a59346ac31f7aa8ee1dea, type: 3}
       propertyPath: m_RootOrder
       value: 1188
@@ -8168,6 +8536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Brazier_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1958086971213872, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4296542897869964, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
       propertyPath: m_RootOrder
       value: 1132
@@ -8239,6 +8611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rune_Symbol_44 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1055640913352774, guid: 5301029677145ff4083f2bedbb318045, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4205198895817604, guid: 5301029677145ff4083f2bedbb318045, type: 3}
       propertyPath: m_RootOrder
       value: 1183
@@ -8309,6 +8685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1181
@@ -8367,6 +8747,10 @@ PrefabInstance:
     - target: {fileID: 1148776619383654, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Balustrade_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148776619383654, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4990271919927686, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
       propertyPath: m_RootOrder
@@ -8427,6 +8811,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Balustrade_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1148776619383654, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4990271919927686, guid: 81f3d2c6f6679ec4683f45f2ab65a5c2, type: 3}
       propertyPath: m_RootOrder
       value: 1224
@@ -8482,6 +8870,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3296971974207148827}
     m_Modifications:
+    - target: {fileID: 1680216140284548, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4983202087242602, guid: 2c747c58770aa104bb252bcce04d11d7, type: 3}
       propertyPath: m_RootOrder
       value: 1144
@@ -8553,6 +8945,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3296971974207148827}
     m_Modifications:
+    - target: {fileID: 1174491747498272, guid: 1beb7310a2637d74dbbc743c12b84881, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209216571014588, guid: 1beb7310a2637d74dbbc743c12b84881, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4167130569093752, guid: 1beb7310a2637d74dbbc743c12b84881, type: 3}
       propertyPath: m_RootOrder
       value: 1246
@@ -8614,6 +9014,10 @@ PrefabInstance:
     - target: {fileID: 1958086971213872, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Dwarf_Brazier_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958086971213872, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4296542897869964, guid: 10f606f31ff18584c90bd6a8553f47d1, type: 3}
       propertyPath: m_RootOrder
@@ -8686,6 +9090,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Stairs_Pillar_04 (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 1566680017404966, guid: 5777970cb1da87b4aa20e2369f517957, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4077787410783798, guid: 5777970cb1da87b4aa20e2369f517957, type: 3}
       propertyPath: m_RootOrder
       value: 1227
@@ -8748,6 +9156,10 @@ PrefabInstance:
     - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
@@ -8812,6 +9224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Floor_28 (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 1451186026775586, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4774581118350666, guid: e0dcab75e6b40734bab436ee6a67815d, type: 3}
       propertyPath: m_RootOrder
       value: 1170
@@ -8871,6 +9287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Barrel_Shelf_Large_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1993848277105582, guid: 231307022a2654c46a714dbe928972d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4756398880656700, guid: 231307022a2654c46a714dbe928972d1, type: 3}
       propertyPath: m_RootOrder
       value: 1240
@@ -8929,6 +9349,10 @@ PrefabInstance:
     - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
@@ -9000,6 +9424,10 @@ PrefabInstance:
     - target: {fileID: 1109990490310250, guid: 28d20cf3ca7e24d42bc0060249326f26, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hell_Fence_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109990490310250, guid: 28d20cf3ca7e24d42bc0060249326f26, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4338962964647998, guid: 28d20cf3ca7e24d42bc0060249326f26, type: 3}
       propertyPath: m_RootOrder
@@ -9088,6 +9516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (03)
       objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
       value: 1174
@@ -9159,6 +9591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_05 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1301371796423920, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4427348796447190, guid: 63baf9dc330c3de4b8989173c035ef37, type: 3}
       propertyPath: m_RootOrder
       value: 1162
@@ -9229,6 +9665,10 @@ PrefabInstance:
     - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Wall_Trim_01 (06)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676083923735784, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4128335873376668, guid: 802bc6e647330e544a1f83708ae0fe13, type: 3}
       propertyPath: m_RootOrder
@@ -9304,6 +9744,10 @@ PrefabInstance:
     - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Bridge_Extension_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450509100257510, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4967977360495566, guid: 868cf363127c7e64f99fdd8ef5857f9a, type: 3}
       propertyPath: m_RootOrder
@@ -9391,6 +9835,10 @@ PrefabInstance:
     - target: {fileID: 1576699559912906, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dwarf_Pillar_Half_05 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576699559912906, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4053797696216970, guid: fd75f3fde5486b44b89c83c34dbe5485, type: 3}
       propertyPath: m_RootOrder

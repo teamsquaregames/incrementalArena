@@ -38,6 +38,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - CW.Common
+    - Domain_Reload
     - EPO
     - EPOHDRP
     - EPOURP
