@@ -28,6 +28,6 @@ public class RunEndUIC : UIContainer
 
     public void OnNewRunButtonClicked()
     {
-        //Todo : implementer de quoi relancer une run instant
+        GameManager.Instance.FadeAndEnterRun();
     }
 }
