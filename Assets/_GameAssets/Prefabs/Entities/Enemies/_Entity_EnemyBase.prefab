@@ -304,7 +304,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &6275878422327301310
@@ -346,9 +346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d5f6fb673fe0e499a5daea4c90c4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUIModule
+  m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
   m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
   m_healthBarTarget: {fileID: 4166490037408409096}
-  m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
 --- !u!4 &4166490037408409096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
