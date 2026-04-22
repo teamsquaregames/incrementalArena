@@ -11,12 +11,10 @@ public static class ResolveApplication
     public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context, int applicationIndex = 0)
     {
         //Debug.Log($"Resolving applications for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
-        List<Entity> results = new List<Entity>();
-        
         List<Entity> preselectedTargets = targetingInfo.quickTarget switch
         {
-            TargetingInfo.QuickTarget.Self => new List<Entity> { context.Caster },
-            TargetingInfo.QuickTarget.Current => context.ClosestEntity != null ? new List<Entity> { context.ClosestEntity } : new List<Entity>(),
+            TargetingInfo.QuickTarget.Self => new List<Entity> { context.caster },
+            TargetingInfo.QuickTarget.Current => context.closestEntity != null ? new List<Entity> { context.closestEntity } : new List<Entity>(),
             // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
             _ => null
         };
@@ -24,19 +22,21 @@ public static class ResolveApplication
 
         Vector3 position = targetingInfo.quickTarget switch
         {
-            TargetingInfo.QuickTarget.Self => context.Caster.transform.position,
-            TargetingInfo.QuickTarget.Current => context.ClosestEntity != null ? context.ClosestEntity.transform.position : context.AimPosition,
+            TargetingInfo.QuickTarget.Self => context.caster.transform.position,
+            TargetingInfo.QuickTarget.Current => context.closestEntity != null ? context.closestEntity.transform.position : context.aimPosition,
             // TargetingInfo.QuickTarget.Cursor => UtilsClass.GetMouseWorldPosition(),
-            _ => context.AimPosition
+            _ => context.aimPosition
         };
 
-        return ApplicationSwitch(context.AbilityConfig.steps[context.CurrentStepIndex].applicationInfos[applicationIndex], position, context, preselectedTargets);
+        AbilityApplicationInfo applicationInfo = context.abilityConfig.steps[context.currentStepIndex].applicationInfos[applicationIndex];
+
+        return ApplicationSwitch(applicationInfo, position, context, preselectedTargets);
     }
 
     private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets)
     {
         // Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
-        
+
         switch (applicationInfo.effectZoneType)
         {
             case AbilityApplicationInfo.Type.Direct:
@@ -56,20 +56,20 @@ public static class ResolveApplication
 
     public static List<Entity> AoeSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
-        //Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
+        Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.abilityConfig.abilityName}, step {context.currentStepIndex}");
 
-        Transform owner = context.Caster != null ? context.Caster.transform : null;
+        Transform owner = context.caster != null ? context.caster.transform : null;
         Quaternion rotation = owner != null ? owner.rotation : Quaternion.identity;
         Vector3 rotatedOffset = rotation * applicationInfo.aoeInfo.offset;
         Collider[] hits = new Collider[0];
-        Collider casterCollider = context.Caster.GetComponent<Collider>();
+        Collider casterCollider = context.caster.GetComponent<Collider>();
         List<Entity> results = new List<Entity>();
 
         switch (applicationInfo.aoeInfo.effectShape)
         {
-            case AoEInfo.Shape.Circle:
-                //Debug.Log($"Performing circular AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.radius}");
-                hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.Radius(context.AbilityConfig));
+            case AoEInfo.Shape.Sphere:
+                hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.Radius(context.abilityConfig));
+                Debug.Log($"Performing spherical AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.Radius(context.abilityConfig)}, found {hits.Length} colliders");
                 break;
 
             case AoEInfo.Shape.Rect:
@@ -90,7 +90,7 @@ public static class ResolveApplication
                 hits = new Collider[0];
                 break;
         }
-        
+
 
         foreach (var hit in hits)
         {
@@ -102,13 +102,31 @@ public static class ResolveApplication
                 results.Add(entity);
             }
         }
+
+
         return results;
     }
+
+    // private static void UpdateAoeGizmo(AbilityContext context, AbilityApplicationInfo applicationInfo, TargetingInfo targetingInfo, Vector3 position, bool _hit)
+    // {
+    //     if (context?.Caster == null) return;
+
+    //     if (context.Caster.TryGetModule(out EntityAbilityModule abilityModule))
+    //     {
+    //         abilityModule.SetApplicationGizmo(new GizmoDrawData
+    //         {
+    //             applicationInfo = applicationInfo,
+    //             targetingInfo = targetingInfo,
+    //             position = position,
+    //             hit = _hit
+    //         });
+    //     }
+    // }
 
     private static List<Entity> ProjectileApplication(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
         // Debug.Log($"Spawning projectile for ability '{context.AbilityConfig.abilityName}' at position {position} with context {context.CurrentStepIndex}");
-        LeanPool.Spawn(applicationInfo.projectileInfo.prefab, position, Quaternion.identity).Spawn(context, applicationInfo, context.CurrentStepIndex);
+        LeanPool.Spawn(applicationInfo.projectileInfo.prefab, position, Quaternion.identity).Spawn(context, applicationInfo, context.currentStepIndex);
         return new List<Entity>();
     }
 }

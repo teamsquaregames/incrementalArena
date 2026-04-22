@@ -7,6 +7,6 @@ public class KnockUpEffect : AbilityEffect
     {
         if (target == null) return;
 
-        target.KnockUp(ctx.Value);
+        target.KnockUp(ctx.value);
     }
 }

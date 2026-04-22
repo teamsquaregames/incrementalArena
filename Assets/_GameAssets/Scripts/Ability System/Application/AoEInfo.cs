@@ -9,7 +9,7 @@ public class AoEInfo
     #region MEMBERS
     public enum Shape
     {
-        Circle,
+        Sphere,
         Rect,
         Cone
     }
@@ -37,7 +37,7 @@ public class AoEInfo
 
     [EnumToggleButtons]
     public Shape effectShape;
-    [ShowIf("@this.effectShape == Shape.Circle")]
+    [ShowIf("@this.effectShape == Shape.Sphere")]
     [SerializeField] private float radius;
     [ShowIf("@this.effectShape == Shape.Rect")]
     public Vector3 scale;

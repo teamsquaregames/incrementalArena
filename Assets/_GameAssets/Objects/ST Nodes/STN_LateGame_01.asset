@@ -22,7 +22,7 @@ MonoBehaviour:
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0000000000000000
-  m_abilityGranted: {fileID: 11400000, guid: 1cb9340c957462f4a9fd6fa207a36222, type: 2}
+  m_abilityGranted: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
   m_enemyUnlocked: {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
   m_arenaUnlocked: {fileID: 11400000, guid: 67f98ac202d40b84ea5b4726d591282d, type: 2}
   m_statModifiers:

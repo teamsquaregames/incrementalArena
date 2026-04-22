@@ -30,7 +30,7 @@ public class ProjectileInfo
     public Origin origin;
     public Vector3 startPositionOffset;
     public bool autoOffsetWithWidth;
-    [ShowIf("@this.type == Type.Directional")]
+    [ShowIf("@this.type == Type.Directional"), Range(0f, 360f)]
     public float spreadAngle;
     [ShowIf("@this.type == Type.Directional")]
     public bool randomRepartition;

@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class AbilityContext
 {
-    public Entity Caster;
-    public Vector3 AimPosition;
-    public AbilityConfig AbilityConfig;
-    public Entity ClosestEntity;
-    public int CurrentStepIndex;
-    public float Value;
-    public bool IsCrit;
+    public Entity caster;
+    public EntityAbilityModule module;
+    public Vector3 aimPosition;
+    public AbilityConfig abilityConfig;
+    public Entity closestEntity;
+    public int currentStepIndex;
+    public float value;
+    public bool isCrit;
 }

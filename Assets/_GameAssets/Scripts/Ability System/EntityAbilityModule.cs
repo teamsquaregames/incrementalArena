@@ -52,6 +52,13 @@ public class EntityAbilityModule : EntityModule
     public bool IsCastRooted;
     public AbilityConfig ActiveAbility => m_activeAbility;
 
+    public void SetApplicationGizmo(GizmoDrawData data)
+    {
+        if (m_gizmos == null) return;
+
+        m_gizmos.AddGizmo(data);
+    }
+
     #region Module
 
     public override void CacheReferences()
@@ -169,10 +176,11 @@ public class EntityAbilityModule : EntityModule
         m_isAutoAttack = isAutoAttack;
         m_activeContext = new AbilityContext
         {
-            Caster = Owner,
-            AimPosition = aimPosition,
-            ClosestEntity = CursorBrainModule.GetClosestEnemyInCursor(Owner),
-            AbilityConfig = ability
+            caster = Owner,
+            module = this,
+            aimPosition = aimPosition,
+            closestEntity = CursorBrainModule.GetClosestEnemyInCursor(Owner),
+            abilityConfig = ability
         };
 
         SetAbilityClip(ability.steps[m_stepIndex].abilityClip, isAutoAttack);
@@ -237,7 +245,7 @@ public class EntityAbilityModule : EntityModule
         }
 
         m_stepIndex++;
-        m_activeContext.CurrentStepIndex = m_stepIndex;
+        m_activeContext.currentStepIndex = m_stepIndex;
     }
 
 
@@ -367,7 +375,7 @@ public class EntityAbilityModule : EntityModule
             ParticleSystem vfx = LeanPool.Spawn(
                 activeStep.mainVfx,
                 activeStep.mainVFXPosition == VFXPosition.Target
-                    ? m_activeContext.AimPosition
+                    ? m_activeContext.aimPosition
                     : transform.position + activeStep.mainVFXOffset,
                 transform.rotation,
                 Owner.transform
@@ -380,7 +388,7 @@ public class EntityAbilityModule : EntityModule
             var vfxGraph = LeanPool.Spawn(
                 activeStep.mainVfxGraph,
                 activeStep.mainVFXPosition == VFXPosition.Target
-                    ? m_activeContext.AimPosition
+                    ? m_activeContext.aimPosition
                     : transform.position + activeStep.mainVFXOffset,
                 transform.rotation,
                 Owner.transform
@@ -408,9 +416,9 @@ public class EntityAbilityModule : EntityModule
     private void HandleEffects(AbilityStep activeStep, List<Entity> targets)
     {
         // this.Log($"Handling effects for step {activeStep} on targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
-        m_activeContext.IsCrit = false;
-        if (m_activeContext.Caster.TryGetModule(out EntityStatModule statModule))
-            m_activeContext.IsCrit = Random.value < statModule.GetValue(StatType.CriticalChance);
+        m_activeContext.isCrit = false;
+        if (m_activeContext.caster.TryGetModule(out EntityStatModule statModule))
+            m_activeContext.isCrit = Random.value < statModule.GetValue(StatType.CriticalChance);
 
         foreach (var target in targets)
         {
@@ -418,9 +426,21 @@ public class EntityAbilityModule : EntityModule
             {
                 if (ResolveTeamApplication(entry.teamApplication, target, Owner))
                 {
-                    m_activeContext.Value = entry.value;
+                    m_activeContext.value = entry.value;
                     entry.effect?.Execute(m_activeContext, target);
                 }
+            }
+        }
+    }
+
+    public void HandleEffects(AbilityContext context, Entity target, List<AbilityEffectEntry> effects)
+    {
+        foreach (var entry in effects)
+        {
+            if (ResolveTeamApplication(entry.teamApplication, target, context.caster))
+            {
+                context.value = entry.value;
+                entry.effect?.Execute(context, target);
             }
         }
     }

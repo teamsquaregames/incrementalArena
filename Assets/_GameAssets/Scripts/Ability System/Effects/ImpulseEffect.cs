@@ -7,8 +7,8 @@ public class ImpulseEffect : AbilityEffect
     {
         if (!target.TryGetModule(out EntityMovementModule movementModule)) return;
 
-        Vector3 direction = ctx.Caster.transform.forward;
+        Vector3 direction = ctx.caster.transform.forward;
 
-        movementModule.AddImpulse(direction * ctx.Value);
+        movementModule.AddImpulse(direction * ctx.value);
     }
 }

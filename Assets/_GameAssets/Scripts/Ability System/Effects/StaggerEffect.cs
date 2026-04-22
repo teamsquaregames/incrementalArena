@@ -7,6 +7,6 @@ public class StaggerEffect : AbilityEffect
     {
         if (target == null) return;
 
-        target.Stagger(ctx.Value);
+        target.Stagger(ctx.value);
     }
 }

@@ -8,11 +8,11 @@ public class DamageEffect : AbilityEffect
     {
         if (!target.TryGetModule(out EntityHealthModule healthModule)) return;
 
-        float damage = ctx.Value;
+        float damage = ctx.value;
 
-        if (ctx.Caster.TryGetModule(out EntityStatModule statModule))
+        if (ctx.caster.TryGetModule(out EntityStatModule statModule))
             damage += statModule.GetValue(StatType.AttackDamage);
 
-        healthModule.TakeDamage(damage, ctx.IsCrit);
+        healthModule.TakeDamage(damage, ctx.isCrit);
     }
 }

@@ -6,8 +6,8 @@ public class ScreenShakeEffect : AbilityEffect
 {
     public override void Execute(AbilityContext ctx, Entity target)
     {
-        if (!ctx.Caster.TryGetModule(out EntityAbilityModule abilityModule)) return;
+        if (!ctx.caster.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
-        abilityModule.ImpulseSource?.GenerateImpulse(ctx.Value);
+        abilityModule.ImpulseSource?.GenerateImpulse(ctx.value);
     }
 }

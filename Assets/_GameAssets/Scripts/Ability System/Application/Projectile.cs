@@ -8,9 +8,11 @@ public class Projectile : MonoBehaviour
     public int instanceID;
     private bool m_excludeHitEntity;
 
+    private EntityAbilityModule m_abilityModule;
     private ProjectileInfo m_projectileInfo;
     private AbilityContext m_abilityCtz;
     private AbilityApplicationInfo m_applicationInfo;
+    private List<AbilityEffectEntry> m_abilityEffects;
 
     private Vector3 m_originPosition;
     private Vector3 m_finalPosition;
@@ -31,6 +33,8 @@ public class Projectile : MonoBehaviour
         m_applicationInfo = _abilityAppInfo;
         m_projectileInfo = _abilityAppInfo.projectileInfo;
         m_excludeHitEntity = _abilityAppInfo.excludeHitEntity;
+        m_abilityModule = _abilityCtx.module;
+        m_abilityEffects = _abilityCtx.abilityConfig.steps[_instanceIndex].effects;
         instanceID = _instanceIndex;
 
         m_hitEntities.Clear();
@@ -63,26 +67,26 @@ public class Projectile : MonoBehaviour
         switch (m_projectileInfo.origin)
         {
             case ProjectileInfo.Origin.Caster:
-                m_originPosition = m_abilityCtz.Caster.transform.position;
+                m_originPosition = m_abilityCtz.caster.transform.position;
                 break;
             case ProjectileInfo.Origin.Target:
-                m_originPosition = m_abilityCtz.ClosestEntity != null ? m_abilityCtz.ClosestEntity.transform.position : m_abilityCtz.AimPosition;
+                m_originPosition = m_abilityCtz.closestEntity != null ? m_abilityCtz.closestEntity.transform.position : m_abilityCtz.aimPosition;
                 break;
         }
 
         if (m_projectileInfo.origin == ProjectileInfo.Origin.Target)
         {
-            m_originPosition = m_abilityCtz.ClosestEntity != null ? m_abilityCtz.ClosestEntity.transform.position : m_abilityCtz.AimPosition;
+            m_originPosition = m_abilityCtz.closestEntity != null ? m_abilityCtz.closestEntity.transform.position : m_abilityCtz.aimPosition;
         }
 
-        Vector3 dirTowardAimedPosition = m_abilityCtz.AimPosition - m_abilityCtz.Caster.transform.position;
+        Vector3 dirTowardAimedPosition = m_abilityCtz.aimPosition - m_abilityCtz.caster.transform.position;
         Quaternion rot = dirTowardAimedPosition == Vector3.zero ? Quaternion.identity : Quaternion.LookRotation(dirTowardAimedPosition, Vector3.up);
 
         // We apply the offset in local space to make sure the projectile spawns at the correct position relative to the caster, even if the caster is rotated
-        Matrix4x4 casterEntityLocalMatrix = Matrix4x4.TRS(m_abilityCtz.Caster.transform.localPosition, rot, m_abilityCtz.Caster.transform.localScale);
+        Matrix4x4 casterEntityLocalMatrix = Matrix4x4.TRS(m_abilityCtz.caster.transform.localPosition, rot, m_abilityCtz.caster.transform.localScale);
         m_originPosition += casterEntityLocalMatrix.MultiplyVector(m_projectileInfo.startPositionOffset + (m_projectileInfo.autoOffsetWithWidth ? (m_width * 0.5f * Vector3.forward) : Vector3.zero));
 
-        Vector3 direction = m_abilityCtz.Caster.transform.forward;
+        Vector3 direction = m_abilityCtz.caster.transform.forward;
 
         if (m_projectileInfo.spreadAngle > 0)
         {
@@ -183,15 +187,13 @@ public class Projectile : MonoBehaviour
 
         if (m_projectileInfo.applyEffectThroughTrajectory)
         {
-            float range = Vector3.Distance(transform.position, m_lastPosition) + m_width;
-            Vector3 direction = (transform.position - m_lastPosition).normalized;
-
             List<Entity> hitEntities = ResolveApplication.AoeSwitch(m_applicationInfo, transform.position, m_abilityCtz);
 
             foreach (Entity e in hitEntities)
             {
                 if (!m_hitEntities.Contains(e))
                 {
+                    m_abilityModule.HandleEffects(m_abilityCtz, e, m_abilityEffects);
                     m_hitEntities.Add(e);
                 }
             }
