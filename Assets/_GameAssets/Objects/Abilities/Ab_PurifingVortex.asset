@@ -68,10 +68,10 @@ MonoBehaviour:
       excludeHitEntity: 1
     - effectZoneType: 2
       projectileInfo:
-        prefab: {fileID: 0}
+        prefab: {fileID: 7935610990029654620, guid: b95afa1267e1f9e478f220c1fb51be99, type: 3}
         type: 0
         speed: 30
-        distance: 5
+        distance: 10
         lifeTime: 0
         projectileTrajectory: 0
         curveTopHeight: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
         frequency: 0
         stackEffect: 0
       delay: 0
-      repeatCount: 1
-      repeatDuration: 0
+      repeatCount: 0
+      repeatDuration: 1.7
       repeatFX: 0
       excludeHitEntity: 1
     mainVfx: {fileID: 400324787162481929, guid: 3981792dea78b794f9132d0edf117f3b, type: 3}

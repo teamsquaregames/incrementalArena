@@ -1283,7 +1283,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &54798341076026425
@@ -1302,6 +1302,7 @@ MonoBehaviour:
   m_fallbackMoveSpeed: 0
   m_faceVelocity: 1
   m_rotationSpeed: 1400
+  m_moveSpeed: 0
 --- !u!114 &7868693385871721422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,54 +1366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityApplicationGizmos
   showGizmos: 1
-  applicationInfo:
-    effectZoneType: 0
-    projectileInfo:
-      prefab: {fileID: 0}
-      type: 0
-      speed: 1
-      distance: 10
-      lifeTime: 0
-      projectileTrajectory: 0
-      curveTopHeight: 0
-      trajectoryCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      origin: 0
-      startPositionOffset: {x: 0, y: 0, z: 0}
-      autoOffsetWithWidth: 0
-      spreadAngle: 0
-      randomRepartition: 0
-      applyEffectThroughTrajectory: 0
-      frequency: 0
-      piercingAmount: 0
-    aoeInfo:
-      effectShape: 0
-      radius: 0
-      scale: {x: 0, y: 0, z: 0}
-      angle: 0
-      range: 0
-      offset: {x: 0, y: 0, z: 0}
-      time: 0
-      duration: 0
-      frequency: 0
-      stackEffect: 0
-    delay: 0
-    repeatCount: 0
-    repeatDuration: 0
-    repeatFX: 0
-    excludeHitEntity: 1
-  targetingInfo:
-    quickTarget: 0
-    target: 0
-    delayInterval: 0
-    retriggerAnimation: 0
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
   wireColor: {r: 1, g: 0, b: 0, a: 1}
-  position: {x: 0, y: 0, z: 0}
+  m_defaultDuration: 0.1
 --- !u!114 &1801247843536792731
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -325,12 +325,13 @@ public class EntityAbilityModule : EntityModule
     {
         // this.Log($"Handling repetition for step {activeStep} at index {applicationIndex}");
         AbilityApplicationInfo applicationInfo = activeStep.applicationInfos[applicationIndex];
-
+        int repeatCount = applicationInfo.RepeatCount(m_activeAbility, m_stepIndex + 1, applicationIndex);
         float repetitionInterval = 0f;
-        if (applicationInfo.repeatCount > 1)
-            repetitionInterval = applicationInfo.repeatDuration / (applicationInfo.repeatCount - 1);
 
-        for (int i = 0; i < applicationInfo.repeatCount; i++)
+        if (repeatCount > 1)
+            repetitionInterval = applicationInfo.repeatDuration / (repeatCount - 1);
+
+        for (int i = 0; i < repeatCount; i++)
         {
             List<Entity> targets = ResolveApplication.ResolveApplications(activeStep.targetingInfo, m_activeContext, applicationIndex);
             // this.Log($"Resolved targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
@@ -345,8 +346,7 @@ public class EntityAbilityModule : EntityModule
                     SoundManager.Instance.PlaySound(activeStep.activeSfx);
             }
 
-            // this.Log($"Completed repetition {i + 1}/{applicationInfo.repeatCount} for step {activeStep}. Next repetition in {repetitionInterval:F2} seconds. Time: {Time.time:F5}");
-            if (applicationInfo.repeatCount > 1)
+            if (repeatCount > 1)
                 await WaitForGameSeconds(repetitionInterval);
         }
     }

@@ -28,6 +28,9 @@ MonoBehaviour:
   m_statModifiers:
   - id: STN_AttackDamage_01
     entityType: 1
+    ability: {fileID: 0}
+    step: 0
+    application: 0
     statType: 1
     type: 0
     m_values:
