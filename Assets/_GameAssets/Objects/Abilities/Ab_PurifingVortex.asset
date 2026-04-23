@@ -68,7 +68,7 @@ MonoBehaviour:
       excludeHitEntity: 1
     - effectZoneType: 2
       projectileInfo:
-        prefab: {fileID: 7935610990029654620, guid: b95afa1267e1f9e478f220c1fb51be99, type: 3}
+        prefab: {fileID: 7935610990029654620, guid: 387ed3d2ed00cbe4dbc92a85d9ab4cf2, type: 3}
         type: 0
         speed: 30
         distance: 10

@@ -25,7 +25,7 @@ MonoBehaviour:
     infiniteRunDuration: 0
     playerImmortality: 1
     npcImmortality: 0
-    usePrefabAbilities: 0
+    usePrefabAbilities: 1
     usePrefabEnemies: 0
   gameSettings:
     isDemo: 0
