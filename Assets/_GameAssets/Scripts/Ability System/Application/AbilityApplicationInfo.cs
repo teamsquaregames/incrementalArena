@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Stats;
 
 
 [System.Serializable]
@@ -25,11 +26,18 @@ public class AbilityApplicationInfo
 
     [Title("Other Settings")]
     public float delay = 0f;
-    public int repeatCount = 1;
+    [SerializeField]
+    private int repeatCount = 1;
     [ShowIf("@this.repeatCount > 1")]
     public float repeatDuration;
     [ShowIf("@this.repeatCount > 1")]
     public bool repeatFX;
 
     public bool excludeHitEntity = true;
+
+    public int RepeatCount(AbilityConfig ability = null, int step = 0, int application = 0)
+    {
+        // Debug.Log($"Getting repeat count for ability '{ability?.abilityName}', step {step}, application {application}. Base repeat count: {repeatCount}. Return: {(int)StatManager.Instance.GetDefinitionStat(ability, StatType.Repetition, step, application).GetSpecificModifierValue(ModifierType.Flat) + repeatCount}");
+        return (int)StatManager.Instance.GetDefinitionStat(ability, StatType.Repetition, step, application).GetSpecificModifierValue(ModifierType.Flat) + repeatCount;
+    }
 }

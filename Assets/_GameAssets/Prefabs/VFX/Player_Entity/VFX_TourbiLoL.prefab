@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1365029202211045540}
   - component: {fileID: 8510765874653724773}
   m_Layer: 0
-  m_Name: shadow
+  m_Name: Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9632,8 +9632,8 @@ GameObject:
   - component: {fileID: 8114799620151741455}
   - component: {fileID: 568498649536802822}
   - component: {fileID: 6959547168268046767}
-  m_Layer: 0
-  m_Name: glow
+  m_Layer: 7
+  m_Name: Slaahes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

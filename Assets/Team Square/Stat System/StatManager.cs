@@ -45,7 +45,7 @@ namespace Stats
 
         private Stat GetOrCreateDefinitionStat(EntityType entityType, StatType statType)
         {
-            this.Log($"Getting definition stat for entity type '{entityType}' and stat type '{statType}'");
+            // this.Log($"Getting definition stat for entity type '{entityType}' and stat type '{statType}'");
             if (!m_definitionStats.TryGetValue(entityType, out var statDict))
             {
                 statDict = new Dictionary<StatType, Stat>();
@@ -63,7 +63,7 @@ namespace Stats
 
         private Stat GetOrCreateDefinitionStat(AbilityConfig ability, StatType statType, int step, int application)
         {
-            this.Log($"Getting definition stat for ability '{ability.abilityName}' and stat type '{statType}' with step {step} and application {application}");
+            // this.Log($"Getting definition stat for ability '{ability.abilityName}' and stat type '{statType}' with step {step} and application {application}");
             if (!m_definitionAbilityStats.TryGetValue(ability, out var statDict))
             {
                 statDict = new Dictionary<StatType, Stat[,]>();

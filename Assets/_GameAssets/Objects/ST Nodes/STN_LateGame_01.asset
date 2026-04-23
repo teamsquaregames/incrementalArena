@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_LateGame_01
+  m_Name: STN_God_01
   m_EditorClassIdentifier: 
   m_displayName: Late Game
   m_id: STN_LateGame_01
@@ -61,7 +61,7 @@ MonoBehaviour:
     statType: 3
     type: 1
     m_values:
-    - 1500
+    - 150
   - id: STN_LateGame_01
     entityType: 1
     ability: {fileID: 0}
@@ -107,6 +107,15 @@ MonoBehaviour:
     type: 1
     m_values:
     - 100
+  - id: STN_LateGame_01
+    entityType: 1
+    ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+    step: 1
+    application: 1
+    statType: 14
+    type: 0
+    m_values:
+    - 10
   - id: STN_LateGame_01
     entityType: 4
     ability: {fileID: 0}

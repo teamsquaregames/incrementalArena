@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_SpinRange_01
+  m_Name: STN_SpinProjectileRepetition_01
   m_EditorClassIdentifier: 
-  m_displayName: Spin Range
-  m_id: STN_SpinRange_01
+  m_displayName: Vortex Blades
+  m_id: STN_SpinProjectileRepetition_01
   m_levelingType: 0
   m_maxLevel: 1
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: 6a36d5e8f5052904a821c04105cf2d15, type: 3}
-  m_description: Bigger
+  m_icon: {fileID: 21300000, guid: 8fb2f3a683319744a940b075dd0d0d29, type: 3}
+  m_description: More projectiles
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0f00000000000000
@@ -26,12 +26,12 @@ MonoBehaviour:
   m_enemyUnlocked: {fileID: 0}
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_SpinRange_01
+  - id: STN_SpinProjectileRepetition_01
     entityType: 0
     ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
-    step: 0
-    application: 0
-    statType: 13
-    type: 1
+    step: 1
+    application: 1
+    statType: 14
+    type: 0
     m_values:
-    - 200
+    - 100

@@ -8,7 +8,7 @@ using Lean.Pool;
 
 public static class ResolveApplication
 {
-    public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context, int applicationIndex = 0)
+    public static List<Entity> ResolveApplications(TargetingInfo targetingInfo, AbilityContext context, int applicationIndex)
     {
         //Debug.Log($"Resolving applications for ability {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
         List<Entity> preselectedTargets = targetingInfo.quickTarget switch
@@ -30,10 +30,10 @@ public static class ResolveApplication
 
         AbilityApplicationInfo applicationInfo = context.abilityConfig.steps[context.currentStepIndex].applicationInfos[applicationIndex];
 
-        return ApplicationSwitch(applicationInfo, position, context, preselectedTargets);
+        return ApplicationSwitch(applicationInfo, position, context, preselectedTargets, applicationIndex);
     }
 
-    private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets)
+    private static List<Entity> ApplicationSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context, List<Entity> preselectedTargets, int applicationIndex)
     {
         // Debug.Log($"Resolving application of type {applicationInfo.effectZoneType} at position {position} with context {context.AbilityConfig.abilityName}, step {context.CurrentStepIndex}");
 
@@ -44,7 +44,7 @@ public static class ResolveApplication
             case AbilityApplicationInfo.Type.Aoe:
                 return AoeSwitch(applicationInfo, position, context);
             case AbilityApplicationInfo.Type.Projectile:
-                return ProjectileApplication(applicationInfo, position, context);
+                return ProjectileApplication(applicationInfo, context, applicationIndex);
             case AbilityApplicationInfo.Type.Custom:
                 // Handle custom effect application
                 break;
@@ -123,10 +123,10 @@ public static class ResolveApplication
     //     }
     // }
 
-    private static List<Entity> ProjectileApplication(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
+    private static List<Entity> ProjectileApplication(AbilityApplicationInfo applicationInfo, AbilityContext context, int applicationIndex)
     {
-        // Debug.Log($"Spawning projectile for ability '{context.AbilityConfig.abilityName}' at position {position} with context {context.CurrentStepIndex}");
-        LeanPool.Spawn(applicationInfo.projectileInfo.prefab, position, Quaternion.identity).Spawn(context, applicationInfo, context.currentStepIndex);
+        // Debug.Log($"Spawning projectile for ability '{context.abilityConfig.abilityName}' with context {context.currentStepIndex}");
+        LeanPool.Spawn(applicationInfo.projectileInfo.prefab, new Vector3(), Quaternion.identity).Spawn(context, applicationIndex, context.currentStepIndex);
         return new List<Entity>();
     }
 }

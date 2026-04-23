@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Lean.Pool;
+using Utils;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class Projectile : MonoBehaviour
 
     private EntityAbilityModule m_abilityModule;
     private ProjectileInfo m_projectileInfo;
-    private AbilityContext m_abilityCtz;
+    private AbilityContext m_abilityCtx;
     private AbilityApplicationInfo m_applicationInfo;
+    private int m_applicationIndex;
     private List<AbilityEffectEntry> m_abilityEffects;
 
     private Vector3 m_originPosition;
@@ -27,14 +29,15 @@ public class Projectile : MonoBehaviour
 
     private ParticleSystem[] m_vfxs;
 
-    public void Spawn(AbilityContext _abilityCtx, AbilityApplicationInfo _abilityAppInfo, int _instanceIndex)
+    public void Spawn(AbilityContext _abilityCtx, int _applicationIndex, int _instanceIndex)
     {
-        m_abilityCtz = _abilityCtx;
-        m_applicationInfo = _abilityAppInfo;
-        m_projectileInfo = _abilityAppInfo.projectileInfo;
-        m_excludeHitEntity = _abilityAppInfo.excludeHitEntity;
-        m_abilityModule = _abilityCtx.module;
-        m_abilityEffects = _abilityCtx.abilityConfig.steps[_instanceIndex].effects;
+        m_abilityCtx = _abilityCtx;
+        m_applicationInfo = m_abilityCtx.abilityConfig.steps[m_abilityCtx.currentStepIndex].applicationInfos[_applicationIndex];
+        m_applicationIndex = _applicationIndex;
+        m_projectileInfo = m_applicationInfo.projectileInfo;
+        m_excludeHitEntity = m_applicationInfo.excludeHitEntity;
+        m_abilityModule = m_abilityCtx.module;
+        m_abilityEffects = m_abilityCtx.abilityConfig.steps[m_abilityCtx.currentStepIndex].effects;
         instanceID = _instanceIndex;
 
         m_hitEntities.Clear();
@@ -67,32 +70,29 @@ public class Projectile : MonoBehaviour
         switch (m_projectileInfo.origin)
         {
             case ProjectileInfo.Origin.Caster:
-                m_originPosition = m_abilityCtz.caster.transform.position;
+                m_originPosition = m_abilityCtx.caster.transform.position + m_projectileInfo.startPositionOffset;
                 break;
             case ProjectileInfo.Origin.Target:
-                m_originPosition = m_abilityCtz.closestEntity != null ? m_abilityCtz.closestEntity.transform.position : m_abilityCtz.aimPosition;
+                m_originPosition = m_abilityCtx.closestEntity != null ? m_abilityCtx.closestEntity.transform.position + m_projectileInfo.startPositionOffset : m_abilityCtx.aimPosition + m_projectileInfo.startPositionOffset;
                 break;
         }
+        transform.position = m_originPosition;
+        this.Log($"Initialized projectile transform with origin {m_originPosition} (base position {m_abilityCtx.caster.transform.position}, offset {m_projectileInfo.startPositionOffset})");
 
-        if (m_projectileInfo.origin == ProjectileInfo.Origin.Target)
-        {
-            m_originPosition = m_abilityCtz.closestEntity != null ? m_abilityCtz.closestEntity.transform.position : m_abilityCtz.aimPosition;
-        }
-
-        Vector3 dirTowardAimedPosition = m_abilityCtz.aimPosition - m_abilityCtz.caster.transform.position;
+        Vector3 dirTowardAimedPosition = m_abilityCtx.aimPosition - m_abilityCtx.caster.transform.position;
         Quaternion rot = dirTowardAimedPosition == Vector3.zero ? Quaternion.identity : Quaternion.LookRotation(dirTowardAimedPosition, Vector3.up);
 
         // We apply the offset in local space to make sure the projectile spawns at the correct position relative to the caster, even if the caster is rotated
-        Matrix4x4 casterEntityLocalMatrix = Matrix4x4.TRS(m_abilityCtz.caster.transform.localPosition, rot, m_abilityCtz.caster.transform.localScale);
+        Matrix4x4 casterEntityLocalMatrix = Matrix4x4.TRS(m_abilityCtx.caster.transform.localPosition, rot, m_abilityCtx.caster.transform.localScale);
         m_originPosition += casterEntityLocalMatrix.MultiplyVector(m_projectileInfo.startPositionOffset + (m_projectileInfo.autoOffsetWithWidth ? (m_width * 0.5f * Vector3.forward) : Vector3.zero));
 
-        Vector3 direction = m_abilityCtz.caster.transform.forward;
+        Vector3 direction = m_abilityCtx.caster.transform.forward;
 
         if (m_projectileInfo.spreadAngle > 0)
         {
-            if (m_applicationInfo.repeatCount > 1 && !m_projectileInfo.randomRepartition)
+            if (m_applicationInfo.RepeatCount(m_abilityCtx.abilityConfig, m_abilityCtx.currentStepIndex, m_applicationIndex) > 1 && !m_projectileInfo.randomRepartition)
             {
-                float angle = Mathf.Lerp(-m_projectileInfo.spreadAngle / 2, m_projectileInfo.spreadAngle / 2, (float)instanceID / (m_applicationInfo.repeatCount - 1));
+                float angle = Mathf.Lerp(-m_projectileInfo.spreadAngle / 2, m_projectileInfo.spreadAngle / 2, (float)m_applicationIndex / (m_applicationInfo.RepeatCount(m_abilityCtx.abilityConfig, m_abilityCtx.currentStepIndex, m_applicationIndex) - 1));
                 direction = Quaternion.AngleAxis(angle, Vector3.up) * direction;
             }
             else
@@ -187,13 +187,13 @@ public class Projectile : MonoBehaviour
 
         if (m_projectileInfo.applyEffectThroughTrajectory)
         {
-            List<Entity> hitEntities = ResolveApplication.AoeSwitch(m_applicationInfo, transform.position, m_abilityCtz);
+            List<Entity> hitEntities = ResolveApplication.AoeSwitch(m_applicationInfo, transform.position, m_abilityCtx);
 
             foreach (Entity e in hitEntities)
             {
                 if (!m_hitEntities.Contains(e))
                 {
-                    m_abilityModule.HandleEffects(m_abilityCtz, e, m_abilityEffects);
+                    m_abilityModule.HandleEffects(m_abilityCtx, e, m_abilityEffects);
                     m_hitEntities.Add(e);
                 }
             }
