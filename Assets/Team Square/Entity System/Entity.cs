@@ -59,7 +59,7 @@ public class Entity : MonoBehaviour, IPoolable
             module.Initialize(this);
         }
 
-        foreach (var module in m_modules.Values)
+        foreach (var module in m_modules.Values.Distinct())
         {
             module.OnAllModuleInitialized();
         }
