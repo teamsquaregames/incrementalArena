@@ -11,19 +11,19 @@ namespace Stats
         [SerializeField, AssetList(Path = "Team Square/Stat System", AutoPopulate = true)] private List<EntityStatDefinition> m_entityStatDefinitions;
 
         [SerializeField, ReadOnly] private SerializableDictionary<EntityType, Dictionary<StatType, Stat>> m_definitionStats;
-        [SerializeField, ReadOnly] private SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat>> m_definitionAbilityStats;
+        [SerializeField, ReadOnly] private SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat[,]>> m_definitionAbilityStats;
     
         [SerializeField, ReadOnly] private SerializableDictionary<GameObject, Dictionary<StatType, Stat>> m_instanceStats;
-        [SerializeField, ReadOnly] private SerializableDictionary<GameObject, Dictionary<AbilityConfig, Dictionary<StatType, Stat>>> m_instanceAbilityStats;
+        [SerializeField, ReadOnly] private SerializableDictionary<GameObject, Dictionary<AbilityConfig, Dictionary<StatType, Stat[,]>>> m_instanceAbilityStats;
 
         private SerializableDictionary<GameObject, EntityType> m_instanceEntityTypes;
 
         protected void Awake()
         {
             m_definitionStats = new SerializableDictionary<EntityType, Dictionary<StatType, Stat>>();
-            m_definitionAbilityStats = new SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat>>();
+            m_definitionAbilityStats = new SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat[,]>>();
             m_instanceStats = new SerializableDictionary<GameObject, Dictionary<StatType, Stat>>();
-            m_instanceAbilityStats = new SerializableDictionary<GameObject, Dictionary<AbilityConfig, Dictionary<StatType, Stat>>>();
+            m_instanceAbilityStats = new SerializableDictionary<GameObject, Dictionary<AbilityConfig, Dictionary<StatType, Stat[,]>>>();
 
             m_instanceEntityTypes = new SerializableDictionary<GameObject, EntityType>();
 
@@ -45,6 +45,7 @@ namespace Stats
 
         private Stat GetOrCreateDefinitionStat(EntityType entityType, StatType statType)
         {
+            this.Log($"Getting definition stat for entity type '{entityType}' and stat type '{statType}'");
             if (!m_definitionStats.TryGetValue(entityType, out var statDict))
             {
                 statDict = new Dictionary<StatType, Stat>();
@@ -60,24 +61,30 @@ namespace Stats
             return stat;
         }
 
-        private Stat GetOrCreateDefinitionStat(AbilityConfig ability, StatType statType)
+        private Stat GetOrCreateDefinitionStat(AbilityConfig ability, StatType statType, int step, int application)
         {
-            // this.Log($"Getting definition stat for ability '{ability.abilityName}' and stat type '{statType}'");
+            this.Log($"Getting definition stat for ability '{ability.abilityName}' and stat type '{statType}' with step {step} and application {application}");
             if (!m_definitionAbilityStats.TryGetValue(ability, out var statDict))
             {
-                statDict = new Dictionary<StatType, Stat>();
+                statDict = new Dictionary<StatType, Stat[,]>();
                 m_definitionAbilityStats[ability] = statDict;
                 // this.Log($"Created new stat dictionary for ability '{ability.abilityName}'");
             }
 
             if (!statDict.TryGetValue(statType, out var stat))
             {
-                stat = new Stat(0f);
+                stat = new Stat[5, 5];
                 statDict[statType] = stat;
                 // this.Log($"Created new stat for ability '{ability.abilityName}' and stat type '{statType}' with base value 0");
             }
 
-            return stat;
+            if (stat[step, application] == null)
+            {
+                stat[step, application] = new Stat(0f);
+                // this.Log($"Initialized stat for ability '{ability.abilityName}', step {step}, application {application}, stat type '{statType}' with base value 0");
+            }
+
+            return stat[step, application];
         }
 
         private Stat GetOrCreateInstanceStat(GameObject owner, StatType statType)
@@ -100,29 +107,30 @@ namespace Stats
             return stat;
         }
 
-        private Stat GetOrCreateInstanceStat(GameObject owner, AbilityConfig ability, StatType statType)
+        private Stat GetOrCreateInstanceStat(GameObject owner, AbilityConfig ability, StatType statType, int step, int application)
         {
             if (!m_instanceAbilityStats.TryGetValue(owner, out var abilityDict))
             {
-                abilityDict = new Dictionary<AbilityConfig, Dictionary<StatType, Stat>>();
+                abilityDict = new Dictionary<AbilityConfig, Dictionary<StatType, Stat[,]>>();
                 m_instanceAbilityStats[owner] = abilityDict;
             }
 
             if (!abilityDict.TryGetValue(ability, out var statDict))
             {
-                statDict = new Dictionary<StatType, Stat>();
+                statDict = new Dictionary<StatType, Stat[,]>();
                 abilityDict[ability] = statDict;
             }
 
             if (!statDict.TryGetValue(statType, out var stat))
             {
-                var defStat = GetOrCreateDefinitionStat(ability, statType);
-                stat = new Stat(defStat.Value);
-                defStat.OnValueChanged += stat.SetBaseValueAndRecalculate;
+                var defStat = GetOrCreateDefinitionStat(ability, statType, step, application);
+                stat = new Stat[5, 5];
+                stat[step, application] = new Stat(defStat.Value);
+                defStat.OnValueChanged += stat[step, application].SetBaseValueAndRecalculate;
                 statDict[statType] = stat;
             }
 
-            return stat;
+            return stat[step, application];
         }
         
         
@@ -133,9 +141,9 @@ namespace Stats
             return GetOrCreateDefinitionStat(entityType, statType);
         }
 
-        public Stat GetDefinitionStat(AbilityConfig ability, StatType statType)
+        public Stat GetDefinitionStat(AbilityConfig ability, StatType statType, int step = 0, int application = 0)
         {
-            return GetOrCreateDefinitionStat(ability, statType);
+            return GetOrCreateDefinitionStat(ability, statType, step, application);
         }
 
         public float GetDefinitionValue(EntityType entityType, StatType statType)
@@ -143,9 +151,9 @@ namespace Stats
             return GetDefinitionStat(entityType, statType).Value;
         }
         
-        public float GetDefinitionValue(AbilityConfig ability, StatType statType)
+        public float GetDefinitionValue(AbilityConfig ability, StatType statType, int step = 0, int application = 0)
         {
-            return GetDefinitionStat(ability, statType).Value;
+            return GetDefinitionStat(ability, statType, step, application).Value;
         }
 
 
@@ -164,14 +172,14 @@ namespace Stats
             }
         }
 
-        public void AddDefinitionModifier(AbilityConfig ability, StatModifier mod)
+        public void AddDefinitionModifier(AbilityConfig ability, StatModifier mod, int step = 0, int application = 0)
         {
-            GetDefinitionStat(ability, mod.statType).AddModifier(mod);
+            GetDefinitionStat(ability, mod.statType, step, application).AddModifier(mod);
         }
 
-        public void RemoveDefinitionModifier(AbilityConfig ability, StatModifier mod)
+        public void RemoveDefinitionModifier(AbilityConfig ability, StatModifier mod, int step = 0, int application = 0)
         {
-            GetDefinitionStat(ability, mod.statType).RemoveModifier(mod);
+            GetDefinitionStat(ability, mod.statType, step, application).RemoveModifier(mod);
         }
 
 

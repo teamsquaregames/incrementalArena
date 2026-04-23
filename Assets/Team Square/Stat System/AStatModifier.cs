@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Stats
 {
@@ -18,6 +19,10 @@ namespace Stats
         // [ShowIf("ability", null)]
         public EntityType entityType;
         public AbilityConfig ability;
+        [HorizontalGroup, ShowIf("ability", "!null"), Range(0, 5)]
+        public int step = 0;
+        [HorizontalGroup, ShowIf("ability", "!null"), Range(0, 5)]  
+        public int application = 0;
         public StatType statType;
         public ModifierType type;
 

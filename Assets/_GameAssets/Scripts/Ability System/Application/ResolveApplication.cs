@@ -56,7 +56,7 @@ public static class ResolveApplication
 
     public static List<Entity> AoeSwitch(AbilityApplicationInfo applicationInfo, Vector3 position, AbilityContext context)
     {
-        Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.abilityConfig.abilityName}, step {context.currentStepIndex}");
+        // Debug.Log($"Resolving AoE application with shape {applicationInfo.aoeInfo.effectShape} at position {position} for ability {context.abilityConfig.abilityName}, step {context.currentStepIndex}");
 
         Transform owner = context.caster != null ? context.caster.transform : null;
         Quaternion rotation = owner != null ? owner.rotation : Quaternion.identity;
@@ -69,7 +69,7 @@ public static class ResolveApplication
         {
             case AoEInfo.Shape.Sphere:
                 hits = Physics.OverlapSphere(position + rotatedOffset, applicationInfo.aoeInfo.Radius(context.abilityConfig));
-                Debug.Log($"Performing spherical AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.Radius(context.abilityConfig)}, found {hits.Length} colliders");
+                // Debug.Log($"Performing spherical AoE at {position + rotatedOffset} with radius {applicationInfo.aoeInfo.Radius(context.abilityConfig)}, found {hits.Length} colliders");
                 break;
 
             case AoEInfo.Shape.Rect:
