@@ -3,6 +3,7 @@ using UnityEngine;
 namespace CW.Common
 {
 	/// <summary>This component rotates the current <b>Transform</b>.</summary>
+	[ExecuteAlways]
 	[HelpURL(CwShared.HelpUrlPrefix + "CwRotate")]
 	[AddComponentMenu(CwShared.ComponentMenuPrefix + "Rotate")]
 	public class CwRotate : MonoBehaviour
@@ -13,9 +14,24 @@ namespace CW.Common
 		/// <summary>The rotation space.</summary>
 		public Space RelativeTo { set { relativeTo = value; } get { return relativeTo; } } [SerializeField] private Space relativeTo;
 
+		[SerializeField, HideInInspector] private float lastRealtime;
+
+		protected virtual void OnEnable()
+		{
+			lastRealtime = Time.realtimeSinceStartup;
+		}
+
 		protected virtual void Update()
 		{
-			transform.Rotate(angularVelocity * Time.deltaTime, relativeTo);
+			var now   = Time.realtimeSinceStartup;
+			var delta = Application.isPlaying ? Time.deltaTime : Mathf.Max(0.0f, now - lastRealtime);
+
+			lastRealtime = now;
+
+			if (delta > 0.0f)
+			{
+				transform.Rotate(angularVelocity * delta, relativeTo);
+			}
 		}
 	}
 }
@@ -30,6 +46,8 @@ namespace CW.Common
 	[CustomEditor(typeof(TARGET))]
 	public class CwRotate_Editor : CwEditor
 	{
+		private const float EditStepSeconds = 0.1f;
+
 		protected override void OnInspector()
 		{
 			TARGET tgt; TARGET[] tgts; GetTargets(out tgt, out tgts);
@@ -38,7 +56,23 @@ namespace CW.Common
 				Draw("angularVelocity", "The speed of the rotation in degrees per second.");
 			EndError();
 			Draw("relativeTo", "The rotation space.");
+
+			if (GUILayout.Button("Rotate In Edit Mode"))
+			{
+				Undo.RecordObjects(tgts, "Rotate In Edit Mode");
+
+				for (var i = 0; i < tgts.Length; i++)
+				{
+					var current = tgts[i];
+					if (current == null) continue;
+
+					current.transform.Rotate(current.AngularVelocity * EditStepSeconds, current.RelativeTo);
+					EditorUtility.SetDirty(current.transform);
+				}
+			}
 		}
 	}
 }
+
+	
 #endif
