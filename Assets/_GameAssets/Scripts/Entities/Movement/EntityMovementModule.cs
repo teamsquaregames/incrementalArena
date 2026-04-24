@@ -1,4 +1,5 @@
 using System.Collections;
+using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
 using Utils;
@@ -18,7 +19,7 @@ public class EntityMovementModule : EntityModule
     public Vector3 MoveInput { get; private set; }
     public float CurrentVelocity => m_rigidbody != null ? m_rigidbody.linearVelocity.magnitude : 0;
 
-    private float m_moveSpeed;
+    [SerializeField, ReadOnly]private float m_moveSpeed;
     public float MoveSpeed => m_moveSpeed;
 
     private Coroutine m_dashCoroutine;

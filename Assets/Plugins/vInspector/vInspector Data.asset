@@ -31,6 +31,13 @@ MonoBehaviour:
     isSceneGameObject: 0
     isAsset: 1
     _typeString: GameAssets, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - _obj: {fileID: 4106009951781145495, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-1-d7698b43e3d28f14aae96763b955b9d0-4106009951781145495-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _obj: {fileID: 11400000, guid: 74f944034adc43c48bd53b7a7b5c88af, type: 2}
     globalId:
       globalObjectIdString: GlobalObjectId_V1-3-74f944034adc43c48bd53b7a7b5c88af-11400000-0
@@ -38,23 +45,9 @@ MonoBehaviour:
     isAsset: 1
     _typeString: Stats.EntityStatDefinition, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  - _obj: {fileID: 4106009951781145495, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
+  - _obj: {fileID: 6426683890984912173, guid: 4b52f078667e52d4790ab484d853f3ab, type: 3}
     globalId:
-      globalObjectIdString: GlobalObjectId_V1-1-d7698b43e3d28f14aae96763b955b9d0-4106009951781145495-0
-    isSceneGameObject: 0
-    isAsset: 1
-    _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  - _obj: {fileID: 4106009951781145495, guid: d7698b43e3d28f14aae96763b955b9d0, type: 3}
-    globalId:
-      globalObjectIdString: GlobalObjectId_V1-1-d7698b43e3d28f14aae96763b955b9d0-4106009951781145495-0
-    isSceneGameObject: 0
-    isAsset: 1
-    _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  - _obj: {fileID: 8951252404499559207, guid: 18b5429fee0ef284ab23798825ba5bee, type: 3}
-    globalId:
-      globalObjectIdString: GlobalObjectId_V1-1-18b5429fee0ef284ab23798825ba5bee-8951252404499559207-0
+      globalObjectIdString: GlobalObjectId_V1-1-4b52f078667e52d4790ab484d853f3ab-6426683890984912173-0
     isSceneGameObject: 0
     isAsset: 1
     _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,

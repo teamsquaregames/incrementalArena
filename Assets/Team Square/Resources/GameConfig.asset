@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debuggingSettings:
     developmentBuild: 1
-    noMusic: 0
+    noMusic: 1
   cheatSettings:
     preventSave: 0
     startResetData: 1
@@ -23,7 +23,9 @@ MonoBehaviour:
     noMenu: 1
     disableBootStrapper: 0
     infiniteRunDuration: 0
-    usePrefabAbilities: 0
+    playerImmortality: 1
+    npcImmortality: 0
+    usePrefabAbilities: 1
     usePrefabEnemies: 0
   gameSettings:
     isDemo: 0

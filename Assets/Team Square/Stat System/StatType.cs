@@ -16,5 +16,7 @@ namespace Stats
         MaxRange = 11,
         CD = 12,
         Size = 13,
+        Repetition = 14,
+
     }
 }

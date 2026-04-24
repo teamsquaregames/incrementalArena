@@ -416,7 +416,7 @@ public class STNodeButton : CustomButton
                 StatManager.Instance.AddDefinitionModifier(statModifier.entityType, modifier);
 
             if (statModifier.ability != null)
-                StatManager.Instance.AddDefinitionModifier(statModifier.ability, modifier);
+                StatManager.Instance.AddDefinitionModifier(statModifier.ability, modifier, statModifier.step, statModifier.application);
         }
     }
 
