@@ -62,7 +62,7 @@ public class EntityMovementModule : EntityModule
         if (flatVelocity.sqrMagnitude < 0.01f) return;
 
         Quaternion targetRotation = Quaternion.LookRotation(flatVelocity);
-        Owner.transform.rotation = Quaternion.RotateTowards(Owner.transform.rotation, targetRotation, m_rotationSpeed * Time.fixedDeltaTime);
+        m_rigidbody.MoveRotation(Quaternion.RotateTowards(m_rigidbody.rotation, targetRotation, m_rotationSpeed * Time.fixedDeltaTime));
     }
 
     private void RefreshMoveSpeed()
