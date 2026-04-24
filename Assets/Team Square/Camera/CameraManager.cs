@@ -8,8 +8,10 @@ public class CameraManager : Singleton<CameraManager>
     
     public Camera MainCam => mainCam;
 
-    private void Awake()
+    public void RegisterMainCamera(Camera camera)
     {
-        InitializeSingleton();
+        Destroy(mainCam.gameObject);
+        mainCam = camera;
+        mainCam.transform.SetParent(transform);
     }
 }

@@ -1283,7 +1283,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &54798341076026425
@@ -1333,7 +1333,8 @@ MonoBehaviour:
   m_impulseSource: {fileID: 7013363403045592962}
   m_rigidbody: {fileID: 1242883771397363075}
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
-  m_abilities: []
+  m_abilities:
+  - {fileID: 11400000, guid: 9d025fc09a93950449b81621f88b13d0, type: 2}
   m_animator: {fileID: 2673431603351796059}
   IsCastRooted: 0
 --- !u!114 &8929558195775867111

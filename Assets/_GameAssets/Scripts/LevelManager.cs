@@ -33,7 +33,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
-        this.Log("LevelManager Awake");
+        //this.Log("LevelManager Awake");
         GameManager.Instance.onRunStart += OnRunStart;
         EntityManager.Instance.onEntityUnregistered += OnEntityUnregistered;
     }
