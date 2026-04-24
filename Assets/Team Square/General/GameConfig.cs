@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils;
+using VInspector;
 
 [CreateAssetMenu(menuName = "Config/GameConfig")]
 public class GameConfig : ScriptableObject
@@ -48,6 +49,8 @@ public class GameConfig : ScriptableObject
     {
         public bool developmentBuild;
         public bool noMusic;
+        public bool customTargetFrameRate;
+        [Sirenix.OdinInspector.ShowIf("customTargetFrameRate"), Range(10, 144)] public int targetFrameRate = 144;
     }
 
     [System.Serializable]

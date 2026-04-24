@@ -14,6 +14,14 @@ public class GameManager : Singleton<GameManager>
     private bool m_isPaused = false;
     public bool IsPaused => m_isPaused;
 
+    private void Awake()
+    {
+        if (GameConfig.Instance.debuggingSettings.customTargetFrameRate)
+        {
+            Application.targetFrameRate = GameConfig.Instance.debuggingSettings.targetFrameRate;
+        }
+    }
+
     void Start()
     {
         TutorialManager.Instance.Init();
