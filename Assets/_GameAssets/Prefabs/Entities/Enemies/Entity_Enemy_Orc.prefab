@@ -414,6 +414,7 @@ MonoBehaviour:
   m_fallbackMoveSpeed: 10
   m_faceVelocity: 1
   m_rotationSpeed: 1400
+  m_impulseDamping: 75
   m_moveSpeed: 0
 --- !u!114 &8236658199900533257
 MonoBehaviour:

@@ -15,6 +15,7 @@ public class EntityMovementModule : EntityModule
     [SerializeField] private float m_fallbackMoveSpeed = 10f;
     [SerializeField] private bool m_faceVelocity = false;
     [SerializeField, Min(0f)] private float m_rotationSpeed = 20f;
+    [SerializeField, Min(0f)] private float m_impulseDamping = 30f;
 
     public Vector3 MoveInput { get; private set; }
     public float CurrentVelocity => m_rigidbody != null ? m_rigidbody.linearVelocity.magnitude : 0;
@@ -23,6 +24,7 @@ public class EntityMovementModule : EntityModule
     public float MoveSpeed => m_moveSpeed;
 
     private Coroutine m_dashCoroutine;
+    private Vector3 m_impulseVelocity;
 
     private void Reset() => CacheReferences();
 
@@ -42,23 +44,24 @@ public class EntityMovementModule : EntityModule
 
     public void AddImpulse(Vector3 impulse)
     {
-        // this.Log($"Adding impulse {impulse}");
-        m_rigidbody?.AddForce(impulse, ForceMode.Impulse);
+        m_impulseVelocity += impulse;
     }
 
     protected virtual void OnAfterMovementApplied() { }
 
     private void ApplyMovement()
     {
-        Vector3 targetXZ = MoveInput * m_moveSpeed;
+        Vector3 targetXZ = MoveInput * m_moveSpeed + new Vector3(m_impulseVelocity.x, 0f, m_impulseVelocity.z);
         m_rigidbody.linearVelocity = new Vector3(targetXZ.x, m_rigidbody.linearVelocity.y, targetXZ.z);
+
+        m_impulseVelocity = Vector3.MoveTowards(m_impulseVelocity, Vector3.zero, m_impulseDamping * Time.fixedDeltaTime);
 
         OnAfterMovementApplied();
     }
 
     private void ApplyVelocityRotation()
     {
-        Vector3 flatVelocity = new Vector3(m_rigidbody.linearVelocity.x, 0f, m_rigidbody.linearVelocity.z);
+        Vector3 flatVelocity = new Vector3(MoveInput.x, 0f, MoveInput.z) * m_moveSpeed;
         if (flatVelocity.sqrMagnitude < 0.01f) return;
 
         Quaternion targetRotation = Quaternion.LookRotation(flatVelocity);
