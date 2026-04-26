@@ -16,7 +16,10 @@ public class Entity : MonoBehaviour, IPoolable
     [TitleGroup("References")]
     [SerializeField, Required] private ParticleSystem spawnVFX;
     [SerializeField, Required] private Animator m_animator;
+    public Animator Animator => m_animator;
     [SerializeField, Required] private Collider m_collider;
+    [SerializeField, Required] private EntityHealthModule m_healthModule;
+    public EntityHealthModule HealthModule => m_healthModule;
 
     [FoldoutGroup("Status"), SerializeField] private AnimationCurve m_knockUpCurve;
     [FoldoutGroup("Status"), SerializeField] private Transform m_modelT;
@@ -64,12 +67,10 @@ public class Entity : MonoBehaviour, IPoolable
             module.OnAllModuleInitialized();
         }
 
-        if (TryGetModule(out EntityHealthModule healthModule))
-        {
-            healthModule.OnDeathStart += Unregister;
-            healthModule.OnDeath += Despawn;
-        }
+        m_healthModule.OnDeathStart += Unregister;
+        // healthModule.OnDeath += Despawn;
     }
+
 
     public bool TryGetModule<T>(out T module) where T : EntityModule
     {
@@ -83,12 +84,12 @@ public class Entity : MonoBehaviour, IPoolable
         return false;
     }
 
-    private void Despawn()
+    public void Despawn()
     {
         if (TryGetModule(out EntityHealthModule healthModule))
         {
             healthModule.OnDeathStart -= Unregister;
-            healthModule.OnDeath -= Despawn;
+            // healthModule.OnDeath -= Despawn;
         }
 
         Unregister();
@@ -148,7 +149,7 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void Stagger(float duration)
     {
-        if (!isActiveAndEnabled || duration <= 0f)
+        if (!isActiveAndEnabled || m_healthModule.IsDead || duration <= 0f)
             return;
 
         m_isStaggered = true;
@@ -163,12 +164,9 @@ public class Entity : MonoBehaviour, IPoolable
             m_staggerCR = StartCoroutine(StaggerCR());
         }
 
-        if (TryGetModule(out EntityHealthModule healthModule))
-        {
-            // int staggerVariation = (int)math.round(UnityEngine.Random.Range(0f, 2f));
-            m_animator.SetFloat("StaggerVariation", UnityEngine.Random.Range(0f, 1f));
-            m_animator.Play("Staggered");
-        }
+        // int staggerVariation = (int)math.round(UnityEngine.Random.Range(0f, 2f));
+        m_animator.SetFloat("StaggerVariation", UnityEngine.Random.Range(0f, 1f));
+        m_animator.Play("Staggered");
     }
 
     public void Stun(float duration)

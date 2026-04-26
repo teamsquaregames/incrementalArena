@@ -1089,6 +1089,10 @@ PrefabInstance:
       propertyPath: m_entityType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_healthModule
+      value: 
+      objectReference: {fileID: 6401644631235094961}
     - target: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Name
       value: Entity_Player
@@ -1228,13 +1232,13 @@ PrefabInstance:
       addedObject: {fileID: 8157638865537338148}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8929558195775867111}
-    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7472509132106756632}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1801247843536792731}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8929558195775867111}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6627275760260663025}
@@ -1302,6 +1306,7 @@ MonoBehaviour:
   m_fallbackMoveSpeed: 0
   m_faceVelocity: 1
   m_rotationSpeed: 1400
+  m_impulseDamping: 30
   m_moveSpeed: 0
 --- !u!114 &7868693385871721422
 MonoBehaviour:
@@ -1335,24 +1340,8 @@ MonoBehaviour:
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities:
   - {fileID: 11400000, guid: 9d025fc09a93950449b81621f88b13d0, type: 2}
-  m_animator: {fileID: 2673431603351796059}
+  m_isAutoAttack: 0
   IsCastRooted: 0
---- !u!114 &8929558195775867111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4106009951781145495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06b82a27ecb3f544b39464738b9906f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EntityBrainModule
-  m_stopRadius: 2
-  m_minMoveThreshold: 2
-  m_isMoving: 0
-  m_isTargetingEnemy: 0
 --- !u!114 &7472509132106756632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,6 +1370,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662628b9eaf6fd444a23c916dbafe34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityUIModule
+--- !u!114 &8929558195775867111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06b82a27ecb3f544b39464738b9906f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityBrainModule
+  m_stopRadius: 2
+  m_minMoveThreshold: 2
+  m_isMoving: 0
+  m_isTargetingEnemy: 0
 --- !u!114 &-6627275760260663025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1406,11 +1411,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b636b3b4c26449a42baee857255d7273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthModule
+  m_customRE: {fileID: 0}
   m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   punchScale: {x: 0.2, y: -0.15, z: 0}
   punchDuration: 0.15
   punchVibrato: 6
   punchElasticity: 0.5
+  m_deathDespawnDelay: 5
   m_impulseSource: {fileID: 7013363403045592962}
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:

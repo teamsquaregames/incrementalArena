@@ -123,6 +123,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5319705569266897079}
     - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_healthModule
+      value: 
+      objectReference: {fileID: 5946857670838697958}
+    - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_knockUpCurve.m_Curve.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -246,16 +250,31 @@ PrefabInstance:
       addedObject: {fileID: 5946857670838697958}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3866129708232008600}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7048574707963671383}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1687823931497025180}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1262644304376804981}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6275878422327301310}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3450610097679070774}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1512828857160941789}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5741457465335769739}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3866129708232008600}
+      addedObject: {fileID: 199073489076575278}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
 --- !u!1 &2419637819542009624 stripped
 GameObject:
@@ -274,11 +293,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde38c5ddca8e24c9c53f251bd72e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
+  m_customRE: {fileID: 7048574707963671383}
   m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   punchScale: {x: 0.3, y: -0.2, z: 0}
   punchDuration: 0.35
   punchVibrato: 6
   punchElasticity: 0.5
+  m_deathDespawnDelay: 5
+--- !u!114 &3866129708232008600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419637819542009624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d5f6fb673fe0e499a5daea4c90c4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUIModule
+  m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
+  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
+  m_healthBarTarget: {fileID: 4166490037408409096}
+--- !u!114 &7048574707963671383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419637819542009624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
+  renderers: []
 --- !u!54 &1687823931497025180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -306,6 +355,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &1262644304376804981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419637819542009624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d1b1e1ebf390d4eb881e4c6f11a5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityMovementModule
+  m_rigidbody: {fileID: 1687823931497025180}
+  m_fallbackMoveSpeed: 10
+  m_faceVelocity: 1
+  m_rotationSpeed: 1400
+  m_impulseDamping: 60
+  m_moveSpeed: 0
 --- !u!114 &6275878422327301310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +387,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityMovementAnimation
   m_animator: {fileID: 0}
   m_speedParameterName: ZVelocity
+--- !u!114 &3450610097679070774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419637819542009624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023dea0cc5f17c948837f1e35bb9683d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatModule
+--- !u!114 &1512828857160941789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419637819542009624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff5c817ebfe77248b040a4672e5e478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityModule
+  m_gizmos: {fileID: 0}
+  m_impulseSource: {fileID: 0}
+  m_rigidbody: {fileID: 1687823931497025180}
+  m_autoAttack: {fileID: 11400000, guid: 3940b4dbfb96ef849b4dd43d5aa4c8f1, type: 2}
+  m_abilities: []
+  m_isAutoAttack: 0
+  IsCastRooted: 1
 --- !u!114 &5741457465335769739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityDropModule
   m_dropEntries: []
---- !u!114 &3866129708232008600
+--- !u!114 &199073489076575278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,12 +440,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2419637819542009624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d5f6fb673fe0e499a5daea4c90c4e4, type: 3}
+  m_Script: {fileID: 11500000, guid: e21b2326c794fdb48a2ebea3f2d5ea42, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUIModule
-  m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
-  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
-  m_healthBarTarget: {fileID: 4166490037408409096}
+  m_EditorClassIdentifier: Assembly-CSharp::OrcBrainModule
+  m_healthModule: {fileID: 5946857670838697958}
+  m_stopRadius: 0.2
+  m_averageIdleDuration: 5
+  m_isMoving: 0
+  m_currentState: 0
 --- !u!4 &4166490037408409096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

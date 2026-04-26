@@ -33,7 +33,6 @@ public class EntityAbilityModule : EntityModule
 
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
-    [SerializeField] private Animator m_animator;
 
     
     private AbilityConfig m_activeAbility;
@@ -43,6 +42,7 @@ public class EntityAbilityModule : EntityModule
     private bool m_isAutoAttack;
     private int m_stepIndex;
     private Dictionary<string, float> m_cooldowns = new();
+    private Animator Animator => Owner.Animator;
 
     public AbilityConfig AutoAttack => m_autoAttack;
     public List<AbilityConfig> Abilities => m_abilities;
@@ -51,6 +51,7 @@ public class EntityAbilityModule : EntityModule
     public bool IsBusy => m_activeAbility != null;
     public bool IsCastRooted;
     public AbilityConfig ActiveAbility => m_activeAbility;
+
 
     public void SetApplicationGizmo(GizmoDrawData data)
     {
@@ -64,7 +65,6 @@ public class EntityAbilityModule : EntityModule
     public override void CacheReferences()
     {
         base.CacheReferences();
-        m_animator = GetComponentInChildren<Animator>();
     }
 
     protected override void OnInitialize()
@@ -91,10 +91,10 @@ public class EntityAbilityModule : EntityModule
 
     private void InitOverrideController()
     {
-        if (m_animator == null) return;
+        if (Animator == null) return;
 
-        m_overrideController = new AnimatorOverrideController(m_animator.runtimeAnimatorController);
-        m_animator.runtimeAnimatorController = m_overrideController;
+        m_overrideController = new AnimatorOverrideController(Animator.runtimeAnimatorController);
+        Animator.runtimeAnimatorController = m_overrideController;
     }
 
     private void SetAbilityClip(AnimationClip clip, bool isAutoAttack)
@@ -113,12 +113,12 @@ public class EntityAbilityModule : EntityModule
                     animatorSpeed = attackSpeed * clip.length;
             }
 
-            m_animator.speed = animatorSpeed;
+            Animator.speed = animatorSpeed;
         }
         else
         {
             m_overrideController[ABILITY_CLIP_SLOT] = clip;
-            m_animator.speed = 1f;
+            Animator.speed = 1f;
         }
     }
 
@@ -196,11 +196,11 @@ public class EntityAbilityModule : EntityModule
 
         if (isAutoAttack)
         {
-            m_animator.SetBool(IS_ATTACKING, true);
-            m_animator.CrossFadeInFixedTime(AUTO_ATTACK_CLIP_SLOT, m_stepIndex == 0 ? 0.1f : 0f);
+            Animator.SetBool(IS_ATTACKING, true);
+            Animator.CrossFadeInFixedTime(AUTO_ATTACK_CLIP_SLOT, m_stepIndex == 0 ? 0.1f : 0f);
         }
         else
-            m_animator.SetTrigger(TRIGGER_ABILITY);
+            Animator.SetTrigger(TRIGGER_ABILITY);
 
         SFXDelayed(ability.sfx, ability.sfxDelay);
 
@@ -252,8 +252,8 @@ public class EntityAbilityModule : EntityModule
     internal void HandleAnimationEnd()
     {
         // this.Log("Handling animation end event for " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
-        m_animator.SetBool(IS_ATTACKING, false);
-        m_animator.speed = 1f;
+        Animator.SetBool(IS_ATTACKING, false);
+        Animator.speed = 1f;
 
         if (!m_isAutoAttack)
             m_stepIndex = 0;
@@ -266,8 +266,8 @@ public class EntityAbilityModule : EntityModule
     internal void HandleAnimationInterrupt()
     {
         // this.Log("Handling animation interrupt event for " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
-        m_animator.SetBool(IS_ATTACKING, false);
-        m_animator.speed = 1f;
+        Animator.SetBool(IS_ATTACKING, false);
+        Animator.speed = 1f;
 
         m_activeAbility = null;
         m_activeContext = null;
@@ -280,11 +280,11 @@ public class EntityAbilityModule : EntityModule
         // this.Log("Cancelling everything. Current ability: " + (m_activeAbility != null ? m_activeAbility.abilityName : "null ability"));
 
         m_activeAbility = null;
-        m_animator.speed = 1f;
+        Animator.speed = 1f;
         m_isAutoAttack = false;
         m_activeContext = null;
 
-        m_animator.SetBool(IS_ATTACKING, false);
+        Animator.SetBool(IS_ATTACKING, false);
         ResetCombo();
     }
 

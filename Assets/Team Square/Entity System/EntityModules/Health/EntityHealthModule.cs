@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Utils;
 using Random = UnityEngine.Random;
+using System.Collections;
 
 public class EntityHealthModule : EntityModule
 {
@@ -18,7 +19,8 @@ public class EntityHealthModule : EntityModule
     public Action OnDeathStart;
     public Action OnDeath;
 
-    [Header("References")]
+    [Title("Dependencies")]
+    [SerializeField, Required] private CustomRE m_customRE;
     [SerializeField] private ParticleSystem m_deathFxPefab;
 
     [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
@@ -26,8 +28,12 @@ public class EntityHealthModule : EntityModule
     [FoldoutGroup("Feedback settings"), SerializeField, Min(1)] private int punchVibrato = 6;
     [FoldoutGroup("Feedback settings"), SerializeField, Range(0f, 1f)] private float punchElasticity = 0.5f;
 
+    [Title("Death settings")]
+    [SerializeField, Min(0f)] private float m_deathDespawnDelay = 5f;
+
     private float m_currentHealth;
     protected bool m_isDead;
+    public bool IsDead => m_isDead;
     private Tween m_punchTween;
     protected EntityStatModule m_statModule;
 
@@ -121,19 +127,13 @@ public class EntityHealthModule : EntityModule
         }
     }
 
-    private void StartDeathAnimation()
-    {
-        if (m_isDead) return;
-        m_isDead = true;
 
-        OnDeathStart?.Invoke();
-    }
-
-    public virtual void Die()
+    protected virtual void Die()
     {
         // this.Log($"{Owner} has died.");
         if (GameConfig.Instance.cheatSettings.npcImmortality)
             return;
+        m_isDead = true;
 
         m_punchTween?.Kill(complete: true);
 
@@ -144,6 +144,19 @@ public class EntityHealthModule : EntityModule
         if (Owner.TryGetModule(out EntityTeamModule teamModule) && teamModule.Team == Team.Enemy)
             GameData.Instance.IncrementTrackedValue(TrackedValueType.EnemiesKilledThisRun);
 
+        OnDeathStart?.Invoke();
+        StartCoroutine(DeathAnimCR());
+    }
+
+    private IEnumerator DeathAnimCR()
+    {
+        Owner.Animator.Play("Death");
+        m_customRE.ChangeFloat("_Saturation", 0f);
+
+        yield return new WaitForSeconds(m_deathDespawnDelay);
+        
         OnDeath?.Invoke();
+        m_customRE.ClearOverrides();
+        Owner.Despawn();
     }
 }

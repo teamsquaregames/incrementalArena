@@ -80,7 +80,7 @@ MonoBehaviour:
       value: 1
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
       teamApplication: 0
-      value: 30
+      value: 13
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
       teamApplication: 0
       value: 0.5
@@ -144,7 +144,7 @@ MonoBehaviour:
       value: 1
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
       teamApplication: 0
-      value: 30
+      value: 13
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
       teamApplication: 0
       value: 0.5
@@ -208,7 +208,7 @@ MonoBehaviour:
       value: 1.2
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
       teamApplication: 1
-      value: 30
+      value: 13
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
       teamApplication: 0
       value: 0.5

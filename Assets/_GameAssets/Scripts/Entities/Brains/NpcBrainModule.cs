@@ -17,7 +17,7 @@ public class NpcBrainModule : EntityBrainModule
     }
 
     [TitleGroup("Dependencies")]
-    [SerializeField, Required] private Animator m_animator;
+    [SerializeField, Required] private EntityHealthModule m_healthModule;
 
     [Header("Movement")]
     [SerializeField, Min(0f)] private float m_stopRadius = 0.2f;
@@ -32,13 +32,25 @@ public class NpcBrainModule : EntityBrainModule
 
     public override void CacheReferences()
     {
-        m_animator = GetComponentInChildren<Animator>();
+
     }
 
+    protected override void OnInitialize()
+    {
+        base.OnInitialize();
+
+        if (Owner.TryGetModule(out EntityHealthModule healthModule))
+        {
+            healthModule.OnDeathStart += OnDeath;
+        }
+    }
 
     protected override void Think()
     {
         // this.Log($"Thinking... Current state: {m_currentState}, IsMoving: {m_isMoving}, IsStaggered: {Owner.IsStaggered}");
+        if (m_healthModule.IsDead)
+            return;
+
         if (EntityManager.Instance.Player == null)
         {
             EnterIdleState();
@@ -46,7 +58,6 @@ public class NpcBrainModule : EntityBrainModule
             return;
         }
 
-        if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
         if (Owner.IsStaggered)
         {
             // this.Log("Currently staggered, cannot think.");
@@ -55,7 +66,7 @@ public class NpcBrainModule : EntityBrainModule
             return;
         }
 
-        // While a non-auto ability is animating, block input.
+        if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
         if (abilityModule.IsUsingAbility) return;
 
         Entity player = EntityManager.Instance.Player;
@@ -155,7 +166,7 @@ public class NpcBrainModule : EntityBrainModule
 
         StopMovement();
         m_isMoving = false;
-        m_animator.SetTrigger("Rallying");
+        Owner.Animator.SetTrigger("Rallying");
 
         float idleDuration = CusMath.RngGaussian() * (m_averageIdleDuration * 2f);
         await Task.Delay((int)(idleDuration * 1000));
@@ -171,5 +182,12 @@ public class NpcBrainModule : EntityBrainModule
         float idleDuration = CusMath.RngGaussian() * (m_averageIdleDuration * 2f);
         await Task.Delay((int)(idleDuration * 1000));
         RandomState();
+    }
+
+    private void OnDeath()
+    {
+        StopMovement();
+        m_isMoving = false;
+        m_currentState = NpcState.None;
     }
 }
