@@ -18,37 +18,35 @@ public class EntityAbilityModule : EntityModule
     public const string ABILITY_CLIP_SLOT = "Ability";
     public const string IS_ATTACKING = "IsAttacking";
     public const string TRIGGER_ABILITY = "Ability";
+    
+    public event Action<AbilityConfig> OnAbilityUsed;
+    public event Action<AbilityConfig> OnAbilityAdded;
+    public event Action<AbilityConfig> OnAbilityRemoved;
 
     [TitleGroup("References")]
     [SerializeField] private AbilityApplicationGizmos m_gizmos;
     [SerializeField] private CinemachineImpulseSource m_impulseSource;
-
-    public CinemachineImpulseSource ImpulseSource => m_impulseSource;
+    [SerializeField] private Rigidbody m_rigidbody;
 
     [Header("Auto Attack")]
     [SerializeField, InlineEditor] private AbilityConfig m_autoAttack;
 
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
-
     [SerializeField] private Animator m_animator;
 
+    
+    private AbilityConfig m_activeAbility;
     private AnimatorOverrideController m_overrideController;
-
-    [SerializeField, ReadOnly] private AbilityConfig m_activeAbility;
     private AbilityContext m_activeContext;
     [SerializeField, ReadOnly]
     private bool m_isAutoAttack;
     private int m_stepIndex;
-    [SerializeField] private Dictionary<string, float> m_cooldowns = new();
-
-    public event Action<AbilityConfig> OnAbilityUsed;
-    public event Action<AbilityConfig> OnAbilityAdded;
-    public event Action<AbilityConfig> OnAbilityRemoved;
+    private Dictionary<string, float> m_cooldowns = new();
 
     public AbilityConfig AutoAttack => m_autoAttack;
     public List<AbilityConfig> Abilities => m_abilities;
-
+    public CinemachineImpulseSource ImpulseSource => m_impulseSource;
     public bool IsUsingAbility => m_activeAbility != null && !m_isAutoAttack;
     public bool IsBusy => m_activeAbility != null;
     public bool IsCastRooted;
@@ -172,7 +170,7 @@ public class EntityAbilityModule : EntityModule
 
         Vector3 direction = (aimPosition - Owner.transform.position).SetY(0);
         if (direction.sqrMagnitude > 0.001f)
-            Owner.transform.rotation = Quaternion.LookRotation(direction);
+            m_rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
         m_activeAbility = ability;
         m_isAutoAttack = isAutoAttack;

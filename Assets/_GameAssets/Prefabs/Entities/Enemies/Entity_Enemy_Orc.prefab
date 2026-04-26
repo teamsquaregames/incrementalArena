@@ -414,6 +414,8 @@ MonoBehaviour:
   m_fallbackMoveSpeed: 10
   m_faceVelocity: 1
   m_rotationSpeed: 1400
+  m_impulseDamping: 75
+  m_moveSpeed: 0
 --- !u!114 &8236658199900533257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,8 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityAbilityModule
   m_gizmos: {fileID: 0}
   m_impulseSource: {fileID: 0}
+  m_rigidbody: {fileID: 5386623499183901347}
   m_autoAttack: {fileID: 11400000, guid: 3940b4dbfb96ef849b4dd43d5aa4c8f1, type: 2}
   m_abilities: []
   m_animator: {fileID: 7982860869638613570}
-  m_activeAbility: {fileID: 0}
   IsCastRooted: 1
