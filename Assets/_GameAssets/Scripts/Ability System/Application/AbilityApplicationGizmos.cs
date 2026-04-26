@@ -1,11 +1,13 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using Utils;
 
 public struct GizmoDrawData
 {
+    public AbilityConfig abilityConfig;
     public AbilityApplicationInfo applicationInfo;
-    public TargetingInfo targetingInfo;
+    // public TargetingInfo targetingInfo;
     public Vector3 position;
     public bool hit;
     public float duration;
@@ -18,7 +20,7 @@ public class AbilityApplicationGizmos : MonoBehaviour
     [SerializeField] private bool showGizmos = true;
     [SerializeField] private Color gizmoColor = new Color(1f, 0f, 0f, 0.3f);
     [SerializeField] private Color wireColor = Color.red;
-    [SerializeField] private float m_defaultDuration = .1f;
+    [SerializeField] private float m_defaultDuration = .3f;
 
     private List<GizmoDrawData> m_gizmos = new List<GizmoDrawData>();
 
@@ -26,11 +28,19 @@ public class AbilityApplicationGizmos : MonoBehaviour
     {
         data.expiryTime = Time.time + (data.duration > 0f ? data.duration : m_defaultDuration);
         m_gizmos.Add(data);
+        // this.Log($"Added gizmo for application type {data.applicationInfo.effectZoneType} at position {data.position} with expiry time {data.expiryTime}");
     }
 
     private void Update()
     {
-        m_gizmos.RemoveAll(g => Time.time > g.expiryTime);
+        for (int i = m_gizmos.Count - 1; i >= 0; i--)
+        {
+            if (Time.time > m_gizmos[i].expiryTime)
+            {
+                m_gizmos.RemoveAt(i);
+                // this.Log($"Removed expired gizmo at index {i}");
+            }
+        }
     }
 
     private void OnDrawGizmos()
@@ -82,23 +92,23 @@ public class AbilityApplicationGizmos : MonoBehaviour
         switch (applicationInfo.aoeInfo.effectShape)
         {
             case AoEInfo.Shape.Sphere:
-                DrawCircleAoe(data.hit, center, applicationInfo);
+                DrawSphereAoe(data, center, applicationInfo);
                 break;
             case AoEInfo.Shape.Rect:
-                DrawRectAoe(data.hit, center, rotation, applicationInfo.aoeInfo.scale);
+                DrawRectAoe(data, center, rotation, applicationInfo.aoeInfo.scale);
                 break;
             case AoEInfo.Shape.Cone:
-                DrawConeAoe(data.hit, center, rotation, applicationInfo);
+                DrawConeAoe(data, center, rotation, applicationInfo);
                 break;
         }
     }
 
-    private void DrawCircleAoe(bool hit, Vector3 position, AbilityApplicationInfo applicationInfo)
+    private void DrawSphereAoe(GizmoDrawData data, Vector3 position, AbilityApplicationInfo applicationInfo)
     {
-        float radius = applicationInfo.aoeInfo.Radius();
+        float radius = applicationInfo.aoeInfo.Radius(data.abilityConfig);
 
         // Sphère pleine semi-transparente
-        if (hit)
+        if (data.hit)
         {
             Gizmos.color = gizmoColor;
             Gizmos.DrawSphere(position, radius);
@@ -110,15 +120,16 @@ public class AbilityApplicationGizmos : MonoBehaviour
 
         // Cercle au sol (plus visible)
         DrawCircleOnGround(position, radius, wireColor);
+        this.Log($"Drawing Sphere AoE Gizmo at {position} with radius {radius}, hit: {data.hit}");
     }
 
-    private void DrawRectAoe(bool hit, Vector3 position, Quaternion rotation, Vector3 size)
+    private void DrawRectAoe(GizmoDrawData data, Vector3 position, Quaternion rotation, Vector3 size)
     {
         Matrix4x4 previousMatrix = Gizmos.matrix;
         Gizmos.matrix = Matrix4x4.TRS(position, rotation, Vector3.one);
 
         // Cube plein semi-transparent
-        if (hit)
+        if (data.hit)
         {
             Gizmos.color = gizmoColor;
             Gizmos.DrawCube(Vector3.zero, size);
@@ -131,9 +142,9 @@ public class AbilityApplicationGizmos : MonoBehaviour
         Gizmos.matrix = previousMatrix;
     }
 
-    private void DrawConeAoe(bool hit, Vector3 position, Quaternion rotation, AbilityApplicationInfo applicationInfo)
+    private void DrawConeAoe(GizmoDrawData data, Vector3 position, Quaternion rotation, AbilityApplicationInfo applicationInfo)
     {
-        float radius = applicationInfo.aoeInfo.Radius();
+        float radius = applicationInfo.aoeInfo.Radius(data.abilityConfig);
         float angle = applicationInfo.aoeInfo.angle;
         Vector3 forward = rotation * Vector3.forward;
 
@@ -163,7 +174,7 @@ public class AbilityApplicationGizmos : MonoBehaviour
         }
 
         // Zone semi-transparente
-        if (hit)
+        if (data.hit)
         {
             Gizmos.color = gizmoColor;
             for (int i = 0; i < segments; i++)

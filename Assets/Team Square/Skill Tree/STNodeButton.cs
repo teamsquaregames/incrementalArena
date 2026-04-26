@@ -384,16 +384,26 @@ public class STNodeButton : CustomButton
 
     private void UnlockAbility()
     {
-        if (m_asset.AbilityGranted != null)
-            GameData.Instance.UnlockAbility(m_asset.AbilityGranted);
-
-
+        if (m_asset.AbilitiesGranted != null)
+        {
+            foreach (var ability in m_asset.AbilitiesGranted)
+            {
+                if (ability != null)
+                    GameData.Instance.UnlockAbility(ability);
+            }
+        }
     }
 
     private void UnlockEnemy()
     {
-        if (m_asset.EnemyUnlocked != null)
-            GameData.Instance.UnlockEnemy(m_asset.EnemyUnlocked);
+        if (m_asset.EnemiesUnlocked != null)
+        {
+            foreach (var enemy in m_asset.EnemiesUnlocked)
+            {
+                if (enemy != null)
+                    GameData.Instance.UnlockEnemy(enemy);
+            }
+        }
     }
 
     private void UnlockArena()

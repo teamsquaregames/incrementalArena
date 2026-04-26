@@ -77,7 +77,7 @@ public class Projectile : MonoBehaviour
                 break;
         }
         transform.position = m_originPosition;
-        this.Log($"Initialized projectile transform with origin {m_originPosition} (base position {m_abilityCtx.caster.transform.position}, offset {m_projectileInfo.startPositionOffset})");
+        // this.Log($"Initialized projectile transform with origin {m_originPosition} (base position {m_abilityCtx.caster.transform.position}, offset {m_projectileInfo.startPositionOffset})");
 
         Vector3 dirTowardAimedPosition = m_abilityCtx.aimPosition - m_abilityCtx.caster.transform.position;
         Quaternion rot = dirTowardAimedPosition == Vector3.zero ? Quaternion.identity : Quaternion.LookRotation(dirTowardAimedPosition, Vector3.up);

@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 3729355634560519720}
   - component: {fileID: 8377633371623513839}
   - component: {fileID: 1135581969590951830}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1333,9 +1333,10 @@ MonoBehaviour:
   m_impulseSource: {fileID: 7013363403045592962}
   m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities:
-  - {fileID: 11400000, guid: 9d025fc09a93950449b81621f88b13d0, type: 2}
+  - {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
   m_animator: {fileID: 2673431603351796059}
   m_activeAbility: {fileID: 0}
+  m_isAutoAttack: 0
   IsCastRooted: 0
 --- !u!114 &8929558195775867111
 MonoBehaviour:

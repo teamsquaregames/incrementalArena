@@ -62,7 +62,7 @@ public class AoEInfo
 
 
     #region Getters
-    public float Radius(AbilityConfig ability = null, int step = 0, int application = 0)
+    public float Radius(AbilityConfig ability, int step = 0, int application = 0)
     {
         return StatManager.Instance.GetDefinitionStat(ability, StatType.Size, step, application).GetSpecificModifierValue(ModifierType.Percentage) * radius / 100f + radius;
     }

@@ -23,14 +23,39 @@ public class EntityAE : MonoBehaviour
         m_abilityModule?.HandleAnimationStart();
     }
 
+    public void HandleAnimationStart()
+    {
+        OnAbilityStart();
+    }
+
     public void OnAbilityActive()
     {
         m_abilityModule?.HandleAnimationActive();
     }
 
+    public void HandleAnimationActive()
+    {
+        OnAbilityActive();
+    }
+
     public void OnAbilityEnd()
     {
         m_abilityModule?.HandleAnimationEnd();
+    }
+
+    public void HandleAnimationEnd()
+    {
+        OnAbilityEnd();
+    }
+
+    public void OnAbilityInterrupt()
+    {
+        m_abilityModule?.HandleAnimationInterrupt();
+    }
+
+    public void HandleAnimationInterrupt()
+    {
+        OnAbilityInterrupt();
     }
 
     public void OnFootStep()

@@ -38,8 +38,8 @@ public class STNodeAsset : ScriptableObject
     [SerializeField] protected Cost[] m_cost;
 
     [TitleGroup("Bonuses")]
-    [SerializeField] protected AbilityConfig m_abilityGranted;
-    [SerializeField] protected Entity m_enemyUnlocked;
+    [SerializeField] protected AbilityConfig[] m_abilitiesGranted;
+    [SerializeField] protected Entity[] m_enemiesUnlocked;
     [SerializeField] protected ArenaConfig m_arenaUnlocked;
     [SerializeField] protected LeveledStatModifier[] m_statModifiers;
 
@@ -64,8 +64,8 @@ public class STNodeAsset : ScriptableObject
     }
 
     #region Getters
-    public AbilityConfig AbilityGranted => m_abilityGranted;
-    public Entity EnemyUnlocked => m_enemyUnlocked;
+    public AbilityConfig[] AbilitiesGranted => m_abilitiesGranted;
+    public Entity[] EnemiesUnlocked => m_enemiesUnlocked;
     public ArenaConfig ArenaUnlocked => m_arenaUnlocked;
     public LeveledStatModifier[] StatModifiers => m_statModifiers;
     public string DisplayName => m_displayName;

@@ -103,6 +103,19 @@ public static class ResolveApplication
             }
         }
 
+        GizmoDrawData gizmoData = new GizmoDrawData
+        {
+            abilityConfig = context.abilityConfig,
+            applicationInfo = applicationInfo,
+            // targetingInfo = null, // You can pass the actual TargetingInfo if needed
+            position = position + rotatedOffset,
+            hit = results.Count > 0,
+            duration = 1f
+        };
+        if (context.caster != null && context.caster.TryGetModule(out EntityAbilityModule abilityModule))
+        {
+            abilityModule.SetApplicationGizmo(gizmoData);
+        }
 
         return results;
     }

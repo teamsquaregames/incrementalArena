@@ -10,6 +10,7 @@ using UnityEngine;
 using Utils;
 using System.Threading.Tasks;
 using Random = UnityEngine.Random;
+using UnityEngine.VFX;
 
 public class EntityAbilityModule : EntityModule
 {
@@ -36,6 +37,7 @@ public class EntityAbilityModule : EntityModule
 
     [SerializeField, ReadOnly] private AbilityConfig m_activeAbility;
     private AbilityContext m_activeContext;
+    [SerializeField, ReadOnly]
     private bool m_isAutoAttack;
     private int m_stepIndex;
     [SerializeField] private Dictionary<string, float> m_cooldowns = new();
@@ -364,10 +366,10 @@ public class EntityAbilityModule : EntityModule
         }
     }
 
-    private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null, float scale = 1f)
+    private void HandleVFXs(AbilityStep activeStep, List<Entity> targets = null)
     {
-        float sizeScale = scale * (1 + StatManager.Instance.GetDefinitionStat(m_activeAbility, StatType.Size).GetSpecificModifierValue(ModifierType.Percentage) / 100f);
-        Vector3 vfxScale = Vector3.one * sizeScale;
+        float sizeScale = m_isAutoAttack ? 1f : activeStep.applicationInfos[0].aoeInfo.Radius(m_activeAbility);
+        Vector3 vfxScale = m_isAutoAttack ? Vector3.one : Vector3.one * sizeScale / 2f;
 
         /// Ability VFX
         if (activeStep.mainVfx != null)
@@ -385,7 +387,7 @@ public class EntityAbilityModule : EntityModule
         }
         if (activeStep.mainVfxGraph != null)
         {
-            var vfxGraph = LeanPool.Spawn(
+            VisualEffect vfxGraph = LeanPool.Spawn(
                 activeStep.mainVfxGraph,
                 activeStep.mainVFXPosition == VFXPosition.Target
                     ? m_activeContext.aimPosition
@@ -393,7 +395,9 @@ public class EntityAbilityModule : EntityModule
                 transform.rotation,
                 Owner.transform
             );
-            vfxGraph.transform.localScale = vfxScale;
+            vfxGraph.SetFloat("AbilityScaleFactor", sizeScale);
+            vfxGraph.Reinit();
+            this.Log($"vfxGraph.HasFloat(\"AbilityScaleFactor\"): {vfxGraph.HasFloat("AbilityScaleFactor")}. Scaled to {sizeScale}");
         }
 
         /// Hits
