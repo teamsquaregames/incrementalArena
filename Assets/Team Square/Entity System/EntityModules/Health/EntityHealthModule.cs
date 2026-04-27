@@ -128,6 +128,15 @@ public class EntityHealthModule : EntityModule
     }
 
 
+    public override void Cleanup()
+    {
+        OnHealthChanged = null;
+        OnDamageTaken = null;
+        OnHealed = null;
+        OnDeathStart = null;
+        OnDeath = null;
+    }
+
     protected virtual void Die()
     {
         // this.Log($"{Owner} has died.");

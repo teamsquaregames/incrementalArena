@@ -8,7 +8,7 @@ namespace Stats
         MoveSpeed = 3,
         Armor = 4,
         EnemiesPerWave = 5,
-        RunDuration = 6,
+        //RunDuration = 6,
         CriticalChance = 7,
         SpawnWeight = 8,
         PlayerHealthLostPerSecond = 9,

@@ -635,6 +635,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4853183680620450, guid: 902f663a0395b5c4ab8deb92eaa90c5f, type: 3}
   m_PrefabInstance: {fileID: 974161035309776256}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &997252327936015574 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23109508442407254, guid: 902f663a0395b5c4ab8deb92eaa90c5f, type: 3}
+  m_PrefabInstance: {fileID: 974161035309776256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2615128414989503111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1065,6 +1070,46 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: renderers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2714863758340284889}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 997252327936015574}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2601238598624636353}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8537777069605944218}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8768185485368446175}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8768185485368446175}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8768185485368446175}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8768185485368446175}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8768185485368446175}
     - target: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Height
       value: 6
@@ -1411,7 +1456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b636b3b4c26449a42baee857255d7273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthModule
-  m_customRE: {fileID: 0}
+  m_customRE: {fileID: 5779220140939024795}
   m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   punchScale: {x: 0.2, y: -0.15, z: 0}
   punchDuration: 0.15
@@ -1419,6 +1464,17 @@ MonoBehaviour:
   punchElasticity: 0.5
   m_deathDespawnDelay: 5
   m_impulseSource: {fileID: 7013363403045592962}
+--- !u!114 &5779220140939024795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+  m_PrefabInstance: {fileID: 7714038588239923713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

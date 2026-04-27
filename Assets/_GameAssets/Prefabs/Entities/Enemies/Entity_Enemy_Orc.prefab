@@ -344,6 +344,18 @@ PrefabInstance:
       propertyPath: m_entityType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: renderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2978548815173477069}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8988543541269482935}
     - target: {fileID: 5319705569266897079, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Height
       value: 6
@@ -364,6 +376,10 @@ PrefabInstance:
       propertyPath: m_animator
       value: 
       objectReference: {fileID: 7982860869638613570}
+    - target: {fileID: 5946857670838697958, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_customRE
+      value: 
+      objectReference: {fileID: 1509177497178661163}
     - target: {fileID: 6275878422327301310, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_animator
       value: 
@@ -392,6 +408,17 @@ PrefabInstance:
       addedObject: {fileID: 2338115717200842326}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+--- !u!114 &1509177497178661163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+  m_PrefabInstance: {fileID: 6750187086863156287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
 --- !u!4 &1866722747172709200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4920909466871179119, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
