@@ -1389,7 +1389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7614994865262367649, guid: b3571f9515215274fb19da04b76e21e5, type: 3}
       propertyPath: m_Name
-      value: SceneCamera
+      value: SceneCamera 2
       objectReference: {fileID: 0}
     - target: {fileID: 7614994865262367649, guid: b3571f9515215274fb19da04b76e21e5, type: 3}
       propertyPath: m_IsActive
@@ -1401,11 +1401,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193057387867883341, guid: b3571f9515215274fb19da04b76e21e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.56
+      value: 17.64
       objectReference: {fileID: 0}
     - target: {fileID: 9193057387867883341, guid: b3571f9515215274fb19da04b76e21e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.76
+      value: -10.81
       objectReference: {fileID: 0}
     - target: {fileID: 9193057387867883341, guid: b3571f9515215274fb19da04b76e21e5, type: 3}
       propertyPath: m_LocalRotation.w
