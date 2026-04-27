@@ -775,6 +775,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2951453023914597902, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -814,6 +818,46 @@ PrefabInstance:
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_showGizmos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_launchAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_velocityRangeX.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_velocityRangeX.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_velocityRangeY.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_velocityRangeY.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_velocityRangeZ.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_velocityRangeZ.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnCenterOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_centerVelocityStrength
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -848,6 +892,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7961157997081988881, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8269791765412361619, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -888,7 +936,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2944303635654189257, guid: 5dedf7e458ffdee4590af1cf6dad0928, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

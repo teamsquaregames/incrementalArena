@@ -15,10 +15,8 @@ public class CrowdRewards : MonoBehaviour
     [SerializeField, FoldoutGroup("Spawn Zone (Rectangle)")] private bool m_spawnOnEdgesOnly = true;
     [SerializeField, FoldoutGroup("Spawn Zone (Rectangle)"), ShowIf(nameof(m_spawnOnEdgesOnly))] private float m_edgeThickness = 0.5f;
     
-    [SerializeField, FoldoutGroup("Physics")] private float m_centerVelocityStrength = 4f;
-    [SerializeField, FoldoutGroup("Physics")] private Vector2 m_velocityRangeX = new Vector2(-3f, 3f);
-    [SerializeField, FoldoutGroup("Physics")] private Vector2 m_velocityRangeY = new Vector2(2f, 5f);
-    [SerializeField, FoldoutGroup("Physics")] private Vector2 m_velocityRangeZ = new Vector2(-3f, 3f);
+    [SerializeField, FoldoutGroup("Physics")] private float m_targetRadius = 3f;
+    [SerializeField, FoldoutGroup("Physics")] private float m_launchAngle = 45f;
     [SerializeField, FoldoutGroup("Physics")] private bool m_addRandomTorque = true;
     [SerializeField, FoldoutGroup("Physics"), ShowIf(nameof(m_addRandomTorque))] private float m_torqueStrength = 10f;
 
@@ -128,23 +126,31 @@ public class CrowdRewards : MonoBehaviour
         RewardObject reward = LeanPool.Spawn(entry.rewardObject, spawnPos, Random.rotation);
         reward.SetValue(entry.value);
 
-        Rigidbody rb = reward.GetComponent<Rigidbody>();
-        if (rb != null)
+        Vector2 randomCircle = Random.insideUnitCircle * m_targetRadius;
+        Vector3 target = new Vector3(randomCircle.x, 0f, randomCircle.y);
+
+        Vector3 launchVelocity = ComputeLaunchVelocity(spawnPos, target, m_launchAngle);
+        reward.Launch(launchVelocity, m_addRandomTorque ? m_torqueStrength : 0f);
+    }
+
+    private Vector3 ComputeLaunchVelocity(Vector3 from, Vector3 to, float angleDeg)
+    {
+        Vector3 delta = to - from;
+        Vector3 deltaXZ = new Vector3(delta.x, 0f, delta.z);
+        float d = deltaXZ.magnitude;
+        float deltaH = delta.y;
+        float g = Mathf.Abs(Physics.gravity.y);
+        float angleRad = angleDeg * Mathf.Deg2Rad;
+        float denom = 2f * Mathf.Cos(angleRad) * Mathf.Cos(angleRad) * (d * Mathf.Tan(angleRad) - deltaH);
+
+        if (denom <= 0f || d < 0.001f)
         {
-            Vector3 toCenter = transform.position - spawnPos;
-            if (toCenter.sqrMagnitude < 0.0001f) toCenter = Vector3.forward;
-
-            Vector3 baseVelocity = toCenter.normalized * m_centerVelocityStrength;
-            Vector3 randomOffset = new Vector3(
-                Random.Range(m_velocityRangeX.x, m_velocityRangeX.y),
-                Random.Range(m_velocityRangeY.x, m_velocityRangeY.y),
-                Random.Range(m_velocityRangeZ.x, m_velocityRangeZ.y)
-            );
-            rb.linearVelocity = baseVelocity + randomOffset;
-
-            if (m_addRandomTorque)
-                rb.angularVelocity = Random.insideUnitSphere * m_torqueStrength;
+            Debug.LogWarning($"CrowdRewards: invalid launch angle {angleDeg}° for this trajectory (denom={denom:F3}), using fallback.");
+            return (delta.normalized + Vector3.up) * 5f;
         }
+
+        float v = Mathf.Sqrt(g * d * d / denom);
+        return deltaXZ.normalized * (v * Mathf.Cos(angleRad)) + Vector3.up * (v * Mathf.Sin(angleRad));
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -218,6 +224,22 @@ public class CrowdRewards : MonoBehaviour
                 new Vector3(m_spawnAreaSize.x, m_spawnAreaSize.y, m_edgeThickness));
             Gizmos.DrawCube(center + new Vector3(-m_spawnAreaSize.x / 2f - m_edgeThickness / 2f, 0, 0),
                 new Vector3(m_edgeThickness, m_spawnAreaSize.y, m_spawnAreaSize.z));
+        }
+
+        Gizmos.color = new Color(0f, 1f, 0.4f, 0.8f);
+        DrawWireCircle(Vector3.zero, m_targetRadius, 32);
+    }
+
+    private void DrawWireCircle(Vector3 center, float radius, int segments)
+    {
+        float step = 2f * Mathf.PI / segments;
+        Vector3 prev = center + new Vector3(radius, 0f, 0f);
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = i * step;
+            Vector3 next = center + new Vector3(Mathf.Cos(angle) * radius, 0f, Mathf.Sin(angle) * radius);
+            Gizmos.DrawLine(prev, next);
+            prev = next;
         }
     }
 

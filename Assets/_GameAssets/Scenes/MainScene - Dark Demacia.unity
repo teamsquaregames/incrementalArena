@@ -1445,40 +1445,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9193057387867883341, guid: b3571f9515215274fb19da04b76e21e5, type: 3}
   m_PrefabInstance: {fileID: 2136719039}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1797783240360864800
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6667704391526821209}
-  - component: {fileID: 3296670727443297552}
-  - component: {fileID: 8994679995696136257}
-  m_Layer: 0
-  m_Name: Crowd
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &3296670727443297552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797783240360864800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a46c133f63da0654080fde258ccb0bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CrowdManager
-  m_crowdAnimators: []
-  m_cheerMaxDelay: 0.5
-  m_cheerVarAmount: 4
-  m_cheerCrossFadeDuration: 0.1
 --- !u!1001 &3942764911660706184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1498,11 +1464,11 @@ PrefabInstance:
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_crowdManager
       value: 
-      objectReference: {fileID: 3296670727443297552}
+      objectReference: {fileID: 3942764911660706186}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_crowdRewards
       value: 
-      objectReference: {fileID: 8994679995696136257}
+      objectReference: {fileID: 3942764911660706185}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_playerPrefab
       value: 
@@ -1555,54 +1521,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_showGizmos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_launchAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_targetRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnAreaSize.x
+      value: 40.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnAreaSize.z
+      value: 20.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnCenterOffset.y
+      value: 4.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6667704391526821209}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
---- !u!4 &6667704391526821209
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797783240360864800}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1836943352}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8994679995696136257
+--- !u!114 &3942764911660706185 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+  m_PrefabInstance: {fileID: 3942764911660706184}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797783240360864800}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8bd893ab26c3994ea7696146dffc816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrowdRewards
-  m_spawnDuration: 2
-  m_spawnCenterOffset: {x: 0, y: 10, z: 0}
-  m_spawnAreaSize: {x: 35, y: 5, z: 18}
-  m_spawnOnEdgesOnly: 1
-  m_edgeThickness: 3.83
-  m_centerVelocityStrength: 10
-  m_velocityRangeX: {x: -3, y: 3}
-  m_velocityRangeY: {x: 2, y: 5}
-  m_velocityRangeZ: {x: -3, y: 3}
-  m_addRandomTorque: 1
-  m_torqueStrength: 10
-  m_collectFloatingTextConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}
-  m_showGizmos: 1
+--- !u!114 &3942764911660706186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2155554148062364853, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+  m_PrefabInstance: {fileID: 3942764911660706184}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46c133f63da0654080fde258ccb0bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrowdManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
