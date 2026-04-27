@@ -33,10 +33,10 @@ public class EntityHealthModule : EntityModule
 
     private float m_currentHealth;
     protected bool m_isDead;
-    public bool IsDead => m_isDead;
     private Tween m_punchTween;
     protected EntityStatModule m_statModule;
 
+    public bool IsDead => m_isDead;
     public float MaxHealth
     {
         get
@@ -154,9 +154,8 @@ public class EntityHealthModule : EntityModule
         m_customRE.ChangeFloat("_Saturation", 0f);
 
         yield return new WaitForSeconds(m_deathDespawnDelay);
-        
+
         OnDeath?.Invoke();
         m_customRE.ClearOverrides();
-        Owner.Despawn();
     }
 }

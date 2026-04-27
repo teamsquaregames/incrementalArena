@@ -16,10 +16,7 @@ public class Entity : MonoBehaviour, IPoolable
     [TitleGroup("References")]
     [SerializeField, Required] private ParticleSystem spawnVFX;
     [SerializeField, Required] private Animator m_animator;
-    public Animator Animator => m_animator;
     [SerializeField, Required] private Collider m_collider;
-    [SerializeField, Required] private EntityHealthModule m_healthModule;
-    public EntityHealthModule HealthModule => m_healthModule;
 
     [FoldoutGroup("Status"), SerializeField] private AnimationCurve m_knockUpCurve;
     [FoldoutGroup("Status"), SerializeField] private Transform m_modelT;
@@ -27,7 +24,6 @@ public class Entity : MonoBehaviour, IPoolable
 
     [TitleGroup("Settings")]
     [SerializeField] private EntityType m_entityType;
-    public EntityType EntityType => m_entityType;
 
     private Dictionary<Type, EntityModule> m_modules = new Dictionary<Type, EntityModule>();
     private bool m_isStaggered;
@@ -35,6 +31,8 @@ public class Entity : MonoBehaviour, IPoolable
     private Coroutine m_staggerCR;
     private Coroutine m_knockUpCR;
 
+    public EntityType EntityType => m_entityType;
+    public Animator Animator => m_animator;
     public Collider Collider => m_collider;
     public bool IsStaggered => m_isStaggered;
 
@@ -67,8 +65,11 @@ public class Entity : MonoBehaviour, IPoolable
             module.OnAllModuleInitialized();
         }
 
-        m_healthModule.OnDeathStart += Unregister;
-        // healthModule.OnDeath += Despawn;
+        if (TryGetModule(out EntityHealthModule healthModule))
+        {
+            healthModule.OnDeathStart += Unregister;
+            healthModule.OnDeath += Despawn;
+        }
     }
 
 
@@ -149,7 +150,7 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void Stagger(float duration)
     {
-        if (!isActiveAndEnabled || m_healthModule.IsDead || duration <= 0f)
+        if (!isActiveAndEnabled || (TryGetModule(out EntityHealthModule healthModule) && healthModule.IsDead) || duration <= 0f)
             return;
 
         m_isStaggered = true;
