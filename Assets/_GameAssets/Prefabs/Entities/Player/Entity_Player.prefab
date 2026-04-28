@@ -1290,7 +1290,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6401644631235094961}
+    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3306671823826744006}
   m_SourcePrefab: {fileID: 100100000, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+--- !u!4 &2359152899963624071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+  m_PrefabInstance: {fileID: 7714038588239923713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4106009951781145495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
@@ -1444,6 +1452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthUIModule
   m_floatingTextConfig: {fileID: 11400000, guid: c7e3b62d1cd32494bad5463db47f671c, type: 2}
+  m_healthBarTarget: {fileID: 2359152899963624071}
 --- !u!114 &6401644631235094961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,6 +1473,21 @@ MonoBehaviour:
   punchElasticity: 0.5
   m_deathDespawnDelay: 5
   m_impulseSource: {fileID: 7013363403045592962}
+--- !u!114 &3306671823826744006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106009951781145495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8011941fa3a1be64184820babbc115dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Utils.Playable.VFXPlayable
+  m_interactVFX:
+  - {fileID: 0}
+  m_playFlags: 1
 --- !u!114 &5779220140939024795 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
