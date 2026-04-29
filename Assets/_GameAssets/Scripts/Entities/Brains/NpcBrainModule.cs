@@ -61,6 +61,12 @@ public class NpcBrainModule : EntityBrainModule
             return;
         }
 
+        if (Owner.IsSpawning)
+        {
+            StopMovement();
+            return;
+        }
+
         if (Owner.IsStaggered)
         {
             // this.Log("Currently staggered, cannot think.");

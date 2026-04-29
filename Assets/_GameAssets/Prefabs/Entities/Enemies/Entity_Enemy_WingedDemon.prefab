@@ -594,6 +594,34 @@ PrefabInstance:
       propertyPath: m_animator
       value: 
       objectReference: {fileID: 7982860869638613570}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_spawnVFXPrefab
+      value: 
+      objectReference: {fileID: 7286299720277554319, guid: 914cc99f0c1d6ae498dfc27720cf8f7d, type: 3}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_vfxShrinkDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_delayBeforeVisible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_modelRenderers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2978548815173477069}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6319838424374546058}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7090979692854917630}
     - target: {fileID: 7048574707963671383, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: renderers.Array.size
       value: 1

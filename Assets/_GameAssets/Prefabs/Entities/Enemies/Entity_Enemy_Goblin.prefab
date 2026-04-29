@@ -136,9 +136,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2170068229883782127, guid: b5b87734ab399184aa6a4c199b3687e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b5b87734ab399184aa6a4c199b3687e9, type: 3}
       propertyPath: m_Name
       value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920630847171793090, guid: b5b87734ab399184aa6a4c199b3687e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -355,6 +363,30 @@ PrefabInstance:
       propertyPath: m_entityType
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: renderers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1187261412955116659}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 9099115167495231411}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5891632867853056237}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2835296341123011444}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'renderers.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8988543541269482935}
     - target: {fileID: 5319705569266897079, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Height
       value: 6
@@ -371,6 +403,26 @@ PrefabInstance:
       propertyPath: m_dropEntries.Array.data[0].rewardObject
       value: 
       objectReference: {fileID: -1859593976463896301, guid: 713e9bce5770c304cb9ffad6607bd804, type: 3}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_modelRenderers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 9099115167495231411}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1187261412955116659}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5891632867853056237}
+    - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_modelRenderers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2835296341123011444}
     - target: {fileID: 7048574707963671383, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: renderers.Array.size
       value: 4
