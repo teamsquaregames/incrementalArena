@@ -121,7 +121,7 @@ MonoBehaviour:
     m_values:
     - 10
   - id: STN_LateGame_01
-    entityType: 4
+    entityType: 6
     ability: {fileID: 0}
     step: 0
     application: 0
