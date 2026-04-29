@@ -454,9 +454,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252e670591fd3b44487f33f762148179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySpawnModule
-  m_spawnVFXPrefab: {fileID: 0}
+  m_spawnVFXPrefab: {fileID: 7286299720277554319, guid: 914cc99f0c1d6ae498dfc27720cf8f7d, type: 3}
   m_animationTrigger: Spawn
-  m_spawnClip: {fileID: 0}
+  m_delayBeforeVisible: 0.5
+  m_vfxShrinkDuration: 0.3
+  m_modelRenderers: []
 --- !u!4 &4166490037408409096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5454035248957902982, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
