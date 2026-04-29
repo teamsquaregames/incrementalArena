@@ -6,9 +6,7 @@ using DG.Tweening;
 using Lean.Pool;
 using MyBox;
 using Sirenix.OdinInspector;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 
 public class Entity : MonoBehaviour, IPoolable

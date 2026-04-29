@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class EntityMovementAnimation : EntityModule
 {
-    [Header("References")]
-    [SerializeField] private Animator m_animator;
-
     [Header("Animation Parameters")]
     [SerializeField] private string m_speedParameterName = "Speed";
 
@@ -14,18 +11,12 @@ public class EntityMovementAnimation : EntityModule
 
     private void Update()
     {
-        if (m_animator == null) return;
+        if (Owner.Animator == null) return;
 
         if (Owner.TryGetModule(out EntityMovementModule movementModule))
         {
-            m_animator.SetFloat(m_speedParameterHash, movementModule.CurrentVelocity);
+            Owner.Animator.SetFloat(m_speedParameterHash, movementModule.CurrentVelocity);
         }
-    }
-
-    public override void CacheReferences()
-    {
-        base.CacheReferences();
-        m_animator = GetComponentInChildren<Animator>();
     }
 
     protected override void OnInitialize()
