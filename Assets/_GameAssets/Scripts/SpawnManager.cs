@@ -15,7 +15,8 @@ public class SpawnManager : Singleton<SpawnManager>
 {
     [TitleGroup("Settings")]
     [SerializeField] private List<Entity> m_enemyPrefabs;
-    [SerializeField] private Vector2 m_spawnRange = new Vector2(5, 5);
+    [SerializeField] private Vector2 m_spawnRangeOuter = new Vector2(5, 5);
+    [SerializeField] private Vector2 m_spawnRangeMin   = new Vector2(2, 2);
     [SerializeField] private bool m_spawnRangeGizmos = true;
     [SerializeField, Required] private EnemyScaler m_enemyScaler;
 
@@ -46,10 +47,7 @@ public class SpawnManager : Singleton<SpawnManager>
         for (int i = 0; i < count; i++)
         {
             int enemyIndex = CusRandom.RandomWeighted(spawnWeight);
-            Vector3 spawnPos = new Vector3(
-                Random.Range(-m_spawnRange.x, m_spawnRange.x),
-                0f,
-                Random.Range(-m_spawnRange.y, m_spawnRange.y));
+            Vector3 spawnPos = CusRandom.RectangleMin(m_spawnRangeOuter, m_spawnRangeMin);
             StartCoroutine(SpawnEnemyCR(m_enemyPrefabs[enemyIndex], spawnPos, roundNumber));
         }
         // this.Log($"Spawned {count} enemies for round {roundNumber}. Enemies: {string.Join(", ", m_roundEnemies)}");
@@ -81,13 +79,14 @@ public class SpawnManager : Singleton<SpawnManager>
         }
     }
 
-    /// spawn range gizmos
     private void OnDrawGizmosSelected()
     {
-        if (m_spawnRangeGizmos)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(m_spawnRange.x * 2, 0.1f, m_spawnRange.y * 2));
-        }
+        if (!m_spawnRangeGizmos) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(m_spawnRangeOuter.x * 2, 0.1f, m_spawnRangeOuter.y * 2));
+
+        Gizmos.color = new Color(1f, 0.5f, 0f);
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(m_spawnRangeMin.x * 2, 0.1f, m_spawnRangeMin.y * 2));
     }
 }

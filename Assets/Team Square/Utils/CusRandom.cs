@@ -49,6 +49,33 @@ namespace Utils
         {
             return new Vector3(RangeF(-_minMax.x, _minMax.x), 0, RangeF(_minMax.z/2));
         }
+
+        /// <summary>
+        /// Returns a random XZ position inside <paramref name="outer"/> but outside <paramref name="min"/>,
+        /// both expressed as half-extents (x = half-width, y = half-depth).
+        /// Sampling is area-weighted across the four border strips so the distribution is uniform.
+        /// </summary>
+        public static Vector3 RectangleMin(Vector2 outer, Vector2 min)
+        {
+            float topBottomArea = 2f * outer.x * (outer.y - min.y);
+            float leftRightArea = (outer.x - min.x) * 2f * min.y;
+            float totalArea     = 2f * topBottomArea + 2f * leftRightArea;
+
+            float r = Random.Range(0f, totalArea);
+
+            if (r < topBottomArea)
+                return new Vector3(RangeF(-outer.x, outer.x), 0f, RangeF(min.y, outer.y));
+            r -= topBottomArea;
+
+            if (r < topBottomArea)
+                return new Vector3(RangeF(-outer.x, outer.x), 0f, RangeF(-outer.y, -min.y));
+            r -= topBottomArea;
+
+            if (r < leftRightArea)
+                return new Vector3(RangeF(min.x, outer.x), 0f, RangeF(-min.y, min.y));
+
+            return new Vector3(RangeF(-outer.x, -min.x), 0f, RangeF(-min.y, min.y));
+        }
         
         public static Vector3 Squares(Vector3[] _squares)
         {
