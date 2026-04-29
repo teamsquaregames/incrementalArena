@@ -102,6 +102,14 @@ PrefabInstance:
       propertyPath: team
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: renderers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: 'renderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6338936837335597637}
     - target: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Height
       value: 1.1964527
@@ -253,9 +261,6 @@ PrefabInstance:
       addedObject: {fileID: 3866129708232008600}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7048574707963671383}
-    - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1687823931497025180}
     - targetCorrespondingSourceObject: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       insertIndex: -1
@@ -293,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde38c5ddca8e24c9c53f251bd72e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
-  m_customRE: {fileID: 7048574707963671383}
+  m_customRE: {fileID: 0}
   m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   punchScale: {x: 0.3, y: -0.2, z: 0}
   punchDuration: 0.35
@@ -313,21 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealthUIModule
   m_floatingTextConfig: {fileID: 11400000, guid: b17c20bf653142f439b6cab08ab68170, type: 2}
-  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
   m_healthBarTarget: {fileID: 4166490037408409096}
---- !u!114 &7048574707963671383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2419637819542009624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
-  renderers: []
+  m_genericGaugePrefab: {fileID: 5437214873183247568, guid: 434a45ee4b4ce4b41b81dc1d9519eb10, type: 3}
 --- !u!54 &1687823931497025180
 Rigidbody:
   m_ObjectHideFlags: 0

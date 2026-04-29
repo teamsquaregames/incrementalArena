@@ -38,11 +38,14 @@ public class NpcBrainModule : EntityBrainModule
     protected override void OnInitialize()
     {
         base.OnInitialize();
+    }
+
+    public override void OnAllModuleInitialized()
+    {
+        base.OnAllModuleInitialized();
 
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
-        {
             healthModule.OnDeathStart += OnDeath;
-        }
     }
 
     protected override void Think()

@@ -3,6 +3,7 @@ using UnityEngine;
 public class EntityHealthUIModule : EntityModule
 {
     [SerializeField] private FloatingTextConfig m_floatingTextConfig;
+    [SerializeField] protected Transform m_healthBarTarget;
 
     protected GenericGauge m_genericGauge;
 
@@ -30,7 +31,8 @@ public class EntityHealthUIModule : EntityModule
         string text = isCrit ? $"<sprite=\"crit\" name=\"crit\"> {amount:N0}" : amount.ToString("N0");
         FloatingTextConfig config = isCrit ? GameAssets.Instance.critDamageTextConfig : m_floatingTextConfig;
 
-        FloatingTextManager.Instance.SpawnWorldText(Owner.transform.position, text, config);
+        Vector3 spawnPos = m_healthBarTarget != null ? m_healthBarTarget.position : Owner.transform.position;
+        FloatingTextManager.Instance.SpawnWorldText(spawnPos, text, config);
     }
 
     protected void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit, bool suppressFeedback)

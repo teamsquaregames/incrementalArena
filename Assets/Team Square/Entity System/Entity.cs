@@ -88,11 +88,10 @@ public class Entity : MonoBehaviour, IPoolable
         if (TryGetModule(out EntityHealthModule healthModule))
         {
             healthModule.OnDeathStart -= Unregister;
-            // healthModule.OnDeath -= Despawn;
+            healthModule.OnDeath -= Despawn;
         }
-
-        Unregister();
-        LeanPool.Despawn(gameObject);
+        
+        LeanPool.Despawn(this);
     }
 
     private void Register()
@@ -143,6 +142,8 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void OnDespawn()
     {
+        foreach (var module in m_modules.Values.Distinct())
+            module.Cleanup();
     }
 
 

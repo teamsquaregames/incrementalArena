@@ -14,7 +14,8 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public Entity m_playerPrefab;
+    [SerializeField] private Entity m_playerPrefab;
+    [SerializeField] private ParticleSystem m_collectAllCoinsVFX;
 
     [Header("Dependencies")]
     [SerializeField, Required] private CrowdRewards m_crowdRewards;
@@ -23,13 +24,12 @@ public class LevelManager : Singleton<LevelManager>
 
 
     public CrowdRewards CrowdRewards => m_crowdRewards;
-
     public bool IsWaveActive { get; private set; }
-
     private int m_currentRound = 0;
     private EntityHealthModule m_playerHealthModule;
     private HashSet<Entity> m_waveEnemies => m_spawnManager.RoundEnemies;
     private EndRoundUIC endRoundUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<EndRoundUIC>();
+    private Entity Player => EntityManager.Instance.Player;
 
     private void Awake()
     {
@@ -68,7 +68,8 @@ public class LevelManager : Singleton<LevelManager>
         m_crowdManager.CrowdCheer();
 
         yield return new WaitForSeconds(3);
-
+        
+        LeanPool.Spawn(m_collectAllCoinsVFX, Player.transform.position, Quaternion.identity, Player.transform);
         m_crowdRewards.CollectAllRewards();
 
         yield return new WaitForSeconds(1);

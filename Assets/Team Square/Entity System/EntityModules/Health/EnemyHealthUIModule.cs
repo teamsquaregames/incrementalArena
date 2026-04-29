@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyHealthUIModule : EntityHealthUIModule
 {
     [SerializeField] private GenericGauge m_genericGaugePrefab;
-    [SerializeField] private Transform m_healthBarTarget;
 
     protected override void SpawnHealthBar(float maxHealth)
     {

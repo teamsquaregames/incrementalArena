@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   m_playerPrefab: {fileID: 7623534507439280228, guid: 14a9fc8373715104daa682789bef1f4f, type: 3}
+  m_collectAllCoinsVFX: {fileID: 670145066804990928, guid: 3f9ede23129650e41b57a3df7ee7e137, type: 3}
   m_crowdRewards: {fileID: 8419906303060280720}
   m_crowdManager: {fileID: 2155554148062364853}
   m_spawnManager: {fileID: 4115648040748329235}
@@ -268,10 +269,8 @@ MonoBehaviour:
   m_spawnAreaSize: {x: 23.03, y: 1.34, z: 12.8}
   m_spawnOnEdgesOnly: 1
   m_edgeThickness: 3
-  m_centerVelocityStrength: 8.52
-  m_velocityRangeX: {x: -3, y: 3}
-  m_velocityRangeY: {x: 2, y: 5}
-  m_velocityRangeZ: {x: -3, y: 3}
+  m_targetRadius: 3
+  m_launchAngle: 45
   m_addRandomTorque: 1
   m_torqueStrength: 10
   m_collectFloatingTextConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}

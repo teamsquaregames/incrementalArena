@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2582337669702917554}
   - component: {fileID: 6276155754864417840}
   - component: {fileID: 745835995507955075}
+  - component: {fileID: 4268901313708184474}
   m_Layer: 0
   m_Name: Entity_Base
   m_TagString: Untagged
@@ -73,8 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
-  m_collider: {fileID: 4301391412074964537}
   spawnVFX: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
+  m_animator: {fileID: 0}
+  m_collider: {fileID: 4301391412074964537}
   m_knockUpCurve:
     serializedVersion: 2
     m_Curve:
@@ -184,6 +186,19 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &4268901313708184474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6050233646966636950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
+  renderers: []
 --- !u!1 &6964580587330997796
 GameObject:
   m_ObjectHideFlags: 0

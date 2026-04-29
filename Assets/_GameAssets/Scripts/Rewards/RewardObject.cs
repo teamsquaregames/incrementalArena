@@ -105,6 +105,13 @@ public class RewardObject : MonoBehaviour, IPoolable
         LevelManager.Instance?.CrowdRewards.RegisterReward(this);
     }
 
+    public void Launch(Vector3 velocity, float torqueStrength = 0f)
+    {
+        m_rb.linearVelocity = velocity;
+        if (torqueStrength > 0f)
+            m_rb.angularVelocity = Random.insideUnitSphere * torqueStrength;
+    }
+
     public void OnDespawn()
     {
     }
