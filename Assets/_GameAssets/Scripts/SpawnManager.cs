@@ -50,13 +50,36 @@ public class SpawnManager : Singleton<SpawnManager>
                 Random.Range(-m_spawnRange.x, m_spawnRange.x),
                 0f,
                 Random.Range(-m_spawnRange.y, m_spawnRange.y));
-            Entity enemy = LeanPool.Spawn(m_enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);
-            m_enemyScaler.ApplyScaling(enemy, roundNumber);
-            m_roundEnemies.Add(enemy);
+            StartCoroutine(SpawnEnemyCR(m_enemyPrefabs[enemyIndex], spawnPos, roundNumber));
         }
         // this.Log($"Spawned {count} enemies for round {roundNumber}. Enemies: {string.Join(", ", m_roundEnemies)}");
     }
 
+
+    private IEnumerator SpawnEnemyCR(Entity prefab, Vector3 spawnPos, int roundNumber)
+    {
+        EntitySpawnModule spawnModule = prefab.GetComponent<EntitySpawnModule>();
+
+        if (spawnModule != null && spawnModule.SpawnVFXPrefab != null)
+        {
+            ParticleSystem vfxInstance = LeanPool.Spawn(spawnModule.SpawnVFXPrefab, spawnPos, Quaternion.identity);
+            yield return new WaitForSeconds(spawnModule.PreSpawnDelay);
+
+            Entity enemy = LeanPool.Spawn(prefab, spawnPos, Quaternion.identity);
+            m_enemyScaler.ApplyScaling(enemy, roundNumber);
+            m_roundEnemies.Add(enemy);
+
+            if (enemy.TryGetModule(out EntitySpawnModule enemySpawnModule))
+                enemySpawnModule.SetSpawnVFXInstance(vfxInstance);
+        }
+        else
+        {
+            Entity enemy = LeanPool.Spawn(prefab, spawnPos, Quaternion.identity);
+            m_enemyScaler.ApplyScaling(enemy, roundNumber);
+            m_roundEnemies.Add(enemy);
+            yield break;
+        }
+    }
 
     /// spawn range gizmos
     private void OnDrawGizmosSelected()

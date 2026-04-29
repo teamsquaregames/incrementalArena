@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using Lean.Pool;
 using UnityEngine;
@@ -7,12 +6,13 @@ public class EntitySpawnModule : EntityModule
 {
     [SerializeField] private ParticleSystem m_spawnVFXPrefab;
     [SerializeField] private string m_animationTrigger = "Spawn";
-    [SerializeField] private float m_delayBeforeVisible = 0.5f;
+    [SerializeField] private float m_preSpawnDelay = 0.5f;
     [SerializeField] private float m_vfxShrinkDuration = 0.3f;
-    [SerializeField] private Renderer[] m_modelRenderers;
 
     private ParticleSystem m_spawnVFXInstance;
-    private Coroutine m_spawnSequenceCR;
+
+    public ParticleSystem SpawnVFXPrefab => m_spawnVFXPrefab;
+    public float PreSpawnDelay => m_preSpawnDelay;
 
     public override void OnAllModuleInitialized()
     {
@@ -20,20 +20,12 @@ public class EntitySpawnModule : EntityModule
             healthModule.OnDeathStart += OnDeathStart;
 
         Owner.SetSpawning(true);
-        SetRenderersVisible(false);
-        m_spawnSequenceCR = StartCoroutine(SpawnSequenceCR());
+        Owner.Animator.SetTrigger(m_animationTrigger);
     }
 
-    private IEnumerator SpawnSequenceCR()
+    public void SetSpawnVFXInstance(ParticleSystem instance)
     {
-        if (m_spawnVFXPrefab != null)
-            m_spawnVFXInstance = LeanPool.Spawn(m_spawnVFXPrefab, Owner.transform.position, Quaternion.identity);
-
-        yield return new WaitForSeconds(m_delayBeforeVisible);
-
-        SetRenderersVisible(true);
-        Owner.Animator.SetTrigger(m_animationTrigger);
-        m_spawnSequenceCR = null;
+        m_spawnVFXInstance = instance;
     }
 
     public void HandleSpawnEnd()
@@ -47,18 +39,8 @@ public class EntitySpawnModule : EntityModule
 
     private void OnDeathStart()
     {
-        StopSpawnSequence();
         Owner.SetSpawning(false);
-        SetRenderersVisible(true);
         ShrinkAndDespawnVFX();
-    }
-
-    private void StopSpawnSequence()
-    {
-        if (m_spawnSequenceCR == null) return;
-
-        StopCoroutine(m_spawnSequenceCR);
-        m_spawnSequenceCR = null;
     }
 
     private void ShrinkAndDespawnVFX()
@@ -79,9 +61,7 @@ public class EntitySpawnModule : EntityModule
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
             healthModule.OnDeathStart -= OnDeathStart;
 
-        StopSpawnSequence();
         Owner.SetSpawning(false);
-        SetRenderersVisible(true);
 
         if (m_spawnVFXInstance != null)
         {
@@ -89,11 +69,5 @@ public class EntitySpawnModule : EntityModule
             LeanPool.Despawn(m_spawnVFXInstance);
             m_spawnVFXInstance = null;
         }
-    }
-
-    private void SetRenderersVisible(bool visible)
-    {
-        foreach (Renderer r in m_modelRenderers)
-            r.enabled = visible;
     }
 }

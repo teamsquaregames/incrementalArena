@@ -884,6 +884,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1879391398114833914, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.44
+      objectReference: {fileID: 0}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_enemyCount
       value: 30
@@ -906,6 +910,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4070378010177394957, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_useConstantEnemyCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914373755208109128, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
