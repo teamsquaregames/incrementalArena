@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using Lean.Pool;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class EntitySpawnModule : EntityModule
@@ -9,7 +10,9 @@ public class EntitySpawnModule : EntityModule
     [SerializeField] private string m_animationTrigger = "Spawn";
     [SerializeField] private float m_delayBeforeVisible = 0.5f;
     [SerializeField] private float m_vfxShrinkDuration = 0.3f;
-    [SerializeField] private Renderer[] m_modelRenderers;
+    
+    [ValidateInput(nameof(HasValidModelRenderers), "Assign all model renderers. The array cannot be null, empty, or contain null elements.")]
+    [SerializeField, Required] private Renderer[] m_modelRenderers;
 
     private ParticleSystem m_spawnVFXInstance;
     private Coroutine m_spawnSequenceCR;
@@ -95,5 +98,19 @@ public class EntitySpawnModule : EntityModule
     {
         foreach (Renderer r in m_modelRenderers)
             r.enabled = visible;
+    }
+
+    private bool HasValidModelRenderers(Renderer[] renderers)
+    {
+        if (renderers == null || renderers.Length == 0)
+            return false;
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer == null)
+                return false;
+        }
+
+        return true;
     }
 }
