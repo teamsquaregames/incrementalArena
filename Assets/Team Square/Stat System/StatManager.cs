@@ -8,7 +8,7 @@ namespace Stats
 {
     public class StatManager : Singleton<StatManager>
     {
-        [SerializeField, AssetList(Path = "Team Square/Stat System", AutoPopulate = true)] private List<EntityStatDefinition> m_entityStatDefinitions;
+        [SerializeField, AssetList(Path = "_GameAssets", AutoPopulate = true)] private List<EntityStatDefinition> m_entityStatDefinitions;
 
         [SerializeField, ReadOnly] private SerializableDictionary<EntityType, Dictionary<StatType, Stat>> m_definitionStats;
         [SerializeField, ReadOnly] private SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat[,]>> m_definitionAbilityStats;

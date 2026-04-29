@@ -23,7 +23,8 @@ MonoBehaviour:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 0f00000000000000
   m_abilitiesGranted: []
-  m_enemiesUnlocked: []
+  m_enemiesUnlocked:
+  - {fileID: 7382554555577117163, guid: f43592b3593101a4c839509b4cda8750, type: 3}
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
   - id: STN_Demons_01

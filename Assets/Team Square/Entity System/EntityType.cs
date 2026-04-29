@@ -7,6 +7,8 @@ public enum EntityType
     Player = 1 << 0,
     Orc = 1 << 1,
     Demon = 1 << 2,
+    Goblin = 1 << 3,
+    WingedDemon = 1 << 4,
 }
 
 public static class EntityTypeExtensions
