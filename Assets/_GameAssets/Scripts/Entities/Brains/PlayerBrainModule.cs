@@ -23,6 +23,7 @@ public class PlayerBrainModule : EntityBrainModule
 
     protected override void Think()
     {
+        if (Owner.IsSpawning) return;
         if (CursorManager.Instance == null) return;
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 

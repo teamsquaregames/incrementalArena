@@ -6,6 +6,7 @@ public class EntityAE : MonoBehaviour
 {
     private Entity m_entity;
     private EntityAbilityModule m_abilityModule;
+    private EntitySpawnModule m_spawnModule;
 
     private IPlayable[] m_playables;
 
@@ -14,6 +15,7 @@ public class EntityAE : MonoBehaviour
     {
         m_entity = GetComponentInParent<Entity>();
         m_abilityModule = GetComponentInParent<EntityAbilityModule>();
+        m_spawnModule = GetComponentInParent<EntitySpawnModule>();
         m_playables = GetComponentsInChildren<IPlayable>();
     }
 
@@ -56,6 +58,11 @@ public class EntityAE : MonoBehaviour
     public void HandleAnimationInterrupt()
     {
         OnAbilityInterrupt();
+    }
+
+    public void OnSpawnEnd()
+    {
+        m_spawnModule?.HandleSpawnEnd();
     }
 
     public void OnFootStep()
