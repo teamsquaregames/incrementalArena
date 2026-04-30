@@ -775,12 +775,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1879391398114833914, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2951453023914597902, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnRangeMin.x
+      value: 7.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnRangeMin.y
+      value: 2.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnRangeOuter.x
+      value: 9.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_spawnRangeOuter.y
+      value: 4.32
+      objectReference: {fileID: 0}
     - target: {fileID: 5914373755208109128, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914373755208109128, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
