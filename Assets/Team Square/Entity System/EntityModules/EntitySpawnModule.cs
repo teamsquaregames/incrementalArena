@@ -10,9 +10,9 @@ public class EntitySpawnModule : EntityModule
     [SerializeField] private string m_animationTrigger = "Spawn";
     [SerializeField] private float m_delayBeforeVisible = 0.5f;
     [SerializeField] private float m_vfxShrinkDuration = 0.3f;
-    
+
     [ValidateInput(nameof(HasValidModelRenderers), "Assign all model renderers. The array cannot be null, empty, or contain null elements.")]
-    [SerializeField, Required] private Renderer[] m_modelRenderers;
+    [SerializeField, Required] private Renderer[] m_modelRenderers = new Renderer[0];
 
     private ParticleSystem m_spawnVFXInstance;
     private Coroutine m_spawnSequenceCR;
@@ -112,5 +112,12 @@ public class EntitySpawnModule : EntityModule
         }
 
         return true;
+    }
+
+    public override void CacheReferences()
+    {
+        base.CacheReferences();
+
+        m_modelRenderers = GetComponentsInChildren<Renderer>();
     }
 }

@@ -8,21 +8,13 @@ namespace Utils
     public class AnimatorRootMotion : MonoBehaviour
     {
         [TitleGroup("Dependencies")]
-        [Required]
-        [SerializeField] Rigidbody _rigidbody = null;
-        [Required]
-        [SerializeField] EntityMovementModule m_movementEM;
+        [SerializeField, Required] Rigidbody m_rigidbody = null;
+        [SerializeField, Required] EntityMovementModule m_movementEM;
+        [SerializeField, Required]private Entity Owner;
 
         [TitleGroup("Settings")]
         public bool ApplyRootMotion = true;
 
-        Animator _anim = null;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            _anim = GetComponent<Animator>();
-        }
 
         void OnAnimatorMove()
         {
@@ -34,11 +26,11 @@ namespace Utils
 
         void MoveRootMotion()
         {
-            Vector3 newPosition = transform.position + _anim.deltaPosition;
-            _rigidbody.MovePosition(newPosition);
+            Vector3 newPosition = transform.position + Owner.Animator.deltaPosition;
+            m_rigidbody.MovePosition(newPosition);
 
-            Quaternion newRotation = _rigidbody.rotation * _anim.deltaRotation;
-            _rigidbody.MoveRotation(newRotation);
+            Quaternion newRotation = m_rigidbody.rotation * Owner.Animator.deltaRotation;
+            m_rigidbody.MoveRotation(newRotation);
         }
     }
 }

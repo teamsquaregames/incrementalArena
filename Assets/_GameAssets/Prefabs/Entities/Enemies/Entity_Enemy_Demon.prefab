@@ -1,77 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5562149572887274900
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1866722747172709200}
-    m_Modifications:
-    - target: {fileID: 2397517517434076133, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_Name
-      value: VFX_Smoke_Foot
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
---- !u!4 &2338115717200842326 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-  m_PrefabInstance: {fileID: 5562149572887274900}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4177355053680132899 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8415059298261984951, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-  m_PrefabInstance: {fileID: 5562149572887274900}
-  m_PrefabAsset: {fileID: 0}
---- !u!199 &8988543541269482935 stripped
-ParticleSystemRenderer:
-  m_CorrespondingSourceObject: {fileID: 3570511364289374243, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
-  m_PrefabInstance: {fileID: 5562149572887274900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6750187086863156287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,14 +84,6 @@ PrefabInstance:
       propertyPath: 'm_renderers.Array.data[0]'
       value: 
       objectReference: {fileID: 538728456159415812}
-    - target: {fileID: 2700922674355464894, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
-      propertyPath: 'm_renderers.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8988543541269482935}
-    - target: {fileID: 2700922674355464894, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
-      propertyPath: 'm_renderers.Array.data[8]'
-      value: 
-      objectReference: {fileID: 8988543541269482935}
     - target: {fileID: 4312584928852569556, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_animator
       value: 
@@ -180,10 +100,6 @@ PrefabInstance:
       propertyPath: 'renderers.Array.data[0]'
       value: 
       objectReference: {fileID: 538728456159415812}
-    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
-      propertyPath: 'renderers.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8988543541269482935}
     - target: {fileID: 5319705569266897079, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Height
       value: 6
@@ -200,6 +116,10 @@ PrefabInstance:
       propertyPath: m_dropEntries.Array.data[0].rewardObject
       value: 
       objectReference: {fileID: -1859593976463896301, guid: 713e9bce5770c304cb9ffad6607bd804, type: 3}
+    - target: {fileID: 5750432171405937573, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5946857670838697958, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_animator
       value: 
@@ -235,9 +155,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4920909466871179119, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7441432123915077787}
-    - targetCorrespondingSourceObject: {fileID: 4920909466871179119, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2338115717200842326}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
 --- !u!114 &1509177497178661163 stripped
@@ -272,6 +189,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d1b1e1ebf390d4eb881e4c6f11a5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityMovementModule
+--- !u!114 &7382554555577117163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4312584928852569556, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+  m_PrefabInstance: {fileID: 6750187086863156287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
 --- !u!1001 &6976074080661204848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -337,10 +265,7 @@ PrefabInstance:
       addedObject: {fileID: 4048673079885929517}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8356425dc3f7e4a48835136a3b75e4aa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 102292093408408600}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8356425dc3f7e4a48835136a3b75e4aa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8725760002410432143}
+      addedObject: {fileID: 9091861377204430045}
   m_SourcePrefab: {fileID: 100100000, guid: 8356425dc3f7e4a48835136a3b75e4aa, type: 3}
 --- !u!137 &538728456159415812 stripped
 SkinnedMeshRenderer:
@@ -374,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41d0e8534e401a46b2fd72268d61fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAE
---- !u!114 &102292093408408600
+--- !u!114 &9091861377204430045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -386,21 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c56caef9681054280588c8e621c0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.AnimatorRootMotion
-  _rigidbody: {fileID: 5386623499183901347}
+  m_rigidbody: {fileID: 5386623499183901347}
   m_movementEM: {fileID: 5487824343631458890}
+  Owner: {fileID: 7382554555577117163}
   ApplyRootMotion: 1
---- !u!114 &8725760002410432143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7786327637409124897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8011941fa3a1be64184820babbc115dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Utils.Playable.VFXPlayable
-  m_interactVFX:
-  - {fileID: 4177355053680132899}
-  m_playFlags: 2

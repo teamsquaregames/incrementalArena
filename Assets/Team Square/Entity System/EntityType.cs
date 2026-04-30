@@ -9,6 +9,10 @@ public enum EntityType
     Demon = 1 << 2,
     Goblin = 1 << 3,
     WingedDemon = 1 << 4,
+    Ogre = 1 << 5,
+    OrcHeavy = 1 << 6,
+    Squeleton = 1 << 7,
+    SqueletonWarrior = 1 << 8,
 }
 
 public static class EntityTypeExtensions
