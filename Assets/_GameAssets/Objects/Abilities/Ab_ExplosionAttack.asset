@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_ExplosionAttack
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySO
+  id: explosion_attack
   abilityName: Explosion
   icon: {fileID: 21300000, guid: 911a526ffb4252a4992c21d7c8fab782, type: 3}
   description: BOOM BOOM
-  range: 1.5
+  range: {x: 0, y: 2}
   cooldown: 3
+  sfx: 0
+  sfxDelay: 0
   steps:
-  - targetingInfo:
+  - isRooting: 0
+    targetingInfo:
       quickTarget: 2
       target: 0
       delayInterval: 0
@@ -26,6 +30,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -42,18 +47,17 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 0
         radius: 3
         scale: {x: 0, y: 0, z: 0}
         angle: 0
         range: 0
-        effectDirection: 0
-        effectPosition: 0
+        offset: {x: 0, y: 0, z: 0}
         time: 0
         duration: 0
         frequency: 0
@@ -61,13 +65,17 @@ MonoBehaviour:
       delay: 0
       repeatCount: 0
       repeatDuration: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
+      repeatFX: 0
       excludeHitEntity: 1
     mainVfx: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
+    mainVfxGraph: {fileID: 0}
     mainVFXPosition: 1
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 8649103730900180658, guid: d170123f1eae05a42b7a908a3bc4cc32, type: 3}
+    hitVfxGraph: {fileID: 0}
+    activeSfx: 0
     abilityClip: {fileID: 1827226128182048838, guid: 562f61410406a094facc8b8bcb0b1aac, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      teamApplication: 0
       value: 30

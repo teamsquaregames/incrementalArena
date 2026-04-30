@@ -26,7 +26,7 @@ public static class EntityTypeExtensions
         {
             if ((entityType & value) == value)
             {
-                Debug.Log($"EntityType {entityType} contains flag {value}");
+                //Debug.Log($"EntityType {entityType} contains flag {value}");
                 flags.Add(value);
             }
         }

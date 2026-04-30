@@ -8,6 +8,7 @@ using Utils;
 public class AbilityConfig : ScriptableObject
 {
     [TitleGroup("Identity")]
+    public string id;
     public string abilityName;
     public Sprite icon;
     [TextArea] public string description;

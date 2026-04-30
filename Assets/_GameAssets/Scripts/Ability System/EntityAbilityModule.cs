@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lean.Pool;
 using MyBox;
 using Sirenix.OdinInspector;
@@ -80,7 +81,10 @@ public class EntityAbilityModule : EntityModule
 
         if (!GameConfig.Instance.cheatSettings.usePrefabAbilities)
         {
-            m_abilities = new List<AbilityConfig>(GameData.Instance.unlockedAbilities);
+            m_abilities = GameData.Instance.unlockedAbilityIDs
+                .Select(id => GameAssets.Instance.GetAbility(id))
+                .Where(a => a != null)
+                .ToList();
             // this.Log($"Loaded abilities from GameData: {string.Join(", ", m_abilities.ConvertAll(a => a.abilityName))}");
         }
 

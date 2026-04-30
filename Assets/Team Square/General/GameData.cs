@@ -89,8 +89,14 @@ public class GameData : ScriptableObject
 				Instance.trackedValues.Add(trackedValueType, new TrackedValue(trackedValueType, 0));
 		}
 
-		Instance.unlockedAbilities = new List<AbilityConfig>();
-		Instance.unlockedEnemies = GameConfig.Instance.gameSettings.defaultEnemies != null ? new List<Entity>(GameConfig.Instance.gameSettings.defaultEnemies) : new List<Entity>();
+		Instance.unlockedAbilityIDs = new List<string>();
+		Instance.unlockedEnemyIDs = GameConfig.Instance.gameSettings.defaultEnemies != null
+			? GameConfig.Instance.gameSettings.defaultEnemies
+				.Where(e => e != null)
+				.Select(e => GameAssets.Instance.enemies?.FirstOrDefault(kvp => kvp.Value == e).Key)
+				.Where(id => id != null)
+				.ToList()
+			: new List<string>();
 
 		Instance.Save();
 		Instance.OnResetData?.Invoke();
@@ -311,8 +317,8 @@ public class GameData : ScriptableObject
 	#region Teck Tree Nodes
 	[Header("Teck Tree")]
 	public SerializableDictionary<string, int> teckTreeNodesLevels = new SerializableDictionary<string, int>();
-	public List<AbilityConfig> unlockedAbilities = new List<AbilityConfig>();
-	public List<Entity> unlockedEnemies = new List<Entity>();
+	public List<string> unlockedAbilityIDs = new List<string>();
+	public List<string> unlockedEnemyIDs = new List<string>();
 
 	public int GetNodeLevel(string _nodeID)
 	{
@@ -337,20 +343,21 @@ public class GameData : ScriptableObject
 	
 	public void UnlockAbility(AbilityConfig ability)
 	{
-		if (!unlockedAbilities.Contains(ability))
-		{
-			unlockedAbilities.Add(ability);
-			Save();
-		}
+		if (ability == null) return;
+		if (string.IsNullOrEmpty(ability.id)) { Debug.LogWarning($"UnlockAbility: {ability.abilityName} has no id set"); return; }
+		if (unlockedAbilityIDs.Contains(ability.id)) return;
+		unlockedAbilityIDs.Add(ability.id);
+		Save();
 	}
 
 	public void UnlockEnemy(Entity enemy)
 	{
-		if (!unlockedEnemies.Contains(enemy))
-		{
-			unlockedEnemies.Add(enemy);
-			Save();
-		}
+		if (enemy == null) return;
+		var id = GameAssets.Instance.enemies?.FirstOrDefault(kvp => kvp.Value == enemy).Key;
+		if (id == null) { Debug.LogWarning($"UnlockEnemy: {enemy.name} has no entry in GameAssets.enemies"); return; }
+		if (unlockedEnemyIDs.Contains(id)) return;
+		unlockedEnemyIDs.Add(id);
+		Save();
 	}
 	
 	public void UnlockArena(string arenaID)

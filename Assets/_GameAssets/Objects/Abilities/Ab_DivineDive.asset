@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_DivineDive
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
+  id: divine_dive
   abilityName: Dash Stomp
   icon: {fileID: 21300000, guid: 4ba8cf8be6ccd0a409ef99af8189c767, type: 3}
   description: 

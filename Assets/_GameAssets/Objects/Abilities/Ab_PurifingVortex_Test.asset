@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_PurifingVortex_Test
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
+  id: purifying_vortex_test
   abilityName: Tourbi LoL
   icon: {fileID: 21300000, guid: ddc2df63915ad5f41b148846bd73c413, type: 3}
   description: 

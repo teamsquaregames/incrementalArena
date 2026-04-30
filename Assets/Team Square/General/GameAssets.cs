@@ -23,4 +23,18 @@ public class GameAssets : ScriptableObject
     public CurrencyAsset[] currencyAssets;
     public FloatingTextConfig critDamageTextConfig;
     public List<ArenaConfig> arenaConfigs;
+
+    public SerializableDictionary<string, Entity> enemies;
+    [AssetList(Path = "_GameAssets/Objects/Abilities", AutoPopulate = true)]
+    public List<AbilityConfig> abilities;
+
+    public Entity GetEnemy(string id)
+    {
+        return enemies != null && enemies.TryGetValue(id, out var prefab) ? prefab : null;
+    }
+
+    public AbilityConfig GetAbility(string id)
+    {
+        return abilities?.Find(a => a.id == id);
+    }
 }   
