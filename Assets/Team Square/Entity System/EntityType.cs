@@ -7,14 +7,18 @@ public enum EntityType
 {
     Player = 1 << 0,
     Orc = 1 << 1,
-    Demon = 1 << 2,
     Goblin = 1 << 3,
-    WingedDemon = 1 << 4,
     Ogre = 1 << 5,
     OrcHeavy = 1 << 6,
     Troll = 1 << 7,
-    Squeleton = 1 << 8,
-    SqueletonWarrior = 1 << 9,
+    Squeleton = 1 << 100,
+    SqueletonWarrior = 1 << 101,
+    Banshee = 1 << 102,
+    Ghoul = 1 << 103,
+    Horror = 1 << 104,
+    Demon = 1 << 201,
+    DarkKnight = 1 << 202,
+    WingedDemon = 1 << 205,
 }
 
 public static class EntityTypeExtensions
