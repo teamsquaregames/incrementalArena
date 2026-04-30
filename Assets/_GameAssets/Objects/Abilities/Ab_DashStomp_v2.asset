@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_DashStomp_v2
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
+  id: dash_stomp
   abilityName: 
   icon: {fileID: 0}
   description: 
@@ -29,6 +30,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 1
         speed: 1
         distance: 10
@@ -49,7 +51,6 @@ MonoBehaviour:
         applyEffectThroughTrajectory: 0
         frequency: 0
         piercingAmount: 0
-        projectileVisualEffect: {fileID: 0}
       aoeInfo:
         effectShape: 0
         radius: 0
@@ -87,6 +88,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -107,7 +109,6 @@ MonoBehaviour:
         applyEffectThroughTrajectory: 0
         frequency: 0
         piercingAmount: 0
-        projectileVisualEffect: {fileID: 0}
       aoeInfo:
         effectShape: 0
         radius: 3

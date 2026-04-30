@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_AA_Orc
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySO
+  id: aa_orc
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
   description: Sword attack ma gueule
@@ -29,6 +30,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -45,10 +47,10 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 1
         radius: 2
@@ -56,8 +58,6 @@ MonoBehaviour:
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 0.5}
-        effectDirection: 2
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
@@ -66,12 +66,11 @@ MonoBehaviour:
       repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 0}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 9
@@ -89,6 +88,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -105,10 +105,10 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 1
         radius: 3
@@ -116,8 +116,6 @@ MonoBehaviour:
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 0.5}
-        effectDirection: 0
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
@@ -126,12 +124,11 @@ MonoBehaviour:
       repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 0}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 9
@@ -149,6 +146,7 @@ MonoBehaviour:
     applicationInfos:
     - effectZoneType: 1
       projectileInfo:
+        prefab: {fileID: 0}
         type: 0
         speed: 1
         distance: 10
@@ -165,10 +163,10 @@ MonoBehaviour:
         startPositionOffset: {x: 0, y: 0, z: 0}
         autoOffsetWithWidth: 0
         spreadAngle: 0
+        randomRepartition: 0
         applyEffectThroughTrajectory: 0
         frequency: 0
-        destroyOnHit: 0
-        projectileVisualEffect: {fileID: 0}
+        piercingAmount: 0
       aoeInfo:
         effectShape: 0
         radius: 3
@@ -176,8 +174,6 @@ MonoBehaviour:
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 1}
-        effectDirection: 0
-        effectPosition: 0
         time: 0
         duration: 0
         frequency: 0
@@ -186,12 +182,11 @@ MonoBehaviour:
       repeatCount: 1
       repeatDuration: 0
       repeatFX: 0
-      additionalRotation: 0
-      additionalPosition: {x: 0, y: 0, z: 0}
       excludeHitEntity: 1
     mainVfx: {fileID: 0}
     mainVfxGraph: {fileID: 0}
     mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
     hitVfx: {fileID: 0}
     hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
     activeSfx: 9

@@ -22,7 +22,7 @@ MonoBehaviour:
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount: 3200000000000000
-  m_abilityGranted: {fileID: 0}
-  m_enemyUnlocked: {fileID: 0}
+  m_abilitiesGranted: []
+  m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers: []

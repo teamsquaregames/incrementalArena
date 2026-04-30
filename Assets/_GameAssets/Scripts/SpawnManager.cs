@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using DG.Tweening;
 using Lean.Pool;
@@ -34,7 +35,10 @@ public class SpawnManager : Singleton<SpawnManager>
         int count = Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave));
 
         if (!GameConfig.Instance.cheatSettings.usePrefabEnemies)
-            m_enemyPrefabs = GameData.Instance.unlockedEnemies;
+            m_enemyPrefabs = GameData.Instance.unlockedEnemyIDs
+                .Select(id => GameAssets.Instance.GetEnemy(id))
+                .Where(e => e != null)
+                .ToList();
 
         float[] spawnWeight = new float[m_enemyPrefabs.Count];
         for (int i = 0; i < m_enemyPrefabs.Count; i++)

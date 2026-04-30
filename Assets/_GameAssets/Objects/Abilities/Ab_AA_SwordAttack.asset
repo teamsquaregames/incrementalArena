@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
   m_Name: Ab_AA_SwordAttack
   m_EditorClassIdentifier: Assembly-CSharp::AbilitySO
+  id: aa_sword_attack
   abilityName: Sword attack
   icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
   description: Sword attack ma gueule

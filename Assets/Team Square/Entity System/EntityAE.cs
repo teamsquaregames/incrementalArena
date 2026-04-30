@@ -60,10 +60,6 @@ public class EntityAE : MonoBehaviour
         OnAbilityInterrupt();
     }
 
-    public void OnSpawnEnd()
-    {
-        m_spawnModule?.HandleSpawnEnd();
-    }
 
     public void OnFootStep()
     {
