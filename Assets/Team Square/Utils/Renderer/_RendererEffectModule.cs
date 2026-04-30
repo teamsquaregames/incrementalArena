@@ -8,13 +8,12 @@ namespace Utils.RendererEffect
     public class _RendererEffect : MonoBehaviour
     {
         [TitleGroup("Dependencies")]
-        [Required]
-        [SerializeField] protected List<Renderer> renderers;
+        [SerializeField, Required] protected Renderer[] m_renderers;
 
         [Button]
         protected virtual void FillRenderers()
         {
-            renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
+            m_renderers = GetComponentsInChildren<Renderer>(includeInactive: true);
         }
     }
 }

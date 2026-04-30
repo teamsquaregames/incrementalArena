@@ -57,7 +57,7 @@ namespace Stats
 
         public void AddModifier(StatModifier mod)
         {
-            // Debug.Log($"Adding modifier to stat: {mod.statType} {mod.value} ({mod.type}) with id {mod.id}");
+            Debug.Log($"Adding modifier to stat: {mod.statType} {mod.value} ({mod.type}) with id {mod.id}");
             var copy = mod.Copy();
 
             if (copy.id != null)

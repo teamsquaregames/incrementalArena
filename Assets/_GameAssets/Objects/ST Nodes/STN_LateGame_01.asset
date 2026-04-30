@@ -26,9 +26,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
   - {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
   m_enemiesUnlocked:
+  - {fileID: 7382554555577117163, guid: e35c1ebc83e6ecf48b505acfab2beb76, type: 3}
+  - {fileID: 7382554555577117163, guid: 7b000edf56f9f5d45aca0ba4e943dd52, type: 3}
+  - {fileID: 7382554555577117163, guid: f37660598bc0b674180b183033518183, type: 3}
+  - {fileID: 7382554555577117163, guid: 047500b0f744f614a986cf9c0cbcbbc3, type: 3}
   - {fileID: 7382554555577117163, guid: f43592b3593101a4c839509b4cda8750, type: 3}
   - {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
-  - {fileID: 7382554555577117163, guid: 7b000edf56f9f5d45aca0ba4e943dd52, type: 3}
   m_arenaUnlocked: {fileID: 11400000, guid: 67f98ac202d40b84ea5b4726d591282d, type: 2}
   m_statModifiers:
   - id: STN_LateGame_01
@@ -95,7 +98,7 @@ MonoBehaviour:
     m_values:
     - 100
   - id: STN_LateGame_01
-    entityType: 510
+    entityType: 234
     ability: {fileID: 0}
     step: 0
     application: 0

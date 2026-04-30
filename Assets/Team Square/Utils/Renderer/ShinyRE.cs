@@ -32,7 +32,7 @@ namespace Utils.RendererEffect
                 return;
 
             var mpb = new MaterialPropertyBlock();
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 r.GetPropertyBlock(mpb);
                 mpb.SetColor("_Emission", emissionColor);
@@ -50,7 +50,7 @@ namespace Utils.RendererEffect
                 return;
 
             var mpb = new MaterialPropertyBlock();
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 r.GetPropertyBlock(mpb);
                 mpb.SetColor("_Emission", Color.black);
@@ -69,7 +69,7 @@ namespace Utils.RendererEffect
             float rimValue = Mathf.Lerp(rimOsillation.x, rimOsillation.y, t);
 
             var mpb = new MaterialPropertyBlock();
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 if (r == null) continue;
                 r.GetPropertyBlock(mpb);

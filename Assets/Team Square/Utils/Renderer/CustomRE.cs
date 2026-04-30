@@ -25,7 +25,7 @@ public class CustomRE : _RendererEffect
 		if (string.IsNullOrWhiteSpace(_property))
 			return;
 
-		foreach (var r in renderers)
+		foreach (var r in m_renderers)
 		{
 			if (r == null) continue;
 
@@ -43,7 +43,7 @@ public class CustomRE : _RendererEffect
 		if (string.IsNullOrWhiteSpace(_property))
 			return;
 
-		foreach (var r in renderers)
+		foreach (var r in m_renderers)
 		{
 			if (r == null) continue;
 
@@ -61,7 +61,7 @@ public class CustomRE : _RendererEffect
 		if (string.IsNullOrWhiteSpace(_property))
 			return;
 
-		foreach (var r in renderers)
+		foreach (var r in m_renderers)
 		{
 			if (r == null) continue;
 
@@ -79,7 +79,7 @@ public class CustomRE : _RendererEffect
 		if (string.IsNullOrWhiteSpace(_property))
 			return;
 
-		foreach (var r in renderers)
+		foreach (var r in m_renderers)
 		{
 			if (r == null) continue;
 
@@ -92,7 +92,7 @@ public class CustomRE : _RendererEffect
 	[Button]
 	public void ClearOverrides()
 	{
-		foreach (var r in renderers)
+		foreach (var r in m_renderers)
 		{
 			if (r == null) continue;
 			r.SetPropertyBlock(null);

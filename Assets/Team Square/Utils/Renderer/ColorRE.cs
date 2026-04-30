@@ -19,7 +19,7 @@ namespace Utils.RendererEffect
         {
             // this.Log($"Changing base color to {_newColor}.");
             var mpb = new MaterialPropertyBlock();
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 r.GetPropertyBlock(mpb);
                 mpb.SetColor("_BaseColor", _newColor);
@@ -32,7 +32,7 @@ namespace Utils.RendererEffect
         {
             var mpb = new MaterialPropertyBlock();
             int index = 0;
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 r.GetPropertyBlock(mpb);
                 mpb.SetColor("_BaseColor", new Color(
@@ -50,7 +50,7 @@ namespace Utils.RendererEffect
         {
             var mpb = new MaterialPropertyBlock();
 
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 r.GetPropertyBlock(mpb); // Récupère le block UNE SEULE FOIS
 
@@ -72,7 +72,7 @@ namespace Utils.RendererEffect
         {
             var mpb = new MaterialPropertyBlock();
             int index = 0;
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 r.GetPropertyBlock(mpb);
                 Color lerpedColor = Color.Lerp(mpb.GetColor("_BaseColor"), _targetColor, _targetColor.a);
@@ -99,7 +99,7 @@ namespace Utils.RendererEffect
                 // this.LogWarning("Original colors count does not match renderers count!");
 
             int idx = 0;
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 if (r == null) { idx++; continue; }
                 // this.Log($"Resetting color of renderer {r.name} to original color {originalColors[idx]}.");
@@ -113,11 +113,11 @@ namespace Utils.RendererEffect
         [Button]
         protected override void FillRenderers()
         {
-            renderers = new List<Renderer>(GetComponentsInChildren<Renderer>());
+            m_renderers = GetComponentsInChildren<Renderer>(includeInactive: true);
 
             originalColors.Clear();
             var mpb = new MaterialPropertyBlock();
-            foreach (var r in renderers)
+            foreach (var r in m_renderers)
             {
                 if (r == null)
                 {

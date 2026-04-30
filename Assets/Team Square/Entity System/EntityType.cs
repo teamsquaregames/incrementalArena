@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Flags]
 public enum EntityType
@@ -11,20 +12,25 @@ public enum EntityType
     WingedDemon = 1 << 4,
     Ogre = 1 << 5,
     OrcHeavy = 1 << 6,
-    Squeleton = 1 << 7,
-    SqueletonWarrior = 1 << 8,
+    Troll = 1 << 7,
+    Squeleton = 1 << 8,
+    SqueletonWarrior = 1 << 9,
 }
 
 public static class EntityTypeExtensions
 {
-    public static IEnumerable<EntityType> GetFlags(this EntityType entityType)
+    public static List<EntityType> GetFlags(this EntityType entityType)
     {
+        List<EntityType> flags = new List<EntityType>();
         foreach (EntityType value in Enum.GetValues(typeof(EntityType)))
         {
-            if (value == 0) continue;
-            if (entityType.HasFlag(value))
-                yield return value;
+            if ((entityType & value) == value)
+            {
+                Debug.Log($"EntityType {entityType} contains flag {value}");
+                flags.Add(value);
+            }
         }
+        return flags;
     }
 
     // public static bool IsSingleFlag(EntityType entityType)

@@ -159,6 +159,7 @@ namespace Stats
 
         public void AddDefinitionModifier(EntityType entityType, StatModifier mod)
         {
+            // this.Log($"Adding definition modifier for entity type '{entityType}' and stat type '{mod.statType}' with value {mod.value}");
             foreach (var flag in entityType.GetFlags())
             {
                 GetDefinitionStat(flag, mod.statType).AddModifier(mod);
