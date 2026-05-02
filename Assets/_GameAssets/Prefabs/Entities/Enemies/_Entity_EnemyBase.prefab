@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
   m_customRE: {fileID: 5286337094249129236}
-  m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
+  m_deathFxPefab: {fileID: 2256261514414695139, guid: 741a024de336a5547929fbf6fd38ebfd, type: 3}
   punchScale: {x: 0.3, y: -0.2, z: 0}
   punchDuration: 0.35
   punchVibrato: 6
@@ -532,6 +532,7 @@ MonoBehaviour:
   m_spawnVFXPrefab: {fileID: 7286299720277554319, guid: 914cc99f0c1d6ae498dfc27720cf8f7d, type: 3}
   m_animationTrigger: Spawn
   m_preSpawnDelay: 1
+  m_spawnDuration: 1
   m_vfxShrinkDuration: 0.5
 --- !u!114 &6488773765327163084
 MonoBehaviour:

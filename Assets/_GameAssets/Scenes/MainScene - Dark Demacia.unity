@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CW.Common::CW.Common.CwRotate
   angularVelocity: {x: 0, y: 180, z: 0}
   relativeTo: 0
-  lastRealtime: 100.391594
+  lastRealtime: 72799.93
 --- !u!4 &1758595348
 Transform:
   m_ObjectHideFlags: 0
@@ -1070,7 +1070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758595346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.5355372, z: 0, w: 0.8445116}
+  m_LocalRotation: {x: 0, y: 0.74871325, z: 0, w: -0.6628942}
   m_LocalPosition: {x: -7.5, y: 1, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

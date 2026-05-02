@@ -275,6 +275,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_renderers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: 'renderers.Array.data[0]'
       value: 
       objectReference: {fileID: 1187261412955116659}
@@ -288,6 +292,26 @@ PrefabInstance:
       objectReference: {fileID: 5891632867853056237}
     - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: 'renderers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2835296341123011444}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_renderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1187261412955116659}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_renderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 9099115167495231411}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_renderers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5891632867853056237}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_renderers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2835296341123011444}
+    - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: 'm_renderers.Array.data[4]'
       value: 
       objectReference: {fileID: 2835296341123011444}
     - target: {fileID: 5319705569266897079, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
@@ -310,6 +334,10 @@ PrefabInstance:
       propertyPath: m_dropEntries.Array.data[0].rewardObject
       value: 
       objectReference: {fileID: -1859593976463896301, guid: 713e9bce5770c304cb9ffad6607bd804, type: 3}
+    - target: {fileID: 5946857670838697958, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_deathFxPefab
+      value: 
+      objectReference: {fileID: 196886388626805212, guid: dacb0c28d4ec7d34091e2dd5786eb9c6, type: 3}
     - target: {fileID: 6638181796098616870, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_modelRenderers.Array.size
       value: 4

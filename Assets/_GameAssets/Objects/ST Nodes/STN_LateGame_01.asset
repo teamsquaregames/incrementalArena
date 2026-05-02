@@ -78,9 +78,9 @@ MonoBehaviour:
     statType: 5
     type: 0
     m_values:
-    - 20
+    - 50
   - id: STN_LateGame_01
-    entityType: 510
+    entityType: 39878654
     ability: {fileID: 0}
     step: 0
     application: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
     m_values:
     - 1000
   - id: STN_LateGame_01
-    entityType: 510
+    entityType: 39878654
     ability: {fileID: 0}
     step: 0
     application: 0

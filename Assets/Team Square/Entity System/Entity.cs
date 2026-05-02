@@ -19,6 +19,8 @@ public class Entity : MonoBehaviour, IPoolable
 
     [TitleGroup("Settings")]
     [SerializeField] private EntityType m_entityType;
+    [SerializeField] private float m_height = 2f;
+    [SerializeField] private float m_radius = 0.5f;
 
     private Dictionary<Type, EntityModule> m_modules = new Dictionary<Type, EntityModule>();
     private bool m_isStaggered;
@@ -32,6 +34,8 @@ public class Entity : MonoBehaviour, IPoolable
     public Collider Collider => m_collider;
     public bool IsStaggered => m_isStaggered;
     public bool IsSpawning => m_isSpawning;
+    public float Height => m_height;
+    public float Radius => m_radius;
 
     internal void SetSpawning(bool value) => m_isSpawning = value;
 

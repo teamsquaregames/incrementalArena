@@ -21,7 +21,7 @@ public class EntityHealthModule : EntityModule
 
     [Title("Dependencies")]
     [SerializeField, Required] private CustomRE m_customRE;
-    [SerializeField] private ParticleSystem m_deathFxPefab;
+    [SerializeField] private GameObject m_deathFxPefab;
 
     [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
     [FoldoutGroup("Feedback settings"), SerializeField, Min(0f)] private float punchDuration = 0.35f;
@@ -146,7 +146,7 @@ public class EntityHealthModule : EntityModule
 
         m_punchTween?.Kill(complete: true);
 
-        LeanPool.Spawn(m_deathFxPefab, transform.position, Quaternion.identity);
+        LeanPool.Spawn(m_deathFxPefab, transform.position + Vector3.up * Owner.Height / 2f, Quaternion.Euler(0, Random.Range(0, 360), 0));
 
         SoundManager.Instance.PlaySound(SoundKeys.SFX_Groan);
 

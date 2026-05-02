@@ -1980,7 +1980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2419637819542009624, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Name
-      value: Entity_Enemy_DarkKnight
+      value: Entity_Enemy_Chaos_DarkKnight
       objectReference: {fileID: 0}
     - target: {fileID: 2700922674355464894, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_renderers.Array.size
@@ -2036,7 +2036,7 @@ PrefabInstance:
       objectReference: {fileID: 1742337511535724406}
     - target: {fileID: 4312584928852569556, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_entityType
-      value: 1024
+      value: 4194304
       objectReference: {fileID: 0}
     - target: {fileID: 5286337094249129236, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: renderers.Array.size
