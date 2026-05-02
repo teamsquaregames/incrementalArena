@@ -40,6 +40,7 @@ public class GameConfig : ScriptableObject
         public bool infiniteRunDuration;
         public bool playerImmortality;
         public bool npcImmortality;
+        public bool oneHitKill;
         public bool usePrefabAbilities;
         public bool usePrefabEnemies;
     }

@@ -118,7 +118,7 @@ public class EntityHealthModule : EntityModule
         OnDamageTaken?.Invoke(amount, m_currentHealth);
         OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit, suppressFeedback);
 
-        if (m_currentHealth <= 0f)
+        if (m_currentHealth <= 0f || GameConfig.Instance.cheatSettings.oneHitKill)
         {
             //Todo : remettre cette ligne quand les anims serotn branchées
             //StartDeathAnimation();
