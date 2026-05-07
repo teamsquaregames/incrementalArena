@@ -8,9 +8,9 @@ namespace Utils
     public class AnimatorRootMotion : MonoBehaviour
     {
         [TitleGroup("Dependencies")]
-        [SerializeField, Required] Rigidbody m_rigidbody = null;
-        [SerializeField, Required] EntityMovementModule m_movementEM;
-        [SerializeField, Required]private Entity Owner;
+        [SerializeField, Required] private Rigidbody m_rigidbody = null;
+        [SerializeField, Required] private EntityMovementModule m_movementEM;
+        [SerializeField, Required] private Entity m_owner;
 
         [TitleGroup("Settings")]
         public bool ApplyRootMotion = true;
@@ -26,10 +26,10 @@ namespace Utils
 
         void MoveRootMotion()
         {
-            Vector3 newPosition = transform.position + Owner.Animator.deltaPosition;
+            Vector3 newPosition = transform.position + m_owner.Animator.deltaPosition;
             m_rigidbody.MovePosition(newPosition);
 
-            Quaternion newRotation = m_rigidbody.rotation * Owner.Animator.deltaRotation;
+            Quaternion newRotation = m_rigidbody.rotation * m_owner.Animator.deltaRotation;
             m_rigidbody.MoveRotation(newRotation);
         }
     }

@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
     private Vector3 m_finalPosition;
     private float m_duration;
     private float m_distance;
-    private float m_width;
+    private float m_radius;
 
     private bool m_isTraveling;
     private Vector3 m_lastPosition;
@@ -38,6 +38,7 @@ public class Projectile : MonoBehaviour
         m_excludeHitEntity = m_applicationInfo.excludeHitEntity;
         m_abilityModule = m_abilityCtx.module;
         m_abilityEffects = m_abilityCtx.abilityConfig.steps[m_abilityCtx.currentStepIndex].effects;
+        m_radius = m_applicationInfo.aoeInfo.Radius(m_abilityCtx.abilityConfig, m_abilityCtx.currentStepIndex, m_applicationIndex);
         instanceID = _instanceIndex;
 
         m_hitEntities.Clear();
@@ -67,26 +68,36 @@ public class Projectile : MonoBehaviour
 
     private void InitTransform()
     {
+        transform.localScale = m_radius * Vector3.one;
+
+        Vector3 direction = m_abilityCtx.caster.transform.forward;
+        Vector3 dirTowardAimedPosition = m_abilityCtx.aimPosition - m_abilityCtx.caster.transform.position;
+        if (dirTowardAimedPosition != Vector3.zero)
+        {
+            direction = dirTowardAimedPosition.normalized;
+        }
+
+        Quaternion directionRotation = direction == Vector3.zero ? Quaternion.identity : Quaternion.LookRotation(direction, Vector3.up);
+        Vector3 relativeStartPosition = directionRotation * m_projectileInfo.startPositionOffset;
+        if (m_projectileInfo.autoOffsetWithWidth)
+        {
+            relativeStartPosition += direction * (m_radius * 0.5f);
+        }
+
         switch (m_projectileInfo.origin)
         {
             case ProjectileInfo.Origin.Caster:
-                m_originPosition = m_abilityCtx.caster.transform.position + m_projectileInfo.startPositionOffset;
+                m_originPosition = m_abilityCtx.caster.transform.position + relativeStartPosition;
                 break;
             case ProjectileInfo.Origin.Target:
-                m_originPosition = m_abilityCtx.closestEntity != null ? m_abilityCtx.closestEntity.transform.position + m_projectileInfo.startPositionOffset : m_abilityCtx.aimPosition + m_projectileInfo.startPositionOffset;
+                m_originPosition = m_abilityCtx.closestEntity != null
+                    ? m_abilityCtx.closestEntity.transform.position + relativeStartPosition
+                    : m_abilityCtx.aimPosition + relativeStartPosition;
                 break;
         }
         transform.position = m_originPosition;
         // this.Log($"Initialized projectile transform with origin {m_originPosition} (base position {m_abilityCtx.caster.transform.position}, offset {m_projectileInfo.startPositionOffset})");
 
-        Vector3 dirTowardAimedPosition = m_abilityCtx.aimPosition - m_abilityCtx.caster.transform.position;
-        Quaternion rot = dirTowardAimedPosition == Vector3.zero ? Quaternion.identity : Quaternion.LookRotation(dirTowardAimedPosition, Vector3.up);
-
-        // We apply the offset in local space to make sure the projectile spawns at the correct position relative to the caster, even if the caster is rotated
-        Matrix4x4 casterEntityLocalMatrix = Matrix4x4.TRS(m_abilityCtx.caster.transform.localPosition, rot, m_abilityCtx.caster.transform.localScale);
-        m_originPosition += casterEntityLocalMatrix.MultiplyVector(m_projectileInfo.startPositionOffset + (m_projectileInfo.autoOffsetWithWidth ? (m_width * 0.5f * Vector3.forward) : Vector3.zero));
-
-        Vector3 direction = m_abilityCtx.caster.transform.forward;
 
         if (m_projectileInfo.spreadAngle > 0)
         {
@@ -124,8 +135,6 @@ public class Projectile : MonoBehaviour
 
     public void InitVisual()
     {
-        transform.localScale = m_width * Vector3.one;
-
         if (m_vfxs == null)
         {
             m_vfxs = GetComponentsInChildren<ParticleSystem>();

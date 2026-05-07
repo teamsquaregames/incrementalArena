@@ -54,10 +54,22 @@ VisualEffect:
       - m_Value: 0.2
         m_Name: SizeMin
         m_Overridden: 1
+      - m_Value: 3
+        m_Name: SizeMax
+        m_Overridden: 1
     m_Vector2f:
       m_Array:
       - m_Value: {x: 15, y: 30}
         m_Name: Burst
+        m_Overridden: 1
+      - m_Value: {x: 2, y: 5}
+        m_Name: Explosion - Size
+        m_Overridden: 1
+      - m_Value: {x: 0.3, y: 0.3}
+        m_Name: Explosion - Lifetime
+        m_Overridden: 1
+      - m_Value: {x: 10, y: 5}
+        m_Name: Explosion - Burst
         m_Overridden: 1
     m_Vector3f:
       m_Array:

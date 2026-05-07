@@ -841,7 +841,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5ca27f00097eb8948a7a47e3e7cb54a0, type: 2}
@@ -1987,7 +1987,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bdd5e14d00e50554e95ff350094cce70, type: 2}
@@ -2580,7 +2580,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bdd5e14d00e50554e95ff350094cce70, type: 2}
@@ -3338,7 +3338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Utils.AnimatorRootMotion
   m_rigidbody: {fileID: 5386623499183901347}
   m_movementEM: {fileID: 5487824343631458890}
-  Owner: {fileID: 7382554555577117163}
+  m_owner: {fileID: 7382554555577117163}
   ApplyRootMotion: 1
 --- !u!1 &7992788702024180341
 GameObject:
@@ -3551,7 +3551,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bdd5e14d00e50554e95ff350094cce70, type: 2}

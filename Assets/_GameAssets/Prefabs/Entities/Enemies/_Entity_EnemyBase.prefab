@@ -179,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 6338936837335597637}
     - target: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Height
-      value: 1.1964527
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_Radius
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
   m_customRE: {fileID: 5286337094249129236}
   m_deathFxPefab: {fileID: 2256261514414695139, guid: 741a024de336a5547929fbf6fd38ebfd, type: 3}
+  m_ragdollManager: {fileID: 0}
   punchScale: {x: 0.3, y: -0.2, z: 0}
   punchDuration: 0.35
   punchVibrato: 6

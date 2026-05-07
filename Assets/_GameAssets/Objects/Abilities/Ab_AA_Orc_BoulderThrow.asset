@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99695065416755648a4fa7bda0778400, type: 3}
+  m_Name: Ab_AA_Orc_BoulderThrow
+  m_EditorClassIdentifier: Assembly-CSharp::AbilitySO
+  id: aa_orc
+  abilityName: Sword attack
+  icon: {fileID: 21300000, guid: dda88a6890a68c34596d3a22c1b80ec3, type: 3}
+  description: Sword attack ma gueule
+  range: {x: 2, y: 10}
+  cooldown: 0
+  sfx: 0
+  sfxDelay: 0
+  steps:
+  - isRooting: 1
+    targetingInfo:
+      quickTarget: 2
+      target: 0
+      delayInterval: 0
+      retriggerAnimation: 0
+    applicationInfos:
+    - effectZoneType: 2
+      teamApplication: 0
+      projectileInfo:
+        prefab: {fileID: 7935610990029654620, guid: cde98482626a5a34c8d7d8efe5594d7c, type: 3}
+        type: 0
+        speed: 10
+        distance: 10
+        lifeTime: 0
+        projectileTrajectory: 0
+        curveTopHeight: 0
+        trajectoryCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        origin: 0
+        startPositionOffset: {x: 0, y: 2, z: 2}
+        autoOffsetWithWidth: 0
+        spreadAngle: 0
+        randomRepartition: 0
+        applyEffectThroughTrajectory: 1
+        frequency: 0
+        piercingAmount: 1
+      aoeInfo:
+        effectShape: 0
+        radius: 0.5
+        scale: {x: 6, y: 2, z: 3}
+        angle: 0
+        range: 0
+        offset: {x: 0, y: 0, z: 0}
+        time: 0
+        duration: 0
+        frequency: 0
+        stackEffect: 0
+      delay: 0
+      repeatCount: 1
+      repeatDuration: 0
+      repeatFX: 0
+      excludeHitEntity: 1
+    mainVfx: {fileID: 0}
+    mainVfxGraph: {fileID: 0}
+    mainVFXPosition: 0
+    mainVFXOffset: {x: 0, y: 0, z: 0}
+    hitVfx: {fileID: 0}
+    hitVfxGraph: {fileID: 6240724845557963071, guid: dfe19af35aa444843b7b5c8626a4560d, type: 3}
+    activeSfx: 9
+    abilityClip: {fileID: 1827226128182048838, guid: aa7f263991c49fe47ac2b082d1eb98cd, type: 3}
+    effects:
+    - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
+      value: 1

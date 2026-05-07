@@ -64,9 +64,45 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6253419346561236765, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6236717839708234299, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4992316128810278961, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2297050060418144951, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -433321130973187031, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
       propertyPath: m_Name
       value: Orc
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132259746530767565, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757942895074823299, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039195451696700644, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138573156914995100, guid: 1f2ba085ae087bd4a8f1f9c8ee42f053, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -165,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Utils.AnimatorRootMotion
   m_rigidbody: {fileID: 5386623499183901347}
   m_movementEM: {fileID: 5487824343631458890}
-  Owner: {fileID: 7382554555577117163}
+  m_owner: {fileID: 7382554555577117163}
   ApplyRootMotion: 1
 --- !u!137 &8061885966267596817 stripped
 SkinnedMeshRenderer:

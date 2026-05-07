@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour, IPoolable
     [TitleGroup("References")]
     [SerializeField, Required] private Animator m_animator;
     [SerializeField, Required] private Collider m_collider;
+    [SerializeField] private RagdollManager m_ragdollManager;
 
     [FoldoutGroup("Status"), SerializeField] private AnimationCurve m_knockUpCurve;
     [FoldoutGroup("Status"), SerializeField] private Transform m_modelT;
@@ -46,6 +47,7 @@ public class Entity : MonoBehaviour, IPoolable
     {
         m_collider = GetComponent<Collider>();
         m_animator = GetComponentInChildren<Animator>();
+        m_ragdollManager = GetComponentInChildren<RagdollManager>();
     }
 
     private void RegisterModules()
@@ -116,6 +118,8 @@ public class Entity : MonoBehaviour, IPoolable
         // this.Log($"Spawning entity {name} of type {EntityType}");
         RegisterModules();
         Register();
+        if (m_ragdollManager != null)
+            m_ragdollManager.DisableRagdoll();
     }
 
     private void OnEnable()

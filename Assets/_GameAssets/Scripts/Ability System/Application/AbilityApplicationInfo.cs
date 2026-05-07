@@ -15,7 +15,8 @@ public class AbilityApplicationInfo
     }
 
     [EnumToggleButtons]
-    public Type effectZoneType;
+    public Type effectZoneType;    
+    public TeamApplication teamApplication = TeamApplication.Opponent;
 
     [ShowIf("@this.effectZoneType == Type.Projectile"), HideLabel(), InlineProperty()]
     public ProjectileInfo projectileInfo;

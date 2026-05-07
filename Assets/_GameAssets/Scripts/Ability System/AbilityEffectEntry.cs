@@ -13,6 +13,5 @@ public enum TeamApplication
 public class AbilityEffectEntry
 {
     public AbilityEffect effect;
-    public TeamApplication teamApplication = TeamApplication.Opponent;
     public float value;
 }

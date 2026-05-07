@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6894439375490927801, guid: 741a024de336a5547929fbf6fd38ebfd, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6894439375490927801, guid: 741a024de336a5547929fbf6fd38ebfd, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Value

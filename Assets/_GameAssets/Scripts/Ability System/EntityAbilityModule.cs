@@ -19,7 +19,7 @@ public class EntityAbilityModule : EntityModule
     public const string ABILITY_CLIP_SLOT = "Ability";
     public const string IS_ATTACKING = "IsAttacking";
     public const string TRIGGER_ABILITY = "Ability";
-    
+
     public event Action<AbilityConfig> OnAbilityUsed;
     public event Action<AbilityConfig> OnAbilityAdded;
     public event Action<AbilityConfig> OnAbilityRemoved;
@@ -35,7 +35,7 @@ public class EntityAbilityModule : EntityModule
     [Header("Abilities")]
     [SerializeField] private List<AbilityConfig> m_abilities = new List<AbilityConfig>();
 
-    
+
     private AbilityConfig m_activeAbility;
     private AnimatorOverrideController m_overrideController;
     private AbilityContext m_activeContext;
@@ -430,11 +430,8 @@ public class EntityAbilityModule : EntityModule
         {
             foreach (var entry in activeStep.effects)
             {
-                if (ResolveTeamApplication(entry.teamApplication, target, Owner))
-                {
-                    m_activeContext.value = entry.value;
-                    entry.effect?.Execute(m_activeContext, target);
-                }
+                m_activeContext.value = entry.value;
+                entry.effect?.Execute(m_activeContext, target);
             }
         }
     }
@@ -443,25 +440,9 @@ public class EntityAbilityModule : EntityModule
     {
         foreach (var entry in effects)
         {
-            if (ResolveTeamApplication(entry.teamApplication, target, context.caster))
-            {
-                context.value = entry.value;
-                entry.effect?.Execute(context, target);
-            }
+            context.value = entry.value;
+            entry.effect?.Execute(context, target);
         }
     }
 
-    private bool ResolveTeamApplication(TeamApplication application, Entity target, Entity owner)
-    {
-        target.TryGetModule(out EntityTeamModule targetTeamModule);
-        owner.TryGetModule(out EntityTeamModule ownerTeamModule);
-        bool isAlly = targetTeamModule.Team == ownerTeamModule.Team;
-
-        if (application.HasFlag(TeamApplication.Allies) && isAlly)
-            return true;
-        if (application.HasFlag(TeamApplication.Opponent) && !isAlly)
-            return true;
-
-        return false;
-    }
 }

@@ -239,7 +239,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2a12d3fc0532ba64e972160db18dfd99, type: 2}
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Utils.AnimatorRootMotion
   m_rigidbody: {fileID: 5386623499183901347}
   m_movementEM: {fileID: 5487824343631458890}
-  Owner: {fileID: 7382554555577117163}
+  m_owner: {fileID: 0}
   ApplyRootMotion: 1
 --- !u!1 &586445177596508316
 GameObject:
@@ -2120,17 +2120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d1b1e1ebf390d4eb881e4c6f11a5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityMovementModule
---- !u!114 &7382554555577117163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4312584928852569556, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
-  m_PrefabInstance: {fileID: 6750187086863156287}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity
 --- !u!1001 &8442176633395577685
 PrefabInstance:
   m_ObjectHideFlags: 0

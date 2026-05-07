@@ -915,7 +915,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 514bc0900a458e640a1b39b3c700b8ca, type: 2}
@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Utils.AnimatorRootMotion
   m_rigidbody: {fileID: 5386623499183901347}
   m_movementEM: {fileID: 5487824343631458890}
-  Owner: {fileID: 7382554555577117163}
+  m_owner: {fileID: 7382554555577117163}
   ApplyRootMotion: 1
 --- !u!1 &4978017586087285354
 GameObject:
@@ -2356,7 +2356,7 @@ SkinnedMeshRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 514bc0900a458e640a1b39b3c700b8ca, type: 2}
@@ -3673,6 +3673,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1512828857160941789, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+      propertyPath: m_autoAttack
+      value: 
+      objectReference: {fileID: 11400000, guid: 705c4d5be3c49244c8b7a8796b262bcd, type: 2}
     - target: {fileID: 1687823931497025180, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_Mass
       value: 0.5

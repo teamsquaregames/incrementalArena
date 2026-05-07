@@ -22,6 +22,7 @@ public class EntityHealthModule : EntityModule
     [Title("Dependencies")]
     [SerializeField, Required] private CustomRE m_customRE;
     [SerializeField] private GameObject m_deathFxPefab;
+    [SerializeField] private RagdollManager m_ragdollManager;
 
     [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
     [FoldoutGroup("Feedback settings"), SerializeField, Min(0f)] private float punchDuration = 0.35f;
@@ -161,6 +162,8 @@ public class EntityHealthModule : EntityModule
     {
         Owner.Animator.Play("Death");
         m_customRE.ChangeFloat("_Saturation", 0f);
+        if (m_ragdollManager != null)
+            m_ragdollManager.EnableRagdoll();
 
         yield return new WaitForSeconds(m_deathDespawnDelay);
 

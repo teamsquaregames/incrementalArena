@@ -117,24 +117,27 @@ public static class ResolveApplication
             abilityModule.SetApplicationGizmo(gizmoData);
         }
 
-        return results;
+        return ResolveTeamApplication(results, applicationInfo.teamApplication, context.closestEntity, context.caster);
     }
 
-    // private static void UpdateAoeGizmo(AbilityContext context, AbilityApplicationInfo applicationInfo, TargetingInfo targetingInfo, Vector3 position, bool _hit)
-    // {
-    //     if (context?.Caster == null) return;
+    private static List<Entity> ResolveTeamApplication(List<Entity> entitiesTested, TeamApplication application, Entity target, Entity owner)
+    {
+        owner.TryGetModule(out EntityTeamModule ownerTeamModule);
+        foreach (Entity entity in entitiesTested)
+        {
+            entity.TryGetModule(out EntityTeamModule entityTeamModule);
 
-    //     if (context.Caster.TryGetModule(out EntityAbilityModule abilityModule))
-    //     {
-    //         abilityModule.SetApplicationGizmo(new GizmoDrawData
-    //         {
-    //             applicationInfo = applicationInfo,
-    //             targetingInfo = targetingInfo,
-    //             position = position,
-    //             hit = _hit
-    //         });
-    //     }
-    // }
+            if (application.HasFlag(TeamApplication.Allies) && entityTeamModule.Team != ownerTeamModule.Team)
+                entitiesTested.Remove(entity);
+            else if (application.HasFlag(TeamApplication.Opponent) && entityTeamModule.Team == ownerTeamModule.Team)
+                entitiesTested.Remove(entity);
+
+            Debug.Log($"Entity {entity.name} is on team {entityTeamModule.Team}, owner is on team {ownerTeamModule.Team}, application is {application}. Entity {(entitiesTested.Contains(entity) ? "is" : "is not")} included in final target list.");
+        }
+
+        return entitiesTested;
+    }
+
 
     private static List<Entity> ProjectileApplication(AbilityApplicationInfo applicationInfo, AbilityContext context, int applicationIndex)
     {
@@ -142,4 +145,5 @@ public static class ResolveApplication
         LeanPool.Spawn(applicationInfo.projectileInfo.prefab, new Vector3(), Quaternion.identity).Spawn(context, applicationIndex, context.currentStepIndex);
         return new List<Entity>();
     }
+
 }
