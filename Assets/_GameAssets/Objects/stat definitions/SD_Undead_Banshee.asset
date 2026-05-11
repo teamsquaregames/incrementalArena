@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194d038a401a21a498957795bca395d6, type: 3}
   m_Name: SD_Undead_Banshee
   m_EditorClassIdentifier: Assembly-CSharp::Stats.EntityStatDefinition
-  entityType: 64
+  entityType: 4096
   baseValues:
     keys: 03000000000000000200000001000000080000000a000000
     values:
@@ -20,5 +20,5 @@ MonoBehaviour:
     - 300
     - 0.3
     - 20
-    - 0
+    - 10
     - 1

@@ -17,7 +17,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
   disabledShaderPasses:
@@ -86,7 +86,7 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _AlphaToMask: 1
-    - _B_Metallic: 0.25
+    - _B_Metallic: 0.583
     - _B_Smoothness: 0.25
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -101,6 +101,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Fresnel_Power: 11.47
     - _G_Metallic: 0
     - _G_Smoothness: 0.4
     - _GlossMapScale: 0
@@ -114,6 +115,7 @@ Material:
     - _R_Metallic: 0
     - _R_Smoothness: 0
     - _ReceiveShadows: 1
+    - _Saturation: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -127,14 +129,17 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.38364768, g: 0.29799047, b: 0.36366096, a: 1}
-    - _Color2: {r: 0.37187958, g: 0.49056602, b: 0.31624535, a: 1}
-    - _Color3: {r: 0.618, g: 0.618, b: 0.618, a: 1}
+    - _Color1: {r: 0.034264863, g: 0.10876044, b: 0.2075471, a: 1}
+    - _Color2: {r: 0.13127448, g: 0.36007258, b: 0.4716981, a: 1}
+    - _Color3: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
     - _CorneaColor: {r: 0.29964516, g: 0.20015018, b: 0.55345905, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EyeWhiteColor: {r: 0.8, g: 0.8, b: 0.8, a: 0}
     - _Flash: {r: 1, g: 1, b: 1, a: 0}
     - _FlashColor: {r: 4, g: 4, b: 4, a: 0}
+    - _Fresnel_Color: {r: 0, g: 1, b: 1, a: 1}
+    - _Fresnel_Colorasdad: {r: 0, g: 0, b: 0, a: 1}
+    - _Fresnel_Emission: {r: 0, g: 1, b: 1, a: 1}
     - _LipColor: {r: 0.80784315, g: 0.023529412, b: 0.16078432, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

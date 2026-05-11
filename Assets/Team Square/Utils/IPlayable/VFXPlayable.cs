@@ -10,6 +10,7 @@ namespace Utils.Playable
 
         public void Play()
         {
+            this.Log("Play called.");
             if (m_interactVFX != null)
             {
                 foreach (var vfx in m_interactVFX)

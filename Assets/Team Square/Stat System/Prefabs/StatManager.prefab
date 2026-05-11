@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats.StatManager
   m_entityStatDefinitions:
-  - {fileID: 11400000, guid: 1198e90af1d78d1499d65e7d61757129, type: 2}
-  - {fileID: 11400000, guid: 872702fced129e1488f1f73ed51c0a4c, type: 2}
   - {fileID: 11400000, guid: 74f944034adc43c48bd53b7a7b5c88af, type: 2}
+  - {fileID: 11400000, guid: ccfab0cc983ea454092e14809468a1cb, type: 2}
+  - {fileID: 11400000, guid: 1198e90af1d78d1499d65e7d61757129, type: 2}
   - {fileID: 11400000, guid: e978ca2a8efef9b44bc03bab4f6a8bbc, type: 2}
+  - {fileID: 11400000, guid: 872702fced129e1488f1f73ed51c0a4c, type: 2}
   - {fileID: 11400000, guid: f3c3fc54ace52ae41b594a8d175f180e, type: 2}
   - {fileID: 11400000, guid: 1e385c42166c4f94fb7e53f364813980, type: 2}
-  - {fileID: 11400000, guid: c3a55707cd09bb349b44ee3cfee0a01f, type: 2}
   - {fileID: 11400000, guid: d8d1bdd69b264574ab85cc5ffa124dff, type: 2}
-  - {fileID: 11400000, guid: ccfab0cc983ea454092e14809468a1cb, type: 2}
+  - {fileID: 11400000, guid: c3a55707cd09bb349b44ee3cfee0a01f, type: 2}
   - {fileID: 11400000, guid: d5fee3fc845cf4c469ba21e5f4a4fc26, type: 2}
   - {fileID: 11400000, guid: 601ebbbe84715134a8e68a95d2badbb4, type: 2}
   - {fileID: 11400000, guid: 78c56037594e797458f15e66bcdc8d1f, type: 2}

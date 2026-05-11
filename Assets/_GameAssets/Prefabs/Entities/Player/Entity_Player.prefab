@@ -760,6 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41d0e8534e401a46b2fd72268d61fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAE
+  m_footStepsPlayables:
+  - {fileID: 3306671823826744006}
 --- !u!114 &1054936620964446158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +912,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7872888403787443138, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
   m_PrefabInstance: {fileID: 2906711471770048589}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &6674050381857226490 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8415059298261984951, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
+  m_PrefabInstance: {fileID: 2906711471770048589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4230526371491334551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -976,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415059298261984951, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8415059298261984951, guid: ca7f1470895240647a27e8844a130f3e, type: 3}
       propertyPath: ShapeModule.angle
@@ -1479,7 +1486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.Playable.VFXPlayable
   m_interactVFX:
-  - {fileID: 0}
+  - {fileID: 6674050381857226490}
   m_playFlags: 1
 --- !u!114 &5779220140939024795 stripped
 MonoBehaviour:

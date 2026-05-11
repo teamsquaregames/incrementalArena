@@ -4,11 +4,12 @@ using Utils.Playable;
 
 public class EntityAE : MonoBehaviour
 {
+    [SerializeField] private VFXPlayable[] m_footStepsPlayables;
+
     private Entity m_entity;
     private EntityAbilityModule m_abilityModule;
     private EntitySpawnModule m_spawnModule;
 
-    private IPlayable[] m_playables;
 
 
     private void Awake()
@@ -16,7 +17,6 @@ public class EntityAE : MonoBehaviour
         m_entity = GetComponentInParent<Entity>();
         m_abilityModule = GetComponentInParent<EntityAbilityModule>();
         m_spawnModule = GetComponentInParent<EntitySpawnModule>();
-        m_playables = GetComponentsInChildren<IPlayable>();
     }
 
 
@@ -63,7 +63,7 @@ public class EntityAE : MonoBehaviour
 
     public void OnFootStep()
     {
-        foreach (IPlayable playable in m_playables)
+        foreach (IPlayable playable in m_footStepsPlayables)
         {
             if ((playable.PlayFlags & PlayFlags.OnFootStep) != 0)
                 playable.Play();

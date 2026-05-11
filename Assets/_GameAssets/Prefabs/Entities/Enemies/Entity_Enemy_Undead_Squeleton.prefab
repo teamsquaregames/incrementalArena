@@ -646,6 +646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41d0e8534e401a46b2fd72268d61fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAE
+  m_footStepsPlayables:
+  - {fileID: 549925381241260787}
 --- !u!114 &7974555597698734300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Utils.AnimatorRootMotion
   m_rigidbody: {fileID: 5386623499183901347}
   m_movementEM: {fileID: 5487824343631458890}
-  Owner: {fileID: 7382554555577117163}
+  m_owner: {fileID: 7382554555577117163}
   ApplyRootMotion: 1
 --- !u!1 &7731445588775407000
 GameObject:
@@ -2286,6 +2288,17 @@ PrefabInstance:
       addedObject: {fileID: 7731445588775899564}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+--- !u!114 &549925381241260787 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6488773765327163084, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
+  m_PrefabInstance: {fileID: 6750187086863156287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8011941fa3a1be64184820babbc115dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Utils.Playable.VFXPlayable
 --- !u!4 &1866722747172709200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4920909466871179119, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}

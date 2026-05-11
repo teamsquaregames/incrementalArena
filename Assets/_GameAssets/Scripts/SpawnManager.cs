@@ -31,7 +31,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnRound(int roundNumber)
     {
-        // this.Log($"Spawning round {roundNumber}. Current enemy prefabs: {string.Join(", ", m_enemyPrefabs)}, count: {Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave))}");
         int count = Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave));
 
         if (!GameConfig.Instance.cheatSettings.usePrefabEnemies)
@@ -39,6 +38,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 .Select(id => GameAssets.Instance.GetEnemy(id))
                 .Where(e => e != null)
                 .ToList();
+        this.Log($"Spawning round {roundNumber}. Current enemy prefabs: {string.Join(", ", m_enemyPrefabs)}, count: {Mathf.Max(1, (int)StatManager.Instance.GetDefinitionValue(EntityType.Player, StatType.EnemiesPerWave))}");
 
         float[] spawnWeight = new float[m_enemyPrefabs.Count];
         for (int i = 0; i < m_enemyPrefabs.Count; i++)
@@ -46,7 +46,7 @@ public class SpawnManager : Singleton<SpawnManager>
             spawnWeight[i] = StatManager.Instance.GetDefinitionValue(m_enemyPrefabs[i].EntityType, StatType.SpawnWeight);
         }
 
-        // Debug.Log($"Spawning round {roundNumber} with {count} enemies. Spawn weights: {string.Join(", ", spawnWeight)}");
+        Debug.Log($"Spawning round {roundNumber} with {count} enemies. Spawn weights: {string.Join(", ", spawnWeight)}");
 
         for (int i = 0; i < count; i++)
         {
@@ -54,7 +54,7 @@ public class SpawnManager : Singleton<SpawnManager>
             Vector3 spawnPos = CusRandom.RectangleMin(m_spawnRangeOuter, m_spawnRangeMin);
             StartCoroutine(SpawnEnemyCR(m_enemyPrefabs[enemyIndex], spawnPos, roundNumber));
         }
-        // this.Log($"Spawned {count} enemies for round {roundNumber}. Enemies: {string.Join(", ", m_roundEnemies)}");
+        this.Log($"Spawned {count} enemies for round {roundNumber}. Enemies: {string.Join(", ", m_roundEnemies)}");
     }
 
 
