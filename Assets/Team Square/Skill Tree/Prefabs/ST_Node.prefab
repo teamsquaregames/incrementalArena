@@ -920,18 +920,22 @@ MonoBehaviour:
       m_backgroundSprite: {fileID: 21300000, guid: e61d7bc64373af044b1773d21f4dd9e3, type: 3}
       m_sigilSprite: {fileID: 21300000, guid: e97fb61a3c3eac347a3e295fdc1a92a3, type: 3}
       m_scale: 1
+      m_distanceOffset: 0
     - m_frameSprite: {fileID: 21300000, guid: 99fdb6f7ed117964f8db40047b810d4c, type: 3}
       m_backgroundSprite: {fileID: 21300000, guid: 51191b4b4e7bea34da8497d2e5126353, type: 3}
       m_sigilSprite: {fileID: 21300000, guid: eaca9fda47f22ab4b9382d956d2ea18a, type: 3}
       m_scale: 1
+      m_distanceOffset: 0
     - m_frameSprite: {fileID: 21300000, guid: d3a4eceac4d741c45b13f6a723943ef2, type: 3}
       m_backgroundSprite: {fileID: 21300000, guid: e61d7bc64373af044b1773d21f4dd9e3, type: 3}
       m_sigilSprite: {fileID: 21300000, guid: e1e3596442d28404fac7ac52701aba13, type: 3}
       m_scale: 2
+      m_distanceOffset: 50
     - m_frameSprite: {fileID: 21300000, guid: 0ea79be43942f64458790921ea11a0c1, type: 3}
       m_backgroundSprite: {fileID: 21300000, guid: 893c8179655b2ed4e9d52edfd4fa1915, type: 3}
       m_sigilSprite: {fileID: 21300000, guid: 2d28ecda15092704181dbcab6013bbe8, type: 3}
       m_scale: 2
+      m_distanceOffset: 50
   m_levelsParent: {fileID: 3322733677100462244}
   m_unlimitedLevelParent: {fileID: 6163463901797026130}
   m_unlimitedLevelText: {fileID: 4985839552157009923}

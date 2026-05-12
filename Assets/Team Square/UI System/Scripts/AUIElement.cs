@@ -3,8 +3,8 @@ using UnityEngine;
 
 public abstract class AUIElement : MonoBehaviour
 {
-    [TitleGroup("Dependencies")]
-    [SerializeField, Required] protected RectTransform m_content;
+    [FoldoutGroup("Dependencies"), Required]
+    [SerializeField] protected RectTransform m_content;
 
     protected virtual void Start()
     {

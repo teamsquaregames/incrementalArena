@@ -55,7 +55,7 @@ public class LevelManager : Singleton<LevelManager>
         endRoundUIC.SetAnnouncementText($"Round {m_currentRound}");
         endRoundUIC.Open();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
 
         IsWaveActive = true;
         m_spawnManager.SpawnRound(m_currentRound);
@@ -67,12 +67,12 @@ public class LevelManager : Singleton<LevelManager>
         m_crowdRewards.SpawnRewards();
         m_crowdManager.CrowdCheer();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3.5f);
         
         LeanPool.Spawn(m_collectAllCoinsVFX, Player.transform.position, Quaternion.identity, Player.transform);
         m_crowdRewards.CollectAllRewards();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         StartCoroutine(StartRound());
     }
 

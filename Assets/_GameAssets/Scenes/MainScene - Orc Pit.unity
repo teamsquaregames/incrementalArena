@@ -2035,38 +2035,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1879391398114833914, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2951453023914597902, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_spawnRangeMin.x
-      value: 7.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_spawnRangeMin.y
-      value: 2.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_spawnRangeOuter.x
-      value: 9.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115648040748329235, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_spawnRangeOuter.y
-      value: 4.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914373755208109128, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5914373755208109128, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2106,46 +2074,6 @@ PrefabInstance:
     - target: {fileID: 7010389023047661412, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_showGizmos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_launchAngle
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_velocityRangeX.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_velocityRangeX.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_velocityRangeY.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_velocityRangeY.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_velocityRangeZ.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_velocityRangeZ.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_spawnCenterOffset.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8419906303060280720, guid: 39fac12b31d205b4b88a2179fe35b27e, type: 3}
-      propertyPath: m_centerVelocityStrength
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

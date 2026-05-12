@@ -36,11 +36,11 @@ public class CustomButton : AUIElement, IPointerClickHandler, IPointerEnterHandl
     #endregion
 
     #region Dependencies
-    [TitleGroup("Dependencies"), Required]
+    [FoldoutGroup("Dependencies"), Required]
     [SerializeField] protected Button m_button;
-    [TitleGroup("Dependencies")]
+    [FoldoutGroup("Dependencies")]
     [SerializeField] protected RectTransform m_lockedContent;
-    [TitleGroup("Dependencies")]
+    [FoldoutGroup("Dependencies")]
     [SerializeField] private GameObject m_highlightObject;
     #endregion
 

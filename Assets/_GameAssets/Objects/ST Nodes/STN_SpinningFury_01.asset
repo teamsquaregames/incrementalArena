@@ -17,7 +17,7 @@ MonoBehaviour:
   m_levelingType: 0
   m_maxLevel: 1
   m_rank: 2
-  m_icon: {fileID: 21300000, guid: 561862b433e86744aa6c0edf7df4cf36, type: 3}
+  m_icon: {fileID: 21300000, guid: 4ea15211087086f4083b0c65feb90ba6, type: 3}
   m_description: Unlock the spinning fury ability.
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}

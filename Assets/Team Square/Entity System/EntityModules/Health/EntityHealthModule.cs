@@ -138,7 +138,7 @@ public class EntityHealthModule : EntityModule
         OnDeath = null;
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
         // this.Log($"{Owner} has died.");
         if (GameConfig.Instance.cheatSettings.npcImmortality)

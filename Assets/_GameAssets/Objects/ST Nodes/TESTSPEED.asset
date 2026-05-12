@@ -10,19 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_AngelAssault_01
+  m_Name: TESTSPEED
   m_EditorClassIdentifier: 
-  m_displayName: Angel Assault
-  m_id: STN_AngelAssault_01
+  m_displayName: Movement Speed
+  m_id: TESTSPEED
   m_levelingType: 0
-  m_maxLevel: 1
-  m_rank: 2
-  m_icon: {fileID: 21300000, guid: 385e76ec12cc55a43828f87031b6e01a, type: 3}
-  m_description: Unlock the Angel Assault ability.
+  m_maxLevel: 3
+  m_rank: 0
+  m_icon: {fileID: 21300000, guid: 9926fa01cc37c9242aecf3c1cf2b17e3, type: 3}
+  m_description: More time for killing.
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 3200000000000000
+    m_amount: 230000000000000000000000000000000000000000000000
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
-  m_statModifiers: []
+  m_statModifiers:
+  - id: TESTSPEED
+    entityType: 1
+    ability: {fileID: 0}
+    step: 0
+    application: 0
+    statType: 3
+    type: 0
+    m_values:
+    - 0.5
+    - 0
+    - 0

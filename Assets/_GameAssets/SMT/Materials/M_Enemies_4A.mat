@@ -89,6 +89,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Enable_Emission: 1
+    - _Fresnel_Power: 6
     - _GlossMapScale: 1
     - _Glossiness: 0.2
     - _GlossyReflections: 1
@@ -117,6 +118,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Fresnel_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7572971896486439066

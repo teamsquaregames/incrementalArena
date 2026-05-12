@@ -26,6 +26,9 @@ MonoBehaviour:
     - orc
     - troll
     - winged_demon
+    - banshee
+    - squeleton
+    - squeleton_warrior
     values:
     - {fileID: 7382554555577117163, guid: f43592b3593101a4c839509b4cda8750, type: 3}
     - {fileID: 7382554555577117163, guid: e35c1ebc83e6ecf48b505acfab2beb76, type: 3}
@@ -33,6 +36,9 @@ MonoBehaviour:
     - {fileID: 7382554555577117163, guid: 7b000edf56f9f5d45aca0ba4e943dd52, type: 3}
     - {fileID: 7382554555577117163, guid: f37660598bc0b674180b183033518183, type: 3}
     - {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
+    - {fileID: 7382554555577117163, guid: 81a743ac12c6af241802c945ea4a572d, type: 3}
+    - {fileID: 7382554555577117163, guid: 012044f37b9cb0a49a301b04c2322245, type: 3}
+    - {fileID: 7382554555577117163, guid: bfeeb54c6a7b3c14faaa0871b1e016cd, type: 3}
   abilities:
   - {fileID: 11400000, guid: 3f97017eeaddef14ebf6273b28b765db, type: 2}
   - {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
@@ -41,3 +47,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9d025fc09a93950449b81621f88b13d0, type: 2}
   - {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   - {fileID: 11400000, guid: 3940b4dbfb96ef849b4dd43d5aa4c8f1, type: 2}
+  - {fileID: 11400000, guid: 705c4d5be3c49244c8b7a8796b262bcd, type: 2}

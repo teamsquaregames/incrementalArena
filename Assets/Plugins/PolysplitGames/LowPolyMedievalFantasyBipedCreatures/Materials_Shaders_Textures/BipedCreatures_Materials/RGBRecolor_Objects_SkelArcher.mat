@@ -101,6 +101,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Fresnel_Power: 4
     - _G_Metallic: 0
     - _G_Smoothness: 0.4
     - _GlossMapScale: 0
@@ -136,6 +137,7 @@ Material:
     - _EyeWhiteColor: {r: 0.8, g: 0.8, b: 0.8, a: 0}
     - _Flash: {r: 1, g: 1, b: 1, a: 0}
     - _FlashColor: {r: 4, g: 4, b: 4, a: 0}
+    - _Fresnel_Emission: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
     - _LipColor: {r: 0.80784315, g: 0.023529412, b: 0.16078432, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

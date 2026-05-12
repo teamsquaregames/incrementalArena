@@ -48,12 +48,14 @@ namespace Stats
             // this.Log($"Getting definition stat for entity type '{entityType}' and stat type '{statType}'");
             if (!m_definitionStats.TryGetValue(entityType, out var statDict))
             {
+                // this.Log($"Creating new stat dictionary for entity type '{entityType}'");
                 statDict = new Dictionary<StatType, Stat>();
                 m_definitionStats[entityType] = statDict;
             }
 
             if (!statDict.TryGetValue(statType, out var stat))
             {
+                // this.Log($"Creating new stat for entity type '{entityType}' and stat type '{statType}'");
                 stat = new Stat(0f);
                 statDict[statType] = stat;
             }

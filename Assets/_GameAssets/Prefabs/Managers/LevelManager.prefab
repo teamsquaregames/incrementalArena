@@ -69,7 +69,8 @@ MonoBehaviour:
   m_enemyPrefabs:
   - {fileID: 7382554555577117163, guid: f43592b3593101a4c839509b4cda8750, type: 3}
   - {fileID: 7382554555577117163, guid: fffe0a28262388747b88f0411b6cc37a, type: 3}
-  m_spawnRange: {x: 10, y: 5}
+  m_spawnRangeOuter: {x: 9.61, y: 4.32}
+  m_spawnRangeMin: {x: 7.06, y: 2.42}
   m_spawnRangeGizmos: 1
   m_enemyScaler: {fileID: 4295228495593665971}
 --- !u!114 &4295228495593665971
@@ -118,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 2951453023914597902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,7 +201,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5155178981220134963
@@ -265,16 +266,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrowdRewards
   m_spawnDuration: 2
-  m_spawnCenterOffset: {x: 0, y: 2.1, z: 0}
+  m_spawnCenterOffset: {x: 0, y: 2, z: 0}
   m_spawnAreaSize: {x: 23.03, y: 1.34, z: 12.8}
   m_spawnOnEdgesOnly: 1
   m_edgeThickness: 3
-  m_targetRadius: 3
-  m_launchAngle: 45
+  m_targetRadius: 5
+  m_launchAngle: 30
   m_addRandomTorque: 1
   m_torqueStrength: 10
   m_collectFloatingTextConfig: {fileID: 11400000, guid: 8df3867eda6bddb45a9b36a51d475b24, type: 2}
-  m_showGizmos: 0
+  m_showGizmos: 1
 --- !u!1001 &7826821965059761038
 PrefabInstance:
   m_ObjectHideFlags: 0

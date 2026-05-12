@@ -20,6 +20,7 @@ public class NodeRankVisual
     public Sprite m_backgroundSprite;
     public Sprite m_sigilSprite;
     public float m_scale = 1f;
+    public float m_distanceOffset = 0f;
 }
 
 
@@ -28,26 +29,27 @@ public class STNodeButton : CustomButton
     #region Fields
     [SerializeField, Required, TitleGroup("Node Asset", order: -1)] private STNodeAsset m_asset;
 
-    [SerializeField, Required, TitleGroup("Dependencies")] private RadialLayoutNode m_radialLayoutNode;
-    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_icon;
-    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_background;
-    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_frame;
-    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_sigil;
-    [SerializeField, Required, TitleGroup("Dependencies")] private SerializableDictionary<NodeRank, NodeRankVisual> m_ranksVisuals;
-    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_levelsParent;
-    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_unlimitedLevelParent;
-    [SerializeField, Required, TitleGroup("Dependencies")] private TMP_Text m_unlimitedLevelText;
-    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_affordableParent;
-    [SerializeField, Required, TitleGroup("Dependencies")] private NodeLevel[] m_nodeLevels;
-    [SerializeField, Required, TitleGroup("Dependencies")] private CanvasGroup m_contentCanvasGroup;
-    [SerializeField, Required, TitleGroup("Dependencies")] private GameObject m_demoLockObject;
-    [SerializeField, Required, TitleGroup("Dependencies")] private Image m_maxLevelFlashImage;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private RadialLayoutNode m_radialLayoutNode;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private Image m_icon;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private Image m_background;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private Image m_frame;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private Image m_sigil;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private SerializableDictionary<NodeRank, NodeRankVisual> m_ranksVisuals;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private GameObject m_levelsParent;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private GameObject m_unlimitedLevelParent;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private TMP_Text m_unlimitedLevelText;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private GameObject m_affordableParent;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private NodeLevel[] m_nodeLevels;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private CanvasGroup m_contentCanvasGroup;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private GameObject m_demoLockObject;
+    [SerializeField, Required, FoldoutGroup("Dependencies")] private Image m_maxLevelFlashImage;
 
     private STNodeDetailsUIC m_detailsUI;
 
 
     [SerializeField, TitleGroup("Settings")] private bool m_lockedByDefault = true;
     [SerializeField, TitleGroup("Settings")] private bool m_demoLocked = false;
+    [SerializeField, TitleGroup("Settings")] private bool m_overtideDistanceOffset = false;
 
     [SerializeField, FoldoutGroup("Breathe")] private float m_breatheScale = 1.08f;
     [SerializeField, FoldoutGroup("Breathe")] private float m_breatheIconScale = 1.14f;
@@ -69,6 +71,7 @@ public class STNodeButton : CustomButton
 
     public STNodeAsset LinkedNodeAsset => m_asset;
     public PanelController PanelController { get; set; }
+    public float DistanceOffset => m_ranksVisuals.ContainsKey(m_asset.Rank) ? m_ranksVisuals[m_asset.Rank].m_distanceOffset : 0f;
     #endregion
 
     [Button]
@@ -506,18 +509,21 @@ public class STNodeButton : CustomButton
         m_affordableParent.SetActive(CheckAffordability(false));
     }
 
-#if UNITY_EDITOR
     private STNodeAsset m_previousAsset;
 
-    private void OnValidate()
-    {
-        if (m_asset != m_previousAsset)
-            OnAssetChanged();
-    }
+#if UNITY_EDITOR
+    // private void OnValidate()
+    // {
+    //     this.Log($"OnValidate called for STNodeButton: {name}. Current asset: {(m_asset != null ? m_asset.DisplayName : "null")}, previous asset: {(m_previousAsset != null ? m_previousAsset.DisplayName : "null")}");
+    //     // if (m_asset == null && m_previousAsset == null) return;
+    //     if (m_asset != m_previousAsset)
+    //         OnAssetChanged();
+    // }
 
     [Button]
     private void OnAssetChanged()
     {
+        // this.Log($"Asset changed for node button '{name}'. New asset: {(m_asset != null ? m_asset.DisplayName : "null")}, previous asset: {(m_previousAsset != null ? m_previousAsset.DisplayName : "null")}");
         m_previousAsset = m_asset;
 
         if (m_asset == null) return;
@@ -538,6 +544,23 @@ public class STNodeButton : CustomButton
             {
                 rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, visual.m_scale * 100);
                 rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, visual.m_scale * 100);
+            }
+
+
+            if (!m_overtideDistanceOffset)
+            {
+                float parentDistanceOffset = m_radialLayoutNode.ParentNode != null && m_radialLayoutNode.ParentNode.GetComponent<STNodeButton>() != null
+                    ? m_radialLayoutNode.ParentNode.GetComponent<STNodeButton>().DistanceOffset
+                    : 0f;
+
+                this.Log($"Setting distance offset for node '{name}' with rank '{m_asset.Rank}'. Visual distance offset: {visual.m_distanceOffset}, {m_radialLayoutNode.ParentNode} distance offset: {parentDistanceOffset}");
+                m_radialLayoutNode.distanceOffset = visual.m_distanceOffset > parentDistanceOffset ? visual.m_distanceOffset : parentDistanceOffset;
+
+                foreach (RadialLayoutNode child in m_radialLayoutNode.GetChildNodes())
+                {
+                    // this.Log($"Updating child node '{child.name}' due to parent rank change. Parent rank: {m_asset.Rank}, distance offset: {m_radialLayoutNode.distanceOffset}");
+                    child.GetComponent<STNodeButton>().OnAssetChanged();
+                }
             }
         }
 

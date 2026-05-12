@@ -1387,6 +1387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41d0e8534e401a46b2fd72268d61fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAE
+  m_footStepsPlayables: []
 --- !u!114 &8364104504381532728
 MonoBehaviour:
   m_ObjectHideFlags: 0
