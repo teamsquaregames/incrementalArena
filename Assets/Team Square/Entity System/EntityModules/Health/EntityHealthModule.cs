@@ -16,13 +16,12 @@ public class EntityHealthModule : EntityModule
     public Action<float, float, float, bool, bool> OnHealthChanged;
     public Action<float, float> OnDamageTaken;
     public Action<float, float> OnHealed;
-    public Action OnDeathStart;
     public Action OnDeath;
+    public Action OnDeathAnimEnd;
 
     [Title("Dependencies")]
     [SerializeField, Required] private CustomRE m_customRE;
     [SerializeField] private GameObject m_deathFxPefab;
-    [SerializeField] private RagdollManager m_ragdollManager;
 
     [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
     [FoldoutGroup("Feedback settings"), SerializeField, Min(0f)] private float punchDuration = 0.35f;
@@ -32,7 +31,7 @@ public class EntityHealthModule : EntityModule
     [Title("Death settings")]
     [SerializeField, Min(0f)] private float m_deathDespawnDelay = 5f;
 
-    private float m_currentHealth;
+    protected float m_currentHealth;
     protected bool m_isDead;
     private Tween m_punchTween;
     protected EntityStatModule m_statModule;
@@ -75,7 +74,7 @@ public class EntityHealthModule : EntityModule
         // this.Log($"Initializing EntityHealthModule for {Owner}. MaxHealth: {MaxHealth}, CurrentHealth: {m_currentHealth}");
     }
 
-    protected virtual void PlayDamageFeedback()
+    protected virtual void PlayDamageFeedback(float damagePercentage)
     {
         PlayPunchScale();
 
@@ -114,7 +113,7 @@ public class EntityHealthModule : EntityModule
         float delta = m_currentHealth - previous;
 
         if (!suppressFeedback)
-            PlayDamageFeedback();
+            PlayDamageFeedback(amount / MaxHealth);
 
         OnDamageTaken?.Invoke(amount, m_currentHealth);
         OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit, suppressFeedback);
@@ -134,8 +133,8 @@ public class EntityHealthModule : EntityModule
         OnHealthChanged = null;
         OnDamageTaken = null;
         OnHealed = null;
-        OnDeathStart = null;
         OnDeath = null;
+        OnDeathAnimEnd = null;
     }
 
     public virtual void Die()
@@ -154,7 +153,7 @@ public class EntityHealthModule : EntityModule
         if (Owner.TryGetModule(out EntityTeamModule teamModule) && teamModule.Team == Team.Enemy)
             GameData.Instance.IncrementTrackedValue(TrackedValueType.EnemiesKilledThisRun);
 
-        OnDeathStart?.Invoke();
+        OnDeath?.Invoke();
         StartCoroutine(DeathAnimCR());
     }
 
@@ -162,12 +161,10 @@ public class EntityHealthModule : EntityModule
     {
         Owner.Animator.Play("Death");
         m_customRE.ChangeFloat("_Saturation", 0f);
-        if (m_ragdollManager != null)
-            m_ragdollManager.EnableRagdoll();
 
         yield return new WaitForSeconds(m_deathDespawnDelay);
 
-        OnDeath?.Invoke();
+        OnDeathAnimEnd?.Invoke();
         m_customRE.ClearOverrides();
     }
 }

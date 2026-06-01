@@ -16,8 +16,8 @@ public class EntityHealthUIModule : EntityModule
         }
 
         healthModule.OnHealthChanged += HandleHealthChanged;
-        healthModule.OnDeathStart += OnDeathStart;
-        healthModule.OnDeath += OnDeath;
+        healthModule.OnDeath += OnDeathStart;
+        healthModule.OnDeathAnimEnd += OnDeath;
 
         SpawnHealthBar(healthModule.MaxHealth);
     }
@@ -49,8 +49,8 @@ public class EntityHealthUIModule : EntityModule
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
         {
             healthModule.OnHealthChanged -= HandleHealthChanged;
-            healthModule.OnDeathStart -= OnDeathStart;
-            healthModule.OnDeath -= OnDeath;
+            healthModule.OnDeath -= OnDeathStart;
+            healthModule.OnDeathAnimEnd -= OnDeath;
         }
 
         DespawnHealthBar();
@@ -61,8 +61,8 @@ public class EntityHealthUIModule : EntityModule
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
         {
             healthModule.OnHealthChanged -= HandleHealthChanged;
-            healthModule.OnDeathStart -= OnDeathStart;
-            healthModule.OnDeath -= OnDeath;
+            healthModule.OnDeath -= OnDeathStart;
+            healthModule.OnDeathAnimEnd -= OnDeath;
         }
 
         DespawnHealthBar();

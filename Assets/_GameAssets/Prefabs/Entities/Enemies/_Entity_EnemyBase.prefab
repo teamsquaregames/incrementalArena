@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Entity_EnemyBase
       objectReference: {fileID: 0}
+    - target: {fileID: 6050233646966636950, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6276155754864417840, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_renderers.Array.size
       value: 1
@@ -380,7 +384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
   m_customRE: {fileID: 5286337094249129236}
   m_deathFxPefab: {fileID: 2256261514414695139, guid: 741a024de336a5547929fbf6fd38ebfd, type: 3}
-  m_ragdollManager: {fileID: 0}
   punchScale: {x: 0.3, y: -0.2, z: 0}
   punchDuration: 0.35
   punchVibrato: 6
@@ -427,7 +430,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &1262644304376804981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +523,12 @@ MonoBehaviour:
   m_healthModule: {fileID: 5946857670838697958}
   m_stopRadius: 0.2
   m_averageIdleDuration: 5
+  m_stateWeights:
+    keys: 010000000200000003000000
+    values:
+    - 5
+    - 10
+    - 1
   m_isMoving: 0
   m_currentState: 0
 --- !u!114 &6638181796098616870

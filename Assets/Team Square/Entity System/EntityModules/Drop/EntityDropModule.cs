@@ -16,13 +16,13 @@ public class EntityDropModule : EntityModule
 
         if (Owner.TryGetModule(out m_healthModule))
         {
-            m_healthModule.OnDeathStart += OnDeath;
+            m_healthModule.OnDeath += OnDeath;
         }
     }
 
     private void OnDeath()
     {
-        m_healthModule.OnDeathStart -= OnDeath;
+        m_healthModule.OnDeath -= OnDeath;
         foreach (var entry in m_dropEntries)
         {
             // entry.value = entry.value * (1 + StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier));

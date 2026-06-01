@@ -94,7 +94,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6514153701057242800}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -369,7 +369,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7438528338894949613}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -502,7 +502,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8869873061880154074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -741,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246891314395918, guid: cb4ff29f6f657bc4d94ed49c50a70be2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918150346303140, guid: cb4ff29f6f657bc4d94ed49c50a70be2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -888,11 +888,6 @@ MonoBehaviour:
 --- !u!4 &2619886035821997091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4918150346303140, guid: cb4ff29f6f657bc4d94ed49c50a70be2, type: 3}
-  m_PrefabInstance: {fileID: 2615128414989503111}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2673431603351796059 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95458022740784092, guid: cb4ff29f6f657bc4d94ed49c50a70be2, type: 3}
   m_PrefabInstance: {fileID: 2615128414989503111}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &2711757800309897259 stripped
@@ -1169,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1596485419112710, guid: 442621befda85c0458f5b7a3bdfb1b81, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4845623230771956, guid: 442621befda85c0458f5b7a3bdfb1b81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1258,6 +1253,11 @@ MeshRenderer:
 --- !u!137 &6638716118115826613 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 137445057680405342, guid: 442621befda85c0458f5b7a3bdfb1b81, type: 3}
+  m_PrefabInstance: {fileID: 6757995044140501227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6673208383774371607 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95357365693442044, guid: 442621befda85c0458f5b7a3bdfb1b81, type: 3}
   m_PrefabInstance: {fileID: 6757995044140501227}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &6744367791567790095 stripped
@@ -1477,7 +1477,7 @@ PrefabInstance:
     - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_animator
       value: 
-      objectReference: {fileID: 2673431603351796059}
+      objectReference: {fileID: 6673208383774371607}
     - target: {fileID: 5313009030820731738, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
       propertyPath: m_collider
       value: 
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_gizmos: {fileID: 7472509132106756632}
   m_impulseSource: {fileID: 7013363403045592962}
   m_rigidbody: {fileID: 1242883771397363075}
-  m_autoAttack: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
+  m_autoAttack: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
   m_abilities:
   - {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
   m_isAutoAttack: 0
@@ -1903,8 +1903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthModule
   m_customRE: {fileID: 5779220140939024795}
-  m_deathFxPefab: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
-  m_ragdollManager: {fileID: 0}
+  m_deathFxPefab: {fileID: 196886388626805212, guid: dacb0c28d4ec7d34091e2dd5786eb9c6, type: 3}
   punchScale: {x: 0.2, y: -0.15, z: 0}
   punchDuration: 0.15
   punchVibrato: 6

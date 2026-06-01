@@ -123,16 +123,17 @@ public static class ResolveApplication
     private static List<Entity> ResolveTeamApplication(List<Entity> entitiesTested, TeamApplication application, Entity target, Entity owner)
     {
         owner.TryGetModule(out EntityTeamModule ownerTeamModule);
-        foreach (Entity entity in entitiesTested)
+        for (int i = entitiesTested.Count - 1; i >= 0; i--)
         {
-            entity.TryGetModule(out EntityTeamModule entityTeamModule);
+            Entity entityTested = entitiesTested[i];
+            entityTested.TryGetModule(out EntityTeamModule entityTeamModule);
 
             if (application.HasFlag(TeamApplication.Allies) && entityTeamModule.Team != ownerTeamModule.Team)
-                entitiesTested.Remove(entity);
+                entitiesTested.Remove(entityTested);
             else if (application.HasFlag(TeamApplication.Opponent) && entityTeamModule.Team == ownerTeamModule.Team)
-                entitiesTested.Remove(entity);
+                entitiesTested.Remove(entityTested);
 
-            Debug.Log($"Entity {entity.name} is on team {entityTeamModule.Team}, owner is on team {ownerTeamModule.Team}, application is {application}. Entity {(entitiesTested.Contains(entity) ? "is" : "is not")} included in final target list.");
+            // Debug.Log($"Entity {entityTested.name} is on team {entityTeamModule.Team}, owner is on team {ownerTeamModule.Team}, application is {application}. Entity {(entitiesTested.Contains(entityTested) ? "is" : "is not")} included in final target list.");
         }
 
         return entitiesTested;

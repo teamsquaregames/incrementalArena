@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace Utils
 {
     public static class CusRandom
     {
-        
+
         public static int RangeI(Vector2Int _minMax)
         {
             return Random.Range(_minMax.x, _minMax.y);
@@ -42,19 +43,14 @@ namespace Utils
 
         public static Vector3 Square(float _minMax)
         {
-            return new Vector3(RangeF(_minMax/2), 0, RangeF(_minMax/2));
-        }
-        
-        public static Vector3 Rectangle(Vector3 _minMax)
-        {
-            return new Vector3(RangeF(-_minMax.x, _minMax.x), 0, RangeF(_minMax.z/2));
+            return new Vector3(RangeF(_minMax / 2), 0, RangeF(_minMax / 2));
         }
 
-        /// <summary>
-        /// Returns a random XZ position inside <paramref name="outer"/> but outside <paramref name="min"/>,
-        /// both expressed as half-extents (x = half-width, y = half-depth).
-        /// Sampling is area-weighted across the four border strips so the distribution is uniform.
-        /// </summary>
+        public static Vector3 Rectangle(Vector3 _sides)
+        {
+            return new Vector3(RangeF(-_sides.x, _sides.x), 0, RangeF(_sides.z / 2));
+        }
+
         public static Vector3 RectangleMin(Vector2 outer, Vector2 min)
         {
             float topBottomArea = 2f * outer.x * (outer.y - min.y);
@@ -76,7 +72,7 @@ namespace Utils
 
             return new Vector3(RangeF(-outer.x, -min.x), 0f, RangeF(-min.y, min.y));
         }
-        
+       
         public static Vector3 Squares(Vector3[] _squares)
         {
             Vector3 _xSiseZ = _squares[RangeI(new Vector2Int(0, _squares.Length))];
@@ -87,12 +83,12 @@ namespace Utils
                 RangeF(_xSiseZ.z - halfSize, _xSiseZ.z + halfSize)
             );
         }
-        
+
         public static Vector3 Cube(Vector3 _minMax)
         {
             return new Vector3(RangeF(_minMax.x / 2), RangeF(_minMax.y / 2), RangeF(_minMax.z / 2));
         }
-        
+
         public static Vector3 RandomPlan(Vector2 _weightHeight)
         {
             return new Vector3(RangeF(_weightHeight.x), 0, RangeF(_weightHeight.y));
@@ -105,7 +101,7 @@ namespace Utils
 
             return RandomAnglePosition(_rgnRadius);
         }
-        
+
 
         public static Vector3 Disk(float _radius, bool _isCircle)
         {
@@ -156,6 +152,167 @@ namespace Utils
 
             // fallback: should not reach here
             return weights.Length - 1;
+        }
+
+
+
+        public static int RandomBinomial(int _trials, double _probability)
+        {
+            int successes = 0;
+            System.Random rng = new System.Random();
+
+            for (int i = 0; i < _trials; i++)
+            {
+                if (rng.NextDouble() < _probability)
+                    successes++;
+            }
+
+            return successes;
+        }
+
+        public static double RandomBinomial(double _trials, double _probability)
+        {
+            if (_probability == 1)
+                return _trials;
+
+            int successes = 0;
+            System.Random rng = new System.Random();
+
+            for (int i = 0; i < _trials; i++)
+            {
+                if (rng.NextDouble() < _probability)
+                    successes++;
+            }
+
+            return successes;
+        }
+
+
+
+        public static float Gaussian()
+        {
+            return Gaussian(0.5f, 0.15f);
+        }
+
+        public static float Gaussian(float stdDeviation)
+        {
+            return Gaussian(0.5f, stdDeviation);
+        }
+
+        public static float Gaussian(float mean, float stdDev)
+        {
+            float u1 = 1.0f - Random.value;
+            float u2 = 1.0f - Random.value;
+
+            float z = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) *
+                      Mathf.Cos(2.0f * Mathf.PI * u2);
+
+            return mean + stdDev * z;
+        }
+    
+    
+        public static T Element<T>(List<T> list)
+        {
+            if (list == null || list.Count == 0)
+                return default;
+
+            int index = Random.Range(0, list.Count);
+            return list[index];
+        }
+
+        public static T Element<T>(T[] array)
+        {
+            if (array == null || array.Length == 0)
+                return default;
+
+            int index = Random.Range(0, array.Length);
+            return array[index];
+        }
+
+        public static V Value<T, V>(Dictionary<T, V> enumerable)
+        {
+            if (enumerable == null)
+                return default;
+
+            List<T> list = new List<T>(enumerable.Keys);
+            if (list.Count == 0)
+                return default;
+
+            int index = Random.Range(0, list.Count);
+            T key = list[index];
+            return enumerable[key];
+        }
+
+        public static T Key<T, V>(Dictionary<T, V> enumerable)
+        {
+            if (enumerable == null)
+                return default;
+
+            List<T> list = new List<T>(enumerable.Keys);
+            if (list.Count == 0)
+                return default;
+
+            int index = Random.Range(0, list.Count);
+            return list[index];
+        }
+
+        public static V Value<T, V>(SerializableDictionary<T, V> enumerable)
+        {
+            if (enumerable == null)
+                return default;
+
+            List<T> list = new List<T>(enumerable.Keys);
+            if (list.Count == 0)
+                return default;
+
+            int index = Random.Range(0, list.Count);
+            T key = list[index];
+            return enumerable[key];
+        }
+
+        public static T Key<T, V>(SerializableDictionary<T, V> enumerable)
+        {
+            if (enumerable == null)
+                return default;
+
+            List<T> list = new List<T>(enumerable.Keys);
+            if (list.Count == 0)
+                return default;
+
+            int index = Random.Range(0, list.Count);
+            return list[index];
+        }
+    
+        public static T WeightedKey<T>(SerializableDictionary<T, float> weightedValues)
+        {
+            if (weightedValues == null || weightedValues.Count == 0)
+                return default;
+
+            float totalWeight = 0f;
+            foreach (var weight in weightedValues.Values)
+                totalWeight += Mathf.Max(weight, 0f);
+
+            if (totalWeight <= 0f)
+            {
+                // fallback: return a random key
+                List<T> keys = new List<T>(weightedValues.Keys);
+                int randomIndex = Random.Range(0, keys.Count);
+                return keys[randomIndex];
+            }
+
+            float randomValue = Random.Range(0f, totalWeight);
+            float cumulative = 0f;
+
+            foreach (var kvp in weightedValues)
+            {
+                cumulative += Mathf.Max(kvp.Value, 0f);
+                if (randomValue <= cumulative)
+                    return kvp.Key;
+            }
+
+            // fallback: should not reach here
+            List<T> fallbackKeys = new List<T>(weightedValues.Keys);
+            return fallbackKeys[fallbackKeys.Count - 1];
         }
     }
 }

@@ -120,7 +120,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void EndRun()
     {
-        m_playerHealthModule.OnDeath -= OnPlayerDeath;
+        m_playerHealthModule.OnDeathAnimEnd -= OnPlayerDeath;
 
         m_crowdRewards.GrantAllPendingGold();
 

@@ -24,6 +24,7 @@ public class Entity : MonoBehaviour, IPoolable
     [SerializeField] private float m_radius = 0.5f;
 
     private Dictionary<Type, EntityModule> m_modules = new Dictionary<Type, EntityModule>();
+    private bool m_isAlive = true;
     private bool m_isStaggered;
     private float m_staggerEndTime;
     private Coroutine m_staggerCR;
@@ -33,6 +34,7 @@ public class Entity : MonoBehaviour, IPoolable
     public EntityType EntityType => m_entityType;
     public Animator Animator => m_animator;
     public Collider Collider => m_collider;
+    public bool IsAlive => m_isAlive;
     public bool IsStaggered => m_isStaggered;
     public bool IsSpawning => m_isSpawning;
     public float Height => m_height;
@@ -72,8 +74,8 @@ public class Entity : MonoBehaviour, IPoolable
 
         if (TryGetModule(out EntityHealthModule healthModule))
         {
-            healthModule.OnDeathStart += Unregister;
-            healthModule.OnDeath += Despawn;
+            healthModule.OnDeath += OnDeath;
+            healthModule.OnDeathAnimEnd += Despawn;
         }
     }
 
@@ -94,8 +96,8 @@ public class Entity : MonoBehaviour, IPoolable
     {
         if (TryGetModule(out EntityHealthModule healthModule))
         {
-            healthModule.OnDeathStart -= Unregister;
-            healthModule.OnDeath -= Despawn;
+            healthModule.OnDeath -= OnDeath;
+            healthModule.OnDeathAnimEnd -= Despawn;
         }
         
         LeanPool.Despawn(this);
@@ -107,8 +109,9 @@ public class Entity : MonoBehaviour, IPoolable
         EntityManager.Instance?.Register(this);
     }
 
-    private void Unregister()
+    private void OnDeath()
     {
+        m_isAlive = false;
         m_collider.enabled = false;
         EntityManager.Instance?.Unregister(this);
     }
@@ -116,6 +119,7 @@ public class Entity : MonoBehaviour, IPoolable
     public void OnSpawn()
     {
         // this.Log($"Spawning entity {name} of type {EntityType}");
+        m_isAlive = true;
         RegisterModules();
         Register();
         if (m_ragdollManager != null)

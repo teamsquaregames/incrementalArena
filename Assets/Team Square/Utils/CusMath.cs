@@ -64,27 +64,17 @@ namespace Utils
         }
 
 
-
-        public static float RngGaussian()
+        public static float Remap(float value, float inMin, float inMax, float outMin, float outMax)
         {
-            return RngGaussian(0.5f, 0.15f);
+            return (value - inMin) / (inMax - inMin) * (outMax - outMin) + outMin;
         }
 
-        public static float RngGaussian(float tipicalRange)
+        public static Vector3 Remap(Vector3 value, Vector3 inMin, Vector3 inMax, Vector3 outMin, Vector3 outMax)
         {
-            return RngGaussian(0.5f, tipicalRange);
-        }
-
-        // 🔸 Fonction interne : Box-Muller (génère une vraie gaussienne)
-        private static float RngGaussian(float moyenne, float tipicalRange)
-        {
-            float u1 = 1.0f - Random.value; // éviter log(0)
-            float u2 = 1.0f - Random.value;
-
-            float randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) *
-                                  Mathf.Sin(2.0f * Mathf.PI * u2);
-
-            return moyenne + tipicalRange * randStdNormal;
+            float x = Remap(value.x, inMin.x, inMax.x, outMin.x, outMax.x);
+            float y = Remap(value.y, inMin.y, inMax.y, outMin.y, outMax.y);
+            float z = Remap(value.z, inMin.z, inMax.z, outMin.z, outMax.z);
+            return new Vector3(x, y, z);
         }
     }
 }

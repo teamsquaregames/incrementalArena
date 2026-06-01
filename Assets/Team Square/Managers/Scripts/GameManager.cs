@@ -32,11 +32,6 @@ public class GameManager : Singleton<GameManager>
             SoundManager.Instance.PlayAmbient(SoundKeys.ambient);
     }
 
-    public void StartRun()
-    {
-        // this.Log("Run started. Subscribed count for onRunStart: " + (onRunStart?.GetInvocationList().Length ?? 0));
-        onRunStart?.Invoke();
-    }
 
     public void EndRun()
     {
@@ -53,7 +48,10 @@ public class GameManager : Singleton<GameManager>
         SetPause(false);
         GameData.Instance.runActive = true;
         DespawnPooledObjectAndTuto();
-        StartRun();
+        
+        GameData.Instance.IncrementTrackedValue(TrackedValueType.RunCount, 1);
+        
+        onRunStart?.Invoke();
     }
 
     public void FadeAndEnterRun()
@@ -68,7 +66,6 @@ public class GameManager : Singleton<GameManager>
     public void QuitRun()
     {
         UIManager.Instance.GetCanvas<GameCanvas>().Close();
-        GameData.Instance.IncrementTrackedValue(TrackedValueType.RunCount, 1);
         //CameraController.Instance.SetControl(false);
         GameData.Instance.runActive = false;
 

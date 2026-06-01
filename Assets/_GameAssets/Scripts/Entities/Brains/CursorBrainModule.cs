@@ -25,6 +25,11 @@ public class CursorBrainModule : EntityBrainModule
         // this.Log("Thinking...");
 
         if (CursorManager.Instance == null) return;
+        if (Owner.IsAlive == false) 
+        {
+            StopMovement();
+            return;
+        }
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
 

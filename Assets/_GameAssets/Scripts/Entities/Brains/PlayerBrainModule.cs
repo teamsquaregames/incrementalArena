@@ -24,7 +24,11 @@ public class PlayerBrainModule : EntityBrainModule
     protected override void Think()
     {
         if (Owner.IsSpawning) return;
-        if (CursorManager.Instance == null) return;
+        if (Owner.IsAlive == false)
+        {
+            StopMovement();
+            return;
+        }
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
 
         // ── 1. Ability input — highest priority, interrupts auto-attacks ──────
@@ -49,9 +53,9 @@ public class PlayerBrainModule : EntityBrainModule
             new Vector3(Owner.transform.position.x, 0f, Owner.transform.position.z),
             new Vector3(targetPosition.x, 0f, targetPosition.z));
 
-            bool inAARange = targetEnemy != null
-                                 && distanceToTarget <= abilityModule.AutoAttack.Range(Owner).y
-                                 && distanceToTarget >= abilityModule.AutoAttack.Range(Owner).x;
+        bool inAARange = targetEnemy != null
+                             && distanceToTarget <= abilityModule.AutoAttack.Range(Owner).y
+                             && distanceToTarget >= abilityModule.AutoAttack.Range(Owner).x;
 
         if (inAARange)
         {

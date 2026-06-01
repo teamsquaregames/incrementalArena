@@ -20,7 +20,7 @@ public class EntitySpawnModule : EntityModule
     public override void OnAllModuleInitialized()
     {
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
-            healthModule.OnDeathStart += OnDeathStart;
+            healthModule.OnDeath += OnDeathStart;
 
         Owner.SetSpawning(true);
         Owner.Animator.SetTrigger(m_animationTrigger);
@@ -48,7 +48,7 @@ public class EntitySpawnModule : EntityModule
         }
 
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
-            healthModule.OnDeathStart -= OnDeathStart;
+            healthModule.OnDeath -= OnDeathStart;
 
         Owner.SetSpawning(false);
         ShrinkAndDespawnVFX();
@@ -88,7 +88,7 @@ public class EntitySpawnModule : EntityModule
         }
 
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
-            healthModule.OnDeathStart -= OnDeathStart;
+            healthModule.OnDeath -= OnDeathStart;
 
         Owner.SetSpawning(false);
 

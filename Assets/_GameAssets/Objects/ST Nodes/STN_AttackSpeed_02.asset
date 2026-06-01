@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_MaxHealth_02
+  m_Name: STN_AttackSpeed_02
   m_EditorClassIdentifier: 
-  m_displayName: Max Health
-  m_id: STN_MaxHealth_02
+  m_displayName: Attack Speed
+  m_id: STN_AttackSpeed_02
   m_levelingType: 0
   m_maxLevel: 3
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: ab28484b0937a2f4dbba9449c9a884c4, type: 3}
-  m_description: Last longer before fainting.
+  m_icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
+  m_description: Improve basic attack speed
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0f000000000000001e000000000000003c00000000000000
+    m_amount: 0f000000000000001e000000000000002d00000000000000
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_MaxHealth_02
+  - id: STN_AttackSpeed_02
     entityType: 1
     ability: {fileID: 0}
     step: 0
     application: 0
-    statType: 0
+    statType: 2
     type: 1
     m_values:
+    - 10
     - 20
-    - 40
-    - 60
+    - 30

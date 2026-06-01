@@ -24,6 +24,7 @@ public class NpcBrainModule : EntityBrainModule
 
     [Header("Behaviour")]
     [SerializeField] private float m_averageIdleDuration = 5f;
+    [SerializeField] private SerializableDictionary<NpcState, float> m_stateWeights;
 
     [Header("Debug")]
     [SerializeField, ReadOnly] private bool m_isMoving;
@@ -45,7 +46,7 @@ public class NpcBrainModule : EntityBrainModule
         base.OnAllModuleInitialized();
 
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
-            healthModule.OnDeathStart += OnDeath;
+            healthModule.OnDeath += OnDeath;
     }
 
     protected override void Think()
@@ -151,7 +152,7 @@ public class NpcBrainModule : EntityBrainModule
     private void RandomState()
     {
         /// select random stat of the enum
-        m_currentState = (NpcState)Random.Range(0, System.Enum.GetValues(typeof(NpcState)).Length);
+        m_currentState = CusRandom.WeightedKey(m_stateWeights);
 
         switch (m_currentState)
         {
@@ -177,7 +178,7 @@ public class NpcBrainModule : EntityBrainModule
         m_isMoving = false;
         Owner.Animator.SetTrigger("Rallying");
 
-        float idleDuration = CusMath.RngGaussian() * (m_averageIdleDuration * 2f);
+        float idleDuration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
         await Task.Delay((int)(idleDuration * 1000));
         RandomState();
     }
@@ -188,7 +189,7 @@ public class NpcBrainModule : EntityBrainModule
         m_currentState = NpcState.Agressive;
 
         StopMovement();
-        float idleDuration = CusMath.RngGaussian() * (m_averageIdleDuration * 2f);
+        float idleDuration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
         await Task.Delay((int)(idleDuration * 1000));
         RandomState();
     }

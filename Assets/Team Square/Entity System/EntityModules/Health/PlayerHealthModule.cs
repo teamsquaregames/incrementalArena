@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerHealthModule : EntityHealthModule
 {
     [SerializeField] private CinemachineImpulseSource m_impulseSource;
+    private DamageVignetteUIC m_damageVignette => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<DamageVignetteUIC>();
 
-    protected override void PlayDamageFeedback()
+    protected override void PlayDamageFeedback(float damagePercentage)
     {
-        base.PlayDamageFeedback();
-        UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<DamageVignetteUIC>().Flash();
-        m_impulseSource?.GenerateImpulse(.1f);
+        base.PlayDamageFeedback(damagePercentage);
+        m_damageVignette.Flash(damagePercentage);
+        float currentHealthPercentage = m_currentHealth / MaxHealth;
+        if (currentHealthPercentage <= 0.5f && currentHealthPercentage > 0f)
+            m_damageVignette.LowHealthWarning(currentHealthPercentage);
+        m_impulseSource?.GenerateImpulse(.08f);
     }
 
     private void Update()
@@ -20,14 +24,20 @@ public class PlayerHealthModule : EntityHealthModule
 
         float healthLostPerSecond = m_statModule.GetValue(StatType.PlayerHealthLostPerSecond);
         if (healthLostPerSecond > 0f)
+        {
             TakeDamage(healthLostPerSecond * Time.deltaTime, false, suppressFeedback: true);
+            float currentHealthPercentage = m_currentHealth / MaxHealth;
+            if (currentHealthPercentage <= 0.5f && currentHealthPercentage > 0f)
+                m_damageVignette.LowHealthWarning(currentHealthPercentage);
+        }
     }
 
     public override void Die()
     {
         if (GameConfig.Instance.cheatSettings.playerImmortality)
             return;
-            
+        m_damageVignette.StopLowHealthWarning();
+
         base.Die();
     }
 }
