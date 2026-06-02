@@ -29,6 +29,7 @@ MonoBehaviour:
       retriggerAnimation: 0
     applicationInfos:
     - effectZoneType: 1
+      teamApplication: 0
       projectileInfo:
         prefab: {fileID: 0}
         type: 0
@@ -63,11 +64,12 @@ MonoBehaviour:
         frequency: 0
         stackEffect: 0
       delay: 0
-      repeatCount: 10
+      repeatCount: 5
       repeatDuration: 1.6
       repeatFX: 0
       excludeHitEntity: 1
     - effectZoneType: 2
+      teamApplication: 0
       projectileInfo:
         prefab: {fileID: 7935610990029654620, guid: 387ed3d2ed00cbe4dbc92a85d9ab4cf2, type: 3}
         type: 0
@@ -116,5 +118,4 @@ MonoBehaviour:
     abilityClip: {fileID: 7400000, guid: 73aaee46dc94f8a4fb65439dcd9818c5, type: 2}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      teamApplication: 0
-      value: 0.5
+      value: 0.25

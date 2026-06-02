@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debuggingSettings:
     developmentBuild: 1
-    noMusic: 1
+    noMusic: 0
     customTargetFrameRate: 1
     targetFrameRate: 144
   cheatSettings:
@@ -36,3 +36,6 @@ MonoBehaviour:
     defaultEnemies:
     - {fileID: 7382554555577117163, guid: e35c1ebc83e6ecf48b505acfab2beb76, type: 3}
     trackedValuesToResetOnRunEnd: 411f000029230000
+    nodeScalingBase: 1
+    nodeScalingLinear: 2
+    nodeScalingExponent: 1.5

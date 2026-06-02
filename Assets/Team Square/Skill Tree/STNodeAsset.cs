@@ -35,6 +35,8 @@ public class STNodeAsset : ScriptableObject
     [SerializeField, TextArea(5, 10)] protected string m_description;
 
     [TitleGroup("Costs")]
+    [SerializeField] protected int m_nodeTier;
+    [SerializeField] protected bool m_isOverideCost;
     [SerializeField] protected Cost[] m_cost;
 
     [TitleGroup("Bonuses")]
@@ -127,6 +129,29 @@ public class STNodeAsset : ScriptableObject
         {
             if (modifier == null) continue;
             modifier.id = m_id;
+        }
+
+        UpdateCosts();
+    }
+
+
+    public void UpdateCosts()
+    {
+        if (m_isOverideCost) return;
+
+        ulong baseCost = (ulong)GameConfig.Instance.gameSettings.GetNodeValue(m_nodeTier);
+
+        foreach (Cost cost in m_cost)
+        {
+            for (int i = 0; i < m_maxLevel; i++)
+            {
+                if (Rank == NodeRank.ELITE || Rank == NodeRank.EnemyElite)
+                    cost.SetAmountAt(i, baseCost * 10);
+                else if (m_maxLevel == 1)
+                    cost.SetAmountAt(i, baseCost * 3);
+                else
+                    cost.SetAmountAt(i, baseCost * (ulong)(i + 1));
+            }
         }
     }
 #endif

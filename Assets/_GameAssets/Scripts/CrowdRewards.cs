@@ -111,8 +111,6 @@ public class CrowdRewards : MonoBehaviour
         }
 
         m_rewardEntries.AddRange(m_rewardEntries);
-        m_rewardEntries.AddRange(m_rewardEntries);
-        m_rewardEntries.AddRange(m_rewardEntries);
 
         float interval = m_spawnDuration / m_rewardEntries.Count;
 

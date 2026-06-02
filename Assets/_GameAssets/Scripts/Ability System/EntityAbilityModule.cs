@@ -23,6 +23,8 @@ public class EntityAbilityModule : EntityModule
     public event Action<AbilityConfig> OnAbilityUsed;
     public event Action<AbilityConfig> OnAbilityAdded;
     public event Action<AbilityConfig> OnAbilityRemoved;
+    public event Action<double> OnDamageDealt;
+    public void NotifyDamageDealt(double damage) => OnDamageDealt?.Invoke(damage);
 
     [TitleGroup("References")]
     [SerializeField] private AbilityApplicationGizmos m_gizmos;
@@ -52,6 +54,7 @@ public class EntityAbilityModule : EntityModule
     public bool IsBusy => m_activeAbility != null;
     public bool IsCastRooted;
     public AbilityConfig ActiveAbility => m_activeAbility;
+
 
 
     public void SetApplicationGizmo(GizmoDrawData data)
@@ -438,11 +441,10 @@ public class EntityAbilityModule : EntityModule
 
     public void HandleEffects(AbilityContext context, Entity target, List<AbilityEffectEntry> effects)
     {
-        foreach (var entry in effects)
+        foreach (AbilityEffectEntry entry in effects)
         {
             context.value = entry.value;
-            entry.effect?.Execute(context, target);
+            double effectValue = entry.effect?.Execute(context, target) ?? 0;
         }
     }
-
 }

@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_AttackSpeed_01
+  m_Name: STN_AttackDamage_03
   m_EditorClassIdentifier: 
-  m_displayName: Attack Speed
-  m_id: STN_AttackSpeed_01
+  m_displayName: Attack Damage
+  m_id: STN_AttackDamage_03
   m_levelingType: 0
   m_maxLevel: 3
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
-  m_description: Improve basic attack speed
-  m_nodeTier: 0
+  m_icon: {fileID: 21300000, guid: 22364d5032ed53045a41e822b6e0f6ab, type: 3}
+  m_description: Improve all damages
+  m_nodeTier: 3
   m_isOverideCost: 0
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 010000000000000002000000000000000300000000000000
+    m_amount: 090000000000000012000000000000001b00000000000000
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_AttackSpeed_01
+  - id: STN_AttackDamage_03
     entityType: 1
     ability: {fileID: 0}
     step: 0
     application: 0
-    statType: 2
-    type: 1
+    statType: 1
+    type: 0
     m_values:
+    - 5
     - 10
-    - 20
-    - 30
+    - 15

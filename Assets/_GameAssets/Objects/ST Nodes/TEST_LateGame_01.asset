@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_God_01
+  m_Name: TEST_LateGame_01
   m_EditorClassIdentifier: 
   m_displayName: Late Game
-  m_id: STN_LateGame_01
+  m_id: TEST_LateGame_01
   m_levelingType: 0
   m_maxLevel: 1
   m_rank: 2
   m_icon: {fileID: 21300000, guid: af17f91b4376d6a41a793c056c02dadc, type: 3}
   m_description: Tons of stats (Debug)
+  m_nodeTier: 0
+  m_isOverideCost: 0
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0000000000000000
+    m_amount: 0a00000000000000
   m_abilitiesGranted:
   - {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
   - {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 11400000, guid: 67f98ac202d40b84ea5b4726d591282d, type: 2}
   m_statModifiers:
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 0}
     step: 0
@@ -37,7 +39,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 1000
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 0}
     step: 0
@@ -46,7 +48,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 1000
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 0}
     step: 0
@@ -55,7 +57,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 300
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 0}
     step: 0
@@ -64,7 +66,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 150
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 0}
     step: 0
@@ -73,7 +75,7 @@ MonoBehaviour:
     type: 0
     m_values:
     - 50
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 39878654
     ability: {fileID: 0}
     step: 0
@@ -82,7 +84,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 1000
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 39878654
     ability: {fileID: 0}
     step: 0
@@ -91,7 +93,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 100
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 234
     ability: {fileID: 0}
     step: 0
@@ -100,7 +102,7 @@ MonoBehaviour:
     type: 0
     m_values:
     - 0
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
     step: 0
@@ -109,7 +111,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 50
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
     step: 0
@@ -118,7 +120,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 100
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
     step: 1
@@ -127,7 +129,7 @@ MonoBehaviour:
     type: 0
     m_values:
     - 10
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 0}
     step: 0
@@ -136,7 +138,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 500
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
     step: 0
@@ -145,7 +147,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 50
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
     step: 0
@@ -154,7 +156,7 @@ MonoBehaviour:
     type: 1
     m_values:
     - 200
-  - id: STN_LateGame_01
+  - id: TEST_LateGame_01
     entityType: 1
     ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
     step: 0

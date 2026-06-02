@@ -5,7 +5,7 @@ public class EnemyHealthUIModule : EntityHealthUIModule
 {
     [SerializeField] private GenericGauge m_genericGaugePrefab;
 
-    protected override void SpawnHealthBar(float maxHealth)
+    protected override void SpawnHealthBar(double maxHealth)
     {
         Transform canvasTransform = UIManager.Instance.GetCanvas<GameCanvas>().transform;
         m_genericGauge = LeanPool.Spawn(m_genericGaugePrefab, canvasTransform);

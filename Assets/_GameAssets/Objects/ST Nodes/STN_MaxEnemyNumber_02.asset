@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_AttackSpeed_01
+  m_Name: STN_MaxEnemyNumber_02
   m_EditorClassIdentifier: 
-  m_displayName: Attack Speed
-  m_id: STN_AttackSpeed_01
+  m_displayName: Max Enemy Number
+  m_id: STN_MaxEnemyNumber_02
   m_levelingType: 0
   m_maxLevel: 3
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: edda25cd358eee240b2b003837050450, type: 3}
-  m_description: Improve basic attack speed
+  m_icon: {fileID: 21300000, guid: 43cda8a657f050a4995847b151367517, type: 3}
+  m_description: More potential foes to kill.
   m_nodeTier: 0
   m_isOverideCost: 0
   m_cost:
@@ -28,14 +28,14 @@ MonoBehaviour:
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_AttackSpeed_01
+  - id: STN_MaxEnemyNumber_02
     entityType: 1
     ability: {fileID: 0}
     step: 0
     application: 0
-    statType: 2
-    type: 1
+    statType: 5
+    type: 0
     m_values:
-    - 10
-    - 20
-    - 30
+    - 2
+    - 3
+    - 4

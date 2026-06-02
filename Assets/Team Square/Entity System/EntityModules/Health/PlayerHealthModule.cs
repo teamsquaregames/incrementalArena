@@ -11,10 +11,19 @@ public class PlayerHealthModule : EntityHealthModule
     {
         base.PlayDamageFeedback(damagePercentage);
         m_damageVignette.Flash(damagePercentage);
-        float currentHealthPercentage = m_currentHealth / MaxHealth;
+        float currentHealthPercentage = (float)(m_currentHealth / MaxHealth);
         if (currentHealthPercentage <= 0.5f && currentHealthPercentage > 0f)
             m_damageVignette.LowHealthWarning(currentHealthPercentage);
         m_impulseSource?.GenerateImpulse(.08f);
+    }
+
+    protected override void Heal(double amount, bool suppressFeedback = false)
+    {
+        base.Heal(amount, suppressFeedback);
+
+        float currentHealthPercentage = (float)(m_currentHealth / MaxHealth);
+        if (currentHealthPercentage > 0.5f)
+            m_damageVignette.StopLowHealthWarning();
     }
 
     private void Update()
@@ -26,7 +35,7 @@ public class PlayerHealthModule : EntityHealthModule
         if (healthLostPerSecond > 0f)
         {
             TakeDamage(healthLostPerSecond * Time.deltaTime, false, suppressFeedback: true);
-            float currentHealthPercentage = m_currentHealth / MaxHealth;
+            float currentHealthPercentage = (float)(m_currentHealth / MaxHealth);
             if (currentHealthPercentage <= 0.5f && currentHealthPercentage > 0f)
                 m_damageVignette.LowHealthWarning(currentHealthPercentage);
         }

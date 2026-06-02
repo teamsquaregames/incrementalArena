@@ -4,7 +4,7 @@ public class PlayerHealthUIModule : EntityHealthUIModule
 {
     private PlayerHealthBarUIC PlayerHealthBarUIC => UIManager.Instance.GetCanvas<GameCanvas>().GetContainer<PlayerHealthBarUIC>();
 
-    protected override void SpawnHealthBar(float maxHealth)
+    protected override void SpawnHealthBar(double maxHealth)
     {
         m_genericGauge = PlayerHealthBarUIC.PlayerHealthBar;
         PlayerHealthBarUIC.Open();

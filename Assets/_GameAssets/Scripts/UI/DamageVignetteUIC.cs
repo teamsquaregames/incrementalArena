@@ -32,7 +32,7 @@ public class DamageVignetteUIC : UIContainer
 
     public void LowHealthWarning(float healthPercentage)
     {
-        this.Log($"Low health warning. Health percentage: {healthPercentage}");
+        // this.Log($"Low health warning. Health percentage: {healthPercentage}");
         m_currentLowHealthAlpha = CusMath.Remap(healthPercentage, 0.5f, 0f, 0f, m_peakAlpha);
         if (m_lowHealthCoroutine == null)
             m_lowHealthCoroutine = StartCoroutine(LowHealthWarningCR());
@@ -40,7 +40,7 @@ public class DamageVignetteUIC : UIContainer
 
     public void StopLowHealthWarning()
     {
-        this.Log("Stopping low health warning.");
+        // this.Log("Stopping low health warning.");
         if (m_lowHealthCoroutine != null)
         {
             StopCoroutine(m_lowHealthCoroutine);

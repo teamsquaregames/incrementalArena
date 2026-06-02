@@ -1465,7 +1465,7 @@ PrefabInstance:
     - target: {fileID: 8465760899689099452, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_asset
       value: 
-      objectReference: {fileID: 11400000, guid: 8bd955736e1e26c419354ff53a548986, type: 2}
+      objectReference: {fileID: 11400000, guid: 30332990d7af4824fae10957c268586b, type: 2}
     - target: {fileID: 8569363388730493474, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1876,7 +1876,7 @@ PrefabInstance:
     - target: {fileID: 8465760899689099452, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_asset
       value: 
-      objectReference: {fileID: 11400000, guid: 71a81004597219b47acc76994d5ddd65, type: 2}
+      objectReference: {fileID: 11400000, guid: 8ec1ee8a16235be4db97a612784305a7, type: 2}
     - target: {fileID: 8569363388730493474, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2099,7 +2099,7 @@ PrefabInstance:
     - target: {fileID: 8465760899689099452, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_asset
       value: 
-      objectReference: {fileID: 11400000, guid: 94922ef87bf500549aedffc74e16c1ea, type: 2}
+      objectReference: {fileID: 11400000, guid: 017c5ae898cb42d4ead2dfa17c0a6b98, type: 2}
     - target: {fileID: 8569363388730493474, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6130,14 +6130,14 @@ PrefabInstance:
     - target: {fileID: 4432111385147929522, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f1c3bed4259403546aaf0c5973fd37fa, type: 3}
+      objectReference: {fileID: 21300000, guid: af72f8ee5474b8e44b20207299f650fc, type: 3}
     - target: {fileID: 4846634141125873389, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5900400019503687214, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_Name
-      value: TESTSPEED5
+      value: STN_KillRegen_01
       objectReference: {fileID: 0}
     - target: {fileID: 6133001915001382428, guid: ac7ef015810eb3a429ea1ed71428952b, type: 3}
       propertyPath: m_Pivot.x

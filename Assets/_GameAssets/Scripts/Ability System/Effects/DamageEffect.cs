@@ -4,15 +4,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Effects/Damage")]
 public class DamageEffect : AbilityEffect
 {
-    public override void Execute(AbilityContext ctx, Entity target)
+    public override double Execute(AbilityContext ctx, Entity target)
     {
-        if (!target.TryGetModule(out EntityHealthModule healthModule)) return;
+        if (!target.TryGetModule(out EntityHealthModule healthModule)) return 0;
 
-        float damage = ctx.value;
+        double damage = ctx.value;
 
         if (ctx.caster.TryGetModule(out EntityStatModule statModule))
             damage += statModule.GetValue(StatType.AttackDamage);
 
         healthModule.TakeDamage(damage, ctx.isCrit);
+        ctx.module?.NotifyDamageDealt(damage);
+        return damage;
     }
 }

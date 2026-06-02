@@ -55,7 +55,7 @@ public class NpcBrainModule : EntityBrainModule
         if (m_healthModule.IsDead)
             return;
 
-        if (EntityManager.Instance.Player == null)
+        if (EntityManager.Instance.Player == null && m_currentState != NpcState.Idle)
         {
             EnterIdleState();
             StopMovement();

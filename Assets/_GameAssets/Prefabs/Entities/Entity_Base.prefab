@@ -74,9 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd2cf44876422642b18c04e054ed882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
-  spawnVFX: {fileID: 17572731975362156, guid: ccc629580f2c30340bd025e66d8b7afa, type: 3}
   m_animator: {fileID: 0}
   m_collider: {fileID: 4301391412074964537}
+  m_customRE: {fileID: 4268901313708184474}
   m_knockUpCurve:
     serializedVersion: 2
     m_Curve:
@@ -103,6 +103,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_modelT: {fileID: 3902489620234916321}
   m_entityType: 0
+  m_height: 2
+  m_radius: 0.5
 --- !u!114 &2582337669702917554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomRE
-  renderers: []
+  m_renderers: []
 --- !u!1 &6964580587330997796
 GameObject:
   m_ObjectHideFlags: 0

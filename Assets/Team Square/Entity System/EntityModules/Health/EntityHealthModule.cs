@@ -13,14 +13,13 @@ using System.Collections;
 
 public class EntityHealthModule : EntityModule
 {
-    public Action<float, float, float, bool, bool> OnHealthChanged;
-    public Action<float, float> OnDamageTaken;
-    public Action<float, float> OnHealed;
+    public Action<double, double, double, bool, bool> OnHealthChanged;
+    public Action<double, double> OnDamageTaken;
+    public Action<double, double> OnHealed;
     public Action OnDeath;
     public Action OnDeathAnimEnd;
 
     [Title("Dependencies")]
-    [SerializeField, Required] private CustomRE m_customRE;
     [SerializeField] private GameObject m_deathFxPefab;
 
     [FoldoutGroup("Feedback settings"), SerializeField] private Vector3 punchScale = new Vector3(0.3f, -0.2f, 0f);
@@ -31,13 +30,14 @@ public class EntityHealthModule : EntityModule
     [Title("Death settings")]
     [SerializeField, Min(0f)] private float m_deathDespawnDelay = 5f;
 
-    protected float m_currentHealth;
+    protected double m_currentHealth;
     protected bool m_isDead;
     private Tween m_punchTween;
     protected EntityStatModule m_statModule;
+    protected EntityAbilityModule m_abilityModule;
 
     public bool IsDead => m_isDead;
-    public float MaxHealth
+    public double MaxHealth
     {
         get
         {
@@ -63,6 +63,7 @@ public class EntityHealthModule : EntityModule
     protected override void OnInitialize()
     {
         base.OnInitialize();
+
         m_isDead = false;
     }
 
@@ -70,6 +71,8 @@ public class EntityHealthModule : EntityModule
     {
         base.OnAllModuleInitialized();
         Owner.TryGetModule(out m_statModule);
+        if (Owner.TryGetModule(out m_abilityModule))
+            m_abilityModule.OnDamageDealt += LifestealHeal;
         m_currentHealth = MaxHealth;
         // this.Log($"Initializing EntityHealthModule for {Owner}. MaxHealth: {MaxHealth}, CurrentHealth: {m_currentHealth}");
     }
@@ -104,16 +107,16 @@ public class EntityHealthModule : EntityModule
     }
 
     [Button]
-    public void TakeDamage(float amount, bool isCrit, bool suppressFeedback = false)
+    public void TakeDamage(double amount, bool isCrit, bool suppressFeedback = false)
     {
         if (m_isDead || amount <= 0f) return;
 
-        float previous = m_currentHealth;
-        m_currentHealth = Mathf.Max(0f, m_currentHealth - amount);
-        float delta = m_currentHealth - previous;
+        double previous = m_currentHealth;
+        m_currentHealth = Math.Max(0d, m_currentHealth - amount);
+        double delta = m_currentHealth - previous;
 
         if (!suppressFeedback)
-            PlayDamageFeedback(amount / MaxHealth);
+            PlayDamageFeedback((float)(amount / MaxHealth));
 
         OnDamageTaken?.Invoke(amount, m_currentHealth);
         OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit, suppressFeedback);
@@ -127,14 +130,49 @@ public class EntityHealthModule : EntityModule
         }
     }
 
+    #region Heal
+    protected virtual void Heal(double amount, bool suppressFeedback = false)
+    {
+        if (m_isDead || amount <= 0f) return;
+
+        double previous = m_currentHealth;
+        m_currentHealth = Math.Min(MaxHealth, m_currentHealth + amount);
+        double delta = m_currentHealth - previous;
+
+        if (!suppressFeedback)
+        {
+            // this.Log("Playing heal feedback");
+            // SoundManager.Instance.PlaySound(SoundKeys.SFX_Heal);
+        }
+
+        OnHealed?.Invoke(amount, m_currentHealth);
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, false, suppressFeedback);
+    }
+
+    public void RoundHeal()
+    {
+        Heal(m_statModule.GetValue(StatType.RoundRegen) / 100f * MaxHealth);
+    }
+
+    private void LifestealHeal(double damageDealt)
+    {
+        if (m_statModule.GetValue(StatType.Lifesteal) <= 0f) return;
+        // this.Log($"LifestealHeal triggered. Damage dealt: {damageDealt}, Lifesteal%: {m_statModule.GetValue(StatType.Lifesteal)}");
+        Heal(damageDealt * m_statModule.GetValue(StatType.Lifesteal) / 100f, suppressFeedback: true);
+    }
+    #endregion
 
     public override void Cleanup()
     {
+        if (m_abilityModule != null)
+            m_abilityModule.OnDamageDealt -= LifestealHeal;
         OnHealthChanged = null;
         OnDamageTaken = null;
         OnHealed = null;
         OnDeath = null;
         OnDeathAnimEnd = null;
+
+        
     }
 
     public virtual void Die()
@@ -144,11 +182,7 @@ public class EntityHealthModule : EntityModule
             return;
         m_isDead = true;
 
-        m_punchTween?.Kill(complete: true);
-
         LeanPool.Spawn(m_deathFxPefab, transform.position + Vector3.up * Owner.Height / 2f, Quaternion.Euler(0, Random.Range(0, 360), 0));
-
-        SoundManager.Instance.PlaySound(SoundKeys.SFX_Groan);
 
         if (Owner.TryGetModule(out EntityTeamModule teamModule) && teamModule.Team == Team.Enemy)
             GameData.Instance.IncrementTrackedValue(TrackedValueType.EnemiesKilledThisRun);
@@ -159,12 +193,13 @@ public class EntityHealthModule : EntityModule
 
     private IEnumerator DeathAnimCR()
     {
+        SoundManager.Instance.PlaySound(SoundKeys.SFX_Groan);
+        m_punchTween?.Kill(complete: true);
         Owner.Animator.Play("Death");
-        m_customRE.ChangeFloat("_Saturation", 0f);
+        Owner.CustomRE.ChangeFloat("_Saturation", 0f);
 
         yield return new WaitForSeconds(m_deathDespawnDelay);
 
         OnDeathAnimEnd?.Invoke();
-        m_customRE.ClearOverrides();
     }
 }

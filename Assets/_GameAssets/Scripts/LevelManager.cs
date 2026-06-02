@@ -55,6 +55,8 @@ public class LevelManager : Singleton<LevelManager>
         endRoundUIC.SetAnnouncementText($"Round {m_currentRound}");
         endRoundUIC.Open();
 
+        m_playerHealthModule.RoundHeal();
+
         yield return new WaitForSeconds(1.5f);
 
         IsWaveActive = true;

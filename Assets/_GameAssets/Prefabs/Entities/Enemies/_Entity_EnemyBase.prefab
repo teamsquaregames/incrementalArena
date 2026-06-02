@@ -382,7 +382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bde38c5ddca8e24c9c53f251bd72e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityHealthModule
-  m_customRE: {fileID: 5286337094249129236}
   m_deathFxPefab: {fileID: 2256261514414695139, guid: 741a024de336a5547929fbf6fd38ebfd, type: 3}
   punchScale: {x: 0.3, y: -0.2, z: 0}
   punchDuration: 0.35
@@ -573,17 +572,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3902489620234916321, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
   m_PrefabInstance: {fileID: 8242423722862376590}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5286337094249129236 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-  m_PrefabInstance: {fileID: 8242423722862376590}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2419637819542009624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
 --- !u!136 &5319705569266897079 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

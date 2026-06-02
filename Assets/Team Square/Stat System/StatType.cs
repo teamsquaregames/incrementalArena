@@ -17,6 +17,7 @@ namespace Stats
         CD = 12,
         Size = 13,
         Repetition = 14,
-
+        RoundRegen = 15,
+        Lifesteal = 16,
     }
 }

@@ -22,7 +22,7 @@ public class EntityHealthUIModule : EntityModule
         SpawnHealthBar(healthModule.MaxHealth);
     }
 
-    protected virtual void SpawnHealthBar(float maxHealth) { }
+    protected virtual void SpawnHealthBar(double maxHealth) { }
 
     protected virtual void DespawnHealthBar() { }
 
@@ -35,13 +35,13 @@ public class EntityHealthUIModule : EntityModule
         FloatingTextManager.Instance.SpawnWorldText(spawnPos, text, config);
     }
 
-    protected void HandleHealthChanged(float currentHealth, float maxHealth, float delta, bool isCrit, bool suppressFeedback)
+    protected void HandleHealthChanged(double currentHealth, double maxHealth, double delta, bool isCrit, bool suppressFeedback)
     {
         if (m_genericGauge == null) return;
         m_genericGauge.SetValue(currentHealth, maxHealth, instant: false, showChunks: !suppressFeedback);
 
         if (delta < 0f && !suppressFeedback)
-            OnDamageTextRequested(Mathf.Abs(delta), isCrit);
+            OnDamageTextRequested(Mathf.Abs((float)delta), isCrit);
     }
 
     protected virtual void OnDeathStart()

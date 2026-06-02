@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 using Utils;
-using VInspector;
 
 [CreateAssetMenu(menuName = "Config/GameConfig")]
 public class GameConfig : ScriptableObject
@@ -59,11 +59,46 @@ public class GameConfig : ScriptableObject
     {
         public bool isDemo = false;
 
-        [Space, Header("Tutorial")]
+        [Title("Tutorial")]
         public float delayBeforeCanValidateOnClick = 0.2f;
-        
+
         public List<Entity> defaultEnemies;
-        [Space, Header("Run Reset")]
+        [Title("Run Reset")]
         public List<TrackedValueType> trackedValuesToResetOnRunEnd = new List<TrackedValueType>();
+
+        [Title("Nodes")]
+        public float nodeScalingBase = 10f;
+        public float nodeScalingLinear = 10f;
+        public float nodeScalingExponent = 1.5f;
+        public float GetNodeValue(int tier)
+        {
+            return Mathf.Round(
+                nodeScalingBase * Mathf.Pow(nodeScalingExponent, tier) +
+                nodeScalingLinear * tier
+            );
+        }
+        [Button]
+        public static void UpdateAllNodeCosts()
+        {
+            string[] guids = AssetDatabase.FindAssets("t:STNodeAsset");
+
+            foreach (string guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                STNodeAsset asset = AssetDatabase.LoadAssetAtPath<STNodeAsset>(path);
+
+                if (asset != null)
+                {
+                    asset.UpdateCosts();
+                    EditorUtility.SetDirty(asset);
+                }
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log($"Updated {guids.Length} STNodeAssets.");
+        }
     }
+    
 }

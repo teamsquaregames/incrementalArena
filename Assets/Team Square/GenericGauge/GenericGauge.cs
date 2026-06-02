@@ -72,18 +72,18 @@ public class GenericGauge : MonoBehaviour, IPoolable
             transform.position = CameraManager.Instance.MainCam.WorldToScreenPoint(target.position);
     }
 
-    public void Setup(Transform target, float currentValue, float maxValue)
+    public void Setup(Transform target, double currentValue, double maxValue)
     {
         this.target = target;
         SetValue(currentValue, maxValue, instant: true, showChunks: false);
     }
 
-    public void SetValue(float currentValue, float maxValue)
+    public void SetValue(double currentValue, double maxValue, bool instant = false, bool showChunks = true)
     {
-        SetValue(currentValue, maxValue, instant: false, showChunks: true);
+        SetValue((float)currentValue, (float)maxValue, instant, showChunks);
     }
 
-    public void SetValue(float currentValue, float maxValue, bool instant, bool showChunks)
+    public void SetValue(float currentValue, float maxValue, bool instant = false, bool showChunks = true)
     {
         maxValue = Mathf.Max(maxValue, 0.0001f);
         float targetNormalized = Mathf.Clamp01(currentValue / maxValue);

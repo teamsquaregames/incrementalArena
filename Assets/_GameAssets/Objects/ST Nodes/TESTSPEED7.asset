@@ -13,20 +13,22 @@ MonoBehaviour:
   m_Name: TESTSPEED7
   m_EditorClassIdentifier: 
   m_displayName: Movement Speed
-  m_id: TESTSPEED7
+  m_id: STN_RoundRegen_01
   m_levelingType: 0
   m_maxLevel: 3
   m_rank: 0
   m_icon: {fileID: 21300000, guid: 25d475ddb97236845936198a786935fa, type: 3}
   m_description: More time for killing.
+  m_nodeTier: 0
+  m_isOverideCost: 0
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 230000000000000000000000000000000000000000000000
+    m_amount: 010000000000000002000000000000000300000000000000
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: TESTSPEED7
+  - id: STN_RoundRegen_0
     entityType: 1
     ability: {fileID: 0}
     step: 0
