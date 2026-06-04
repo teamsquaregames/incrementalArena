@@ -5,6 +5,8 @@ using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Serialization;
+using Utils;
+using Utils.UI;
 
 
 public class CurrencyCounterUIE : AUIElement
@@ -102,7 +104,7 @@ public class CurrencyCounterUIE : AUIElement
             else
             {
                 m_currentValue = m_targetValue;
-                m_counterText.text = Mathf.RoundToInt((float)m_targetValue).ToString();
+                m_counterText.text = NumberFormatter.FormatValue(m_currentValue);
             }
 
             // Update visibility based on new value
@@ -122,7 +124,7 @@ public class CurrencyCounterUIE : AUIElement
     private void OnResetData()
     {
         double amount = GameData.Instance.GetInventoryAmount(m_currencyAsset);
-        m_counterText.text = amount.ToString();
+        m_counterText.text = NumberFormatter.FormatValue(amount);
         UpdateVisibility(amount);
     }
 
@@ -155,11 +157,11 @@ public class CurrencyCounterUIE : AUIElement
         while (m_targetValue > m_currentValue + startDiff * 0.05f + 3)
         {
             m_currentValue = Mathf.Lerp((float)m_currentValue, (float)m_targetValue, m_LerpStrength);
-            m_counterText.text = Mathf.RoundToInt((float)m_currentValue).ToString();
+            m_counterText.text = NumberFormatter.FormatValue(m_currentValue);
             yield return null;
         }
         m_currentValue = m_targetValue;
-        m_counterText.text = Mathf.RoundToInt((float)m_targetValue).ToString();
+        m_counterText.text = NumberFormatter.FormatValue(m_targetValue);
         //LayoutRebuilder.ForceRebuildLayoutImmediate(m_layoutGroupRect);
     }
 

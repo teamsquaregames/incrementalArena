@@ -29,6 +29,7 @@ MonoBehaviour:
       retriggerAnimation: 0
     applicationInfos:
     - effectZoneType: 1
+      teamApplication: 0
       projectileInfo:
         prefab: {fileID: 0}
         type: 0
@@ -54,7 +55,7 @@ MonoBehaviour:
       aoeInfo:
         effectShape: 1
         radius: 2
-        scale: {x: 4, y: 2, z: 2.5}
+        scale: {x: 2, y: 1, z: 1.25}
         angle: 0
         range: 0
         offset: {x: 0, y: 0, z: 1}
@@ -77,13 +78,10 @@ MonoBehaviour:
     abilityClip: {fileID: 1827226128182048838, guid: 2bc14a1041470cd4094c562113975d25, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      teamApplication: 0
       value: 1
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
-      teamApplication: 0
       value: 13
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
-      teamApplication: 0
       value: 0.5
   - isRooting: 1
     targetingInfo:
@@ -93,6 +91,7 @@ MonoBehaviour:
       retriggerAnimation: 0
     applicationInfos:
     - effectZoneType: 1
+      teamApplication: 0
       projectileInfo:
         prefab: {fileID: 0}
         type: 0
@@ -141,13 +140,10 @@ MonoBehaviour:
     abilityClip: {fileID: 1827226128182048838, guid: c44b1a1611e2ba24da88eb8950bace42, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      teamApplication: 0
       value: 1
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
-      teamApplication: 0
       value: 13
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
-      teamApplication: 0
       value: 0.5
   - isRooting: 1
     targetingInfo:
@@ -157,6 +153,7 @@ MonoBehaviour:
       retriggerAnimation: 0
     applicationInfos:
     - effectZoneType: 1
+      teamApplication: 0
       projectileInfo:
         prefab: {fileID: 0}
         type: 0
@@ -205,11 +202,8 @@ MonoBehaviour:
     abilityClip: {fileID: 1827226128182048838, guid: 758fcd9471e07a74ab3bf0f1b55f062f, type: 3}
     effects:
     - effect: {fileID: 11400000, guid: e96cd7d655839df498b345a1ff1f1405, type: 2}
-      teamApplication: 1
       value: 1.2
     - effect: {fileID: 11400000, guid: 31c39038b06d0b74dae1e1e5de921384, type: 2}
-      teamApplication: 1
       value: 13
     - effect: {fileID: 11400000, guid: 871e12cb687811c449c10c1036a81e0d, type: 2}
-      teamApplication: 0
       value: 0.5

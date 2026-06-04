@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
   m_Name: STN_LifeSteal_01
   m_EditorClassIdentifier: 
-  m_displayName: Movement Speed
+  m_displayName: Lifesteal
   m_id: STN_LifeSteal_01
   m_levelingType: 0
   m_maxLevel: 1
   m_rank: 0
   m_icon: {fileID: 21300000, guid: af72f8ee5474b8e44b20207299f650fc, type: 3}
-  m_description: More time for killing.
+  m_description: Heal a percentage of the damage dealth.
   m_nodeTier: 2
   m_isOverideCost: 0
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 1200000000000000
+    m_amount: []
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
@@ -36,4 +36,4 @@ MonoBehaviour:
     statType: 16
     type: 0
     m_values:
-    - 100
+    - 2.5

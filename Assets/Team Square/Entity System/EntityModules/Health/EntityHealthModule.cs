@@ -13,8 +13,8 @@ using System.Collections;
 
 public class EntityHealthModule : EntityModule
 {
-    public Action<double, double, double, bool, bool> OnHealthChanged;
-    public Action<double, double> OnDamageTaken;
+    public Action<double, double, bool> OnHealthChanged;
+    public Action<double, bool> OnDamageTaken;
     public Action<double, double> OnHealed;
     public Action OnDeath;
     public Action OnDeathAnimEnd;
@@ -89,6 +89,11 @@ public class EntityHealthModule : EntityModule
         SoundManager.Instance.PlaySound(SoundKeys.SFX_Impact);
     }
 
+    protected virtual void PlayBlockFeedback()
+    {
+        SoundManager.Instance.PlaySound(SoundKeys.sfx_block);
+    }
+
     private void PlayPunchScale()
     {
         m_punchTween?.Kill(complete: true);
@@ -103,23 +108,35 @@ public class EntityHealthModule : EntityModule
     public void UpdateCurrentHealth()
     {
         m_currentHealth = MaxHealth;
-        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, 0f, false, true);
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, true);
     }
 
     [Button]
-    public void TakeDamage(double amount, bool isCrit, bool suppressFeedback = false)
+    public double TakeDamage(double amount, bool isCrit, bool noArmor = false, bool suppressFeedback = false)
     {
-        if (m_isDead || amount <= 0f) return;
+        if (m_isDead) return 0d;
+
+        if (!noArmor)
+            amount -= m_statModule.GetValue(StatType.Armor);
+
+        if (amount <= 0f)
+        {
+            OnDamageTaken?.Invoke(0, false);
+            PlayBlockFeedback();
+            return 0d;
+        }
 
         double previous = m_currentHealth;
         m_currentHealth = Math.Max(0d, m_currentHealth - amount);
         double delta = m_currentHealth - previous;
 
         if (!suppressFeedback)
+        {            
             PlayDamageFeedback((float)(amount / MaxHealth));
+            OnDamageTaken?.Invoke(amount, isCrit);
+        }
 
-        OnDamageTaken?.Invoke(amount, m_currentHealth);
-        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, isCrit, suppressFeedback);
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, suppressFeedback);
 
         if (m_currentHealth <= 0f || GameConfig.Instance.cheatSettings.oneHitKill)
         {
@@ -128,6 +145,7 @@ public class EntityHealthModule : EntityModule
 
             Die();
         }
+        return amount;
     }
 
     #region Heal
@@ -146,7 +164,7 @@ public class EntityHealthModule : EntityModule
         }
 
         OnHealed?.Invoke(amount, m_currentHealth);
-        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, delta, false, suppressFeedback);
+        OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, suppressFeedback);
     }
 
     public void RoundHeal()
@@ -172,7 +190,7 @@ public class EntityHealthModule : EntityModule
         OnDeath = null;
         OnDeathAnimEnd = null;
 
-        
+
     }
 
     public virtual void Die()

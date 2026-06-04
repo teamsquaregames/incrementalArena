@@ -14,5 +14,6 @@ public enum SoundKeys
     SFX_Impact,
     SFX_Destruction,
     SFX_Impact_Magic,
-    SFX_CrowdCheer
+    SFX_CrowdCheer,
+    sfx_block
 }

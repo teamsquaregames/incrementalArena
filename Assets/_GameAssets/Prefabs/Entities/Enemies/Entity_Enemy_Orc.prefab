@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5741457465335769739, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_dropEntries.Array.data[0].value
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5741457465335769739, guid: e720cb4f1986aa64d991c9014fcc5562, type: 3}
       propertyPath: m_dropEntries.Array.data[0].rewardObject

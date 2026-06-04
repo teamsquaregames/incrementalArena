@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+using Utils.UI;
 
 
 public class CurrencyCostUIE : AUIElement
@@ -14,7 +15,7 @@ public class CurrencyCostUIE : AUIElement
 
     [SerializeField] private CurrencyAsset m_currency;
     public CurrencyAsset CurrencyAsset => m_currency;
-    [SerializeField] private ulong m_cost;
+    [SerializeField] private double m_cost;
 
     private GameData m_gameData => GameData.Instance;
 
@@ -24,13 +25,13 @@ public class CurrencyCostUIE : AUIElement
         m_gameData.onCurrencyChanged += OnCurrencyChanged;
     }
 
-    public void SetCurrencyCost(CurrencyAsset _currency, ulong _cost)
+    public void SetCurrencyCost(CurrencyAsset _currency, double _cost)
     {
         // this.Log($"SetCurrencyCost: {_currency.name} - {_cost}");
         m_currency = _currency;
         m_icon.sprite = m_currency.Icon;
         m_cost = _cost;
-        m_costText.text = m_cost.ToString();
+        m_costText.text = NumberFormatter.FormatValue(m_cost);
         HasEnoughCurrencyFeedback();
     }
 

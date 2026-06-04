@@ -427,7 +427,7 @@ public class EntityAbilityModule : EntityModule
         // this.Log($"Handling effects for step {activeStep} on targets: {string.Join(", ", targets.ConvertAll(t => t.name))}");
         m_activeContext.isCrit = false;
         if (m_activeContext.caster.TryGetModule(out EntityStatModule statModule))
-            m_activeContext.isCrit = Random.value < statModule.GetValue(StatType.CriticalChance);
+            m_activeContext.isCrit = Random.Range(0f, 100f) < statModule.GetValue(StatType.CriticalChance);
 
         foreach (var target in targets)
         {
@@ -444,7 +444,7 @@ public class EntityAbilityModule : EntityModule
         foreach (AbilityEffectEntry entry in effects)
         {
             context.value = entry.value;
-            double effectValue = entry.effect?.Execute(context, target) ?? 0;
+            entry.effect?.Execute(context, target);
         }
     }
 }

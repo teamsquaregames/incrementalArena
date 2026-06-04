@@ -43,7 +43,7 @@ namespace Stats
             return stats;
         }
 
-        private Stat GetOrCreateDefinitionStat(EntityType entityType, StatType statType)
+        private Stat GetOrCreateDefinitionStat(EntityType entityType, StatType statType, double baseValue = 0)
         {
             // this.Log($"Getting definition stat for entity type '{entityType}' and stat type '{statType}'");
             if (!m_definitionStats.TryGetValue(entityType, out var statDict))
@@ -138,9 +138,9 @@ namespace Stats
         
         // --- Definition access (skill tree, no spawn needed) ---
 
-        public Stat GetDefinitionStat(EntityType entityType, StatType statType)
+        public Stat GetDefinitionStat(EntityType entityType, StatType statType, double baseValue = 0)
         {
-            return GetOrCreateDefinitionStat(entityType, statType);
+            return GetOrCreateDefinitionStat(entityType, statType, baseValue);
         }
 
         public Stat GetDefinitionStat(AbilityConfig ability, StatType statType, int step = 0, int application = 0)
@@ -148,9 +148,9 @@ namespace Stats
             return GetOrCreateDefinitionStat(ability, statType, step, application);
         }
 
-        public float GetDefinitionValue(EntityType entityType, StatType statType)
+        public float GetDefinitionValue(EntityType entityType, StatType statType, double baseValue = 0)
         {
-            return GetDefinitionStat(entityType, statType).Value;
+            return GetDefinitionStat(entityType, statType, baseValue).Value;
         }
         
         public float GetDefinitionValue(AbilityConfig ability, StatType statType, int step = 0, int application = 0)

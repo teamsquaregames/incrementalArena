@@ -914,7 +914,7 @@ MonoBehaviour:
   m_frame: {fileID: 5680595221103185455}
   m_sigil: {fileID: 7706593640391464928}
   m_ranksVisuals:
-    keys: 01000000000000000200000005000000
+    keys: 0100000000000000020000000500000003000000
     values:
     - m_frameSprite: {fileID: 21300000, guid: e97fb61a3c3eac347a3e295fdc1a92a3, type: 3}
       m_backgroundSprite: {fileID: 21300000, guid: e61d7bc64373af044b1773d21f4dd9e3, type: 3}
@@ -936,6 +936,11 @@ MonoBehaviour:
       m_sigilSprite: {fileID: 21300000, guid: 2d28ecda15092704181dbcab6013bbe8, type: 3}
       m_scale: 2
       m_distanceOffset: 50
+    - m_frameSprite: {fileID: 21300000, guid: 4d046b7c00c69104598bc8767f402417, type: 3}
+      m_backgroundSprite: {fileID: 21300000, guid: 81859934012e6b345a9ef131763d903f, type: 3}
+      m_sigilSprite: {fileID: 21300000, guid: c4282a20029da1142b9f055231bdc41b, type: 3}
+      m_scale: 1
+      m_distanceOffset: 0
   m_levelsParent: {fileID: 3322733677100462244}
   m_unlimitedLevelParent: {fileID: 6163463901797026130}
   m_unlimitedLevelText: {fileID: 4985839552157009923}
@@ -951,6 +956,7 @@ MonoBehaviour:
   m_maxLevelFlashImage: {fileID: 1257154841087427921}
   m_lockedByDefault: 0
   m_demoLocked: 0
+  m_overtideDistanceOffset: 0
   m_breatheScale: 1.08
   m_breatheIconScale: 1.14
   m_breatheHalfDuration: 0.6

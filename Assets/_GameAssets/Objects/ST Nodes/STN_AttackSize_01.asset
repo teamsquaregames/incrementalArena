@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
+  m_Name: STN_AttackSize_01
+  m_EditorClassIdentifier: 
+  m_displayName: Attack Siza
+  m_id: STN_AttackSize_01
+  m_levelingType: 0
+  m_maxLevel: 1
+  m_rank: 0
+  m_icon: {fileID: 21300000, guid: 6a36d5e8f5052904a821c04105cf2d15, type: 3}
+  m_description: Bigger sword swing.
+  m_nodeTier: 4
+  m_isOverideCost: 0
+  m_cost:
+  - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
+    m_amount:
+    - 63
+  m_abilitiesGranted: []
+  m_enemiesUnlocked: []
+  m_arenaUnlocked: {fileID: 0}
+  m_statModifiers:
+  - id: STN_AttackSize_01
+    entityType: 0
+    ability: {fileID: 11400000, guid: c8df0d0f358fef245baf3ea49b9f70cf, type: 2}
+    step: 0
+    application: 0
+    statType: 13
+    type: 1
+    m_values:
+    - 20

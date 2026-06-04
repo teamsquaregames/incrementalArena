@@ -10,30 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_SpinRange_01
+  m_Name: STN_Armor_01
   m_EditorClassIdentifier: 
-  m_displayName: Spin Range
-  m_id: STN_SpinRange_01
+  m_displayName: Armor
+  m_id: STN_Armor_01
   m_levelingType: 0
-  m_maxLevel: 1
+  m_maxLevel: 3
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: 6a36d5e8f5052904a821c04105cf2d15, type: 3}
-  m_description: Bigger
-  m_nodeTier: 0
+  m_icon: {fileID: 21300000, guid: d5c312454a6578e408069fa74bb689aa, type: 3}
+  m_description: Reduce incoming damages
+  m_nodeTier: 6
   m_isOverideCost: 0
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
-    m_amount: 0300000000000000
+    m_amount:
+    - 35
+    - 70
+    - 105
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_SpinRange_01
-    entityType: 0
-    ability: {fileID: 11400000, guid: 1e262496768ce004fa0352cf3c4c04d8, type: 2}
+  - id: STN_Armor_01
+    entityType: 1
+    ability: {fileID: 0}
     step: 0
     application: 0
-    statType: 13
-    type: 1
+    statType: 4
+    type: 0
     m_values:
-    - 200
+    - 2
+    - 4
+    - 6

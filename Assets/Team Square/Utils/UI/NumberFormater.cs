@@ -10,12 +10,10 @@ namespace Utils.UI
         "", "k", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc"
         };
 
-        /// <summary>
         /// Formate un nombre avec les règles :
         /// - Max 4 chiffres
         /// - Décimales uniquement si < 1
         /// - À partir de 10M, affiche seulement les milliers (arrondi)
-        /// </summary>
         public static string FormatValue(double value)
         {
             if (value == 0) return "0";
@@ -43,6 +41,65 @@ namespace Utils.UI
 
             // Cas 3 : Valeurs >= 10M → Arrondi aux milliers
             return FormatWithSign(FormatRoundedThousands(value), isNegative);
+        }
+
+        ///  comme format value mais retourne un double arrondi à 4 chiffres max, pour les calculs (ex: 123456789 → 123000000)
+        public static double RoundAsFormat(double value)
+        {
+            if (value == 0) return 0;
+
+            bool isNegative = value < 0;
+            value = Math.Abs(value);
+            bool isHuge = value >= 10_000_000;
+
+            // Cas 1 : Valeurs < 1 -> même logique d'affichage que FormatValue
+            if (value < 1)
+            {
+                if (value >= 0.1)
+                    value = Math.Round(value, 2);
+                else
+                    value = Math.Round(value, 3);
+
+                return isNegative ? -value : value;
+            }
+
+            int suffixIndex = 0;
+
+            // Ramène la valeur dans une plage lisible à 4 chiffres max
+            while (value >= 10000 && suffixIndex < suffixes.Length - 1)
+            {
+                value /= 1000;
+                suffixIndex++;
+            }
+
+            // Cas 2 : < 10M -> arrondi selon la magnitude (comme FormatNormal)
+            // Cas 3 : >= 10M -> arrondi entier (comme FormatRoundedThousands)
+            double rounded;
+            if (isHuge)
+            {
+                rounded = Math.Round(value);
+            }
+            else if (value >= 100)
+            {
+                rounded = Math.Round(value);
+            }
+            else if (value >= 10)
+            {
+                rounded = Math.Round(value, 1);
+            }
+            else
+            {
+                rounded = Math.Round(value, 2);
+            }
+
+            double scale = 1;
+            for (int i = 0; i < suffixIndex; i++)
+            {
+                scale *= 1000;
+            }
+
+            double result = rounded * scale;
+            return isNegative ? -result : result;
         }
 
         /// <summary>

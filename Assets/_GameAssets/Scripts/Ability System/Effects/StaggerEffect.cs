@@ -3,11 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/Effects/Stun")]
 public class StaggerEffect : AbilityEffect
 {
-    public override double Execute(AbilityContext ctx, Entity target)
+    public override void Execute(AbilityContext ctx, Entity target)
     {
-        if (target == null) return 0;
+        if (target == null) return;
 
         target.Stagger(ctx.value);
-        return ctx.value;
     }
 }

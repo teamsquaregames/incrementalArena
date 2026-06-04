@@ -28,6 +28,7 @@ MonoBehaviour:
     - SFX_Destruction
     - SFX_Impact_Magic
     - SFX_CrowdCheer
+    - sfx_block
     values:
     - clip: {fileID: 8300000, guid: 2be487d73129d734490a003286584097, type: 3}
       loop: 1
@@ -125,5 +126,12 @@ MonoBehaviour:
       volume: 1
       pitchMode: 0
       randomPitchRange: {x: 0.9, y: 1.1}
+      fixedPitch: 1
+      audioMixerGroup: {fileID: 0}
+    - clip: {fileID: 8300000, guid: 512257b1854c36147bc17f0f9cccbed8, type: 3}
+      loop: 0
+      volume: 0.8
+      pitchMode: 1
+      randomPitchRange: {x: 0.5, y: 1.1024096}
       fixedPitch: 1
       audioMixerGroup: {fileID: 0}

@@ -118,7 +118,7 @@ public class Entity : MonoBehaviour, IPoolable
 
     public void OnSpawn()
     {
-        this.Log($"Spawning entity {name} of type {EntityType}");
+        // this.Log($"Spawning entity {name} of type {EntityType}");
         m_isAlive = true;
         
         CustomRE.ClearOverrides();

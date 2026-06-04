@@ -1889,6 +1889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthUIModule
   m_floatingTextConfig: {fileID: 11400000, guid: c7e3b62d1cd32494bad5463db47f671c, type: 2}
+  m_blockFloatingTextConfig: {fileID: 11400000, guid: 8bd82276c99235f49b4f5ef47f8d08d6, type: 2}
+  m_criticalFloatingTextConfig: {fileID: 11400000, guid: 40acaab185154ae4da3a1d9aacb76e0c, type: 2}
   m_healthBarTarget: {fileID: 2359152899963624071}
 --- !u!114 &6401644631235094961
 MonoBehaviour:
@@ -1902,7 +1904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b636b3b4c26449a42baee857255d7273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthModule
-  m_customRE: {fileID: 5779220140939024795}
   m_deathFxPefab: {fileID: 196886388626805212, guid: dacb0c28d4ec7d34091e2dd5786eb9c6, type: 3}
   punchScale: {x: 0.2, y: -0.15, z: 0}
   punchDuration: 0.15
@@ -1925,17 +1926,6 @@ MonoBehaviour:
   m_interactVFX:
   - {fileID: 6674050381857226490}
   m_playFlags: 1
---- !u!114 &5779220140939024795 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4268901313708184474, guid: 0047ef9205b392a448c79f194ad67057, type: 3}
-  m_PrefabInstance: {fileID: 7714038588239923713}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4106009951781145495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556f55241fd9e9a4a86783049f2fad95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomRE
 --- !u!136 &5817623271102131256 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 4301391412074964537, guid: 0047ef9205b392a448c79f194ad67057, type: 3}

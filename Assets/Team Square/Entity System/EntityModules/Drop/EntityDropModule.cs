@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Stats;
 using UnityEngine;
+using Utils;
 
 public class EntityDropModule : EntityModule
 {
@@ -23,9 +24,9 @@ public class EntityDropModule : EntityModule
     private void OnDeath()
     {
         m_healthModule.OnDeath -= OnDeath;
-        foreach (var entry in m_dropEntries)
+        foreach (RewardEntry entry in m_dropEntries)
         {
-            // entry.value = entry.value * (1 + StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier));
+            this.Log($"Adding drop reward entry for entity {Owner.name} with stat multiplier {StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier)}: {entry.rewardObject} {entry.value}");
 
             for (int i = 0; i < StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier); i++)
                 LevelManager.Instance.CrowdRewards.AddRewardEntry(entry);

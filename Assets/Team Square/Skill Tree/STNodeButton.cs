@@ -523,10 +523,13 @@ public class STNodeButton : CustomButton
     [Button]
     private void OnAssetChanged()
     {
+        if (Application.isPlaying)
+            return;
+
         // this.Log($"Asset changed for node button '{name}'. New asset: {(m_asset != null ? m_asset.DisplayName : "null")}, previous asset: {(m_previousAsset != null ? m_previousAsset.DisplayName : "null")}");
         m_previousAsset = m_asset;
 
-        if (m_asset == null) return;
+        
 
         name = $"{m_asset.ID}";
 

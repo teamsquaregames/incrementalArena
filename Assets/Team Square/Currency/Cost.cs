@@ -1,13 +1,14 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [System.Serializable]
 public struct Cost
 {
     public CurrencyAsset currencyAsset;
-    [SerializeField] private ulong[] m_amount;
+    [SerializeField] private double[] m_amount;
     
-    public ulong GetAmount(int index)
+    public double GetAmount(int index)
     {
         if (index < 0) //Used to return 0 (free) in the case of free buildings
             return 0;
@@ -23,18 +24,18 @@ public struct Cost
     }
 
     // Allow setting the amounts from editor scripts
-    public void SetAmounts(ulong[] amounts)
+    public void SetAmounts(double[] amounts)
     {
         m_amount = amounts;
     }
 
-    public void SetAmountAt(int index, ulong value)
+    public void SetAmountAt(int index, double value)
     {
         if (m_amount == null || index < 0) return;
         if (index >= m_amount.Length)
         {
             // expand array to fit
-            ulong[] newArr = new ulong[index + 1];
+            double[] newArr = new double[index + 1];
             for (int i = 0; i < m_amount.Length; i++) newArr[i] = m_amount[i];
             m_amount = newArr;
         }
@@ -47,14 +48,14 @@ public struct Cost
 
         if (m_amount == null)
         {
-            m_amount = new ulong[targetSize];
+            m_amount = new double[targetSize];
             return;
         }
 
         if (m_amount.Length == targetSize)
             return;
 
-        ulong[] resized = new ulong[targetSize];
+        double[] resized = new double[targetSize];
         Array.Copy(m_amount, resized, Mathf.Min(m_amount.Length, targetSize));
         m_amount = resized;
     }

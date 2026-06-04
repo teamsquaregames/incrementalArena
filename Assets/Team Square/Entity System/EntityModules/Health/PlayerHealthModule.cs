@@ -34,7 +34,7 @@ public class PlayerHealthModule : EntityHealthModule
         float healthLostPerSecond = m_statModule.GetValue(StatType.PlayerHealthLostPerSecond);
         if (healthLostPerSecond > 0f)
         {
-            TakeDamage(healthLostPerSecond * Time.deltaTime, false, suppressFeedback: true);
+            TakeDamage(healthLostPerSecond * Time.deltaTime, isCrit: false, noArmor: true, suppressFeedback: true);
             float currentHealthPercentage = (float)(m_currentHealth / MaxHealth);
             if (currentHealthPercentage <= 0.5f && currentHealthPercentage > 0f)
                 m_damageVignette.LowHealthWarning(currentHealthPercentage);

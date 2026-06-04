@@ -19,5 +19,6 @@ namespace Stats
         Repetition = 14,
         RoundRegen = 15,
         Lifesteal = 16,
+        CriticalDamage = 17,
     }
 }

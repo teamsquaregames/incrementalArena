@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using Stats;
 using UnityEngine;
+using Utils.UI;
 
 [CreateAssetMenu(fileName = "TTN_", menuName = "TT Node Asset")]
 [Serializable]
@@ -139,18 +140,18 @@ public class STNodeAsset : ScriptableObject
     {
         if (m_isOverideCost) return;
 
-        ulong baseCost = (ulong)GameConfig.Instance.gameSettings.GetNodeValue(m_nodeTier);
+        double baseCost = GameConfig.Instance.gameSettings.GetNodeValue(m_nodeTier);
 
         foreach (Cost cost in m_cost)
         {
             for (int i = 0; i < m_maxLevel; i++)
             {
                 if (Rank == NodeRank.ELITE || Rank == NodeRank.EnemyElite)
-                    cost.SetAmountAt(i, baseCost * 10);
+                    cost.SetAmountAt(i, NumberFormatter.RoundAsFormat(baseCost * 10));
                 else if (m_maxLevel == 1)
-                    cost.SetAmountAt(i, baseCost * 3);
+                    cost.SetAmountAt(i, NumberFormatter.RoundAsFormat(baseCost * 3));
                 else
-                    cost.SetAmountAt(i, baseCost * (ulong)(i + 1));
+                    cost.SetAmountAt(i, NumberFormatter.RoundAsFormat(baseCost * (double)(i + 1)));
             }
         }
     }
