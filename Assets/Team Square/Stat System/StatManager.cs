@@ -20,6 +20,7 @@ namespace Stats
 
         protected void Awake()
         {
+            // this.Log("Awakening StatManager and initializing stat dictionaries");
             m_definitionStats = new SerializableDictionary<EntityType, Dictionary<StatType, Stat>>();
             m_definitionAbilityStats = new SerializableDictionary<AbilityConfig, Dictionary<StatType, Stat[,]>>();
             m_instanceStats = new SerializableDictionary<GameObject, Dictionary<StatType, Stat>>();

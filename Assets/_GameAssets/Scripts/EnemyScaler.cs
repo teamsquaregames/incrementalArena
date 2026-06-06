@@ -25,7 +25,7 @@ public class EnemyScaler : MonoBehaviour
         statModule.AddModifier(new StatModifier(enemy.EntityType, StatType.AttackDamage,  damageMultiplier, ModifierType.Multiplier));
 
         if (enemy.TryGetModule(out EntityHealthModule healthModule))
-            healthModule.UpdateCurrentHealth();
+            healthModule.ResetCurrentHealth();
     }
 
     private float Compute(float a, float b, float c, int x)

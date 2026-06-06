@@ -529,7 +529,7 @@ MonoBehaviour:
     values:
     - 5
     - 10
-    - 1
+    - 0
   m_isMoving: 0
   m_currentState: 0
 --- !u!114 &6638181796098616870

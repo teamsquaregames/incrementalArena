@@ -105,7 +105,7 @@ public class EntityHealthModule : EntityModule
             .SetLink(Owner.gameObject);
     }
 
-    public void UpdateCurrentHealth()
+    public void ResetCurrentHealth()
     {
         m_currentHealth = MaxHealth;
         OnHealthChanged?.Invoke(m_currentHealth, MaxHealth, true);
@@ -114,6 +114,7 @@ public class EntityHealthModule : EntityModule
     [Button]
     public double TakeDamage(double amount, bool isCrit, bool noArmor = false, bool suppressFeedback = false)
     {
+        // this.Log($"TakeDamage called on {Owner.name} with amount: {amount}, isCrit: {isCrit}, noArmor: {noArmor}, suppressFeedback: {suppressFeedback}");
         if (m_isDead) return 0d;
 
         if (!noArmor)
@@ -151,6 +152,7 @@ public class EntityHealthModule : EntityModule
     #region Heal
     protected virtual void Heal(double amount, bool suppressFeedback = false)
     {
+        // this.Log($"Heal called on {Owner.name} with amount: {amount}, suppressFeedback: {suppressFeedback}, currentHealth: {m_currentHealth}/{MaxHealth}");
         if (m_isDead || amount <= 0f) return;
 
         double previous = m_currentHealth;
@@ -169,6 +171,7 @@ public class EntityHealthModule : EntityModule
 
     public void RoundHeal()
     {
+        // this.Log($"RoundHeal triggered for {Owner}. Heal%: {m_statModule.GetValue(StatType.RoundRegen)}%");
         Heal(m_statModule.GetValue(StatType.RoundRegen) / 100f * MaxHealth);
     }
 

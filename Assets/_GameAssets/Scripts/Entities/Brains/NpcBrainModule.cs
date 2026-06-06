@@ -24,6 +24,7 @@ public class NpcBrainModule : EntityBrainModule
 
     [Header("Behaviour")]
     [SerializeField] private float m_averageIdleDuration = 5f;
+    [SerializeField] private float m_flyingThreshold = 0f;
     [SerializeField] private SerializableDictionary<NpcState, float> m_stateWeights;
 
     [Header("Debug")]
@@ -46,7 +47,12 @@ public class NpcBrainModule : EntityBrainModule
         base.OnAllModuleInitialized();
 
         if (Owner.TryGetModule(out EntityHealthModule healthModule))
+        {
             healthModule.OnDeath += OnDeath;
+            healthModule.OnDamageTaken += OnDamageTaken;
+        }
+
+            
     }
 
     protected override void Think()
@@ -77,7 +83,7 @@ public class NpcBrainModule : EntityBrainModule
         }
 
         if (!Owner.TryGetModule(out EntityAbilityModule abilityModule)) return;
-        if (abilityModule.IsUsingAbility) return;
+        if (abilityModule.IsBusy) return;
 
         Entity player = EntityManager.Instance.Player;
         if (player == null) return;
@@ -91,7 +97,10 @@ public class NpcBrainModule : EntityBrainModule
         switch (m_currentState)
         {
             case NpcState.None:
-                RandomState();
+                if (distanceToPlayer <= m_flyingThreshold)
+                    EnterFleeingState();
+                else
+                    RandomState();
                 break;
             case NpcState.Idle:
                 FacePosition(playerPos);
@@ -178,20 +187,36 @@ public class NpcBrainModule : EntityBrainModule
         m_isMoving = false;
         Owner.Animator.SetTrigger("Rallying");
 
-        float idleDuration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
-        await Task.Delay((int)(idleDuration * 1000));
-        RandomState();
+        float duration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
+        await Task.Delay((int)(duration * 1000));
+        EnterAgressiveState();
     }
-
 
     private async Task EnterAgressiveState()
     {
         m_currentState = NpcState.Agressive;
 
         StopMovement();
-        float idleDuration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
-        await Task.Delay((int)(idleDuration * 1000));
-        RandomState();
+        float duration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
+        await Task.Delay((int)(duration * 1000));
+        m_currentState = NpcState.None;
+    }
+
+    private async Task EnterFleeingState()
+    {
+        m_currentState = NpcState.Fleeing;
+
+        float duration = CusRandom.Gaussian() * (m_averageIdleDuration * 2f);
+        await Task.Delay((int)(duration * 1000));
+        m_currentState = NpcState.None;
+    }
+
+    private void OnDamageTaken(double damage, bool isCrit)
+    {
+        if (m_currentState == NpcState.Fleeing)
+            return;
+
+        EnterAgressiveState();
     }
 
     private void OnDeath()

@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
 namespace Stats
 {
@@ -8,6 +9,7 @@ namespace Stats
 
         protected override void OnInitialize()
         {
+            // this.Log($"Initializing EntityStatModule for {Owner.name}");
             base.OnInitialize();
 
             StatManager.Instance.RegisterInstance(gameObject, Owner.EntityType);

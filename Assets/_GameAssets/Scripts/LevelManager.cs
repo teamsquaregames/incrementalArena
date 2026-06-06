@@ -55,7 +55,8 @@ public class LevelManager : Singleton<LevelManager>
         endRoundUIC.SetAnnouncementText($"Round {m_currentRound}");
         endRoundUIC.Open();
 
-        m_playerHealthModule.RoundHeal();
+        if (m_currentRound > 1)
+            m_playerHealthModule.RoundHeal();
 
         yield return new WaitForSeconds(1.5f);
 
@@ -70,7 +71,7 @@ public class LevelManager : Singleton<LevelManager>
         m_crowdManager.CrowdCheer();
 
         yield return new WaitForSeconds(3.5f);
-        
+
         LeanPool.Spawn(m_collectAllCoinsVFX, Player.transform.position, Quaternion.identity, Player.transform);
         m_crowdRewards.CollectAllRewards();
 

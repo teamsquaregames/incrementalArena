@@ -26,10 +26,11 @@ public class EntityDropModule : EntityModule
         m_healthModule.OnDeath -= OnDeath;
         foreach (RewardEntry entry in m_dropEntries)
         {
-            this.Log($"Adding drop reward entry for entity {Owner.name} with stat multiplier {StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier)}: {entry.rewardObject} {entry.value}");
+            // this.Log($"Adding drop reward entry for entity {Owner.name} with stat multiplier {StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier)}: {entry.rewardObject} {entry.value}");
 
-            for (int i = 0; i < StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier); i++)
-                LevelManager.Instance.CrowdRewards.AddRewardEntry(entry);
+            RewardEntry entryCopy = new RewardEntry(entry.rewardObject, entry.value);
+            entryCopy.value *= StatManager.Instance.GetDefinitionValue(Owner.EntityType, StatType.DropRewardMultiplier);
+            LevelManager.Instance.CrowdRewards.AddRewardEntry(entryCopy);
         }
     }
 }

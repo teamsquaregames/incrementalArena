@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
 public class EntityHealthUIModule : EntityModule
 {
@@ -33,6 +34,7 @@ public class EntityHealthUIModule : EntityModule
 
     protected void HandleHealthChanged(double currentHealth, double maxHealth, bool suppressFeedback)
     {
+        // this.Log($"HandleHealthChanged called on {Owner.name}. CurrentHealth: {currentHealth}, MaxHealth: {maxHealth}, SuppressFeedback: {suppressFeedback}");
         if (m_genericGauge == null) return;
         m_genericGauge.SetValue(currentHealth, maxHealth, instant: false, showChunks: !suppressFeedback);
     }

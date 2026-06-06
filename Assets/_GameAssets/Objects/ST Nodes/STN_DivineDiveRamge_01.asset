@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72dc793f1b1587429822bed8d241d79, type: 3}
-  m_Name: STN_LifeSteal_01
+  m_Name: STN_DivineDiveRamge_01
   m_EditorClassIdentifier: 
-  m_displayName: Lifesteal
-  m_id: STN_LifeSteal_01
+  m_displayName: Divine Dive Range
+  m_id: STN_DivineDiveRamge_01
   m_levelingType: 0
   m_maxLevel: 1
   m_rank: 0
-  m_icon: {fileID: 21300000, guid: af72f8ee5474b8e44b20207299f650fc, type: 3}
-  m_description: Heal a percentage of the damage dealth.
-  m_nodeTier: 2
+  m_icon: {fileID: 21300000, guid: 9d7fd9087aaa2c64e88e11a225968ff8, type: 3}
+  m_description: Cast divine dive from further away.
+  m_nodeTier: 11
   m_isOverideCost: 0
   m_cost:
   - currencyAsset: {fileID: 11400000, guid: f0d2986121d34fa4297808a1288d72d5, type: 2}
     m_amount:
-    - 30
+    - 390
   m_abilitiesGranted: []
   m_enemiesUnlocked: []
   m_arenaUnlocked: {fileID: 0}
   m_statModifiers:
-  - id: STN_LifeSteal_01
+  - id: STN_DivineDiveRamge_01
     entityType: 1
-    ability: {fileID: 0}
+    ability: {fileID: 11400000, guid: 513b5565d5462734b89617c16f3ce0ca, type: 2}
     step: 0
     application: 0
-    statType: 16
-    type: 0
+    statType: 11
+    type: 1
     m_values:
-    - 2.5
+    - 20
